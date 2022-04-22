@@ -28,12 +28,9 @@ namespace CoreProject
 
             app.UseRouting();
 
-            app.UseEndpoints(endpoints =>
+            app.Run(async(context) =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                await context.Response.WriteAsync("Hello World!");
             });
         }
     }
