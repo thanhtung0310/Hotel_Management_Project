@@ -5,7 +5,6 @@ D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\APIProject.runtimeconfig.json
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\APIProject.runtimeconfig.dev.json
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\APIProject.dll
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\ref\APIProject.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\APIProject.pdb
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\Humanizer.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\Microsoft.AspNetCore.Razor.Language.dll
@@ -121,7 +120,6 @@ D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\EntityFramework.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\DatabaseProvider.pdb
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\DatabaseProvider.dll.config
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\EntityFramework.xml
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0\APIProject.csproj.AssemblyReference.cache
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0\APIProject.GeneratedMSBuildEditorConfig.editorconfig
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0\APIProject.AssemblyInfoInputs.cache
@@ -137,3 +135,4 @@ D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0\ref\APIProject.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0\APIProject.pdb
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0\APIProject.genruntimeconfig.cache
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0\refint\APIProject.dll

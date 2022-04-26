@@ -63,6 +63,7 @@
     <Compile Include="room.cs" />
     <Compile Include="roomStatu.cs" />
     <Compile Include="roomType.cs" />
+    <Compile Include="Session.cs" />
     <Compile Include="sysdiagram.cs" />
   </ItemGroup>
   <ItemGroup>

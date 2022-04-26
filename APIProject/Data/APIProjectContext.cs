@@ -14,14 +14,26 @@ namespace APIProject.Data
         {
         }
 
-        public DbSet<DatabaseProvider.employee> employee { get; set; }
+        public DbSet<employee> employee { get; set; }
 
-        public DbSet<DatabaseProvider.account> account { get; set; }
+        public DbSet<account> account { get; set; }
 
-        public DbSet<DatabaseProvider.customer> customer { get; set; }
+        public DbSet<customer> customer { get; set; }
 
-        public DbSet<DatabaseProvider.payment> payment { get; set; }
+        public DbSet<payment> payment { get; set; }
 
-        public DbSet<DatabaseProvider.paymentType> paymentType { get; set; }
+        public DbSet<paymentType> paymentType { get; set; }
+
+        public DbSet<role> role { get; set; }
+
+        public DbSet<DatabaseProvider.reception> reception { get; set; }
+
+        public DbSet<DatabaseProvider.reservation> reservation { get; set; }
+
+        public DbSet<DatabaseProvider.room> room { get; set; }
+
+        public DbSet<DatabaseProvider.roomStatu> roomStatu { get; set; }
+
+        public DbSet<DatabaseProvider.roomType> roomType { get; set; }
     }
 }
