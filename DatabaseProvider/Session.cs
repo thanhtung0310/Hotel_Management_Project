@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace DatabaseProvider
 {
-  class Session
+  public class Session
   {
+
   }
 }

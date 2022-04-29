@@ -10,7 +10,6 @@ namespace DatabaseProvider
     public partial class payment
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int payment_id { get; set; }
 
         public int? payment_type_id { get; set; }

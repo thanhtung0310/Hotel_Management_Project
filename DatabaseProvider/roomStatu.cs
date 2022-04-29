@@ -9,7 +9,6 @@ namespace DatabaseProvider
     public partial class roomStatu
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int room_status_id { get; set; }
 
         [StringLength(50)]

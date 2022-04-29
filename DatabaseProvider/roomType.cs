@@ -10,7 +10,6 @@ namespace DatabaseProvider
     public partial class roomType
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int room_type_id { get; set; }
 
         [StringLength(50)]

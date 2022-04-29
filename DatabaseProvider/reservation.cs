@@ -10,19 +10,16 @@ namespace DatabaseProvider
     public partial class reservation
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int resvervation_id { get; set; }
+        public int reservation_id { get; set; }
 
-        public int? customer_id { get; set; }
+        public int customer_id { get; set; }
 
-        public DateTime? expected_check_in_date { get; set; }
+        public DateTime expected_check_in_date { get; set; }
 
+        public int day_stay_number { get; set; }
+
+        [Required]
         [StringLength(50)]
-        public string expected_room_id { get; set; }
-
-        public int? room_type_id { get; set; }
-
-        [StringLength(50)]
-        public string reservation_status { get; set; }
+        public string expected_room_type_id { get; set; }
     }
 }

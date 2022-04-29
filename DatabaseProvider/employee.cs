@@ -1,4 +1,4 @@
-﻿namespace DatabaseProvider
+namespace DatabaseProvider
 {
     using System;
     using System.Collections.Generic;

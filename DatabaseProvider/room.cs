@@ -10,7 +10,6 @@ namespace DatabaseProvider
     public partial class room
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int room_id { get; set; }
 
         public int? room_number { get; set; }

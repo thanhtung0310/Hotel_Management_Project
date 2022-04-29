@@ -10,7 +10,6 @@ namespace DatabaseProvider
     public partial class role
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int role_id { get; set; }
 
         [StringLength(50)]

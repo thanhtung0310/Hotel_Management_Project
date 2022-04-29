@@ -10,10 +10,11 @@ namespace DatabaseProvider
     public partial class account
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int acc_id { get; set; }
 
         public int? emp_id { get; set; }
+
+        public int? customer_id { get; set; }
 
         [StringLength(50)]
         public string acc_username { get; set; }

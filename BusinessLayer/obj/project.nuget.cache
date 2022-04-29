@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "gz3pc5E3ndy1RQ+Ao2b1jLlrc4oC5CQv5jFfLJDHPLxTvOtxAN9auecHpwAcONmh3H2xKCLAmAFtZan8xiSqOw==",
+  "success": true,
+  "projectFilePath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\BusinessLayer\\BusinessLayer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\admin\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

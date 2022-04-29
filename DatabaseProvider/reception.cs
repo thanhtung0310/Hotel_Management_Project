@@ -10,19 +10,19 @@ namespace DatabaseProvider
     public partial class reception
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int reception_id { get; set; }
 
+        [Required]
         [StringLength(50)]
         public string customer_id { get; set; }
 
-        public int? reservation_id { get; set; }
+        public int reservation_id { get; set; }
 
-        public int? room_id { get; set; }
+        public int room_id { get; set; }
 
-        public DateTime? check_in_date { get; set; }
+        public DateTime check_in_date { get; set; }
 
-        public DateTime? expected_check_out_date { get; set; }
+        public DateTime expected_check_out_date { get; set; }
 
         public DateTime? check_out_date { get; set; }
     }
