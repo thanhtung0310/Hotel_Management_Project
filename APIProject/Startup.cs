@@ -6,6 +6,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using APIProject.Data;
+using System.Data;
+using Microsoft.Data.SqlClient;
+using BusinessLayer;
 
 namespace APIProject
 {
@@ -21,7 +24,6 @@ namespace APIProject
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -30,6 +32,11 @@ namespace APIProject
 
             services.AddDbContext<APIProjectContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("APIProjectContext")));
+            
+            services.AddSingleton<IDbConnection>(db => new SqlConnection(
+                    Configuration.GetConnectionString("APIProjectContext")));
+            DependencyInjection.InjectService(services);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -23,36 +23,36 @@ namespace APIProject.Controllers
 
         // GET: api/roomStatus
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<roomStatu>>> GetroomStatu()
+        public async Task<ActionResult<IEnumerable<roomStatus>>> GetRoomStatus()
         {
-            return await _context.roomStatu.ToListAsync();
+            return await _context.roomStatus.ToListAsync();
         }
 
         // GET: api/roomStatus/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<roomStatu>> GetroomStatu(int id)
+        public async Task<ActionResult<roomStatus>> GetRoomStatus(int id)
         {
-            var roomStatu = await _context.roomStatu.FindAsync(id);
+            var roomStatus = await _context.roomStatus.FindAsync(id);
 
-            if (roomStatu == null)
+            if (roomStatus == null)
             {
                 return NotFound();
             }
 
-            return roomStatu;
+            return roomStatus;
         }
 
         // PUT: api/roomStatus/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutroomStatu(int id, roomStatu roomStatu)
+        public async Task<IActionResult> PutRoomStatus(int id, roomStatus roomStatus)
         {
-            if (id != roomStatu.room_status_id)
+            if (id != roomStatus.room_status_id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(roomStatu).State = EntityState.Modified;
+            _context.Entry(roomStatus).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace APIProject.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!roomStatuExists(id))
+                if (!RoomStatusExists(id))
                 {
                     return NotFound();
                 }
@@ -76,16 +76,16 @@ namespace APIProject.Controllers
         // POST: api/roomStatus
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<roomStatu>> PostroomStatu(roomStatu roomStatu)
+        public async Task<ActionResult<roomStatus>> PostRoomStatus(roomStatus roomStatus)
         {
-            _context.roomStatu.Add(roomStatu);
+            _context.roomStatus.Add(roomStatus);
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
-                if (roomStatuExists(roomStatu.room_status_id))
+                if (RoomStatusExists(roomStatus.room_status_id))
                 {
                     return Conflict();
                 }
@@ -95,28 +95,28 @@ namespace APIProject.Controllers
                 }
             }
 
-            return CreatedAtAction("GetroomStatu", new { id = roomStatu.room_status_id }, roomStatu);
+            return CreatedAtAction("GetRoomStatus", new { id = roomStatus.room_status_id }, roomStatus);
         }
 
         // DELETE: api/roomStatus/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteroomStatu(int id)
+        public async Task<IActionResult> DeleteRoomStatus(int id)
         {
-            var roomStatu = await _context.roomStatu.FindAsync(id);
-            if (roomStatu == null)
+            var roomStatus = await _context.roomStatus.FindAsync(id);
+            if (roomStatus == null)
             {
                 return NotFound();
             }
 
-            _context.roomStatu.Remove(roomStatu);
+            _context.roomStatus.Remove(roomStatus);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool roomStatuExists(int id)
+        private bool RoomStatusExists(int id)
         {
-            return _context.roomStatu.Any(e => e.room_status_id == id);
+            return _context.roomStatus.Any(e => e.room_status_id == id);
         }
     }
 }

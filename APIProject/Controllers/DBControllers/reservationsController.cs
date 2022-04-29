@@ -47,7 +47,7 @@ namespace APIProject.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Putreservation(int id, reservation reservation)
         {
-            if (id != reservation.resvervation_id)
+            if (id != reservation.reservation_id)
             {
                 return BadRequest();
             }
@@ -85,7 +85,7 @@ namespace APIProject.Controllers
             }
             catch (DbUpdateException)
             {
-                if (reservationExists(reservation.resvervation_id))
+                if (reservationExists(reservation.reservation_id))
                 {
                     return Conflict();
                 }
@@ -95,7 +95,7 @@ namespace APIProject.Controllers
                 }
             }
 
-            return CreatedAtAction("Getreservation", new { id = reservation.resvervation_id }, reservation);
+            return CreatedAtAction("Getreservation", new { id = reservation.reservation_id }, reservation);
         }
 
         // DELETE: api/reservations/5
@@ -116,7 +116,7 @@ namespace APIProject.Controllers
 
         private bool reservationExists(int id)
         {
-            return _context.reservation.Any(e => e.resvervation_id == id);
+            return _context.reservation.Any(e => e.reservation_id == id);
         }
     }
 }

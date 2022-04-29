@@ -26,14 +26,15 @@ namespace APIProject.Data
 
         public DbSet<role> role { get; set; }
 
-        public DbSet<DatabaseProvider.reception> reception { get; set; }
+        public DbSet<reception> reception { get; set; }
 
-        public DbSet<DatabaseProvider.reservation> reservation { get; set; }
+        public DbSet<reservation> reservation { get; set; }
 
-        public DbSet<DatabaseProvider.room> room { get; set; }
+        public DbSet<room> room { get; set; }
 
-        public DbSet<DatabaseProvider.roomStatu> roomStatu { get; set; }
+        public DbSet<roomStatus> roomStatus { get; set; }
 
-        public DbSet<DatabaseProvider.roomType> roomType { get; set; }
+        public DbSet<roomType> roomType { get; set; }
+        //public DbSet<empInfo> empInfo { get; set; }
     }
 }
