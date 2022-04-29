@@ -14,6 +14,12 @@ namespace BusinessLayer
         public static void InjectService(IServiceCollection services)
         {
             services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<IEmpInfoService, EmpInfoService>();
+            services.AddScoped<ICusInfoService, CusInfoService>();
+            services.AddScoped<IRoomInfoService, RoomInfoService>();
+            services.AddScoped<ICusByNumInfoService, CusByNumInfoService>();
+            services.AddScoped<IRoomByNumInfoService, RoomByNumInfoService>();
+            services.AddScoped<IRoomStatusInfoService, RoomStatusInfoService>();
         }
     }
 }

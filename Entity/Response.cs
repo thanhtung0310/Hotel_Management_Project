@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DatabaseProvider
+namespace Entity
 {
     public class Response<T>
     {
@@ -15,5 +15,19 @@ namespace DatabaseProvider
         public string message { get; set; }
 
         public T Data { get; set; }
+
+        public void successResp()
+        {
+            success = true;
+            errorCode = 0;
+            message = "success";
+        }
+
+        public void errorResp()
+        {
+            success = false;
+            errorCode = 1;
+            message = "error";
+        }
     }
 }

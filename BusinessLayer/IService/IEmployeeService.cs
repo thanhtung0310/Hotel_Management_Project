@@ -1,4 +1,4 @@
-﻿using DatabaseProvider;
+﻿using Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ namespace BusinessLayer.IService
 {
     public interface IEmployeeService
     {
-        Task<List<employee>> GetEmployees();
+        Task<Response<List<emp_info>>> GetEmployees();
         string GetEmployeeName(int id);
     }
 }

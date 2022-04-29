@@ -1,5 +1,5 @@
 ﻿using BusinessLayer.IService;
-using DatabaseProvider;
+using Entity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,37 +12,33 @@ namespace APIProject.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class employee_infosController : ControllerBase
+    public class emp_infosController : ControllerBase
     {
         private IEmpInfoService _empInfoService;
-        public employee_infosController(IEmpInfoService empInfoService)
+        public emp_infosController(IEmpInfoService empInfoService)
         {
             _empInfoService = empInfoService;
         }
 
-        //public async Task<ActionResult<IEnumerable<empInfo>>> GetEmployeeList()
-        //{
-        //    return await _empInfoService.GetEmployeeList();
-        //}
-
-        // GET: api/<employee_infosController>
+        // GET: api/<emp_infosController>
         [HttpGet]
-        public async Task<Response<List<employee>>> GetEmployeeList()
+        public async Task<Response<List<emp_info>>> GetEmployeeList()
         {
             return await _empInfoService.GetEmployeeList();
         }
 
-        // GET api/<employee_infosController>/5
+        // GET api/<emp_infosController>/5
         [HttpGet("{id}")]
-        public async Task<Response<employee>> GetEmployeeByID(int id)
+        public async Task<Response<emp_info>> GetEmployeeByID(int id)
         {
             return await _empInfoService.GetEmployeeByID(id);
         }
 
-        // POST api/<employee_infosController>
-        [HttpPost]
-        public void CreateEmployee([FromBody] string value)
-        {
-        }
+        // POST api/<emp_infosController>
+        //[HttpPost]
+        //public async Task<Response<List<emp_info>>> CreateEmployee([FromBody]emp_info emp)
+        //{
+        //    return await _empInfoService.CreateEmployee(emp);
+        //}
     }
 }

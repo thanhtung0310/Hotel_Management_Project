@@ -1,6 +1,6 @@
 ﻿using BusinessLayer.IService;
 using Dapper;
-using DatabaseProvider;
+using Entity;
 using DataLayer;
 using System;
 using System.Collections.Generic;
@@ -8,25 +8,27 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BusinessLayer.Extentions;
 
 namespace BusinessLayer.Service
 {
-    public class EmpInfoService: BaseController<employee>, IEmpInfoService
+    public class EmpInfoService: BaseController<emp_info>, IEmpInfoService
     {
         private readonly IDbConnection _provider;
         public EmpInfoService(IDbConnection provider): base()
         {
             _provider = provider;
         }
-        public async Task<Response<List<employee>>> GetEmployeeList()
+        
+        public async Task<Response<List<emp_info>>> GetEmployeeList()
         {
-            var response = new Response<List<employee>>();
+            var response = new Response<List<emp_info>>();
             try
             {
                 _provider.Open();
-                DynamicParameters param = new DynamicParameters();
-                var empInfo = await _provider.QueryAsync<employee>("[dbo].[emp_info_get]", param ?? null, commandType: CommandType.StoredProcedure);
+                var empInfo = await _provider.QueryAsync<emp_info>("emp_info_get", commandType: CommandType.StoredProcedure);
                 response.Data = empInfo.AsList();
+                response.successResp();
             }
             finally
             {
@@ -34,15 +36,20 @@ namespace BusinessLayer.Service
             }
             return response;
         }
-        public async Task<Response<employee>> GetEmployeeByID(int id)
+
+        public async Task<Response<emp_info>> GetEmployeeByID(int? id)
         {
-            var response = new Response<employee>();
+            var response = new Response<emp_info>();
             try
             {
                 _provider.Open();
-                DynamicParameters param = new DynamicParameters();
-                var empInfo = await _provider.QueryAsync<employee>("[dbo].[emp_info_get]", param ?? null , commandType: CommandType.StoredProcedure);
-                response.Data = empInfo.FirstOrDefault();
+
+                DynamicParameters param = new DynamicParameters()
+                    .AddParam("@id", id);
+                
+                var empInfo = await _provider.QueryFirstOrDefaultAsync<emp_info>("emp_id_get", param, commandType: CommandType.StoredProcedure);
+                response.Data = empInfo;        
+                response.successResp();
             }
             finally
             {
@@ -50,5 +57,22 @@ namespace BusinessLayer.Service
             }
             return response;
         }
+
+        //public async Task<Response<List<emp_info>>> CreateEmployee(emp_info emp)
+        //{
+        //    var response = new Response<List<emp_info>>();
+        //    try
+        //    {
+        //        _provider.Open();
+        //        DynamicParameters param = new DynamicParameters();
+        //        var empInfo = await _provider.QueryAsync<emp_info>("emp_info_insert", emp ?? null, commandType: CommandType.StoredProcedure);
+        //        //response.Data = empInfo.<emp_info>();
+        //    }
+        //    finally
+        //    {
+        //        _provider.Close();
+        //    }
+        //    return response;
+        //}
     }
 }

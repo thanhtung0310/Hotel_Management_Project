@@ -12,6 +12,7 @@
   <ItemGroup>
     <ProjectReference Include="..\DatabaseProvider\DatabaseProvider.csproj" />
     <ProjectReference Include="..\DataLayer\DataLayer.csproj" />
+    <ProjectReference Include="..\Entity\Entity.csproj" />
   </ItemGroup>
 
 </Project>

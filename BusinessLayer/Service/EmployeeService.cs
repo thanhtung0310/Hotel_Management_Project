@@ -1,6 +1,6 @@
 ﻿using BusinessLayer.IService;
 using Dapper;
-using DatabaseProvider;
+using Entity;
 using DataLayer;
 using System;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Service
 {
-    public class EmployeeService : BaseController<employee>, IEmployeeService
+    public class EmployeeService : BaseController<emp_info>, IEmployeeService
     {
         private readonly IDbConnection _provider;
         public EmployeeService(IDbConnection provider) : base()
@@ -22,15 +22,16 @@ namespace BusinessLayer.Service
             throw new NotImplementedException();
         }
 
-        public async Task<List<employee>> GetEmployees()
+        public async Task<Response<List<emp_info>>> GetEmployees()
         {
-            var response = new List<employee>();
+            var response = new Response<List<emp_info>>();
             try
             {
                 _provider.Open();
                 DynamicParameters param = new DynamicParameters();
-                var employees = await _provider.QueryAsync<employee>("emp_info_get", param ?? null, commandType: CommandType.StoredProcedure);
-                //var employees = await _provider.QueryAsync<employee>("select * from employee;");
+                var employees = await _provider.QueryAsync<emp_info>("emp_info_get", param ?? null, commandType: CommandType.StoredProcedure);
+                response.Data = employees.AsList();
+                response.successResp();
             }
             finally
             {
@@ -39,19 +40,16 @@ namespace BusinessLayer.Service
             return response;
         }
 
-        public async Task<List<employee>> GetEmployeeID(int? id)
+        public async Task<Response<List<emp_info>>> GetEmployeeID(int? id)
         {
-            var response = new List<employee>();
+            var response = new Response<List<emp_info>>();
             try
             {
                 _provider.Open();
                 DynamicParameters param = new DynamicParameters();
-                var employees = await _provider.QueryAsync<employee>("emp_info_get", param ?? null, commandType: CommandType.StoredProcedure);
-                //var employees = await _provider.QueryAsync<employee>("'select * from employee where emp_id = '" + id + "'");
-            }
-            catch
-            {
-                throw;
+                var employees = await _provider.QueryAsync<emp_info>("emp_info_get", id ?? null, commandType: CommandType.StoredProcedure);
+                response.Data = employees.AsList();
+                response.successResp();
             }
             finally
             {

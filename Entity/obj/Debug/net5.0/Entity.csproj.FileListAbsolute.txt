@@ -1,0 +1,47 @@
+D:\dev\Hotel_API\Entity\bin\Debug\net5.0\Entity.deps.json
+D:\dev\Hotel_API\Entity\bin\Debug\net5.0\Entity.dll
+D:\dev\Hotel_API\Entity\bin\Debug\net5.0\ref\Entity.dll
+D:\dev\Hotel_API\Entity\bin\Debug\net5.0\Entity.pdb
+D:\dev\Hotel_API\Entity\obj\Debug\net5.0\Entity.csproj.AssemblyReference.cache
+D:\dev\Hotel_API\Entity\obj\Debug\net5.0\Entity.GeneratedMSBuildEditorConfig.editorconfig
+D:\dev\Hotel_API\Entity\obj\Debug\net5.0\Entity.AssemblyInfoInputs.cache
+D:\dev\Hotel_API\Entity\obj\Debug\net5.0\Entity.AssemblyInfo.cs
+D:\dev\Hotel_API\Entity\obj\Debug\net5.0\Entity.csproj.CoreCompileInputs.cache
+D:\dev\Hotel_API\Entity\obj\Debug\net5.0\Entity.dll
+D:\dev\Hotel_API\Entity\obj\Debug\net5.0\ref\Entity.dll
+D:\dev\Hotel_API\Entity\obj\Debug\net5.0\Entity.pdb
+C:\Users\admin\Downloads\Hotel_API\Hotel_API\Entity\bin\Debug\net5.0\Entity.deps.json
+C:\Users\admin\Downloads\Hotel_API\Hotel_API\Entity\bin\Debug\net5.0\Entity.dll
+C:\Users\admin\Downloads\Hotel_API\Hotel_API\Entity\bin\Debug\net5.0\ref\Entity.dll
+C:\Users\admin\Downloads\Hotel_API\Hotel_API\Entity\bin\Debug\net5.0\Entity.pdb
+C:\Users\admin\Downloads\Hotel_API\Hotel_API\Entity\obj\Debug\net5.0\Entity.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\admin\Downloads\Hotel_API\Hotel_API\Entity\obj\Debug\net5.0\Entity.AssemblyInfoInputs.cache
+C:\Users\admin\Downloads\Hotel_API\Hotel_API\Entity\obj\Debug\net5.0\Entity.AssemblyInfo.cs
+C:\Users\admin\Downloads\Hotel_API\Hotel_API\Entity\obj\Debug\net5.0\Entity.csproj.CoreCompileInputs.cache
+C:\Users\admin\Downloads\Hotel_API\Hotel_API\Entity\obj\Debug\net5.0\Entity.dll
+C:\Users\admin\Downloads\Hotel_API\Hotel_API\Entity\obj\Debug\net5.0\ref\Entity.dll
+C:\Users\admin\Downloads\Hotel_API\Hotel_API\Entity\obj\Debug\net5.0\Entity.pdb
+D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\Entity\bin\Debug\net5.0\Entity.deps.json
+D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\Entity\bin\Debug\net5.0\Entity.dll
+D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\Entity\bin\Debug\net5.0\ref\Entity.dll
+D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\Entity\bin\Debug\net5.0\Entity.pdb
+D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\Entity\obj\Debug\net5.0\Entity.csproj.AssemblyReference.cache
+D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\Entity\obj\Debug\net5.0\Entity.GeneratedMSBuildEditorConfig.editorconfig
+D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\Entity\obj\Debug\net5.0\Entity.AssemblyInfoInputs.cache
+D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\Entity\obj\Debug\net5.0\Entity.AssemblyInfo.cs
+D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\Entity\obj\Debug\net5.0\Entity.csproj.CoreCompileInputs.cache
+D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\Entity\obj\Debug\net5.0\Entity.dll
+D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\Entity\obj\Debug\net5.0\ref\Entity.dll
+D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\Entity\obj\Debug\net5.0\Entity.pdb
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\bin\Debug\net5.0\Entity.deps.json
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\bin\Debug\net5.0\Entity.dll
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\bin\Debug\net5.0\ref\Entity.dll
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\bin\Debug\net5.0\Entity.pdb
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\obj\Debug\net5.0\Entity.csproj.AssemblyReference.cache
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\obj\Debug\net5.0\Entity.GeneratedMSBuildEditorConfig.editorconfig
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\obj\Debug\net5.0\Entity.AssemblyInfoInputs.cache
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\obj\Debug\net5.0\Entity.AssemblyInfo.cs
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\obj\Debug\net5.0\Entity.csproj.CoreCompileInputs.cache
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\obj\Debug\net5.0\Entity.dll
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\obj\Debug\net5.0\ref\Entity.dll
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\obj\Debug\net5.0\Entity.pdb
