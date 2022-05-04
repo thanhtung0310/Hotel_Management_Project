@@ -29,6 +29,7 @@ namespace BusinessLayer.Service
                 DynamicParameters param = new DynamicParameters()
                     .AddParam("@num", num);
                 var cusInfo = await _provider.QueryAsync<cus_info>("customer_info_number_get", param, commandType: CommandType.StoredProcedure);
+                
                 response.Data = cusInfo.FirstOrDefault();
                 response.successResp();
             }

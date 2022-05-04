@@ -35,10 +35,10 @@ namespace APIProject.Controllers
         }
 
         // POST api/<emp_infosController>
-        //[HttpPost]
-        //public async Task<Response<List<emp_info>>> CreateEmployee([FromBody]emp_info emp)
-        //{
-        //    return await _empInfoService.CreateEmployee(emp);
-        //}
+        [HttpPost]
+        public async Task<Response<emp_info>> CreateEmployee([FromBody] emp_info emp, int id, string name, string username, string pwd, int role_id)
+        {
+            return await _empInfoService.CreateEmployee(emp, id, name, username, pwd, role_id);
+        }
     }
 }
