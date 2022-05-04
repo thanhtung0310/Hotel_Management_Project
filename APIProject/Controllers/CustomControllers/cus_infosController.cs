@@ -35,9 +35,16 @@ namespace APIProject.Controllers.CustomControllers
 
         // POST api/<cus_infosController>
         [HttpPost]
-        public async Task<Response<List<cus_info>>> CreateCustomer([FromBody] cus_info cus)
+        public async Task<Response<cus_info>> CreateCustomer([FromBody] cus_info cus)
         {
             return await _cusInfoService.CreateCustomer(cus);
+        }
+
+        // DELETE api/<cus_infosController>/5
+        [HttpDelete("{id}")]
+        public async Task<Response<cus_info>> DeleteCustomerByID(int id)
+        {
+            return await _cusInfoService.DeleteCustomerByID(id);
         }
     }
 }

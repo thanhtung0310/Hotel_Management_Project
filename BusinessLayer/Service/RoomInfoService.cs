@@ -56,5 +56,59 @@ namespace BusinessLayer.Service
             }
             return response;
         }
+
+        // failed
+        public async Task<Response<room_info>> CreateRoom (room_info room)
+        {
+            var response = new Response<room_info>();
+            try
+            {
+                _provider.Open();
+                DynamicParameters param = new DynamicParameters();
+                var check = _provider.QueryFirstOrDefaultAsync<room_info>("room_number_get", room.room_number, commandType: CommandType.StoredProcedure);
+                if (check != null)
+                {
+                    var roomInfo = await _provider.QueryFirstOrDefaultAsync<room_info>("room_info_insert", param, commandType: CommandType.StoredProcedure); // chua co
+                    response.Data = roomInfo;
+                    response.successResp();
+                }
+                else
+                {
+                    response.errorResp();
+                }
+            }
+            finally
+            {
+                _provider.Close();
+            }
+            return response;
+        }
+
+        public async Task<Response<room_info>> DeleteRoomByID(string num)
+        {
+            var response = new Response<room_info>();
+            try
+            {
+                _provider.Open();
+                DynamicParameters param = new DynamicParameters()
+                    .AddParam("@num", num);
+                var check = _provider.QueryFirstOrDefaultAsync<room_info>("room_number_get", num, commandType: CommandType.StoredProcedure);
+                if (check != null)
+                {
+                    var roomInfo = await _provider.QueryFirstOrDefaultAsync<room_info>("room_info_delete", param, commandType: CommandType.StoredProcedure);
+                    response.Data = roomInfo;
+                    response.successResp();
+                }
+                else
+                {
+                    response.errorResp();
+                }
+            }
+            finally
+            {
+                _provider.Close();
+            }
+            return response;
+        }
     }
 }

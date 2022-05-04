@@ -20,6 +20,8 @@ namespace BusinessLayer
             services.AddScoped<ICusByNumInfoService, CusByNumInfoService>();
             services.AddScoped<IRoomByNumInfoService, RoomByNumInfoService>();
             services.AddScoped<IRoomStatusInfoService, RoomStatusInfoService>();
+            services.AddScoped<IBookedCusInfoService, BookedCusInfoService>();
+            services.AddScoped<IBookedRoomInfoService, BookedRoomInfoService>();
         }
     }
 }

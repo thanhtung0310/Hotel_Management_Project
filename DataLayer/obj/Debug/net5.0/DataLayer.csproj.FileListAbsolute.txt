@@ -38,6 +38,7 @@ D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\DataLayer\bin\Debug\net5.0\
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\DataLayer\bin\Debug\net5.0\DataLayer.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\DataLayer\bin\Debug\net5.0\ref\DataLayer.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\DataLayer\bin\Debug\net5.0\DataLayer.pdb
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\DataLayer\obj\Debug\net5.0\DataLayer.csproj.AssemblyReference.cache
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\DataLayer\obj\Debug\net5.0\DataLayer.GeneratedMSBuildEditorConfig.editorconfig
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\DataLayer\obj\Debug\net5.0\DataLayer.AssemblyInfoInputs.cache
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\DataLayer\obj\Debug\net5.0\DataLayer.AssemblyInfo.cs

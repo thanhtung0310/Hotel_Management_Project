@@ -11,5 +11,7 @@ namespace BusinessLayer.IService
     {
         Task<Response<List<room_info>>> GetRoomList();
         Task<Response<List<room_info>>> GetRoomByID(int type);
+        Task<Response<room_info>> CreateRoom(room_info room);
+        Task<Response<room_info>> DeleteRoomByID(string num);
     }
 }

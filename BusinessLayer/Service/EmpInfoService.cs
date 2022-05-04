@@ -5,6 +5,7 @@ using DataLayer;
 using Entity;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
@@ -36,16 +37,14 @@ namespace BusinessLayer.Service
             return response;
         }
 
-        public async Task<Response<emp_info>> GetEmployeeByID(int? id)
+        public async Task<Response<emp_info>> GetEmployeeByID(int id)
         {
             var response = new Response<emp_info>();
             try
             {
                 _provider.Open();
-
                 DynamicParameters param = new DynamicParameters()
                     .AddParam("@id", id);
-
                 var empInfo = await _provider.QueryFirstOrDefaultAsync<emp_info>("emp_id_get", param, commandType: CommandType.StoredProcedure);
                 response.Data = empInfo;
                 response.successResp();
@@ -57,29 +56,54 @@ namespace BusinessLayer.Service
             return response;
         }
 
-        public async Task<Response<emp_info>> CreateEmployee(emp_info emp, int id, string name, string username, string pwd, int role_id)
+        public async Task<Response<emp_info>> CreateEmployee(emp_info emp)
         {
-            dynamic response = null;
-            // var response = new Response<List<emp_info>>();
+            var response = new Response<emp_info>();
+            try
+            {
+                _provider.Open();                
+                DynamicParameters param = new DynamicParameters()
+                    .AddParam("@id", emp.emp_id)
+                    .AddParam("@username", emp.acc_username)
+                    .AddParam("@pwd", emp.acc_password)
+                    .AddParam("@name", emp.emp_name);
+                var check = _provider.QueryFirstOrDefaultAsync<emp_info>("emp_id_get", emp.emp_id, commandType: CommandType.StoredProcedure);
+                if (check != null)
+                {
+                    var empInfo = await _provider.QueryFirstOrDefaultAsync<emp_info>("emp_info_insert", param, commandType: CommandType.StoredProcedure);
+                    response.Data = empInfo;
+                    response.successResp();
+                }
+                else
+                {
+                    response.errorResp();
+                }
+            }
+            finally
+            {
+                _provider.Close();
+            }
+            return response;
+        }
+
+        public async Task<Response<emp_info>> DeleteEmployeeByID(int id)
+        {
+            var response = new Response<emp_info>();
             try
             {
                 _provider.Open();
-                JObject newEmp = JsonConvert.DeserializeObject<JObject>(emp.ToString());
-                if (newEmp != null)
+                DynamicParameters param = new DynamicParameters()
+                    .AddParam("@id", id);
+                var check = _provider.QueryFirstOrDefaultAsync<emp_info>("emp_id_get", id, commandType: CommandType.StoredProcedure);
+                if (check != null)
                 {
-                    DynamicParameters param = new DynamicParameters();
-                    foreach (KeyValuePair<string, JToken> keyValuePair in newEmp)
-                    {
-                        if (keyValuePair.Key != "id")
-                        {
-                            param.AddParam("", id)
-                                .AddParam("", name)
-                                .AddParam("", username)
-                                .AddParam("", pwd)
-                                .AddParam("", role_id);
-                        }
-                    }
-                    response = (Response<List<emp_info>>)await _provider.QueryAsync<emp_info>("emp_info_insert", param, commandType: CommandType.StoredProcedure);
+                    var empInfo = await _provider.QueryFirstOrDefaultAsync<emp_info>("emp_info_delete", param, commandType: CommandType.StoredProcedure);
+                    response.Data = empInfo;
+                    response.successResp();
+                }
+                else
+                {
+                    response.errorResp();
                 }
             }
             finally

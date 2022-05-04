@@ -30,5 +30,19 @@ namespace APIProject.Controllers.CustomControllers
         {
             return await _roomInfoService.GetRoomByID(id);
         }
+
+        // POST api/<room_infosController>
+        [HttpPost]
+        public async Task<Response<room_info>> CreateRoom(room_info room)
+        {
+            return await _roomInfoService.CreateRoom(room);
+        }
+
+        // DELETE api/<room_infosController>/5
+        [HttpDelete("{id}")]
+        public async Task<Response<room_info>> DeleteRoomByID(int id)
+        {
+            return await _roomInfoService.DeleteRoomByID(id);
+        }
     }
 }
