@@ -57,7 +57,6 @@ namespace BusinessLayer.Service
             return response;
         }
 
-        // failed
         public async Task<Response<room_info>> CreateRoom (room_info room)
         {
             var response = new Response<room_info>();

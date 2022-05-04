@@ -19,6 +19,11 @@ namespace APIProject.Controllers.CustomControllers
             _cusInfoService = cusInfoService;
         }
 
+        /// <summary>
+        /// Get customer who has booked room by their contact number
+        /// </summary>
+        /// <param name="num"></param>
+        /// <returns></returns>
         // GET api/<booked_cus_infosController>/0123456786
         [HttpGet("{num}")]
         public async Task<Response<booked_cus_info>> GetBookedCustomerByNum(string num)

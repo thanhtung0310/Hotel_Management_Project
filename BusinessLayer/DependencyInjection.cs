@@ -22,6 +22,9 @@ namespace BusinessLayer
             services.AddScoped<IRoomStatusInfoService, RoomStatusInfoService>();
             services.AddScoped<IBookedCusInfoService, BookedCusInfoService>();
             services.AddScoped<IBookedRoomInfoService, BookedRoomInfoService>();
+            services.AddScoped<IRoomBookingService, RoomBookingService>();
+            services.AddScoped<IRoomCheckInService, RoomCheckInService>();
+            services.AddScoped<IRoomCheckOutService, RoomCheckOutService>();
         }
     }
 }

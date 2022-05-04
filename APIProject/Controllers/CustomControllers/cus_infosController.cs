@@ -19,6 +19,10 @@ namespace APIProject.Controllers.CustomControllers
             _cusInfoService = cusInfoService;
         }
 
+        /// <summary>
+        /// Get a list of all customers
+        /// </summary>
+        /// <returns></returns>
         // GET: api/<cus_infosController>
         [HttpGet]
         public async Task<Response<List<cus_info>>> GetCustomerList()
@@ -26,6 +30,11 @@ namespace APIProject.Controllers.CustomControllers
             return await _cusInfoService.GetCustomerList();
         }
 
+        /// <summary>
+        /// Get customer's information by customer ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // GET api/<cus_infosController>/5
         [HttpGet("{id}")]
         public async Task<Response<cus_info>> GetCustomerByID(int id)
@@ -33,6 +42,11 @@ namespace APIProject.Controllers.CustomControllers
             return await _cusInfoService.GetCustomerByID(id);
         }
 
+        /// <summary>
+        /// Create new customer
+        /// </summary>
+        /// <param name="cus"></param>
+        /// <returns></returns>
         // POST api/<cus_infosController>
         [HttpPost]
         public async Task<Response<cus_info>> CreateCustomer([FromBody] cus_info cus)
@@ -40,6 +54,11 @@ namespace APIProject.Controllers.CustomControllers
             return await _cusInfoService.CreateCustomer(cus);
         }
 
+        /// <summary>
+        /// Delete customer's information by customer ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // DELETE api/<cus_infosController>/5
         [HttpDelete("{id}")]
         public async Task<Response<cus_info>> DeleteCustomerByID(int id)

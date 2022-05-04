@@ -17,6 +17,12 @@ namespace APIProject.Controllers.CustomControllers
         {
             _roomStatusInfoService = roomStatusInfoService;
         }
+
+        /// <summary>
+        /// Get room information by Room status ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // GET api/<room_status_infosController>/5
         [HttpGet("{id}")]
         public async Task<Response<room_status_info>> GetRoomByStatusID(int id)

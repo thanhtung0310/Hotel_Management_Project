@@ -19,6 +19,11 @@ namespace APIProject.Controllers.CustomControllers
             _roomInfoService = roomInfoService;
         }
 
+        /// <summary>
+        /// Get room which has been booked by Room type ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // GET api/<booked_room_infosController>/5
         [HttpGet("{id}")]
         public async Task<Response<booked_room_info>> GetBookedRoomByID(int id)

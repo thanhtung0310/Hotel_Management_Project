@@ -20,6 +20,10 @@ namespace APIProject.Controllers
             _empInfoService = empInfoService;
         }
 
+        /// <summary>
+        /// Get a list of all employees
+        /// </summary>
+        /// <returns></returns>
         // GET: api/<emp_infosController>
         [HttpGet]
         public async Task<Response<List<emp_info>>> GetEmployeeList()
@@ -27,6 +31,11 @@ namespace APIProject.Controllers
             return await _empInfoService.GetEmployeeList();
         }
 
+        /// <summary>
+        /// Get information of a employee by Employee ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // GET api/<emp_infosController>/5
         [HttpGet("{id}")]
         public async Task<Response<emp_info>> GetEmployeeByID(int id)
@@ -34,6 +43,11 @@ namespace APIProject.Controllers
             return await _empInfoService.GetEmployeeByID(id);
         }
 
+        /// <summary>
+        /// Create new employee
+        /// </summary>
+        /// <param name="emp"></param>
+        /// <returns></returns>
         // POST api/<emp_infosController>
         [HttpPost]
         public async Task<Response<emp_info>> CreateEmployee([FromBody] emp_info emp)
@@ -41,6 +55,11 @@ namespace APIProject.Controllers
             return await _empInfoService.CreateEmployee(emp);
         }
 
+        /// <summary>
+        /// Delete employee by employee ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         // DELETE api/<emp_infosController>/10
         [HttpDelete("{id}")]
         public async Task<Response<emp_info>> DeleteEmployeeByID(int id)
