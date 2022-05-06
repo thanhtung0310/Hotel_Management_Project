@@ -1,11 +1,6 @@
 ﻿using BusinessLayer.IService;
 using BusinessLayer.Service;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BusinessLayer
 {
@@ -13,18 +8,26 @@ namespace BusinessLayer
     {
         public static void InjectService(IServiceCollection services)
         {
-            services.AddScoped<IEmployeeService, EmployeeService>();
-            services.AddScoped<IEmpInfoService, EmpInfoService>();
-            services.AddScoped<ICusInfoService, CusInfoService>();
-            services.AddScoped<IRoomInfoService, RoomInfoService>();
-            services.AddScoped<ICusByNumInfoService, CusByNumInfoService>();
-            services.AddScoped<IRoomByNumInfoService, RoomByNumInfoService>();
-            services.AddScoped<IRoomStatusInfoService, RoomStatusInfoService>();
-            services.AddScoped<IBookedCusInfoService, BookedCusInfoService>();
-            services.AddScoped<IBookedRoomInfoService, BookedRoomInfoService>();
-            services.AddScoped<IRoomBookingService, RoomBookingService>();
-            services.AddScoped<IRoomCheckInService, RoomCheckInService>();
-            services.AddScoped<IRoomCheckOutService, RoomCheckOutService>();
+            //services.AddScoped<IEmployeeService, EmployeeService>();
+            //services.AddScoped<IEmpInfoService, EmpInfoService>();
+            //services.AddScoped<ICusInfoService, CusInfoService>();
+            //services.AddScoped<IRoomInfoService, RoomInfoService>();
+            //services.AddScoped<ICusByNumInfoService, CusByNumInfoService>();
+            //services.AddScoped<IRoomByNumInfoService, RoomByNumInfoService>();
+            //services.AddScoped<IRoomStatusInfoService, RoomStatusInfoService>();
+            //services.AddScoped<IBookedCusInfoService, BookedCusInfoService>();
+            //services.AddScoped<IBookedRoomInfoService, BookedRoomInfoService>();
+            //services.AddScoped<IRoomBookingService, RoomBookingService>();
+            //services.AddScoped<IRoomCheckInService, RoomCheckInService>();
+            //services.AddScoped<IRoomCheckOutService, RoomCheckOutService>();
+            //services.AddScoped<IVacantConverterService, VacantConverterService>();
+
+            // similar but using Scrutor to inject
+            services.Scan(scan => scan
+                .FromAssemblyOf<IBookedCusInfoService>()
+                .AddClasses(classes => classes.InNamespaces("BusinessLayer"))
+                .AsImplementedInterfaces()
+                .WithScopedLifetime());
         }
     }
 }

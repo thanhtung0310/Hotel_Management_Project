@@ -24,6 +24,7 @@ D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\Microsoft.Identity.Client.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
@@ -40,6 +41,7 @@ D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\Newtonsoft.Json.dll
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\Scrutor.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll

@@ -13,7 +13,7 @@ namespace APIProject.Controllers.CustomControllers
     [ApiController]
     public class cus_infosController : ControllerBase
     {
-        private ICusInfoService _cusInfoService;
+        private readonly ICusInfoService _cusInfoService;
         public cus_infosController(ICusInfoService cusInfoService)
         {
             _cusInfoService = cusInfoService;

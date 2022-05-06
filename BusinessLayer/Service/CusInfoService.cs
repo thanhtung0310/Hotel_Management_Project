@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BusinessLayer.Extentions;
+using System.Data.Common;
 
 namespace BusinessLayer.Service
 {
@@ -67,18 +68,22 @@ namespace BusinessLayer.Service
                     .AddParam("@username", cus.acc_username)
                     .AddParam("@pwd", cus.acc_password)
                     .AddParam("@fname", cus.customer_first_name)
-                    .AddParam("@lname", cus.customer_last_name);
-                var check = _provider.QueryFirstOrDefaultAsync<cus_info>("cus_id_get", cus.customer_id, commandType: CommandType.StoredProcedure);
-                if (check != null)
+                    .AddParam("@lname", cus.customer_last_name)
+                    .AddParam("@address", cus.customer_address)
+                    .AddParam("@num", cus.customer_contact_number);
+                DynamicParameters param1 = new DynamicParameters()
+                    .AddParam("@id", cus.customer_id);
+                var check = _provider.ExecuteReader("cus_id_get", param1, commandType: CommandType.StoredProcedure);          
+                if (((DbDataReader)check).HasRows == false)
                 {
-                    var cusInfo = await _provider.QueryFirstOrDefaultAsync<cus_info>("cus_info_insert", param, commandType: CommandType.StoredProcedure);
+                    await _provider.QueryFirstOrDefaultAsync<cus_info>("cus_info_insert", param, commandType: CommandType.StoredProcedure);
                     response.Data = cus;
                     response.successResp();
                 }
                 else
                 {
                     response.errorResp();
-                }
+                }              
             }
             finally
             {
@@ -95,8 +100,8 @@ namespace BusinessLayer.Service
                 _provider.Open();
                 DynamicParameters param = new DynamicParameters()
                     .AddParam("@id", id);
-                var check = _provider.QueryFirstOrDefaultAsync<cus_info>("cus_id_get", id, commandType: CommandType.StoredProcedure);
-                if (check != null)
+                var check = _provider.ExecuteReader("cus_id_get", param, commandType: CommandType.StoredProcedure);
+                if (((DbDataReader)check).HasRows == true)
                 {
                     var cusInfo = await _provider.QueryFirstOrDefaultAsync<cus_info>("cus_info_delete", param, commandType: CommandType.StoredProcedure);
                     response.Data = cusInfo;

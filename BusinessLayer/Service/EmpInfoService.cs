@@ -8,6 +8,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Threading.Tasks;
 
 namespace BusinessLayer.Service
@@ -66,9 +67,14 @@ namespace BusinessLayer.Service
                     .AddParam("@id", emp.emp_id)
                     .AddParam("@username", emp.acc_username)
                     .AddParam("@pwd", emp.acc_password)
-                    .AddParam("@name", emp.emp_name);
-                var check = _provider.QueryFirstOrDefaultAsync<emp_info>("emp_id_get", emp.emp_id, commandType: CommandType.StoredProcedure);
-                if (check != null)
+                    .AddParam("@name", emp.emp_name)
+                    .AddParam("@pos", emp.emp_position)
+                    .AddParam("@dob", emp.emp_dob)
+                    .AddParam("@num", emp.emp_contact_number);
+                DynamicParameters param1 = new DynamicParameters()
+                    .AddParam("@id", emp.emp_id);
+                var check = _provider.ExecuteReader("cus_id_get", param1, commandType: CommandType.StoredProcedure);
+                if (((DbDataReader)check).HasRows == false)
                 {
                     var empInfo = await _provider.QueryFirstOrDefaultAsync<emp_info>("emp_info_insert", param, commandType: CommandType.StoredProcedure);
                     response.Data = empInfo;
@@ -94,8 +100,8 @@ namespace BusinessLayer.Service
                 _provider.Open();
                 DynamicParameters param = new DynamicParameters()
                     .AddParam("@id", id);
-                var check = _provider.QueryFirstOrDefaultAsync<emp_info>("emp_id_get", id, commandType: CommandType.StoredProcedure);
-                if (check != null)
+                var check = _provider.ExecuteReader("cus_id_get", param, commandType: CommandType.StoredProcedure);
+                if (((DbDataReader)check).HasRows == true)
                 {
                     var empInfo = await _provider.QueryFirstOrDefaultAsync<emp_info>("emp_info_delete", param, commandType: CommandType.StoredProcedure);
                     response.Data = empInfo;

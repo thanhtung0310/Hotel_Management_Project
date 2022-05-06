@@ -1,12 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "OhduaZLa+0iRYMRyJF3/H2BCiS42TmD6eO9f7t8qryajL8PDBIkJFvzpyYBpKC8SX05iR7D2QA1YPaRGURkGoQ==",
+  "dgSpecHash": "+Xeoi/hCjF+Ow0MG3ZodSAh6dVX/bto2J79nsl355UQjYbROCvfVKiUrOMnZ+1sUQ+ZaGWL2KWVzspqCTiKJcw==",
   "success": true,
   "projectFilePath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\BusinessLayer\\BusinessLayer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\admin\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
-    "C:\\Users\\admin\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+    "C:\\Users\\admin\\.nuget\\packages\\microsoft.extensions.dependencymodel\\3.1.6\\microsoft.extensions.dependencymodel.3.1.6.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\scrutor\\4.1.0\\scrutor.4.1.0.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512"
   ],
   "logs": []
 }
