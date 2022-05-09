@@ -61,7 +61,6 @@
     <Compile Include="reservation.cs" />
     <Compile Include="role.cs" />
     <Compile Include="room.cs" />
-    <Compile Include="roomStatu.cs" />
     <Compile Include="roomStatus.cs" />
     <Compile Include="roomType.cs" />
     <Compile Include="Session.cs" />

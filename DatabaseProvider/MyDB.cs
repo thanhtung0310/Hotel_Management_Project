@@ -21,7 +21,7 @@ namespace DatabaseProvider
         public virtual DbSet<reservation> reservations { get; set; }
         public virtual DbSet<role> roles { get; set; }
         public virtual DbSet<room> rooms { get; set; }
-        public virtual DbSet<roomStatu> roomStatus { get; set; }
+        public virtual DbSet<roomStatus> roomStatus { get; set; }
         public virtual DbSet<roomType> roomTypes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -70,7 +70,7 @@ namespace DatabaseProvider
                 .Property(e => e.role_name)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<roomStatu>()
+            modelBuilder.Entity<roomStatus>()
                 .Property(e => e.room_status_name)
                 .IsUnicode(false);
 
