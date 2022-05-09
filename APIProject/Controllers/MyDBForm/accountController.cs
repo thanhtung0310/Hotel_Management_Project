@@ -10,11 +10,11 @@ using DatabaseProvider;
 
 namespace APIProject.Controllers.MyDBForm
 {
-    public class accountController : Controller
+    public class AccountController : Controller
     {
         private readonly APIProjectContext _context;
 
-        public accountController(APIProjectContext context)
+        public AccountController(APIProjectContext context)
         {
             _context = context;
         }

@@ -15617,6 +15617,217 @@
     "CSharpLanguageVersion": 900
   },
   "RootNamespace": "APIProject",
-  "Documents": [],
+  "Documents": [
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\Shared\\Error.cshtml",
+      "TargetPath": "Views\\Shared\\Error.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\reservation\\Index.cshtml",
+      "TargetPath": "Views\\reservation\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\account\\Index.cshtml",
+      "TargetPath": "Views\\account\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\account\\Edit.cshtml",
+      "TargetPath": "Views\\account\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\payment\\Delete.cshtml",
+      "TargetPath": "Views\\payment\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\paymentType\\Create.cshtml",
+      "TargetPath": "Views\\paymentType\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\employee\\Delete.cshtml",
+      "TargetPath": "Views\\employee\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\Shared\\_Layout.cshtml",
+      "TargetPath": "Views\\Shared\\_Layout.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\reception\\Index.cshtml",
+      "TargetPath": "Views\\reception\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\_ViewImports.cshtml",
+      "TargetPath": "Views\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\paymentType\\Delete.cshtml",
+      "TargetPath": "Views\\paymentType\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\customer\\Index.cshtml",
+      "TargetPath": "Views\\customer\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\Home\\Privacy.cshtml",
+      "TargetPath": "Views\\Home\\Privacy.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\account\\Details.cshtml",
+      "TargetPath": "Views\\account\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\paymentType\\Index.cshtml",
+      "TargetPath": "Views\\paymentType\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\paymentType\\Details.cshtml",
+      "TargetPath": "Views\\paymentType\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\employee\\Index.cshtml",
+      "TargetPath": "Views\\employee\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\payment\\Index.cshtml",
+      "TargetPath": "Views\\payment\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\employee\\Details.cshtml",
+      "TargetPath": "Views\\employee\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\employee\\Edit.cshtml",
+      "TargetPath": "Views\\employee\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\reservation\\Edit.cshtml",
+      "TargetPath": "Views\\reservation\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\customer\\Create.cshtml",
+      "TargetPath": "Views\\customer\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\reception\\Details.cshtml",
+      "TargetPath": "Views\\reception\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\employee\\Create.cshtml",
+      "TargetPath": "Views\\employee\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\paymentType\\Edit.cshtml",
+      "TargetPath": "Views\\paymentType\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\_ViewStart.cshtml",
+      "TargetPath": "Views\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\customer\\Edit.cshtml",
+      "TargetPath": "Views\\customer\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\customer\\Delete.cshtml",
+      "TargetPath": "Views\\customer\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\reservation\\Delete.cshtml",
+      "TargetPath": "Views\\reservation\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\reception\\Delete.cshtml",
+      "TargetPath": "Views\\reception\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\account\\Create.cshtml",
+      "TargetPath": "Views\\account\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\payment\\Create.cshtml",
+      "TargetPath": "Views\\payment\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\reception\\Create.cshtml",
+      "TargetPath": "Views\\reception\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\payment\\Details.cshtml",
+      "TargetPath": "Views\\payment\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\account\\Delete.cshtml",
+      "TargetPath": "Views\\account\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\Home\\Index.cshtml",
+      "TargetPath": "Views\\Home\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\customer\\Details.cshtml",
+      "TargetPath": "Views\\customer\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\reservation\\Details.cshtml",
+      "TargetPath": "Views\\reservation\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\payment\\Edit.cshtml",
+      "TargetPath": "Views\\payment\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\reception\\Edit.cshtml",
+      "TargetPath": "Views\\reception\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\Views\\reservation\\Create.cshtml",
+      "TargetPath": "Views\\reservation\\Create.cshtml",
+      "FileKind": "mvc"
+    }
+  ],
   "SerializationFormat": "0.2"
 }

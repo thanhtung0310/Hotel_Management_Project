@@ -6,6 +6,42 @@
     <title>@ViewData["Title"] - MyForm</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        .dropbtn {
+            border: none;
+            background-color: white;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            background-color: white;
+            color: grey;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -17,31 +53,33 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
+                    <div class="navbar-nav flex-grow-1">
+                        <div class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
+                        </div>
+                        <div class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <div class="dropdown">
-                                <a class="nav-link text-dark">DB - API</a>
-                                <div class="dropdown-content">
-                                    <a asp-controller="/account">account</a>
-                                    <a asp-controller="/customer">customer</a>
-                                    <a asp-controller="/employee">employee</a>
-                                    <a asp-controller="/payment">payment</a>
-                                    <a asp-controller="/paymentType">paymentType</a>
-                                    <a asp-controller="/reception">reception</a>
-                                    <a asp-controller="/reservation">reservation</a>
-                                </div>
+                        </div>
+                        <div class="dropdown nav-item">
+                            <button class="dropbtn nav-link text-dark">DB - Form</button>
+                            <div class="dropdown-content">
+                                <a asp-controller="Account" asp-action="Index">Account</a>
+                                <a asp-controller="Customer" asp-action="Index">Customer</a>
+                                <a asp-controller="Employee" asp-action="Index">Employee</a>
+                                <a asp-controller="Payment" asp-action="Index">Payment</a>
+                                <a asp-controller="PaymentType" asp-action="Index">Payment Type</a>
+                                <a asp-controller="Reception" asp-action="Index">Reception</a>
+                                <a asp-controller="Reservation" asp-action="Index">Reservation</a>
+                                <a asp-controller="Role" asp-action="Index">Role</a>
+                                <a asp-controller="Room" asp-action="Index">Room</a>
+                                <a asp-controller="RoomStatus" asp-action="Index">Room Status</a>
+                                <a asp-controller="RoomType" asp-action="Index">Room Type</a>
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="/swagger" asp-action="">Swagger</a>
-                        </li>
-                    </ul>
+                        </div>
+                        <div class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Swagger" asp-action="">Swagger</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>

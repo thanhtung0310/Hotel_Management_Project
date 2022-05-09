@@ -10,11 +10,11 @@ using DatabaseProvider;
 
 namespace APIProject.Controllers.MyDBForm
 {
-    public class paymentTypeController : Controller
+    public class PaymentTypeController : Controller
     {
         private readonly APIProjectContext _context;
 
-        public paymentTypeController(APIProjectContext context)
+        public PaymentTypeController(APIProjectContext context)
         {
             _context = context;
         }

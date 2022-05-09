@@ -12,11 +12,11 @@ namespace APIProject.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class roomStatusController : ControllerBase
+    public class roomStatussController : ControllerBase
     {
         private readonly APIProjectContext _context;
 
-        public roomStatusController(APIProjectContext context)
+        public roomStatussController(APIProjectContext context)
         {
             _context = context;
         }
