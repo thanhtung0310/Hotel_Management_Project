@@ -76,8 +76,8 @@ namespace BusinessLayer.Service
                 var check = _provider.ExecuteReader("cus_id_get", param1, commandType: CommandType.StoredProcedure);
                 if (((DbDataReader)check).HasRows == false)
                 {
-                    var empInfo = await _provider.QueryFirstOrDefaultAsync<emp_info>("emp_info_insert", param, commandType: CommandType.StoredProcedure);
-                    response.Data = empInfo;
+                    await _provider.QueryFirstOrDefaultAsync<emp_info>("emp_info_insert", param, commandType: CommandType.StoredProcedure);
+                    response.Data = emp;
                     response.successResp();
                 }
                 else
@@ -103,8 +103,7 @@ namespace BusinessLayer.Service
                 var check = _provider.ExecuteReader("cus_id_get", param, commandType: CommandType.StoredProcedure);
                 if (((DbDataReader)check).HasRows == true)
                 {
-                    var empInfo = await _provider.QueryFirstOrDefaultAsync<emp_info>("emp_info_delete", param, commandType: CommandType.StoredProcedure);
-                    response.Data = empInfo;
+                    await _provider.QueryFirstOrDefaultAsync<emp_info>("emp_info_delete", param, commandType: CommandType.StoredProcedure);
                     response.successResp();
                 }
                 else

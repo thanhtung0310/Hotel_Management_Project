@@ -35,9 +35,7 @@ D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\Entity\obj\Debug\net5.0\ref
 D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\Entity\obj\Debug\net5.0\Entity.pdb
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\bin\Debug\net5.0\Entity.deps.json
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\bin\Debug\net5.0\Entity.dll
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\bin\Debug\net5.0\ref\Entity.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\bin\Debug\net5.0\Entity.pdb
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\obj\Debug\net5.0\Entity.csproj.AssemblyReference.cache
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\obj\Debug\net5.0\Entity.GeneratedMSBuildEditorConfig.editorconfig
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\obj\Debug\net5.0\Entity.AssemblyInfoInputs.cache
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\obj\Debug\net5.0\Entity.AssemblyInfo.cs
@@ -45,3 +43,5 @@ D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\obj\Debug\net5.0\Ent
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\obj\Debug\net5.0\Entity.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\obj\Debug\net5.0\ref\Entity.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\obj\Debug\net5.0\Entity.pdb
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\obj\Debug\net5.0\Entity.csproj.AssemblyReference.cache
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\obj\Debug\net5.0\refint\Entity.dll

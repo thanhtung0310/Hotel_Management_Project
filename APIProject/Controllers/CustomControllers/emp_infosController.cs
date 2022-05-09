@@ -14,7 +14,7 @@ namespace APIProject.Controllers
     [ApiController]
     public class emp_infosController : ControllerBase
     {
-        private IEmpInfoService _empInfoService;
+        private readonly IEmpInfoService _empInfoService;
         public emp_infosController(IEmpInfoService empInfoService)
         {
             _empInfoService = empInfoService;

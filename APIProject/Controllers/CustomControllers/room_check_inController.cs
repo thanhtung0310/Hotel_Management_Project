@@ -13,7 +13,7 @@ namespace APIProject.Controllers.CustomControllers
     [ApiController]
     public class room_check_inController : ControllerBase
     {
-        private IRoomCheckInService _roomCheckInService;
+        private readonly IRoomCheckInService _roomCheckInService;
         public room_check_inController(IRoomCheckInService roomCheckInService)
         {
             _roomCheckInService = roomCheckInService;

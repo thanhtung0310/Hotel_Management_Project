@@ -171,11 +171,22 @@
         "projectUniqueName": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\DatabaseProvider\\DatabaseProvider.csproj",
         "projectName": "DatabaseProvider",
         "projectPath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\DatabaseProvider\\DatabaseProvider.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "projectStyle": "PackagesConfig",
+        "configFilePaths": [
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
         "frameworks": {
           "net45": {
             "projectReferences": {}
           }
-        }
+        },
+        "packagesConfigPath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\DatabaseProvider\\packages.config"
       },
       "frameworks": {
         "net45": {}

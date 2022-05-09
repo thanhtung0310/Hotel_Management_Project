@@ -1,0 +1,54 @@
+﻿@model IEnumerable<DatabaseProvider.employee>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.emp_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.emp_position)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.emp_dob)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.emp_contact_number)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.emp_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.emp_position)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.emp_dob)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.emp_contact_number)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.emp_id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.emp_id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.emp_id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

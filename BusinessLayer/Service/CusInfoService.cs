@@ -103,8 +103,7 @@ namespace BusinessLayer.Service
                 var check = _provider.ExecuteReader("cus_id_get", param, commandType: CommandType.StoredProcedure);
                 if (((DbDataReader)check).HasRows == true)
                 {
-                    var cusInfo = await _provider.QueryFirstOrDefaultAsync<cus_info>("cus_info_delete", param, commandType: CommandType.StoredProcedure);
-                    response.Data = cusInfo;
+                    await _provider.QueryFirstOrDefaultAsync<cus_info>("cus_info_delete", param, commandType: CommandType.StoredProcedure);
                     response.successResp();
                 }
                 else

@@ -13,8 +13,8 @@ D:\Tung\VMO\Tuan 3\Projects\DatabaseProvider\obj\Debug\DatabaseProvider.csproj.A
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\DatabaseProvider\bin\Debug\DatabaseProvider.dll.config
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\DatabaseProvider\bin\Debug\DatabaseProvider.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\DatabaseProvider\bin\Debug\DatabaseProvider.pdb
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\DatabaseProvider\obj\Debug\DatabaseProvider.csproj.AssemblyReference.cache
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\DatabaseProvider\obj\Debug\DatabaseProvider.csproj.CoreCompileInputs.cache
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\DatabaseProvider\obj\Debug\DatabaseProvider.csproj.CopyComplete
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\DatabaseProvider\obj\Debug\DatabaseProvider.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\DatabaseProvider\obj\Debug\DatabaseProvider.pdb
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\DatabaseProvider\obj\Debug\DatabaseProvider.csproj.AssemblyReference.cache
