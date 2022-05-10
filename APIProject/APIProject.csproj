@@ -24,8 +24,4 @@
     <ProjectReference Include="..\DataLayer\DataLayer.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\MyCustomForm\" />
-  </ItemGroup>
-
 </Project>

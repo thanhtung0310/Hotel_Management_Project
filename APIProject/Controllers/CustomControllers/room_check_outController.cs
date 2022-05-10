@@ -27,9 +27,9 @@ namespace APIProject.Controllers.CustomControllers
         /// <returns></returns>
         // PUT api/<room_check_in>/1
         [HttpPost]
-        public async Task<Response<room_booking>> CheckInRoom(int id, [FromBody] room_booking room)
+        public async Task<Response<room_booking>> CheckInRoom(int checkout_type, [FromBody] int id, [FromBody] room_booking room)
         {
-            return await _roomCheckOutService.CheckOutRoom(id, room);
+            return await _roomCheckOutService.CheckOutRoom(checkout_type, id, room);
         }
     }
 }

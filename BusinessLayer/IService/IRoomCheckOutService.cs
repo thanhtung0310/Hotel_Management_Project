@@ -9,6 +9,6 @@ namespace BusinessLayer.IService
 {
     public interface IRoomCheckOutService
     {
-        Task<Response<room_booking>> CheckOutRoom(int id, room_booking room);
+        Task<Response<room_booking>> CheckOutRoom(int checkout_type, int id, room_booking room);
     }
 }
