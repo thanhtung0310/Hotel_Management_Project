@@ -13,7 +13,7 @@ namespace APIProject.Controllers.CustomControllers
     [ApiController]
     public class room_check_outController : ControllerBase
     {
-        private IRoomCheckOutService _roomCheckOutService;
+        private readonly IRoomCheckOutService _roomCheckOutService;
         public room_check_outController(IRoomCheckOutService roomCheckOutService)
         {
             _roomCheckOutService = roomCheckOutService;
@@ -27,7 +27,7 @@ namespace APIProject.Controllers.CustomControllers
         /// <returns></returns>
         // PUT api/<room_check_in>/1
         [HttpPost]
-        public async Task<Response<room_booking>> CheckInRoom(int checkout_type, [FromBody] int id, [FromBody] room_booking room)
+        public async Task<Response<room_booking>> CheckInRoom(int checkout_type, int id, [FromBody] room_booking room)
         {
             return await _roomCheckOutService.CheckOutRoom(checkout_type, id, room);
         }

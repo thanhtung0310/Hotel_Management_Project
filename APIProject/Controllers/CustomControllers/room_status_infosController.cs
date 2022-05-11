@@ -12,7 +12,7 @@ namespace APIProject.Controllers.CustomControllers
     [ApiController]
     public class room_status_infosController : ControllerBase
     {
-        private IRoomStatusInfoService _roomStatusInfoService;
+        private readonly IRoomStatusInfoService _roomStatusInfoService;
         public room_status_infosController (IRoomStatusInfoService roomStatusInfoService)
         {
             _roomStatusInfoService = roomStatusInfoService;

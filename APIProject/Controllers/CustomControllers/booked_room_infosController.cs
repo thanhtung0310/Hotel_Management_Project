@@ -13,7 +13,7 @@ namespace APIProject.Controllers.CustomControllers
     [ApiController]
     public class booked_room_infosController : ControllerBase
     {
-        private IBookedRoomInfoService _roomInfoService;
+        private readonly IBookedRoomInfoService _roomInfoService;
         public booked_room_infosController(IBookedRoomInfoService roomInfoService)
         {
             _roomInfoService = roomInfoService;

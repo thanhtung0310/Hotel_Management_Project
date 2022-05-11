@@ -13,7 +13,7 @@ namespace APIProject.Controllers.CustomControllers
     [ApiController]
     public class booked_cus_infosController : ControllerBase
     {
-        private IBookedCusInfoService _cusInfoService;
+        private readonly IBookedCusInfoService _cusInfoService;
         public booked_cus_infosController(IBookedCusInfoService cusInfoService)
         {
             _cusInfoService = cusInfoService;

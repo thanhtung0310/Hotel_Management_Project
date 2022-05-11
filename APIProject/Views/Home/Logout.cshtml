@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Log out Page";
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        Are you really want to log out...?
+    </p>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        <input type="submit" value="Log out" onclick="Confirm()" />
+    }
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript">
+        function Confirm() {
+            var input = $("<input />");
+            input.attr("type", "hidden").attr("name", "message_value");
+            if (confirm("Do you really want to log out of this account?")) {
+                input.val("Yes");
+            } else {
+                input.val("No");
+            }
+            $("form")[0].appendChild(input[0]);
+        }
+    </script>
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            $(function () {
+              alert("@ViewBag.Message")
+            });
+        </script>
+    }
+</body>
+</html>

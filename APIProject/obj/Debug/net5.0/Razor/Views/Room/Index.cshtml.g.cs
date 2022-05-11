@@ -12,51 +12,11 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
-#nullable restore
-#line 1 "D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\Views\_ViewImports.cshtml"
-using APIProject;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 2 "D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\Views\_ViewImports.cshtml"
-using APIProject.Models;
-
-#line default
-#line hidden
-#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"fe2a2da57866508174e21ede1e3ab9e770cf7eff", @"/Views/Room/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5df993fc67106c5705976f197df3a53e53ae1c7f", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Room_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<DatabaseProvider.room>>
     #nullable disable
     {
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Create", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_1 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Edit", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_2 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Details", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_3 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Delete", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-        #line hidden
-        #pragma warning disable 0649
-        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext __tagHelperExecutionContext;
-        #pragma warning restore 0649
-        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner __tagHelperRunner = new global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner();
-        #pragma warning disable 0169
-        private string __tagHelperStringValueBuffer;
-        #pragma warning restore 0169
-        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager __backed__tagHelperScopeManager = null;
-        private global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager __tagHelperScopeManager
-        {
-            get
-            {
-                if (__backed__tagHelperScopeManager == null)
-                {
-                    __backed__tagHelperScopeManager = new global::Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperScopeManager(StartTagHelperWritingScope, EndTagHelperWritingScope);
-                }
-                return __backed__tagHelperScopeManager;
-            }
-        }
-        private global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper;
         #pragma warning disable 1998
         public async override global::System.Threading.Tasks.Task ExecuteAsync()
         {
@@ -70,23 +30,7 @@ using APIProject.Models;
 #line default
 #line hidden
 #nullable disable
-            WriteLiteral("\r\n<h1>Index</h1>\r\n\r\n<p>\r\n    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fe2a2da57866508174e21ede1e3ab9e770cf7eff4688", async() => {
-                WriteLiteral("Create New");
-            }
-            );
-            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper>();
-            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper);
-            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Action = (string)__tagHelperAttribute_0.Value;
-            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_0);
-            await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
-            if (!__tagHelperExecutionContext.Output.IsContentModified)
-            {
-                await __tagHelperExecutionContext.SetOutputContentAsync();
-            }
-            Write(__tagHelperExecutionContext.Output);
-            __tagHelperExecutionContext = __tagHelperScopeManager.End();
-            WriteLiteral("\r\n</p>\r\n<table class=\"table\">\r\n    <thead>\r\n        <tr>\r\n            <th>\r\n                ");
+            WriteLiteral("\r\n<h1>Index</h1>\r\n\r\n<p>\r\n    <a asp-action=\"Create\">Create New</a>\r\n</p>\r\n<table class=\"table\">\r\n    <thead>\r\n        <tr>\r\n            <th>\r\n                ");
 #nullable restore
 #line 17 "D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\Views\Room\Index.cshtml"
            Write(Html.DisplayNameFor(model => model.room_number));
@@ -142,100 +86,37 @@ using APIProject.Models;
 #line default
 #line hidden
 #nullable disable
-            WriteLiteral("\r\n            </td>\r\n            <td>\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fe2a2da57866508174e21ede1e3ab9e770cf7eff8249", async() => {
-                WriteLiteral("Edit");
-            }
-            );
-            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper>();
-            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper);
-            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Action = (string)__tagHelperAttribute_1.Value;
-            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_1);
-            if (__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.RouteValues == null)
-            {
-                throw new InvalidOperationException(InvalidTagHelperIndexerAssignment("asp-route-id", "Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper", "RouteValues"));
-            }
-            BeginWriteTagHelperAttribute();
+            WriteLiteral("\r\n            </td>\r\n            <td>\r\n                <a asp-action=\"Edit\"");
+            BeginWriteAttribute("asp-route-id", " asp-route-id=\"", 1045, "\"", 1073, 1);
 #nullable restore
 #line 41 "D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\Views\Room\Index.cshtml"
-                                       WriteLiteral(item.room_id);
+WriteAttributeValue("", 1060, item.room_id, 1060, 13, false);
 
 #line default
 #line hidden
 #nullable disable
-            __tagHelperStringValueBuffer = EndWriteTagHelperAttribute();
-            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.RouteValues["id"] = __tagHelperStringValueBuffer;
-            __tagHelperExecutionContext.AddTagHelperAttribute("asp-route-id", __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.RouteValues["id"], global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-            await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
-            if (!__tagHelperExecutionContext.Output.IsContentModified)
-            {
-                await __tagHelperExecutionContext.SetOutputContentAsync();
-            }
-            Write(__tagHelperExecutionContext.Output);
-            __tagHelperExecutionContext = __tagHelperScopeManager.End();
-            WriteLiteral(" |\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fe2a2da57866508174e21ede1e3ab9e770cf7eff10427", async() => {
-                WriteLiteral("Details");
-            }
-            );
-            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper>();
-            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper);
-            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Action = (string)__tagHelperAttribute_2.Value;
-            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_2);
-            if (__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.RouteValues == null)
-            {
-                throw new InvalidOperationException(InvalidTagHelperIndexerAssignment("asp-route-id", "Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper", "RouteValues"));
-            }
-            BeginWriteTagHelperAttribute();
+            EndWriteAttribute();
+            WriteLiteral(">Edit</a> |\r\n                <a asp-action=\"Details\"");
+            BeginWriteAttribute("asp-route-id", " asp-route-id=\"", 1126, "\"", 1154, 1);
 #nullable restore
 #line 42 "D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\Views\Room\Index.cshtml"
-                                          WriteLiteral(item.room_id);
+WriteAttributeValue("", 1141, item.room_id, 1141, 13, false);
 
 #line default
 #line hidden
 #nullable disable
-            __tagHelperStringValueBuffer = EndWriteTagHelperAttribute();
-            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.RouteValues["id"] = __tagHelperStringValueBuffer;
-            __tagHelperExecutionContext.AddTagHelperAttribute("asp-route-id", __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.RouteValues["id"], global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-            await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
-            if (!__tagHelperExecutionContext.Output.IsContentModified)
-            {
-                await __tagHelperExecutionContext.SetOutputContentAsync();
-            }
-            Write(__tagHelperExecutionContext.Output);
-            __tagHelperExecutionContext = __tagHelperScopeManager.End();
-            WriteLiteral(" |\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "fe2a2da57866508174e21ede1e3ab9e770cf7eff12612", async() => {
-                WriteLiteral("Delete");
-            }
-            );
-            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper>();
-            __tagHelperExecutionContext.Add(__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper);
-            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.Action = (string)__tagHelperAttribute_3.Value;
-            __tagHelperExecutionContext.AddTagHelperAttribute(__tagHelperAttribute_3);
-            if (__Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.RouteValues == null)
-            {
-                throw new InvalidOperationException(InvalidTagHelperIndexerAssignment("asp-route-id", "Microsoft.AspNetCore.Mvc.TagHelpers.AnchorTagHelper", "RouteValues"));
-            }
-            BeginWriteTagHelperAttribute();
+            EndWriteAttribute();
+            WriteLiteral(">Details</a> |\r\n                <a asp-action=\"Delete\"");
+            BeginWriteAttribute("asp-route-id", " asp-route-id=\"", 1209, "\"", 1237, 1);
 #nullable restore
 #line 43 "D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\Views\Room\Index.cshtml"
-                                         WriteLiteral(item.room_id);
+WriteAttributeValue("", 1224, item.room_id, 1224, 13, false);
 
 #line default
 #line hidden
 #nullable disable
-            __tagHelperStringValueBuffer = EndWriteTagHelperAttribute();
-            __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.RouteValues["id"] = __tagHelperStringValueBuffer;
-            __tagHelperExecutionContext.AddTagHelperAttribute("asp-route-id", __Microsoft_AspNetCore_Mvc_TagHelpers_AnchorTagHelper.RouteValues["id"], global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
-            await __tagHelperRunner.RunAsync(__tagHelperExecutionContext);
-            if (!__tagHelperExecutionContext.Output.IsContentModified)
-            {
-                await __tagHelperExecutionContext.SetOutputContentAsync();
-            }
-            Write(__tagHelperExecutionContext.Output);
-            __tagHelperExecutionContext = __tagHelperScopeManager.End();
-            WriteLiteral("\r\n            </td>\r\n        </tr>\r\n");
+            EndWriteAttribute();
+            WriteLiteral(">Delete</a>\r\n            </td>\r\n        </tr>\r\n");
 #nullable restore
 #line 46 "D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\Views\Room\Index.cshtml"
 }

@@ -61,6 +61,10 @@
               "target": "Package",
               "version": "[5.0.2, )"
             },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"
@@ -171,11 +175,22 @@
         "projectUniqueName": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\DatabaseProvider\\DatabaseProvider.csproj",
         "projectName": "DatabaseProvider",
         "projectPath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\DatabaseProvider\\DatabaseProvider.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "projectStyle": "PackagesConfig",
+        "configFilePaths": [
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
         "frameworks": {
           "net45": {
             "projectReferences": {}
           }
-        }
+        },
+        "packagesConfigPath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\DatabaseProvider\\packages.config"
       },
       "frameworks": {
         "net45": {}

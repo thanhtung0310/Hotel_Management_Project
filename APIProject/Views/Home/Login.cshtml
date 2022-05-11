@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Log in Page";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link href="~/css/login-style.css" rel="stylesheet" />
+    <script>
+        var working = false;
+        $('.login').on('submit', function (e) {
+            e.preventDefault();
+            if (working) return;
+            working = true;
+            var $this = $(this),
+                $state = $this.find('button > .state');
+            $this.addClass('loading');
+            $state.html('Authenticating');
+            setTimeout(function () {
+                $this.addClass('ok');
+                $state.html('Welcome back!');
+                setTimeout(function () {
+                    $state.html('Log in');
+                    $this.removeClass('ok loading');
+                    working = false;
+                }, 4000);
+            }, 3000);
+        });
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <form class="login">
+            <p class="title">Log in</p>
+            <input type="text" placeholder="Username" autofocus />
+            <i class="fa fa-user"></i>
+            <input type="password" placeholder="Password" />
+            <i class="fa fa-key"></i>
+            <a href="#">Forgot your password?</a>
+            @* gmail API to send email to: admin@tungpt.hotelmanagement.com *@
+            @* pop up message to tell user to notify their admin to reset their password*@
+            <button href="../Index.cshtml">
+                <i class="spinner"></i>
+                <span class="state">Log in</span>
+            </button>
+        </form>
+    </div>
+</body>
+</html>

@@ -12,22 +12,7 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
-#nullable restore
-#line 1 "D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\Views\_ViewImports.cshtml"
-using APIProject;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 2 "D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\Views\_ViewImports.cshtml"
-using APIProject.Models;
-
-#line default
-#line hidden
-#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d8ddb6bffa5a9b264bf8f89038bf03c234083fd3", @"/Views/Home/Privacy.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5df993fc67106c5705976f197df3a53e53ae1c7f", @"/Views/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Home_Privacy : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     #nullable disable

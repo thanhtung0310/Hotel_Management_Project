@@ -13,21 +13,28 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
 #nullable restore
-#line 1 "D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\Views\_ViewImports.cshtml"
+#line 1 "D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\Views\Shared\_ViewImports.cshtml"
 using APIProject;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\Views\_ViewImports.cshtml"
+#line 2 "D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\Views\Shared\_ViewImports.cshtml"
 using APIProject.Models;
 
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\Views\Shared\_ViewImports.cshtml"
+using Entity;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d6a5625cc8fb4476f348b0fe9041c550465d8bf9", @"/Views/Shared/Error.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5df993fc67106c5705976f197df3a53e53ae1c7f", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a08bd799f4f885382048d7439e9b7a2a8249ea2e", @"/Views/Shared/_ViewImports.cshtml")]
     #nullable restore
     public class Views_Shared_Error : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<ErrorViewModel>
     #nullable disable
