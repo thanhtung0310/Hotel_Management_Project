@@ -45,4 +45,4 @@ D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\DataLayer\obj\Debug\net5.0\
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\DataLayer\obj\Debug\net5.0\DataLayer.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\DataLayer\obj\Debug\net5.0\ref\DataLayer.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\DataLayer\obj\Debug\net5.0\DataLayer.pdb
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\DataLayer\obj\Debug\net5.0\refint\DataLayer.dll
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\DataLayer\bin\Debug\net5.0\ref\DataLayer.dll

@@ -44,4 +44,4 @@ D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\obj\Debug\net5.0\Ent
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\obj\Debug\net5.0\ref\Entity.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\obj\Debug\net5.0\Entity.pdb
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\obj\Debug\net5.0\Entity.csproj.AssemblyReference.cache
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\obj\Debug\net5.0\refint\Entity.dll
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\Entity\bin\Debug\net5.0\ref\Entity.dll

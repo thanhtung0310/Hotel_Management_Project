@@ -19,16 +19,16 @@ namespace BusinessLayer.Service
         {
             _provider = provider;
         }
-        public async Task<Response<booked_room_info>> GetBookedRoomByID(int id)
+        public async Task<Response<List<booked_room_info>>> GetBookedRoomByID(int id)
         {
-            var response = new Response<booked_room_info>();
+            var response = new Response<List<booked_room_info>>();
             try
             {
                 _provider.Open();
                 DynamicParameters param = new DynamicParameters()
                     .AddParam("@id", id);
-                var cusInfo = await _provider.QueryFirstOrDefaultAsync<booked_room_info>("reservation_room_get", param, commandType: CommandType.StoredProcedure);
-                response.Data = cusInfo;
+                var roomInfo = await _provider.QueryAsync<booked_room_info>("reservation_room_get", param, commandType: CommandType.StoredProcedure);
+                response.Data = roomInfo.AsList();
                 response.successResp();
             }
             finally
