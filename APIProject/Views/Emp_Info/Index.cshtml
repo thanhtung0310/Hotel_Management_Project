@@ -1,0 +1,72 @@
+﻿@using Entity
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Employee's information";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<emp_info>
+
+<h1>Employee's information</h1>
+<a asp-action="AddEmployee" class="btn btn-sm btn-primary">Add new Employee</a>
+<br />
+<h4>Search for Employee Information</h4>
+<div class="search">
+    <a asp-action="GetEmployeeByID" class="btn btn-sm btn-secondary">Get Employee by ID</a>
+    <a asp-action="GetEmployeeByName" class="btn btn-sm btn-secondary">Get Employee by Name</a>
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Employee's ID</th>
+            <th>Employee's name</th>
+            <th>Employee's role</th>
+            <th>Employee's position</th>
+            <th>Employee's date of birth</th>
+            <th>Employee's contact number</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.emp_id</td>
+            <td>@item.emp_name</td>
+            @{ 
+                string role_name;
+                if (item.role_id == 1)                
+                    role_name = "Manager";             
+                else if (item.role_id == 2)                
+                    role_name = "Security";                
+                else if (item.role_id == 3)                
+                    role_name = "Cleaner";                
+                else if (item.role_id == 4)                
+                    role_name = "Chief";                
+                else if (item.role_id == 5)                
+                    role_name = "Intern";                
+                else if (item.role_id == 6)                
+                    role_name = "Accoutant";                
+                else                
+                    role_name = "Fresher";                
+            }
+            <td>@role_name</td>
+            <td>@item.emp_position</td>
+            <td>@item.emp_dob</td>
+            <td>@item.emp_contact_number</td>
+            }
+            <td>
+                <form asp-action="DeleteEmployee" method="post">
+                    <input type="hidden" value="@item.emp_id" name="id" />
+                    <input type="image" src="~/img/icon/delete-icon.jpg" style="width:40px;" />
+                </form>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+

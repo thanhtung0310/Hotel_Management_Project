@@ -224,4 +224,15 @@ D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0\APIProject.pdb
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0\APIProject.genruntimeconfig.cache
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0\Razor\Views\Shared\_ViewImports.cshtml.g.cs
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0\refint\APIProject.dll
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\ref\APIProject.dll
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0\Razor\Views\Cus_Info\AddCustomer.cshtml.g.cs
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0\Razor\Views\Cus_Info\GetCustomerByID.cshtml.g.cs
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0\Razor\Views\Cus_Info\GetCustomerByName.cshtml.g.cs
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0\Razor\Views\Cus_Info\GetCustomerByNum.cshtml.g.cs
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0\Razor\Views\Emp_Info\AddEmployee.cshtml.g.cs
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0\Razor\Views\Emp_Info\GetEmployeeByID.cshtml.g.cs
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0\Razor\Views\Emp_Info\GetEmployeeByName.cshtml.g.cs
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0\Razor\Views\Emp_Info\Index.cshtml.g.cs
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0\Razor\Views\Room_Info\Index.cshtml.g.cs

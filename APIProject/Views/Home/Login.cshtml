@@ -8,7 +8,7 @@
 <head>
     <title>Login</title>
     <link href="~/css/login-style.css" rel="stylesheet" />
-    <script>
+    @*<script>
         var working = false;
         $('.login').on('submit', function (e) {
             e.preventDefault();
@@ -28,7 +28,7 @@
                 }, 4000);
             }, 3000);
         });
-    </script>
+    </script>*@
 </head>
 <body>
     <div class="wrapper">
@@ -41,7 +41,7 @@
             <a href="#">Forgot your password?</a>
             @* gmail API to send email to: admin@tungpt.hotelmanagement.com *@
             @* pop up message to tell user to notify their admin to reset their password*@
-            <button href="../Index.cshtml">
+            <button>
                 <i class="spinner"></i>
                 <span class="state">Log in</span>
             </button>

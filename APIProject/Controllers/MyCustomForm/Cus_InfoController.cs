@@ -7,29 +7,23 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using BusinessLayer.Extentions;
+using System.Text;
+using DatabaseProvider;
 
 namespace APIProject.Controllers.MyCustomForm
 {
   public class Cus_InfoController : Controller
   {
-    readonly string baseAddress = "https://localhost:5001/api";
-    readonly string controller = "/cus_infos";
-    readonly HttpClient client;
-
-    public Cus_InfoController()
-    {
-      client = new HttpClient();
-    }
+    public string baseUrl = "https://localhost:44304/api"; //IIS
+    //public string baseAddress = "https://localhost:5001/api"; //Kestrel
 
     // GET: Cus_InfoController
     public async Task<IActionResult> Index()
     {
-      Response<cus_info> cusAPI = new Response<cus_info>();
       List<cus_info> cusList = new List<cus_info>();
       using (var httpClient = new HttpClient())
       {
-        using (var response = await client.GetAsync(baseAddress + controller))
+        using (var response = await httpClient.GetAsync(baseUrl + "/cus_infos"))
         {
           var apiResponse = await response.Content.ReadAsStringAsync();
 
@@ -38,95 +32,129 @@ namespace APIProject.Controllers.MyCustomForm
           var dataField = jsonArray["data"];
 
           cusList = JsonConvert.DeserializeObject<List<cus_info>>(dataField.ToString());
-
-          //var data = JsonHelper.DeserializeByNewtonsoft<List<cus_info>>(apiResponse);
-
-          //var Data = (cus_info)JsonConvert.DeserializeObject(apiResponse);
         }
       }
       return View(cusList);
     }
 
-    //public ActionResult Index()
-    //{
-    //  List<cus_info> cusList = new List<cus_info>();
-    //  HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/cus_info").Result;
-    //  if (response.IsSuccessStatusCode)
-    //  {
-    //    string data = response.Content.ReadAsStringAsync().Result;
-    //    cusList = JsonConvert.DeserializeObject<List<cus_info>>(data);
-    //  }
-
-    //  return View(cusList);
-    //}
-
-    // GET: Cus_InfoController/Details/5
-    public ActionResult Details(int id)
-    {
-      return View();
-    }
-
-    // GET: Cus_InfoController/Create
-    public ActionResult Create()
-    {
-      return View();
-    }
-
-    // POST: Cus_InfoController/Create
+    public ViewResult GetCustomerByID() => View();
+    // Post: Cus_InfoController/Details/5
     [HttpPost]
-    [ValidateAntiForgeryToken]
-    public ActionResult Create(IFormCollection collection)
+    public async Task<IActionResult> GetCustomerByID(int id)
     {
-      try
+      cus_info cus = new cus_info();
+      using (var httpClient = new HttpClient())
       {
-        return RedirectToAction(nameof(Index));
+        using (var response = await httpClient.GetAsync(baseUrl + "/cus_infos/" + id))
+        {
+          if (response.StatusCode == System.Net.HttpStatusCode.OK)
+          {
+            var apiResponse = await response.Content.ReadAsStringAsync();
+
+            JObject jsonArray = JObject.Parse(apiResponse);
+
+            var dataField = jsonArray["data"];
+
+            cus = JsonConvert.DeserializeObject<cus_info>(dataField.ToString());
+          }
+          else
+            ViewBag.StatusCode = response.StatusCode;
+        }
       }
-      catch
-      {
-        return View();
-      }
+      return View(cus);
     }
 
-    // GET: Cus_InfoController/Edit/5
-    public ActionResult Edit(int id)
-    {
-      return View();
-    }
-
-    // POST: Cus_InfoController/Edit/5
+    public ViewResult GetCustomerByName() => View();
+    // Post: Cus_InfoController/Details/5
     [HttpPost]
-    [ValidateAntiForgeryToken]
-    public ActionResult Edit(int id, IFormCollection collection)
+    public async Task<IActionResult> GetCustomerByName(string search_string)
     {
-      try
+      List<customer> cusList = new List<customer>();
+      using (var httpClient = new HttpClient())
       {
-        return RedirectToAction(nameof(Index));
+        using (var response = await httpClient.GetAsync(baseUrl + "/searches/customer-" + search_string))
+        {
+          if (response.StatusCode == System.Net.HttpStatusCode.OK)
+          {
+            var apiResponse = await response.Content.ReadAsStringAsync();
+
+            JObject jsonArray = JObject.Parse(apiResponse);
+
+            var dataField = jsonArray["data"];
+
+            cusList = JsonConvert.DeserializeObject<List<customer>>(dataField.ToString());
+          }
+          else
+            ViewBag.StatusCode = response.StatusCode;
+        }
       }
-      catch
+      return View(cusList);
+    }
+
+    public ViewResult GetCustomerByNum() => View();
+    // Post: Cus_InfoController/Details/5
+    [HttpPost]
+    public async Task<IActionResult> GetCustomerByNum(string search_string)
+    {
+      cus_info cus = new cus_info();
+      using (var httpClient = new HttpClient())
       {
-        return View();
+        using (var response = await httpClient.GetAsync(baseUrl + "/cus_by_num_infos/" + search_string))
+        {
+          if (response.StatusCode == System.Net.HttpStatusCode.OK)
+          {
+            var apiResponse = await response.Content.ReadAsStringAsync();
+
+            JObject jsonArray = JObject.Parse(apiResponse);
+
+            var dataField = jsonArray["data"];
+
+            cus = JsonConvert.DeserializeObject<cus_info>(dataField.ToString());
+          }
+          else
+            ViewBag.StatusCode = response.StatusCode;
+        }
       }
+      return View(cus);
+    }
+
+    public ViewResult AddCustomer() => View();
+
+    [HttpPost]
+    public async Task<IActionResult> AddCustomer(cus_info cus)
+    {
+      cus_info receivedCus = new cus_info();
+      using (var httpClient = new HttpClient())
+      {
+        StringContent content = new StringContent(JsonConvert.SerializeObject(cus), Encoding.UTF8, "application/json");
+
+        using (var response = await httpClient.PostAsync(baseUrl + "/cus_infos", content))
+        {
+          var apiResponse = await response.Content.ReadAsStringAsync();
+
+          JObject jsonArray = JObject.Parse(apiResponse);
+
+          var dataField = jsonArray["data"];
+
+          receivedCus = JsonConvert.DeserializeObject<cus_info>(dataField.ToString());
+        }
+      }
+      return View(receivedCus);
     }
 
     // GET: Cus_InfoController/Delete/5
-    public ActionResult Delete(int id)
-    {
-      return View();
-    }
-
-    // POST: Cus_InfoController/Delete/5
     [HttpPost]
-    [ValidateAntiForgeryToken]
-    public ActionResult Delete(int id, IFormCollection collection)
+    public async Task<IActionResult> DeleteCustomer(int id)
     {
-      try
+      using (var httpClient = new HttpClient())
       {
-        return RedirectToAction(nameof(Index));
+        using (var response = await httpClient.DeleteAsync(baseUrl + "/cus_infos/" + id))
+        {
+          string apiResponse = await response.Content.ReadAsStringAsync();
+        }
       }
-      catch
-      {
-        return View();
-      }
+
+      return RedirectToAction("Index");
     }
   }
 }

@@ -1,0 +1,48 @@
+﻿@using Entity
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Room's information";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<room_info>
+
+<h1>Room's information</h1>
+<h4>Search for Room Information</h4>
+<div class="search">
+    <a asp-action="GetRoomByTypeID" class="btn btn-sm btn-secondary">Get Room by Room type ID</a>
+    <a asp-action="GetRoomByNum" class="btn btn-sm btn-secondary">Get Room by Room number</a>
+    <a asp-action="GetRoomByStatus" class="btn btn-sm btn-secondary">Get Room by Room status</a>
+    <a asp-action="GetRoomBookedByTypeID" class="btn btn-sm btn-secondary">Get booked Room </a>
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Room number</th>
+            <th>Room type name</th>
+            <th>Room status name</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.room_number</td>
+                <td>@item.room_type_name</td>
+                <td>@item.room_status_name</td>
+                <td>
+                    <form asp-action="DeleteRom" method="post">
+                        <input type="hidden" value="@item.room_number" name="num" />
+                        <input type="image" src="~/img/icon/delete-icon.jpg" style="width:40px;" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

@@ -1,77 +1,55 @@
 ﻿@using Entity
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Customer's information";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @model IEnumerable<cus_info>
 
-<h1>Index</h1>
+<h1>Customer's information</h1>
+<a asp-action="AddCustomer" class="btn btn-sm btn-primary">Add new Customer</a>
+<br />
+<h4>Search for Customer Information</h4>
+<div class="search">
+    <a asp-action="GetCustomerByID" class="btn btn-sm btn-secondary">Get Customer by ID</a>
+    <a asp-action="GetCustomerByName" class="btn btn-sm btn-secondary">Get Customer by Name</a>
+    <a asp-action="GetCustomerByNum" class="btn btn-sm btn-secondary">Get Customer by Number</a>
+</div>
 
-@*<p>
-    <a asp-action="Create">Create New</a>
-</p>*@
+
 <table class="table">
     <thead>
         <tr>
-            <th>
-                Customer's ID
-            </th>
-            <th>
-                Customer's First name
-            </th>
-            <th>
-                Customer's Last name
-            </th>
-            <th>
-                Customer's private account username
-            </th>
-            <th>
-                Customer's private account password
-            </th>
-            <th>
-                Customer's home address
-            </th>
-            <th>
-                Customer's personal contact number
-            </th>
-            <th></th>
+            <th>Customer's ID</th>
+            <th>Customer's first name</th>
+            <th>Customer's last name</th>
+            <th>Customer's home address</th>
+            <th>Customer's contact number</th>
+            @*<th>Details</th>*@
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
+                <td>@item.customer_id</td>
+                <td>@item.customer_first_name</td>
+                <td>@item.customer_last_name</td>
+                <td>@item.customer_address</td>
+                <td>@item.customer_contact_number</td>
+                @*<td>
+                    <form asp-action="GetCustomerByID" method="get">
+                        <input type="hidden" value="@item.customer_id" name="id" />
+                        <input type="image" src="~/img/icon/details-icon.jpg" style="width:30px;" />
+                    </form>
+                </td>*@
                 <td>
-                    @item.customer_id
-                </td>
-                <td>
-                    @item.customer_first_name
-                </td>
-                <td>
-                    @item.customer_last_name
-                </td>
-                <td>
-                    @item.acc_username
-                </td>
-                <td>
-                    @item.acc_password
-                </td>
-                <td>
-                    @item.customer_address
-                </td>
-                <td>
-                    @item.customer_contact_number
-                </td>
-                <td>
-                    @*<a asp-action="Edit" asp-route-id="@item.customer_id">Edit</a> |*@
-                </td>
-                <td>
-                    <a asp-action="GetCustomerByID" asp-route-id="@item.customer_id">Details</a>
-                </td>
-                <td>
-                    <form asp-action="DeleteCustomerInfo" method="post">
-                        <a>Delete</a>
+                    <form asp-action="DeleteCustomer" method="post">
+                        <input type="hidden" value="@item.customer_id" name="id" />
+                        <input type="image" src="~/img/icon/delete-icon.jpg" style="width:40px;" />
                     </form>
                 </td>
             </tr>
