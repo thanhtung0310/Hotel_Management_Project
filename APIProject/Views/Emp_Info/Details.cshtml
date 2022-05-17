@@ -1,0 +1,86 @@
+﻿@using Entity
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Update employee's information";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model emp_info
+
+<h1>Update employee's information <a asp-action="Index" class="btn btn-sm btn-secondary">Back</a></h1>
+<form method="post">
+    <div class="form-group">
+        <label for="emp_id">ID:</label>
+        <input class="form-control" name="emp_id" value="@Model.emp_id" readonly />
+    </div>
+    <div class="form-group">
+        <label for="emp_name">Name:</label>
+        <input class="form-control" name="emp_name" value="@Model.emp_name" required />
+    </div>
+    <div class="form-group">
+        <label for="emp_position">Working floor:</label>
+        <select class="form-control" id="emp_position" name="emp_position" required>
+            <option value="">Select working floor</option>
+            <option value="Ground Floor">Ground Floor</option>
+            <option value="Second Floor">Second Floor</option>
+            <option value="Third Floor">Third Floor</option>
+            <option value="Fourth Floor">Fourth Floor</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="emp_dob">Date Of Birth: (yyyy-mm-dd)</label>
+        <input type="date" class="form-control" name="emp_dob" value="@Model.emp_dob" required />
+    </div>
+    <div class="form-group">
+        <label for="emp_contact_number">Contact Number:</label>
+        <input class="form-control" name="emp_contact_number" value="@Model.emp_contact_number" required />
+    </div>
+    <div class="text-center panel-body">
+        <button type="submit" class="btn btn-sm btn-primary">Update</button>
+    </div>
+</form>
+
+@if (ViewBag.Result == "Success")
+{
+    <h2>Customer's information'</h2>
+    <table class="table table-sm table-striped table-bordered m-2">
+        <thead>
+            <tr>
+                <th>Employee's ID</th>
+                <th>Employee's name</th>
+                <th>Employee's role name</th>
+                <th>Employee's working floor</th>
+                <th>Employee's date of birth</th>
+                <th>Employee's contact number</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.emp_id</td>
+                <td>@Model.emp_name</td>
+                @{
+                    string role_name;
+                    if (Model.role_id == 1)
+                        role_name = "Manager";
+                    else if (Model.role_id == 2)
+                        role_name = "Security";
+                    else if (Model.role_id == 3)
+                        role_name = "Cleaner";
+                    else if (Model.role_id == 4)
+                        role_name = "Chief";
+                    else if (Model.role_id == 5)
+                        role_name = "Intern";
+                    else if (Model.role_id == 6)
+                        role_name = "Accountant";
+                    else
+                        role_name = "Not assigned";
+                }
+                <td>@role_name</td>
+                <td>@Model.emp_position</td>
+                <td>@Model.emp_dob</td>
+                <td>@Model.emp_contact_number</td>
+            </tr>
+        </tbody>
+    </table>
+}

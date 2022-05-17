@@ -125,18 +125,76 @@ namespace APIProject.Controllers.MyCustomForm
     {
       cus_info receivedCus = new cus_info();
       using (var httpClient = new HttpClient())
-      {
+      {        
         StringContent content = new StringContent(JsonConvert.SerializeObject(cus), Encoding.UTF8, "application/json");
 
         using (var response = await httpClient.PostAsync(baseUrl + "/cus_infos", content))
         {
-          var apiResponse = await response.Content.ReadAsStringAsync();
+          if (response.StatusCode == System.Net.HttpStatusCode.OK)
+          {
+            var apiResponse = await response.Content.ReadAsStringAsync();
 
-          JObject jsonArray = JObject.Parse(apiResponse);
+            JObject jsonArray = JObject.Parse(apiResponse);
 
-          var dataField = jsonArray["data"];
+            var dataField = jsonArray["data"];
 
-          receivedCus = JsonConvert.DeserializeObject<cus_info>(dataField.ToString());
+            receivedCus = JsonConvert.DeserializeObject<cus_info>(dataField.ToString());
+          }
+          else
+            ViewBag.StatusCode = response.StatusCode;
+        }
+      }
+      return View(receivedCus);
+    }
+
+    public async Task<IActionResult> Details(int id)
+    {
+      cus_info cus = new cus_info();
+      using (var httpClient = new HttpClient())
+      {
+        using (var response = await httpClient.GetAsync(baseUrl + "/cus_infos/" + id))
+        {
+          if (response.StatusCode == System.Net.HttpStatusCode.OK)
+          {
+            var apiResponse = await response.Content.ReadAsStringAsync();
+
+            JObject jsonArray = JObject.Parse(apiResponse);
+
+            var dataField = jsonArray["data"];
+
+            cus = JsonConvert.DeserializeObject<cus_info>(dataField.ToString());
+          }
+          else
+            ViewBag.StatusCode = response.StatusCode;
+        }
+      }
+      return View(cus);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Details(cus_info cus)
+    {
+      cus_info receivedCus = new cus_info();
+      using (var httpClient = new HttpClient())
+      {
+        StringContent content = new StringContent(JsonConvert.SerializeObject(cus), Encoding.UTF8, "application/json");
+
+        using (var response = await httpClient.PutAsync(baseUrl + "/cus_infos/", content))
+        {
+          if (response.StatusCode == System.Net.HttpStatusCode.OK)
+          {
+            var apiResponse = await response.Content.ReadAsStringAsync();
+
+            JObject jsonArray = JObject.Parse(apiResponse);
+
+            var dataField = jsonArray["data"];
+
+            receivedCus = JsonConvert.DeserializeObject<cus_info>(dataField.ToString());
+
+            ViewBag.Result = "Success";
+          }
+          else
+            ViewBag.StatusCode = response.StatusCode;
         }
       }
       return View(receivedCus);

@@ -1,0 +1,53 @@
+﻿@using Entity
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Room's information by Room type";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<room_info>
+
+<h1>Room's information by Room type<a asp-action="Index" class="btn btn-sm btn-primary">Back</a></h1>
+<h3>@ViewBag.StatusCode</h3>
+<form method="post">
+    <div class="form-field">
+        <label for="id">Room type:</label>
+        <select name="id" id="id" class="form-control">
+            <option value="">Select Room type</option>
+            <option value="1">King Room</option>
+            <option value="2">Queen Room</option>
+            <option value="3">4-people Family Room</option>
+            <option value="4">3-people Family Room</option>
+            <option value="5">Single Room</option>
+            <option value="6">Couple Room</option>
+            <option value="7">4-Bunk Room</option>
+        </select>
+    </div> <br />
+    <div class="text-center panel-body">
+        <button type="submit" class="btn btn-sm btn-primary">Get Room</button>
+    </div> <br />
+</form>
+
+@if (Model != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Room number</th>
+                <th>Room type name</th>
+                <th>Room status name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.room_number</td>
+                    <td>@item.room_type_name</td>
+                    <td>@item.room_status_name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

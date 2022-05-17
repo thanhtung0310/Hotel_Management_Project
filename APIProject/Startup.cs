@@ -10,6 +10,7 @@ using System.Data;
 using Microsoft.Data.SqlClient;
 using BusinessLayer;
 using Microsoft.AspNetCore.Routing.Constraints;
+using System;
 
 namespace APIProject
 {
@@ -25,9 +26,18 @@ namespace APIProject
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-      services.AddControllers();
-      //services.AddControllersWithViews();
+      services.AddControllers(); //APIController
+      
+      services.AddDistributedMemoryCache();
+
+      services.AddSession((option) =>
+      {
+        option.Cookie.Name = "VMO_hotel_management";
+        option.IdleTimeout = new TimeSpan(0, 30, 0);
+      });
+
       services.AddMvc(options => options.EnableEndpointRouting = false);
+      
       services.AddSwaggerGen(c =>
       {
         c.SwaggerDoc("v1", new OpenApiInfo { Title = "APIProject", Version = "v1" });
@@ -58,9 +68,11 @@ namespace APIProject
         app.UseHsts();
       }
 
-      app.UseMvcWithDefaultRoute();
+      app.UseSession(); //SessionMiddleware - cookie
 
-      app.UseStaticFiles();
+      app.UseMvcWithDefaultRoute(); //MVC
+
+      app.UseStaticFiles(); //StaticFiles
 
       app.UseHttpsRedirection();
 

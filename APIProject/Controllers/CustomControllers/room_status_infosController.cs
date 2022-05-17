@@ -25,7 +25,7 @@ namespace APIProject.Controllers.CustomControllers
         /// <returns></returns>
         // GET api/<room_status_infosController>/5
         [HttpGet("{id}")]
-        public async Task<Response<room_status_info>> GetRoomByStatusID(int id)
+        public async Task<Response<List<room_status_info>>> GetRoomByStatusID(int id)
         {
             return await _roomStatusInfoService.GetRoomByStatusID(id);
         }

@@ -27,7 +27,7 @@
             <th>Customer's last name</th>
             <th>Customer's home address</th>
             <th>Customer's contact number</th>
-            @*<th>Details</th>*@
+            <th>Details</th>
             <th>Delete</th>
         </tr>
     </thead>
@@ -40,12 +40,11 @@
                 <td>@item.customer_last_name</td>
                 <td>@item.customer_address</td>
                 <td>@item.customer_contact_number</td>
-                @*<td>
-                    <form asp-action="GetCustomerByID" method="get">
-                        <input type="hidden" value="@item.customer_id" name="id" />
-                        <input type="image" src="~/img/icon/details-icon.jpg" style="width:30px;" />
-                    </form>
-                </td>*@
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.customer_id">
+                        <img src="~/img/icon/details-icon.jpg" style="width:30px;" />
+                    </a>
+                </td>
                 <td>
                     <form asp-action="DeleteCustomer" method="post">
                         <input type="hidden" value="@item.customer_id" name="id" />

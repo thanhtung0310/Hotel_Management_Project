@@ -1,0 +1,47 @@
+﻿@using Entity
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Book a Room";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model room_booking
+<h1>Booking Results <a asp-action="BookRoom" class="btn btn-sm btn-primary">Back</a></h1>
+<h3>@ViewBag.StatusCode</h3>
+
+@if (@ViewBag.StatusCode == "Success" && Model != null)
+{
+    <h3>You have booked room successfully! The results are down below...</h3>
+    <h5>
+        Customer ID:    @Model.customer_id
+    </h5>
+    <h5>
+        Expected check in date:     @Model.expected_check_in_date
+    </h5>
+    <h5>
+        Number of staying dates:     @Model.day_stay_number
+    </h5>
+    <h5>
+        @{
+            string room_type_name = "";
+            if (Model.room_type_id == 1)
+                room_type_name = "King Room";
+            else if (Model.room_type_id == 2)
+                room_type_name = "Queen Room";
+            else if (Model.room_type_id == 3)
+                room_type_name = "4-people Family Room";
+            else if (Model.room_type_id == 4)
+                room_type_name = "3-people Family Room";
+            else if (Model.room_type_id == 5)
+                room_type_name = "Single Room";
+            else if (Model.room_type_id == 6)
+                room_type_name = "Couple Room";
+            else if (Model.room_type_id == 7)
+                room_type_name = "4-Bunk Room";
+        }
+        Room type:     @room_type_name
+    </h5>
+
+    <a asp-action="BookRoom" class="btn btn-sm btn-primary">Return to Booking Page</a>
+}

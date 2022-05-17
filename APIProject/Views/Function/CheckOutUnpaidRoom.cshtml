@@ -1,0 +1,18 @@
+﻿@using Entity
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Check out Unpaid room";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model room_booking
+<h1>Check out Results <a asp-action="CheckOut" class="btn btn-sm btn-primary">Back</a></h1>
+<h3>@ViewBag.StatusCode</h3>
+
+@if (@ViewBag.StatusCode == "Success")
+{
+    <h3>You have checked out room successfully! </h3>
+
+    <a asp-action="CheckOut" class="btn btn-sm btn-primary">Return to Check out Page</a>
+}

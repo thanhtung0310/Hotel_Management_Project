@@ -1,109 +1,161 @@
-﻿@{
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
     ViewData["Title"] = "Check Out Room";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container">
+<div class="container" style="margin-top:50px;">
     <div class="row probootstrap-gutter40">
         <div class="col-md-8">
             <h2 class="mt0">Check Out Form</h2>
-            <form action="#" method="post" class="probootstrap-form">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="fname">First Name</label>
-                            <input type="text" class="form-control" id="fname" name="fname">
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="lname">Last Name</label>
-                            <input type="text" class="form-control" id="lname" name="lname">
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <div class="form-field">
-                        <i class="icon icon-mail"></i>
-                        <input type="email" class="form-control" id="email" name="email">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="room">Room</label>
-                    <div class="form-field">
-                        <i class="icon icon-chevron-down"></i>
-                        <select name="room" id="room" class="form-control">
-                            <option value="">Select a Room</option>
-                            <option value="1">Classic Room</option>
-                            <option value="2">Ultra Superior Room</option>
-                            <option value="3">Grand Deluxe Room</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="date-arrival">Arrival</label>
-                            <div class="form-field">
-                                <i class="icon icon-calendar2"></i>
-                                <input type="text" class="form-control" id="date-arrival" name="date-arrival">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="date-departure">Departure</label>
-                            <div class="form-field">
-                                <i class="icon icon-calendar2"></i>
-                                <input type="text" class="form-control" id="date-departure" name="date-departure">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="form-group">
+                <label for="checkout_type">Check out type:</label>
+                <button class="btn btn-sm btn-primary" name="checkout_type" id="checkout_type" onclick="changeDisplay('un-paid-room','paid-room')">Check out Paid room</button>
+                <button class="btn btn-sm btn-primary" name="checkout_type" id="checkout_type" onclick="changeDisplay('paid-room','un-paid-room')">Check out Unpaid room</button>
+            </div>
 
-                <div class="row mb30">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="adults">Adults</label>
+            <form asp-action="CheckOutUnpaidRoom" method="post" class="probootstrap-form">
+                <div class="col-md-12" id="un-paid-room">
+                    <h4 class="mt-2">Check out Unpaid room</h4>
+                    <div class="form-group">
+                        <label for="room_id">Room number: </label>
+                        <div class="form-field">
+                            <select name="room_id" id="room_id" class="form-control">
+                                <option value="">Select Room number</option>
+                                <option value="1">Room 101</option>
+                                <option value="2">Room 102</option>
+                                <option value="3">Room 103</option>
+                                <option value="4">Room 104</option>
+                                <option value="5">Room 105</option>
+                                <option value="6">Room 106</option>
+                                <option value="7">Room 201</option>
+                                <option value="8">Room 202</option>
+                                <option value="9">Room 203</option>
+                                <option value="10">Room 204</option>
+                                <option value="11">Room 205</option>
+                                <option value="12">Room 206</option>
+                                <option value="13">Room 301</option>
+                                <option value="14">Room 302</option>
+                                <option value="15">Room 303</option>
+                                <option value="16">Room 304</option>
+                                <option value="17">Room 305</option>
+                                <option value="18">Room 306</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="check_out_date">Check out date: </label>
+                        <input type="date" class="form-control" id="check_out_date" name="check_out_date">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="payment_type_id">Payment type: </label>
                             <div class="form-field">
-                                <i class="icon icon-chevron-down"></i>
-                                <select name="adults" id="adults" class="form-control">
-                                    <option value="">Number of Adults</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4+</option>
+                                <select name="payment_type_id" id="payment_type_id" class="form-control">
+                                    <option value="">Select payment type</option>
+                                    <option value="1">By Cash</option>
+                                    <option value="2">By Credit card</option>
+                                    <option value="3">By Debit card</option>
                                 </select>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="children">Children</label>
-                            <div class="form-field">
-                                <i class="icon icon-chevron-down"></i>
-                                <select name="children" id="children" class="form-control">
-                                    <option value="">Number of Children</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4+</option>
-                                </select>
-                            </div>
-
+                        <div class="col-md-6">
+                            <label for="payment_amount">Payment amount: </label>
+                            <input type="text" class="form-control" id="payment_amount" name="payment_amount">
                         </div>
                     </div>
+                    <br />
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary btn-lg" id="submit" name="submit" value="Check out Room">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <input type="submit" class="btn btn-primary btn-lg" id="submit" name="submit" value="Reserve">
+            </form>
+
+            <form asp-action="CheckOutPaidRoom" method="post" class="probootstrap-form">
+                <div class="col-md-12" id="paid-room" style="display:none;">
+                    <h4 class="mt-2">Check out Paid room</h4>
+                    <div class="form-group">
+                        <label for="room_id">Room number: </label>
+                        <div class="form-field">
+                            <select name="room_id" id="room_id" class="form-control">
+                                <option value="">Select Room number</option>
+                                <option value="1">Room 101</option>
+                                <option value="2">Room 102</option>
+                                <option value="3">Room 103</option>
+                                <option value="4">Room 104</option>
+                                <option value="5">Room 105</option>
+                                <option value="6">Room 106</option>
+                                <option value="7">Room 201</option>
+                                <option value="8">Room 202</option>
+                                <option value="9">Room 203</option>
+                                <option value="10">Room 204</option>
+                                <option value="11">Room 205</option>
+                                <option value="12">Room 206</option>
+                                <option value="13">Room 301</option>
+                                <option value="14">Room 302</option>
+                                <option value="15">Room 303</option>
+                                <option value="16">Room 304</option>
+                                <option value="17">Room 305</option>
+                                <option value="18">Room 306</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="check_out_date">Check out date: </label>
+                        <input type="date" class="form-control" id="check_out_date" name="check_out_date">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary btn-lg" id="submit" name="submit" value="Check out Room">
+                    </div>
                 </div>
             </form>
         </div>
+
         <div class="col-md-4">
-            <h2 class="mt0">Feedback</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-            <p><a href="#" class="btn btn-primary" role="button">Send Message</a></p>
+            <h2 class="mt0">Get room by number</h2>
+            <a class="btn btn-sm btn-secondary" asp-controller="room_info" asp-action="GetRoomByNum" target="pop-up" onclick="window.open('','pop-up','height=600,width=600,resizable=no')">Search for room by room number</a>
         </div>
     </div>
 </div>
+
+<script>
+    function openContent(evt, pageName) {
+        // khai bao bien
+        var i, maincontent, tablinks;
+
+        // lay tat thuoc tinh thuoc class="maincontent" va hide
+        maincontent = document.getElementsByClassName("maincontent");
+        for (i = 0; i < maincontent.length; i++) {
+            maincontent[i].style.display = "none";
+        }
+
+        //
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        //
+        document.getElementById(pageName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    function changeDisplay(pageName, pageName2) {
+        //
+        var x = document.getElementById(pageName);
+        var y = document.getElementById(pageName2);
+
+        x.style.display = "block";
+
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            y.style.display = "none";
+        }
+        else {
+            x.style.display = "none";
+            y.style.display = "block";
+        }
+    }
+</script>

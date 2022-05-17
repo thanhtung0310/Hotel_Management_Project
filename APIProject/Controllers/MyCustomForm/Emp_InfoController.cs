@@ -103,13 +103,71 @@ namespace APIProject.Controllers.MyCustomForm
 
         using (var response = await httpClient.PostAsync(baseUrl + "/emp_infos", content))
         {
-          var apiResponse = await response.Content.ReadAsStringAsync();
+          if (response.StatusCode == System.Net.HttpStatusCode.OK)
+          {
+            var apiResponse = await response.Content.ReadAsStringAsync();
 
           JObject jsonArray = JObject.Parse(apiResponse);
 
           var dataField = jsonArray["data"];
 
           receivedEmp = JsonConvert.DeserializeObject<emp_info>(dataField.ToString());
+          }
+          else
+            ViewBag.StatusCode = response.StatusCode;
+        }
+      }
+      return View(receivedEmp);
+    }
+
+    public async Task<IActionResult> Details(int id)
+    {
+      emp_info emp = new emp_info();
+      using (var httpClient = new HttpClient())
+      {
+        using (var response = await httpClient.GetAsync(baseUrl + "/emp_infos/" + id))
+        {
+          if (response.StatusCode == System.Net.HttpStatusCode.OK)
+          {
+            var apiResponse = await response.Content.ReadAsStringAsync();
+
+            JObject jsonArray = JObject.Parse(apiResponse);
+
+            var dataField = jsonArray["data"];
+
+            emp = JsonConvert.DeserializeObject<emp_info>(dataField.ToString());
+          }
+          else
+            ViewBag.StatusCode = response.StatusCode;
+        }
+      }
+      return View(emp);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Details(emp_info emp)
+    {
+      emp_info receivedEmp = new emp_info();
+      using (var httpClient = new HttpClient())
+      {
+        StringContent content = new StringContent(JsonConvert.SerializeObject(emp), Encoding.UTF8, "application/json");
+
+        using (var response = await httpClient.PutAsync(baseUrl + "/emp_infos/", content))
+        {
+          if (response.StatusCode == System.Net.HttpStatusCode.OK)
+          {
+            var apiResponse = await response.Content.ReadAsStringAsync();
+
+            JObject jsonArray = JObject.Parse(apiResponse);
+
+            var dataField = jsonArray["data"];
+
+            receivedEmp = JsonConvert.DeserializeObject<emp_info>(dataField.ToString());
+
+            ViewBag.Result = "Success";
+          }
+          else
+            ViewBag.StatusCode = response.StatusCode;
         }
       }
       return View(receivedEmp);

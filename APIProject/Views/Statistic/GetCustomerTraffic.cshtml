@@ -1,0 +1,33 @@
+﻿@using Entity
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Customer's information and hotel times";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<cus_traffic_statistic>
+
+<h1>Customers and their times of using Hotel services</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Customer's full name</th>
+            <th>Customer's contact number</th>
+            <th>Customer's address</th>
+            <th>Number of times using hotel services</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.customer_full_name</td>
+                <td>@item.customer_contact_number</td>
+                <td>@item.customer_address</td>
+                <td>@item.count</td>
+            </tr>
+        }
+    </tbody>
+</table>

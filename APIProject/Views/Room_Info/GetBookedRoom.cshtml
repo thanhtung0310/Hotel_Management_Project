@@ -1,0 +1,35 @@
+﻿@using Entity
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Booked room's information";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<room_status_info>
+
+<h1>Booked room's information <a asp-action="Index" class="btn btn-sm btn-primary">Back</a></h1> 
+<h3>@ViewBag.StatusCode</h3> <br />
+
+@if (Model != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Room number</th>
+                <th>Room type name</th>
+                <th>Room status name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.room_number</td>
+                    <td>@item.room_type_name</td>
+                    <td>@item.room_status_name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

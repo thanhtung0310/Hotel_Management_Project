@@ -56,6 +56,18 @@ namespace APIProject.Controllers.CustomControllers
     }
 
     /// <summary>
+    /// Update customer
+    /// </summary>
+    /// <param name="cus"></param>
+    /// <returns></returns>
+    // PUT api/<cus_infosController>
+    [HttpPut]
+    public async Task<Response<cus_info>> UpdateCustomer([FromBody] cus_info cus)
+    {
+      return await _cusInfoService.UpdateCustomer(cus);
+    }
+
+    /// <summary>
     /// Delete customer's information by customer ID
     /// </summary>
     /// <param name="id"></param>

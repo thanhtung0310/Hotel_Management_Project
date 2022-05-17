@@ -13,7 +13,7 @@ namespace APIProject.Controllers.CustomControllers
     [ApiController]
     public class cus_by_num_infosController : ControllerBase
     {
-        private ICusByNumInfoService _cusByNumInfoService;
+        private readonly ICusByNumInfoService _cusByNumInfoService;
         public cus_by_num_infosController(ICusByNumInfoService cusByNumInfoService)
         {
             _cusByNumInfoService = cusByNumInfoService;

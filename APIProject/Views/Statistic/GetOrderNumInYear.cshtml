@@ -1,0 +1,39 @@
+﻿@using Entity
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Number of orders in a year";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model single_order_number_statistic
+
+<h1>The number of orders in a year <a asp-action="Index" class="btn btn-sm btn-primary">Back</a></h1>
+<h3>@ViewBag.StatusCode</h3>
+<form method="post">
+    <div class="form-group">
+        <label for="date">Input date:</label>
+        <input class="form-control" name="date" />
+    </div>
+    <div class="text-center panel-body">
+        <button type="submit" class="btn btn-sm btn-primary">Get statistic</button>
+    </div> <br />
+</form>
+
+@if (Model != null)
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Year</th>
+                <th>Number of Orders</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.date</td>
+                <td>@Model.count</td>
+            </tr>
+        </tbody>
+    </table>
+}

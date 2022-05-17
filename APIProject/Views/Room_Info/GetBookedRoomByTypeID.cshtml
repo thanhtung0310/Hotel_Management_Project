@@ -1,0 +1,56 @@
+﻿@using Entity
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Booked room's information by Room type";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<booked_room_info>
+
+<h1>Booked room's information by Room type ID <a asp-action="Index" class="btn btn-sm btn-primary">Back</a></h1>
+<h3>@ViewBag.StatusCode</h3>
+<form method="post">
+    <div class="form-field">
+        <label for="id">Room type ID:</label>
+        <select name="id" id="id" class="form-control">
+            <option value="1">King Room</option>
+            <option value="2">Queen Room</option>
+            <option value="3">4-people Family Room</option>
+            <option value="4">3-people Family Room</option>
+            <option value="5">Single Room</option>
+            <option value="6">Couple Room</option>
+            <option value="7">4-Bunk Room</option>
+        </select>
+    </div>
+    <div class="text-center panel-body">
+        <button type="submit" class="btn btn-sm btn-primary">Get Room</button>
+    </div>
+</form>
+
+@if (Model != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Reservation ID</th>
+                <th>Customer ID</th>
+                <th>Room ID</th>
+                <th>Expected check in date</th>
+                <th>Expected check out date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.reservation_id</td>
+                <td>@item.customer_id</td>
+                <td>@item.room_id</td>
+                <td>@item.expected_check_in_date</td>
+                <td>@item.expected_check_out_date</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}

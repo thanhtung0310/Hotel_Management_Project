@@ -9,36 +9,36 @@ using System.Threading.Tasks;
 
 namespace APIProject.Controllers.CustomControllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class vacant_converterController : ControllerBase
+  [Route("api/[controller]")]
+  [ApiController]
+  public class vacant_converterController : ControllerBase
+  {
+    private readonly IVacantConverterService _vacantConverterService;
+    public vacant_converterController(IVacantConverterService vacantConverterService)
     {
-        private readonly IVacantConverterService _vacantConverterService;
-        public vacant_converterController(IVacantConverterService vacantConverterService)
-        {
-            _vacantConverterService = vacantConverterService;
-        }
-
-        /// <summary>
-        /// Convert single room
-        /// </summary>
-        /// <returns></returns>
-        // GET: api/<room_infosController>
-        [HttpGet("{id}")]
-        public async Task<Response<room_info>> SingleRoomConvert(int id)
-        {
-            return await _vacantConverterService.SingleRoomConvert(id);
-        }
-
-        /// <summary>
-        /// Convert single room
-        /// </summary>
-        /// <returns></returns>
-        // GET: api/<room_infosController>
-        [HttpGet]
-        public async Task<Response<room_info>> RoomConvert()
-        {
-            return await _vacantConverterService.RoomConvert();
-        }
+      _vacantConverterService = vacantConverterService;
     }
+
+    /// <summary>
+    /// Convert single room
+    /// </summary>
+    /// <returns></returns>
+    // GET: api/<vacant_converterController>/1
+    [HttpGet("{id}")]
+    public async Task<Response<room_info>> SingleRoomConvert(int id)
+    {
+      return await _vacantConverterService.SingleRoomConvert(id);
+    }
+
+    /// <summary>
+    /// Convert single room
+    /// </summary>
+    /// <returns></returns>
+    // GET: api/<vacant_converterController>
+    [HttpGet]
+    public async Task<Response<room_info>> RoomConvert()
+    {
+      return await _vacantConverterService.RoomConvert();
+    }
+  }
 }

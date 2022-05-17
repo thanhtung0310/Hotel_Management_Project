@@ -14,7 +14,7 @@
     <a asp-action="GetRoomByTypeID" class="btn btn-sm btn-secondary">Get Room by Room type ID</a>
     <a asp-action="GetRoomByNum" class="btn btn-sm btn-secondary">Get Room by Room number</a>
     <a asp-action="GetRoomByStatus" class="btn btn-sm btn-secondary">Get Room by Room status</a>
-    <a asp-action="GetRoomBookedByTypeID" class="btn btn-sm btn-secondary">Get booked Room </a>
+    <a asp-action="GetBookedRoom" class="btn btn-sm btn-secondary">Get Booked room </a>
 </div>
 
 
@@ -35,7 +35,7 @@
                 <td>@item.room_type_name</td>
                 <td>@item.room_status_name</td>
                 <td>
-                    <form asp-action="DeleteRom" method="post">
+                    <form asp-action="DeleteRoom" method="post">
                         <input type="hidden" value="@item.room_number" name="num" />
                         <input type="image" src="~/img/icon/delete-icon.jpg" style="width:40px;" />
                     </form>

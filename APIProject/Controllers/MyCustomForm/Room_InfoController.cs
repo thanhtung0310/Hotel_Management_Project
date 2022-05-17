@@ -36,11 +36,38 @@ namespace APIProject.Controllers.MyCustomForm
       }
       return View(roomList);
     }
-    
+
     // GET: Room_InfoController
-    public async Task<IActionResult> GetRoomBookedByTypeID(int id)
+    public async Task<IActionResult> GetBookedRoom()
     {
-      List<room_info> roomList = new List<room_info>();
+      List<room_status_info> roomList = new List<room_status_info>();
+      using (var httpClient = new HttpClient())
+      {
+        using (var response = await httpClient.GetAsync(baseUrl + "/room_status_infos/0"))
+        {
+          if (response.StatusCode == System.Net.HttpStatusCode.OK)
+          {
+            var apiResponse = await response.Content.ReadAsStringAsync();
+
+            JObject jsonArray = JObject.Parse(apiResponse);
+
+            var dataField = jsonArray["data"];
+
+            roomList = JsonConvert.DeserializeObject<List<room_status_info>>(dataField.ToString());
+          }
+          else
+            ViewBag.StatusCode = response.StatusCode;
+        }
+      }
+      return View(roomList);
+    }
+
+    public ViewResult GetBookedRoomByTypeID() => View();
+    // Post: Room_InfoController/Details/5
+    [HttpPost]
+    public async Task<IActionResult> GetBookedRoomByTypeID(int id)
+    {
+      List<booked_room_info> roomList = new List<booked_room_info>();
       using (var httpClient = new HttpClient())
       {
         using (var response = await httpClient.GetAsync(baseUrl + "/booked_room_infos/" + id))
@@ -53,7 +80,7 @@ namespace APIProject.Controllers.MyCustomForm
 
             var dataField = jsonArray["data"];
 
-            roomList = JsonConvert.DeserializeObject<List<room_info>>(dataField.ToString());
+            roomList = JsonConvert.DeserializeObject<List<booked_room_info>>(dataField.ToString());
           }
           else
             ViewBag.StatusCode = response.StatusCode;
@@ -121,7 +148,7 @@ namespace APIProject.Controllers.MyCustomForm
     [HttpPost]
     public async Task<IActionResult> GetRoomByStatus(int id)
     {
-      room_status_info room = new room_status_info();
+      List<room_status_info> roomList = new List<room_status_info>();
       using (var httpClient = new HttpClient())
       {
         using (var response = await httpClient.GetAsync(baseUrl + "/room_status_infos/" + id))
@@ -134,18 +161,33 @@ namespace APIProject.Controllers.MyCustomForm
 
             var dataField = jsonArray["data"];
 
-            room = JsonConvert.DeserializeObject<room_status_info>(dataField.ToString());
+            roomList = JsonConvert.DeserializeObject<List<room_status_info>>(dataField.ToString());
           }
           else
             ViewBag.StatusCode = response.StatusCode;
         }
       }
-      return View(room);
+      return View(roomList);
     }
 
     // GET: Cus_InfoController/Delete/5
     [HttpPost]
-    public async Task<IActionResult> DeleteCustomer(int num)
+    public async Task<IActionResult> ConvertVacantRoom()
+    {
+      using (var httpClient = new HttpClient())
+      {
+        using (var response = await httpClient.DeleteAsync(baseUrl + "/vacant/"))
+        {
+          string apiResponse = await response.Content.ReadAsStringAsync();
+        }
+      }
+
+      return RedirectToAction("Index");
+    }
+
+    // GET: Cus_InfoController/Delete/5
+    [HttpPost]
+    public async Task<IActionResult> DeleteRoom(int num)
     {
       using (var httpClient = new HttpClient())
       {
