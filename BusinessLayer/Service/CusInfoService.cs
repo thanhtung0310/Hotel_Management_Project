@@ -92,6 +92,39 @@ namespace BusinessLayer.Service
       return response;
     }
 
+    public async Task<Response<cus_info>> UpdateCustomer(cus_info cus)
+    {
+      var response = new Response<cus_info>();
+      try
+      {
+        _provider.Open();
+        DynamicParameters param = new DynamicParameters()
+            .AddParam("@id", cus.customer_id)
+            .AddParam("@fname", cus.customer_first_name)
+            .AddParam("@lname", cus.customer_last_name)
+            .AddParam("@address", cus.customer_address)
+            .AddParam("@num", cus.customer_contact_number);
+        DynamicParameters param1 = new DynamicParameters()
+            .AddParam("@id", cus.customer_id);
+        var check = _provider.ExecuteReader("cus_id_get", param1, commandType: CommandType.StoredProcedure);
+        if (((DbDataReader)check).HasRows == true)
+        {
+          await _provider.QueryFirstOrDefaultAsync<cus_info>("cus_info_update", param, commandType: CommandType.StoredProcedure);
+          response.Data = cus;
+          response.successResp();
+        }
+        else
+        {
+          response.errorResp();
+        }
+      }
+      finally
+      {
+        _provider.Close();
+      }
+      return response;
+    }
+
     public async Task<Response<cus_info>> DeleteCustomerByID(int id)
     {
       var response = new Response<cus_info>();

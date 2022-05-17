@@ -20,7 +20,7 @@ namespace BusinessLayer.Service
       _provider = provider;
     }
 
-    public async Task<Response<room_booking>> BookRoom(room_booking room, int booking_type)
+    public async Task<Response<room_booking>> BookUnpaid(room_booking room)
     {
       var response = new Response<room_booking>();
       try
@@ -31,28 +31,34 @@ namespace BusinessLayer.Service
             .AddParam("@check_in_date", room.expected_check_in_date)
             .AddParam("@day", room.day_stay_number)
             .AddParam("@room_type_id", room.room_type_id);
-        DynamicParameters param2 = new DynamicParameters()
+        var roomBooked = await _provider.QueryFirstOrDefaultAsync<room_booking>("room_booking", param, commandType: CommandType.StoredProcedure);
+        response.Data = roomBooked;
+        response.successResp();
+      }
+      finally
+      {
+        _provider.Close();
+      }
+      return response;
+    }
+
+    public async Task<Response<room_booking>> BookPaid(room_booking room)
+    {
+      var response = new Response<room_booking>();
+      try
+      {
+        _provider.Open();
+        DynamicParameters param = new DynamicParameters()
             .AddParam("@cus_id", room.customer_id)
             .AddParam("@check_in_date", room.expected_check_in_date)
             .AddParam("@day", room.day_stay_number)
             .AddParam("@room_type_id", room.room_type_id)
             .AddParam("@payment_type_id", room.payment_type_id)
             .AddParam("@payment_amount", room.payment_amount)
-            .AddParam("@payment_date", room.payment_date);
-        if (booking_type == 1)
-        {
-          var roomBooked = await _provider.QueryFirstOrDefaultAsync<room_booking>("room_booking", param, commandType: CommandType.StoredProcedure);
-          response.Data = roomBooked;
-          response.successResp();
-        }
-        else if (booking_type == 2)
-        {
-          var roomBooked = await _provider.QueryFirstOrDefaultAsync<room_booking>("vip_room_booking", param2, commandType: CommandType.StoredProcedure);
-          response.Data = roomBooked;
-          response.successResp();
-        }
-        else
-          response.errorResp();
+            .AddParam("@payment_date", room.payment_date);       
+        var roomBooked = await _provider.QueryFirstOrDefaultAsync<room_booking>("vip_room_booking", param, commandType: CommandType.StoredProcedure);
+        response.Data = roomBooked;
+        response.successResp();
       }
       finally
       {

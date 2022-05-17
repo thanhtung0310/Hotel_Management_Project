@@ -9,6 +9,6 @@ namespace BusinessLayer.IService
 {
     public interface IRoomStatusInfoService
     {
-        Task<Response<room_status_info>> GetRoomByStatusID(int id);
+        Task<Response<List<room_status_info>>> GetRoomByStatusID(int id);
     }
 }

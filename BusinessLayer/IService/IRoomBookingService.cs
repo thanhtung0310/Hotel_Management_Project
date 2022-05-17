@@ -7,8 +7,9 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.IService
 {
-    public interface IRoomBookingService
-    {
-        Task<Response<room_booking>> BookRoom(room_booking room, int booking_type);
-    }
+  public interface IRoomBookingService
+  {
+    Task<Response<room_booking>> BookUnpaid(room_booking room);
+    Task<Response<room_booking>> BookPaid(room_booking room);
+  }
 }

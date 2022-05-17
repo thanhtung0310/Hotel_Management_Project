@@ -19,9 +19,9 @@ namespace BusinessLayer.Service
             _provider = provider;
         }
 
-        public async Task<Response<room_status_info>> GetRoomByStatusID(int id)
+        public async Task<Response<List<room_status_info>>> GetRoomByStatusID(int id)
         {
-            var response = new Response<room_status_info>();
+            var response = new Response<List<room_status_info>>();
             try
             {
                 _provider.Open();
@@ -29,43 +29,43 @@ namespace BusinessLayer.Service
                 if (id == 1)
                 {
                     var roomInfo = await _provider.QueryAsync<room_status_info>("vacant_room_info_get", commandType: CommandType.StoredProcedure);
-                    response.Data = roomInfo.FirstOrDefault();
+                    response.Data = roomInfo.AsList();
                     response.successResp();
                 }
                 else if (id == 2)
                 {
                     var roomInfo = await _provider.QueryAsync<room_status_info>("unpaid_room_info_get", commandType: CommandType.StoredProcedure);
-                    response.Data = roomInfo.FirstOrDefault();
+                    response.Data = roomInfo.AsList();
                     response.successResp();
                 }
                 else if (id == 3)
                 {
                     var roomInfo = await _provider.QueryAsync<room_status_info>("paid_room_info_get", commandType: CommandType.StoredProcedure);
-                    response.Data = roomInfo.FirstOrDefault();
+                    response.Data = roomInfo.AsList();
                     response.successResp();
                 }
                 else if (id == 4)
                 {
                     var roomInfo = await _provider.QueryAsync<room_status_info>("in_use_room_info_get", commandType: CommandType.StoredProcedure);
-                    response.Data = roomInfo.FirstOrDefault();
+                    response.Data = roomInfo.AsList();
                     response.successResp();
                 }
                 else if (id == 5)
                 {
                     var roomInfo = await _provider.QueryAsync<room_status_info>("need_clean_room_info_get", commandType: CommandType.StoredProcedure);
-                    response.Data = roomInfo.FirstOrDefault();
+                    response.Data = roomInfo.AsList();
                     response.successResp();
                 }
                 else if (id == 6)
                 {
                     var roomInfo = await _provider.QueryAsync<room_status_info>("available_room_info_get", commandType: CommandType.StoredProcedure);
-                    response.Data = roomInfo.FirstOrDefault();
+                    response.Data = roomInfo.AsList();
                     response.successResp();
                 }
                 else if (id == 0)
                 {
                     var roomInfo = await _provider.QueryAsync<room_status_info>("booked_room_info_get", commandType: CommandType.StoredProcedure);
-                    response.Data = roomInfo.FirstOrDefault();
+                    response.Data = roomInfo.AsList();
                     response.successResp();
                 }
                 else
