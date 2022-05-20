@@ -32,8 +32,9 @@ namespace BusinessLayer.Service
           response.Data = cusList.AsList();
           response.successResp();
       }
-      catch
+      catch (Exception ex)
       {
+        throw ex;
         response.errorResp();
       }
       finally
@@ -43,60 +44,75 @@ namespace BusinessLayer.Service
       return response;
     }
 
-    public async Task<Response<order_number_statistic>> GetOrderNumBetweenDates(DateTime date1, DateTime date2)
+    public async Task<Response<order_number_statistic>> GetOrderNumBetweenDates(order_number_statistic inputNum)
     {
       var response = new Response<order_number_statistic>();
       try
       {
         _provider.Open();
-      }
-      finally
-      {
-        _provider.Close();
         DynamicParameters param = new DynamicParameters()
-            .AddParam("@date1", date1)
-            .AddParam("@date2", date2);
+            .AddParam("@date1", inputNum.date1)
+            .AddParam("@date2", inputNum.date2);
         var orderNum = await _provider.QueryFirstOrDefaultAsync<order_number_statistic>("order_num_between_dates_get", param, commandType: CommandType.StoredProcedure);
         response.Data = orderNum;
         response.successResp();
       }
+      catch (Exception ex)
+      {
+        response.errorResp();
+        throw ex;
+      }
+      finally
+      {
+        _provider.Close();
+      }
       return response;
     }
 
-    public async Task<Response<order_number_statistic>> GetOrderNumInMonth(DateTime date)
+    public async Task<Response<order_number_statistic>> GetOrderNumInMonth(single_order_number_statistic inputNum)
     {
       var response = new Response<order_number_statistic>();
       try
       {
         _provider.Open();
-      }
-      finally
-      {
-        _provider.Close();
         DynamicParameters param = new DynamicParameters()
-            .AddParam("@date", date);
+            .AddParam("@date", inputNum.date);
         var orderNum = await _provider.QueryFirstOrDefaultAsync<order_number_statistic>("order_num_in_month_get", param, commandType: CommandType.StoredProcedure);
         response.Data = orderNum;
         response.successResp();
       }
+      catch (Exception ex)
+      {
+        response.errorResp();
+        throw ex;
+      }
+      finally
+      {
+        _provider.Close();
+      }
       return response;
     }
 
-    public async Task<Response<single_order_number_statistic>> GetOrderNumInYear(DateTime date)
+    public async Task<Response<single_order_number_statistic>> GetOrderNumInYear(single_order_number_statistic inputNum)
     {
       var response = new Response<single_order_number_statistic>();
       try
       {
         _provider.Open();
+        DynamicParameters param = new DynamicParameters()
+            .AddParam("@date", inputNum.date);
+        var orderNum = await _provider.QueryFirstOrDefaultAsync<single_order_number_statistic>("order_num_in_year_get", param, commandType: CommandType.StoredProcedure);
+        response.Data = orderNum;
+        response.successResp();
+      }
+      catch (Exception ex)
+      {
+        response.errorResp();
+        throw ex;
       }
       finally
       {
         _provider.Close();
-        DynamicParameters param = new DynamicParameters()
-            .AddParam("@date", date);
-        var orderNum = await _provider.QueryFirstOrDefaultAsync<single_order_number_statistic>("order_num_in_year_get", param, commandType: CommandType.StoredProcedure);
-        response.Data = orderNum;
-        response.successResp();
       }
       return response;
     }

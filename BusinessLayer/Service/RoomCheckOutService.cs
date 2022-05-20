@@ -35,6 +35,10 @@ namespace BusinessLayer.Service
         response.Data = roomCheckedOut;
         response.successResp();
       }
+      catch
+      {
+        response.errorResp();
+      }
       finally
       {
         _provider.Close();
@@ -54,6 +58,10 @@ namespace BusinessLayer.Service
         var roomCheckedOut = await _provider.QueryFirstOrDefaultAsync<room_booking>("vip_room_checking_out", param, commandType: CommandType.StoredProcedure);
         response.Data = roomCheckedOut;
         response.successResp();
+      }
+      catch
+      {
+        response.errorResp();
       }
       finally
       {

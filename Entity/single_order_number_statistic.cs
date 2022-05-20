@@ -8,7 +8,7 @@ namespace Entity
 {
   public class single_order_number_statistic
   {
-    public DateTime date { get; set; }
+    public string date { get; set; }
     public int count { get; set; }
   }
 }

@@ -41,6 +41,10 @@ namespace BusinessLayer.Service
           response.errorResp();
         }
       }
+      catch
+      {
+        response.errorResp();
+      }
       finally
       {
         _provider.Close();
@@ -67,6 +71,10 @@ namespace BusinessLayer.Service
         {
           response.errorResp();
         }
+      }
+      catch
+      {
+        response.errorResp();
       }
       finally
       {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Extentions
 {
-  public class JsonHelper
+  public class JsonHelperExtentions
   {
     // https://docs.microsoft.com/en-us/dotnet/standard/serialization/system-text-json-how-to
     // mặc định sử dụng System.Text.Json của Microsoft

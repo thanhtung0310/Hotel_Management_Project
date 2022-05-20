@@ -11,73 +11,77 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Service
 {
-    public class RoomStatusInfoService : BaseController<room_status_info>, IRoomStatusInfoService
+  public class RoomStatusInfoService : BaseController<room_status_info>, IRoomStatusInfoService
+  {
+    private readonly IDbConnection _provider;
+    public RoomStatusInfoService(IDbConnection provider) : base()
     {
-        private readonly IDbConnection _provider;
-        public RoomStatusInfoService(IDbConnection provider) : base()
-        {
-            _provider = provider;
-        }
-
-        public async Task<Response<List<room_status_info>>> GetRoomByStatusID(int id)
-        {
-            var response = new Response<List<room_status_info>>();
-            try
-            {
-                _provider.Open();
-                DynamicParameters param = new DynamicParameters();
-                if (id == 1)
-                {
-                    var roomInfo = await _provider.QueryAsync<room_status_info>("vacant_room_info_get", commandType: CommandType.StoredProcedure);
-                    response.Data = roomInfo.AsList();
-                    response.successResp();
-                }
-                else if (id == 2)
-                {
-                    var roomInfo = await _provider.QueryAsync<room_status_info>("unpaid_room_info_get", commandType: CommandType.StoredProcedure);
-                    response.Data = roomInfo.AsList();
-                    response.successResp();
-                }
-                else if (id == 3)
-                {
-                    var roomInfo = await _provider.QueryAsync<room_status_info>("paid_room_info_get", commandType: CommandType.StoredProcedure);
-                    response.Data = roomInfo.AsList();
-                    response.successResp();
-                }
-                else if (id == 4)
-                {
-                    var roomInfo = await _provider.QueryAsync<room_status_info>("in_use_room_info_get", commandType: CommandType.StoredProcedure);
-                    response.Data = roomInfo.AsList();
-                    response.successResp();
-                }
-                else if (id == 5)
-                {
-                    var roomInfo = await _provider.QueryAsync<room_status_info>("need_clean_room_info_get", commandType: CommandType.StoredProcedure);
-                    response.Data = roomInfo.AsList();
-                    response.successResp();
-                }
-                else if (id == 6)
-                {
-                    var roomInfo = await _provider.QueryAsync<room_status_info>("available_room_info_get", commandType: CommandType.StoredProcedure);
-                    response.Data = roomInfo.AsList();
-                    response.successResp();
-                }
-                else if (id == 0)
-                {
-                    var roomInfo = await _provider.QueryAsync<room_status_info>("booked_room_info_get", commandType: CommandType.StoredProcedure);
-                    response.Data = roomInfo.AsList();
-                    response.successResp();
-                }
-                else
-                {
-                    response.errorResp();
-                }
-            }
-            finally
-            {
-                _provider.Close();
-            }
-            return response;
-        }
+      _provider = provider;
     }
+
+    public async Task<Response<List<room_status_info>>> GetRoomByStatusID(int id)
+    {
+      var response = new Response<List<room_status_info>>();
+      try
+      {
+        _provider.Open();
+        DynamicParameters param = new DynamicParameters();
+        if (id == 1)
+        {
+          var roomInfo = await _provider.QueryAsync<room_status_info>("vacant_room_info_get", commandType: CommandType.StoredProcedure);
+          response.Data = roomInfo.AsList();
+          response.successResp();
+        }
+        else if (id == 2)
+        {
+          var roomInfo = await _provider.QueryAsync<room_status_info>("unpaid_room_info_get", commandType: CommandType.StoredProcedure);
+          response.Data = roomInfo.AsList();
+          response.successResp();
+        }
+        else if (id == 3)
+        {
+          var roomInfo = await _provider.QueryAsync<room_status_info>("paid_room_info_get", commandType: CommandType.StoredProcedure);
+          response.Data = roomInfo.AsList();
+          response.successResp();
+        }
+        else if (id == 4)
+        {
+          var roomInfo = await _provider.QueryAsync<room_status_info>("in_use_room_info_get", commandType: CommandType.StoredProcedure);
+          response.Data = roomInfo.AsList();
+          response.successResp();
+        }
+        else if (id == 5)
+        {
+          var roomInfo = await _provider.QueryAsync<room_status_info>("need_clean_room_info_get", commandType: CommandType.StoredProcedure);
+          response.Data = roomInfo.AsList();
+          response.successResp();
+        }
+        else if (id == 6)
+        {
+          var roomInfo = await _provider.QueryAsync<room_status_info>("available_room_info_get", commandType: CommandType.StoredProcedure);
+          response.Data = roomInfo.AsList();
+          response.successResp();
+        }
+        else if (id == 0)
+        {
+          var roomInfo = await _provider.QueryAsync<room_status_info>("booked_room_info_get", commandType: CommandType.StoredProcedure);
+          response.Data = roomInfo.AsList();
+          response.successResp();
+        }
+        else
+        {
+          response.errorResp();
+        }
+      }
+      catch
+      {
+        response.errorResp();
+      }
+      finally
+      {
+        _provider.Close();
+      }
+      return response;
+    }
+  }
 }

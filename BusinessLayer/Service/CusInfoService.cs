@@ -31,6 +31,10 @@ namespace BusinessLayer.Service
         response.Data = cusInfo.AsList();
         response.successResp();
       }
+      catch
+      {
+        response.errorResp();
+      }
       finally
       {
         _provider.Close();
@@ -50,6 +54,31 @@ namespace BusinessLayer.Service
         response.Data = cusInfo;
         response.successResp();
       }
+      catch
+      {
+        response.errorResp();
+      }
+      finally
+      {
+        _provider.Close();
+      }
+      return response;
+    }
+
+    public async Task<Response<cus_info>> GetID()
+    {
+      var response = new Response<cus_info>();
+      try
+      {
+        _provider.Open();
+        var cusInfo = await _provider.QueryFirstOrDefaultAsync<cus_info>("customer_id_get", null, commandType: CommandType.StoredProcedure);
+        response.Data = cusInfo;
+        response.successResp();
+      }
+      catch
+      {
+        response.errorResp();
+      }
       finally
       {
         _provider.Close();
@@ -65,8 +94,6 @@ namespace BusinessLayer.Service
         _provider.Open();
         DynamicParameters param = new DynamicParameters()
             .AddParam("@id", cus.customer_id)
-            .AddParam("@username", cus.acc_username)
-            .AddParam("@pwd", cus.acc_password)
             .AddParam("@fname", cus.customer_first_name)
             .AddParam("@lname", cus.customer_last_name)
             .AddParam("@address", cus.customer_address)
@@ -85,6 +112,10 @@ namespace BusinessLayer.Service
           response.errorResp();
         }
       }
+      catch
+      {
+        response.errorResp();
+      }
       finally
       {
         _provider.Close();
@@ -99,13 +130,13 @@ namespace BusinessLayer.Service
       {
         _provider.Open();
         DynamicParameters param = new DynamicParameters()
-            .AddParam("@id", cus.customer_id)
-            .AddParam("@fname", cus.customer_first_name)
-            .AddParam("@lname", cus.customer_last_name)
-            .AddParam("@address", cus.customer_address)
-            .AddParam("@num", cus.customer_contact_number);
+          .AddParam("@id", cus.customer_id)
+          .AddParam("@fname", cus.customer_first_name)
+          .AddParam("@lname", cus.customer_last_name)
+          .AddParam("@address", cus.customer_address)
+          .AddParam("@num", cus.customer_contact_number);
         DynamicParameters param1 = new DynamicParameters()
-            .AddParam("@id", cus.customer_id);
+          .AddParam("@id", cus.customer_id);
         var check = _provider.ExecuteReader("cus_id_get", param1, commandType: CommandType.StoredProcedure);
         if (((DbDataReader)check).HasRows == true)
         {
@@ -117,6 +148,10 @@ namespace BusinessLayer.Service
         {
           response.errorResp();
         }
+      }
+      catch
+      {
+        response.errorResp();
       }
       finally
       {
@@ -143,6 +178,10 @@ namespace BusinessLayer.Service
         {
           response.errorResp();
         }
+      }
+      catch
+      {
+        response.errorResp();
       }
       finally
       {

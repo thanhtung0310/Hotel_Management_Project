@@ -8,8 +8,8 @@ namespace Entity
 {
   public class order_number_statistic
   {
-    public DateTime date1 { get; set; }
-    public DateTime date2 { get; set; }
+    public string date1 { get; set; }
+    public string date2 { get; set; }
     public int count { get; set; }
   }
 }

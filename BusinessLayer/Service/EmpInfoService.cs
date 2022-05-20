@@ -31,6 +31,31 @@ namespace BusinessLayer.Service
         response.Data = empInfo.AsList();
         response.successResp();
       }
+      catch
+      {
+        response.errorResp();
+      }
+      finally
+      {
+        _provider.Close();
+      }
+      return response;
+    }
+
+    public async Task<Response<emp_info>> GetID()
+    {
+      var response = new Response<emp_info>();
+      try
+      {
+        _provider.Open();
+        var empInfo = await _provider.QueryFirstOrDefaultAsync<emp_info>("employee_id_get", null, commandType: CommandType.StoredProcedure);
+        response.Data = empInfo;
+        response.successResp();
+      }
+      catch
+      {
+        response.errorResp();
+      }
       finally
       {
         _provider.Close();
@@ -49,6 +74,10 @@ namespace BusinessLayer.Service
         var empInfo = await _provider.QueryFirstOrDefaultAsync<emp_info>("emp_id_get", param, commandType: CommandType.StoredProcedure);
         response.Data = empInfo;
         response.successResp();
+      }
+      catch
+      {
+        response.errorResp();
       }
       finally
       {
@@ -70,11 +99,12 @@ namespace BusinessLayer.Service
             .AddParam("@name", emp.emp_name)
             .AddParam("@pos", emp.emp_position)
             .AddParam("@dob", emp.emp_dob)
-            .AddParam("@num", emp.emp_contact_number);
+            .AddParam("@num", emp.emp_contact_number)
+            .AddParam("@role_id", emp.role_id);
         DynamicParameters param1 = new DynamicParameters()
             .AddParam("@id", emp.emp_id);
         var check = _provider.ExecuteReader("cus_id_get", param1, commandType: CommandType.StoredProcedure);
-        if (((DbDataReader)check).HasRows == true)
+        if (((DbDataReader)check).HasRows == false)
         {
           await _provider.QueryFirstOrDefaultAsync<emp_info>("emp_info_insert", param, commandType: CommandType.StoredProcedure);
           response.Data = emp;
@@ -84,6 +114,11 @@ namespace BusinessLayer.Service
         {
           response.errorResp();
         }
+      }
+      catch (Exception ex)
+      {
+        response.errorResp();
+        throw ex;
       }
       finally
       {
@@ -118,6 +153,10 @@ namespace BusinessLayer.Service
           response.errorResp();
         }
       }
+      catch
+      {
+        response.errorResp();
+      }
       finally
       {
         _provider.Close();
@@ -143,6 +182,10 @@ namespace BusinessLayer.Service
         {
           response.errorResp();
         }
+      }
+      catch
+      {
+        response.errorResp();
       }
       finally
       {
