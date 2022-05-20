@@ -44,6 +44,17 @@ namespace APIProject.Controllers
     }
 
     /// <summary>
+    /// Get new employee ID
+    /// </summary>
+    /// <returns></returns>
+    // GET api/<emp_infosController>/5
+    [HttpGet("emp_id")]
+    public async Task<Response<emp_info>> GetID()
+    {
+      return await _empInfoService.GetID();
+    }
+
+    /// <summary>
     /// Create new employee
     /// </summary>
     /// <param name="emp"></param>

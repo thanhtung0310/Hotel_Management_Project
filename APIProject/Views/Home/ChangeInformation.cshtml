@@ -1,0 +1,48 @@
+﻿@using Entity
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Change user's information";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model UserSession
+
+<h1>Change user's information <a asp-action="Index" class="btn btn-sm btn-secondary">Back</a></h1>
+
+@if (ViewBag.StatusCode == "Success" && Model != null)
+{
+<form asp-action="ChangeInformation" method="post">
+    <div class="form-group">
+        <label for="acc_username">Username: </label>
+        <input class="form-control" name="acc_username" value="acc_username" readonly />
+    </div>
+    <div class="form-group">
+        <label for="acc_password">Old password: </label>
+        <input type="password" class="form-control" name="acc_password" value="acc_password" readonly />
+    </div>
+    <div class="form-group">
+        <label for="acc_password">New password: </label>
+        <input type="password" class="form-control" name="acc_password" required />
+    </div>
+    <div class="form-group">
+        <label for="acc_password">Confirm new password: </label>
+        <input type="password" class="form-control" name="acc_password" required />
+    </div>
+    <div class="form-group">
+        <label for="acc_name">Full name: </label>
+        <input class="form-control" name="acc_name" value="acc_name" required />
+    </div>
+    <div class="form-group">
+        <label for="acc_dob">Date of birth: </label>
+        <input class="form-control" name="acc_dob" value="acc_dob" readonly />
+    </div>
+    <div class="form-group">
+        <label for="acc_contact_number">Username: </label>
+        <input class="form-control" name="acc_contact_number" value="acc_contact_number" required />
+    </div>
+    <div class="text-center panel-body">
+        <button type="submit" class="btn btn-sm btn-primary">Change information</button>
+    </div>
+</form>
+}

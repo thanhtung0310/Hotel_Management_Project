@@ -1,0 +1,12 @@
+﻿@using Entity
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Converter Checked-out to Vacant rooms";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Vacant room converter</h1>
+<h3>@ViewBag.StatusCode</h3>
+<h4>@ViewBag.Message</h4>
+<a asp-controller="Home" asp-action="Index" class="btn btn-sm btn-primary">Return back to Home page</a>

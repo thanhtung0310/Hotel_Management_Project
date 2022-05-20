@@ -74,7 +74,7 @@ body {
 	 color: #ccc;
 }
 
-.login input + i.fa {
+.login input + i.fa-solid {
 	 color: #fff;
 	 font-size: 1em;
 	 position: absolute;
@@ -91,7 +91,7 @@ body {
 	 border-left-width: 35px;
 }
 
-.login input:focus + i.fa {
+.login input:focus + i.fa-solid {
 	 opacity: 1;
 	 left: 30px;
 	 transition: all 0.25s ease-out;

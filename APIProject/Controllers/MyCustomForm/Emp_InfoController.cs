@@ -9,6 +9,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text;
 using DatabaseProvider;
+using BCryptNet = BCrypt.Net.BCrypt;
+using CommonData = APIProject.Data.CommonConstants;
 
 namespace APIProject.Controllers.MyCustomForm
 {
@@ -17,9 +19,18 @@ namespace APIProject.Controllers.MyCustomForm
     public string baseUrl = "https://localhost:44304/api"; //IIS
     //public string baseAddress = "https://localhost:5001/api"; //Kestrel
 
+    public void GetSessionInfo()
+    {
+      ViewBag.SessionUsername = CommonData.USER_USERNAME;
+      ViewBag.SessionRole = CommonData.USER_ROLE;
+      ViewBag.SessionName = CommonData.USER_NAME;
+    }
+
     // GET: Emp_InfoController
     public async Task<IActionResult> Index()
     {
+      GetSessionInfo();
+
       List<emp_info> empList = new List<emp_info>();
       using (var httpClient = new HttpClient())
       {
@@ -37,11 +48,18 @@ namespace APIProject.Controllers.MyCustomForm
       return View(empList);
     }
 
-    public ViewResult GetEmployeeByID() => View();
+    public ViewResult GetEmployeeByID()
+    {
+      GetSessionInfo();
+
+      return View();
+    }
     // Post: Emp_InfoController/Details/5
     [HttpPost]
     public async Task<IActionResult> GetEmployeeByID(int id)
     {
+      GetSessionInfo();
+
       emp_info emp = new emp_info();
       using (var httpClient = new HttpClient())
       {
@@ -64,11 +82,18 @@ namespace APIProject.Controllers.MyCustomForm
       return View(emp);
     }
 
-    public ViewResult GetEmployeeByName() => View();
+    public ViewResult GetEmployeeByName()
+    {
+      GetSessionInfo();
+
+      return View();
+    }
     // Post: Emp_InfoController/Details/5
     [HttpPost]
     public async Task<IActionResult> GetEmployeeByName(string search_string)
     {
+      GetSessionInfo();
+
       List<employee> empList = new List<employee>();
       using (var httpClient = new HttpClient())
       {
@@ -91,11 +116,41 @@ namespace APIProject.Controllers.MyCustomForm
       return View(empList);
     }
 
-    public ViewResult AddEmployee() => View();
+    public async Task<IActionResult> AddEmployee()
+    {
+      GetSessionInfo();
+
+      emp_info emp = new emp_info();
+      using (var httpClient = new HttpClient())
+      {
+        using (var response = await httpClient.GetAsync(baseUrl + "/emp_infos/emp_id"))
+        {
+          if (response.StatusCode == System.Net.HttpStatusCode.OK)
+          {
+            var apiResponse = await response.Content.ReadAsStringAsync();
+
+            JObject jsonArray = JObject.Parse(apiResponse);
+
+            var dataField = jsonArray["data"];
+
+            emp = JsonConvert.DeserializeObject<emp_info>(dataField.ToString());
+          }
+          else
+            ViewBag.StatusCode = response.StatusCode;
+        }
+      }
+      return View(emp);
+    }
 
     [HttpPost]
     public async Task<IActionResult> AddEmployee(emp_info emp)
     {
+      GetSessionInfo();
+
+      // hash input password
+      int costParam = 13;
+      emp.acc_password = BCryptNet.HashPassword(emp.acc_password, costParam);
+
       emp_info receivedEmp = new emp_info();
       using (var httpClient = new HttpClient())
       {
@@ -107,11 +162,11 @@ namespace APIProject.Controllers.MyCustomForm
           {
             var apiResponse = await response.Content.ReadAsStringAsync();
 
-          JObject jsonArray = JObject.Parse(apiResponse);
+            JObject jsonArray = JObject.Parse(apiResponse);
 
-          var dataField = jsonArray["data"];
+            var dataField = jsonArray["data"];
 
-          receivedEmp = JsonConvert.DeserializeObject<emp_info>(dataField.ToString());
+            receivedEmp = JsonConvert.DeserializeObject<emp_info>(dataField.ToString());
           }
           else
             ViewBag.StatusCode = response.StatusCode;
@@ -122,6 +177,8 @@ namespace APIProject.Controllers.MyCustomForm
 
     public async Task<IActionResult> Details(int id)
     {
+      GetSessionInfo();
+
       emp_info emp = new emp_info();
       using (var httpClient = new HttpClient())
       {
@@ -147,6 +204,8 @@ namespace APIProject.Controllers.MyCustomForm
     [HttpPost]
     public async Task<IActionResult> Details(emp_info emp)
     {
+      GetSessionInfo();
+
       emp_info receivedEmp = new emp_info();
       using (var httpClient = new HttpClient())
       {
@@ -177,6 +236,8 @@ namespace APIProject.Controllers.MyCustomForm
     [HttpPost]
     public async Task<IActionResult> DeleteEmployee(int id)
     {
+      GetSessionInfo();
+
       using (var httpClient = new HttpClient())
       {
         using (var response = await httpClient.DeleteAsync(baseUrl + "/emp_infos/" + id))

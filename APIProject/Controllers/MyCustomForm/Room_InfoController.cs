@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text;
 using DatabaseProvider;
+using CommonData = APIProject.Data.CommonConstants;
 
 namespace APIProject.Controllers.MyCustomForm
 {
@@ -17,9 +18,18 @@ namespace APIProject.Controllers.MyCustomForm
     public string baseUrl = "https://localhost:44304/api"; //IIS
     //public string baseAddress = "https://localhost:5001/api"; //Kestrel
 
+    public void GetSessionInfo()
+    {
+      ViewBag.SessionUsername = CommonData.USER_USERNAME;
+      ViewBag.SessionRole = CommonData.USER_ROLE;
+      ViewBag.SessionName = CommonData.USER_NAME;
+    }
+
     // GET: Room_InfoController
     public async Task<IActionResult> Index()
     {
+      GetSessionInfo();
+
       List<room_info> roomList = new List<room_info>();
       using (var httpClient = new HttpClient())
       {
@@ -40,6 +50,8 @@ namespace APIProject.Controllers.MyCustomForm
     // GET: Room_InfoController
     public async Task<IActionResult> GetBookedRoom()
     {
+      GetSessionInfo();
+
       List<room_status_info> roomList = new List<room_status_info>();
       using (var httpClient = new HttpClient())
       {
@@ -62,11 +74,18 @@ namespace APIProject.Controllers.MyCustomForm
       return View(roomList);
     }
 
-    public ViewResult GetBookedRoomByTypeID() => View();
+    public ViewResult GetBookedRoomByTypeID()
+    {
+      GetSessionInfo();
+
+      return View();
+    }
     // Post: Room_InfoController/Details/5
     [HttpPost]
     public async Task<IActionResult> GetBookedRoomByTypeID(int id)
     {
+      GetSessionInfo();
+
       List<booked_room_info> roomList = new List<booked_room_info>();
       using (var httpClient = new HttpClient())
       {
@@ -89,11 +108,18 @@ namespace APIProject.Controllers.MyCustomForm
       return View(roomList);
     }
 
-    public ViewResult GetRoomByTypeID() => View();
+    public ViewResult GetRoomByTypeID()
+    {
+      GetSessionInfo();
+
+      return View();
+    }
     // Post: Room_InfoController/Details/5
     [HttpPost]
     public async Task<IActionResult> GetRoomByTypeID(int id)
     {
+      GetSessionInfo();
+
       List<room_info> room = new List<room_info>();
       using (var httpClient = new HttpClient())
       {
@@ -116,11 +142,18 @@ namespace APIProject.Controllers.MyCustomForm
       return View(room);
     }
 
-    public ViewResult GetRoomByNum() => View();
+    public ViewResult GetRoomByNum()
+    {
+      GetSessionInfo();
+
+      return View();
+    }
     // Post: Room_InfoController/Details/5
     [HttpPost]
     public async Task<IActionResult> GetRoomByNum(string num)
     {
+      GetSessionInfo();
+
       room_info room = new room_info();
       using (var httpClient = new HttpClient())
       {
@@ -143,11 +176,18 @@ namespace APIProject.Controllers.MyCustomForm
       return View(room);
     }
     
-    public ViewResult GetRoomByStatus() => View();
+    public ViewResult GetRoomByStatus()
+    {
+      GetSessionInfo();
+
+      return View();
+    }
     // Post: Room_InfoController/Details/5
     [HttpPost]
     public async Task<IActionResult> GetRoomByStatus(int id)
     {
+      GetSessionInfo();
+
       List<room_status_info> roomList = new List<room_status_info>();
       using (var httpClient = new HttpClient())
       {
@@ -174,6 +214,8 @@ namespace APIProject.Controllers.MyCustomForm
     [HttpPost]
     public async Task<IActionResult> ConvertVacantRoom()
     {
+      GetSessionInfo();
+
       using (var httpClient = new HttpClient())
       {
         using (var response = await httpClient.DeleteAsync(baseUrl + "/vacant/"))
@@ -189,6 +231,8 @@ namespace APIProject.Controllers.MyCustomForm
     [HttpPost]
     public async Task<IActionResult> DeleteRoom(int num)
     {
+      GetSessionInfo();
+
       using (var httpClient = new HttpClient())
       {
         using (var response = await httpClient.DeleteAsync(baseUrl + "/room_infos/" + num))

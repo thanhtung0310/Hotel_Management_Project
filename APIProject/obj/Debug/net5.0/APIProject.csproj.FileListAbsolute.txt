@@ -224,7 +224,6 @@ D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0\APIProject.pdb
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0\APIProject.genruntimeconfig.cache
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0\Razor\Views\Shared\_ViewImports.cshtml.g.cs
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\ref\APIProject.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0\Razor\Views\Cus_Info\AddCustomer.cshtml.g.cs
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
@@ -259,3 +258,17 @@ D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\Microsoft.Extensions.Caching.Memory.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\Microsoft.Extensions.Logging.Abstractions.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\Microsoft.Extensions.Options.dll
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\ref\APIProject.dll
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0\Razor\Views\Home\ChangeInformation.cshtml.g.cs
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\Microsoft.AspNetCore.Http.Features.dll
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\System.IO.Pipelines.dll
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\Microsoft.Extensions.Caching.SqlServer.dll
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\BCrypt.Net-Next.dll
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\web.config
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\System.Web.Mvc.dll
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\System.Web.Razor.dll
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\System.Web.Helpers.dll
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\System.Web.WebPages.Deployment.dll
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\System.Web.WebPages.Razor.dll
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\System.Web.WebPages.dll
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\Microsoft.Web.Infrastructure.dll

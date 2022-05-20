@@ -19,16 +19,20 @@
                 <div class="col-md-12" id="pay-later">
                     <h4 class="mt-2">Book room and Pay later</h4>
                     <div class="form-group">
-                        <label for="cus_id">Customer ID:</label>
-                        <input type="text" class="form-control" id="cus_id" name="cus_id">
+                        <label for="customer_id">Customer ID:</label>
+                        <input type="text" class="form-control" id="customer_id" name="customer_id">
                     </div>
                     <div class="form-group">
-                        <label for="check_in_date">Check in date: </label>
-                        <input type="date" class="form-control" id="check_in_date" name="check_in_date">
+                        <label for="expected_check_in_date">Check in date: </label>
+                        <input type="date" class="form-control" id="expected_check_in_date" name="expected_check_in_date">
+                        @*<script>
+                            var check_in_date = document.getElementById("check_in_date").value;
+                            check_in_date = check_in_date.toString();
+                        </script>*@
                     </div>
                     <div class="form-group">
-                        <label for="day">Number of staying days: </label>
-                        <input type="text" class="form-control" id="day" name="day">
+                        <label for="day_stay_number">Number of staying days: </label>
+                        <input type="text" class="form-control" id="day_stay_number" name="day_stay_number">
                     </div>
                     <div class="form-group">
                         <label for="room_type_id">Room type: </label>
@@ -56,16 +60,16 @@
                 <div class="col-md-12" id="pay-now" style="display:none;">
                     <h4 class="mt-2">Book room and Pay now</h4>
                     <div class="form-group">
-                        <label for="cus_id">Customer ID:</label>
-                        <input type="text" class="form-control" id="cus_id" name="cus_id">
+                        <label for="customer_id">Customer ID:</label>
+                        <input type="text" class="form-control" id="customer_id" name="customer_id">
                     </div>
                     <div class="form-group">
-                        <label for="check_in_date">Check in date: </label>
-                        <input type="date" class="form-control" id="check_in_date" name="check_in_date">
+                        <label for="expected_check_in_date">Check in date: </label>
+                        <input type="date" class="form-control" id="expected_check_in_date" name="expected_check_in_date">
                     </div>
                     <div class="form-group">
-                        <label for="day">Number of staying days: </label>
-                        <input type="text" class="form-control" id="day" name="day">
+                        <label for="day_stay_number">Number of staying days: </label>
+                        <input type="text" class="form-control" id="day_stay_number" name="day_stay_number">
                     </div>
                     <div class="form-group">
                         <label for="room_type_id">Room type: </label>
@@ -161,4 +165,6 @@
     function scrollToAnchor(element) {
         location.hash = "#" + element;
     }
+
+    var check_in_date = Date.parse($('#check_in_date').val());
 </script>

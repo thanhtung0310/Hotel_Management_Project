@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text;
+using CommonData = APIProject.Data.CommonConstants;
 using DatabaseProvider;
 
 namespace APIProject.Controllers.MyCustomForm
@@ -17,9 +18,18 @@ namespace APIProject.Controllers.MyCustomForm
     public string baseUrl = "https://localhost:44304/api"; //IIS
     //public string baseAddress = "https://localhost:5001/api"; //Kestrel
 
+    public void GetSessionInfo()
+    {
+      ViewBag.SessionUsername = CommonData.USER_USERNAME;
+      ViewBag.SessionRole = CommonData.USER_ROLE;
+      ViewBag.SessionName = CommonData.USER_NAME;
+    }
+
     // GET: Cus_InfoController
     public async Task<IActionResult> Index()
     {
+      GetSessionInfo();
+
       List<cus_info> cusList = new List<cus_info>();
       using (var httpClient = new HttpClient())
       {
@@ -37,11 +47,18 @@ namespace APIProject.Controllers.MyCustomForm
       return View(cusList);
     }
 
-    public ViewResult GetCustomerByID() => View();
+    public ViewResult GetCustomerByID()
+    {
+      GetSessionInfo();
+
+      return View();
+    }
     // Post: Cus_InfoController/Details/5
     [HttpPost]
     public async Task<IActionResult> GetCustomerByID(int id)
     {
+      GetSessionInfo();
+
       cus_info cus = new cus_info();
       using (var httpClient = new HttpClient())
       {
@@ -64,11 +81,18 @@ namespace APIProject.Controllers.MyCustomForm
       return View(cus);
     }
 
-    public ViewResult GetCustomerByName() => View();
+    public ViewResult GetCustomerByName()
+    {
+      GetSessionInfo();
+
+      return View();
+    }
     // Post: Cus_InfoController/Details/5
     [HttpPost]
     public async Task<IActionResult> GetCustomerByName(string search_string)
     {
+      GetSessionInfo();
+
       List<customer> cusList = new List<customer>();
       using (var httpClient = new HttpClient())
       {
@@ -91,11 +115,18 @@ namespace APIProject.Controllers.MyCustomForm
       return View(cusList);
     }
 
-    public ViewResult GetCustomerByNum() => View();
+    public ViewResult GetCustomerByNum()
+    {
+      GetSessionInfo();
+
+      return View();
+    }
     // Post: Cus_InfoController/Details/5
     [HttpPost]
     public async Task<IActionResult> GetCustomerByNum(string search_string)
     {
+      GetSessionInfo();
+
       cus_info cus = new cus_info();
       using (var httpClient = new HttpClient())
       {
@@ -118,11 +149,37 @@ namespace APIProject.Controllers.MyCustomForm
       return View(cus);
     }
 
-    public ViewResult AddCustomer() => View();
+    public async Task<IActionResult> AddCustomer()
+    {
+      GetSessionInfo();
+
+      cus_info cus = new cus_info();
+      using (var httpClient = new HttpClient())
+      {
+        using (var response = await httpClient.GetAsync(baseUrl + "/cus_infos/customer_id"))
+        {
+          if (response.StatusCode == System.Net.HttpStatusCode.OK)
+          {
+            var apiResponse = await response.Content.ReadAsStringAsync();
+
+            JObject jsonArray = JObject.Parse(apiResponse);
+
+            var dataField = jsonArray["data"];
+
+            cus = JsonConvert.DeserializeObject<cus_info>(dataField.ToString());
+          }
+          else
+            ViewBag.StatusCode = response.StatusCode;
+        }
+      }
+      return View(cus);
+    }
 
     [HttpPost]
     public async Task<IActionResult> AddCustomer(cus_info cus)
     {
+      GetSessionInfo();
+
       cus_info receivedCus = new cus_info();
       using (var httpClient = new HttpClient())
       {        
@@ -149,6 +206,8 @@ namespace APIProject.Controllers.MyCustomForm
 
     public async Task<IActionResult> Details(int id)
     {
+      GetSessionInfo();
+
       cus_info cus = new cus_info();
       using (var httpClient = new HttpClient())
       {
@@ -174,6 +233,8 @@ namespace APIProject.Controllers.MyCustomForm
     [HttpPost]
     public async Task<IActionResult> Details(cus_info cus)
     {
+      GetSessionInfo();
+
       cus_info receivedCus = new cus_info();
       using (var httpClient = new HttpClient())
       {
@@ -204,6 +265,8 @@ namespace APIProject.Controllers.MyCustomForm
     [HttpPost]
     public async Task<IActionResult> DeleteCustomer(int id)
     {
+      GetSessionInfo();
+
       using (var httpClient = new HttpClient())
       {
         using (var response = await httpClient.DeleteAsync(baseUrl + "/cus_infos/" + id))

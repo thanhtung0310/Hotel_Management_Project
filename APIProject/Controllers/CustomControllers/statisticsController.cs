@@ -22,38 +22,37 @@ namespace APIProject.Controllers.CustomControllers
     /// <summary>
     /// Get number of orders between dates
     /// </summary>
-    /// <param name="date1"></param>
-    /// <param name="date2"></param>
+    /// <param name="inputNum"></param>
     /// <returns></returns>
-    // GET api/<statisticsController>/order_dates/?date1={}?date2={}
-    [HttpGet("order_dates/{date1}-{date2}")]
-    public async Task<Response<order_number_statistic>> GetOrderNumBetweenDates(DateTime date1, DateTime date2)
+    // POST api/<statisticsController>/order_dates
+    [HttpPost("order_dates")]
+    public async Task<Response<order_number_statistic>> GetOrderNumBetweenDates(order_number_statistic inputNum)
     {
-      return await _statisticService.GetOrderNumBetweenDates(date1, date2);
+      return await _statisticService.GetOrderNumBetweenDates(inputNum);
     }
 
     /// <summary>
     /// Get number of orders in month/year
     /// </summary>
-    /// <param name="date"></param>
+    /// <param name="inputNum"></param>
     /// <returns></returns>
-    // GET api/<statisticsController>/order_month/{}
-    [HttpGet("order_month/{date}")]
-    public async Task<Response<order_number_statistic>> GetOrderNumInMonth(DateTime date)
+    // POST api/<statisticsController>/order_month
+    [HttpPost("order_month")]
+    public async Task<Response<order_number_statistic>> GetOrderNumInMonth(single_order_number_statistic inputNum)
     {
-      return await _statisticService.GetOrderNumInMonth(date);
+      return await _statisticService.GetOrderNumInMonth(inputNum);
     }
 
     /// <summary>
     /// Get number of orders between dates
     /// </summary>
-    /// <param name="date"></param>
+    /// <param name="inputNum"></param>
     /// <returns></returns>
-    // GET api/<statisticsController>/order_year/{}
-    [HttpGet("order_year/{date}")]
-    public async Task<Response<single_order_number_statistic>> GetOrderNumInYear(DateTime date)
+    // POST api/<statisticsController>/order_year
+    [HttpPost("order_year")]
+    public async Task<Response<single_order_number_statistic>> GetOrderNumInYear(single_order_number_statistic inputNum)
     {
-      return await _statisticService.GetOrderNumInYear(date);
+      return await _statisticService.GetOrderNumInYear(inputNum);
     }
 
     /// <summary>

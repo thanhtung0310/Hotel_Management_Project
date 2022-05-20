@@ -44,6 +44,17 @@ namespace APIProject.Controllers.CustomControllers
     }
 
     /// <summary>
+    /// Get new customer ID
+    /// </summary>
+    /// <returns></returns>
+    // GET api/<cus_infosController>/5
+    [HttpGet("customer_id")]
+    public async Task<Response<cus_info>> GetID()
+    {
+      return await _cusInfoService.GetID();
+    }
+
+    /// <summary>
     /// Create new customer
     /// </summary>
     /// <param name="cus"></param>

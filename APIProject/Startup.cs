@@ -11,6 +11,7 @@ using Microsoft.Data.SqlClient;
 using BusinessLayer;
 using Microsoft.AspNetCore.Routing.Constraints;
 using System;
+using Microsoft.AspNetCore.Http;
 
 namespace APIProject
 {
@@ -27,14 +28,29 @@ namespace APIProject
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddControllers(); //APIController
-      
-      services.AddDistributedMemoryCache();
+
+      //services.AddDistributedMemoryCache(); // use memory cache
+
+      services.AddDistributedSqlServerCache((option) =>
+      {
+        option.ConnectionString = "data source=localhost;initial catalog=VMO_HotelManagement;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework";
+        option.SchemaName = "dbo";
+        option.TableName = "userSessions";
+      });
 
       services.AddSession((option) =>
       {
-        option.Cookie.Name = "VMO_hotel_management";
-        option.IdleTimeout = new TimeSpan(0, 30, 0);
+        option.Cookie.Name = "Session_h1kj2h3kj1h23kj";
+        option.IdleTimeout = new TimeSpan(12, 0, 0);
+        option.Cookie.IsEssential = true; 
+        option.Cookie.HttpOnly = true;
       });
+
+      //services.AddSession((option) =>
+      //{
+      //option.Cookie.Name = "StaffSession_f7as2f1f1l12jkl";
+      //option.IdleTimeout = new TimeSpan(0, 0, 3);
+      //});
 
       services.AddMvc(options => options.EnableEndpointRouting = false);
       
@@ -85,6 +101,25 @@ namespace APIProject
         endpoints.MapControllerRoute(
           name: "default",
           pattern: "{controller=Home}/{action=Index}/{id?}");
+
+        //endpoints.MapGet("/readwritesession", async (context) =>
+        //{
+        //  int? count; // key = count
+        //  count = context.Session.GetInt32("count"); // read session
+
+        //  if (count == null)
+        //  {
+        //    count = 0;
+        //  }
+
+        //  count += 1;
+
+        //  context.Session.SetInt32("count", count.Value); // write session
+        //  //context.Session.SetString() = json { }
+
+        //  await context.Response.WriteAsync($"So lan truy cap /readwritesession la: {count}");
+
+        //});
       });
     }
   }

@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text;
-using DatabaseProvider;
+using CommonData = APIProject.Data.CommonConstants;
 
 namespace APIProject.Controllers.MainControllers
 {
@@ -17,14 +17,24 @@ namespace APIProject.Controllers.MainControllers
     public string baseUrl = "https://localhost:44304/api"; //IIS
     //public string baseAddress = "https://localhost:5001/api"; //Kestrel
 
+    public void GetSessionInfo()
+    {
+      ViewBag.SessionUsername = CommonData.USER_USERNAME;
+      ViewBag.SessionRole = CommonData.USER_ROLE;
+      ViewBag.SessionName = CommonData.USER_NAME;
+    }
+
     public IActionResult Index()
     {
+      GetSessionInfo();
       return View();
     }
 
     // GET: StatisticController/GetCustomerTraffic
     public async Task<IActionResult> GetCustomerTraffic()
     {
+      GetSessionInfo();
+
       List<cus_traffic_statistic> cusList = new List<cus_traffic_statistic>();
       using (var httpClient = new HttpClient())
       {
@@ -45,6 +55,8 @@ namespace APIProject.Controllers.MainControllers
     // GET: StatisticController/GetMostPopularRoomType
     public async Task<IActionResult> GetMostPopularRoomType()
     {
+      GetSessionInfo();
+
       List<room_popular_statistic> roomList = new List<room_popular_statistic>();
       using (var httpClient = new HttpClient())
       {
@@ -65,6 +77,8 @@ namespace APIProject.Controllers.MainControllers
     // GET: StatisticController/GetLeastPopularRoomType
     public async Task<IActionResult> GetLeastPopularRoomType()
     {
+      GetSessionInfo();
+
       List<room_popular_statistic> roomList = new List<room_popular_statistic>();
       using (var httpClient = new HttpClient())
       {
@@ -82,67 +96,112 @@ namespace APIProject.Controllers.MainControllers
       return View(roomList);
     }
 
-    public ViewResult GetOrderNumBetweenDates() => View();
+    public ViewResult GetOrderNumBetweenDates()
+    {
+      GetSessionInfo();
+
+      return View();
+    }
 
     [HttpPost]
-    public async Task<IActionResult> GetOrderNumBetweenDates(DateTime date1, DateTime date2)
+    public async Task<IActionResult> GetOrderNumBetweenDates(order_number_statistic inputNum)
     {
+      GetSessionInfo();
+
       order_number_statistic orderNum = new order_number_statistic();
       using (var httpClient = new HttpClient())
       {
-        using (var response = await httpClient.GetAsync(baseUrl + "/statistics/order_dates/" + date1 + "-" + date2))
+        StringContent content = new StringContent(JsonConvert.SerializeObject(inputNum), Encoding.UTF8, "application/json");
+        using (var response = await httpClient.PostAsync(baseUrl + "/statistics/order_dates", content))
         {
-          var apiResponse = await response.Content.ReadAsStringAsync();
+          if (response.StatusCode == System.Net.HttpStatusCode.OK)
+          {
+            var apiResponse = await response.Content.ReadAsStringAsync();
 
-          JObject jsonArray = JObject.Parse(apiResponse);
+            JObject jsonArray = JObject.Parse(apiResponse);
 
-          var dataField = jsonArray["data"];
+            var dataField = jsonArray["data"];
 
-          orderNum = JsonConvert.DeserializeObject<order_number_statistic>(dataField.ToString());
+            orderNum = JsonConvert.DeserializeObject<order_number_statistic>(dataField.ToString());
+
+            ViewBag.StatusCode = "Success";
+          }
+          else
+            ViewBag.StatusCode = response.StatusCode;
         }
       }
       return View(orderNum);
     }
 
-    public ViewResult GetOrderNumInMonth() => View();
+    public ViewResult GetOrderNumInMonth()
+    {
+      GetSessionInfo();
+
+      return View();
+    }
 
     [HttpPost]
-    public async Task<IActionResult> GetOrderNumInMonth(DateTime date)
+    public async Task<IActionResult> GetOrderNumInMonth(single_order_number_statistic inputNum)
     {
+      GetSessionInfo();
+
       order_number_statistic orderNum = new order_number_statistic();
       using (var httpClient = new HttpClient())
       {
-        using (var response = await httpClient.GetAsync(baseUrl + "/statistics/order_month/" + date))
+        StringContent content = new StringContent(JsonConvert.SerializeObject(inputNum), Encoding.UTF8, "application/json");
+        using (var response = await httpClient.PostAsync(baseUrl + "/statistics/order_month", content))
         {
-          var apiResponse = await response.Content.ReadAsStringAsync();
+          if (response.StatusCode == System.Net.HttpStatusCode.OK)
+          {
+            var apiResponse = await response.Content.ReadAsStringAsync();
 
-          JObject jsonArray = JObject.Parse(apiResponse);
+            JObject jsonArray = JObject.Parse(apiResponse);
 
-          var dataField = jsonArray["data"];
+            var dataField = jsonArray["data"];
 
-          orderNum = JsonConvert.DeserializeObject<order_number_statistic>(dataField.ToString());
+            orderNum = JsonConvert.DeserializeObject<order_number_statistic>(dataField.ToString());
+
+            ViewBag.StatusCode = "Success";
+          }
+          else
+            ViewBag.StatusCode = response.StatusCode;
         }
       }
       return View(orderNum);
     }
 
-    public ViewResult GetOrderNumInYear() => View();
+    public ViewResult GetOrderNumInYear()
+    {
+      GetSessionInfo();
+
+      return View();
+    }
 
     [HttpPost]
-    public async Task<IActionResult> GetOrderNumInYear(DateTime date)
+    public async Task<IActionResult> GetOrderNumInYear(single_order_number_statistic inputNum)
     {
+      GetSessionInfo();
+
       single_order_number_statistic orderNum = new single_order_number_statistic();
       using (var httpClient = new HttpClient())
       {
-        using (var response = await httpClient.GetAsync(baseUrl + "/statistics/order_year/" + date))
+        StringContent content = new StringContent(JsonConvert.SerializeObject(inputNum), Encoding.UTF8, "application/json");
+        using (var response = await httpClient.PostAsync(baseUrl + "/statistics/order_year", content))
         {
-          var apiResponse = await response.Content.ReadAsStringAsync();
+          if (response.StatusCode == System.Net.HttpStatusCode.OK)
+          {
+            var apiResponse = await response.Content.ReadAsStringAsync();
 
-          JObject jsonArray = JObject.Parse(apiResponse);
+            JObject jsonArray = JObject.Parse(apiResponse);
 
-          var dataField = jsonArray["data"];
+            var dataField = jsonArray["data"];
 
-          orderNum = JsonConvert.DeserializeObject<single_order_number_statistic>(dataField.ToString());
+            orderNum = JsonConvert.DeserializeObject<single_order_number_statistic>(dataField.ToString());
+
+            ViewBag.StatusCode = "Success";
+          }
+          else
+            ViewBag.StatusCode = response.StatusCode;
         }
       }
       return View(orderNum);

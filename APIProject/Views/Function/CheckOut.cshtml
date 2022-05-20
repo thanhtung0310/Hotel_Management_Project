@@ -114,8 +114,15 @@
         </div>
 
         <div class="col-md-4">
-            <h2 class="mt0">Get room by number</h2>
-            <a class="btn btn-sm btn-secondary" asp-controller="room_info" asp-action="GetRoomByNum" target="pop-up" onclick="window.open('','pop-up','height=600,width=600,resizable=no')">Search for room by room number</a>
+            <div>
+                <h2 class="mt0">Get room by number</h2>
+                <a class="btn btn-sm btn-secondary" asp-controller="room_info" asp-action="GetRoomByNum" target="pop-up" onclick="window.open('','pop-up','height=600,width=600,resizable=no')">Search for room by room number</a>
+            </div>
+
+            <div>
+                <h2 class="mt0">Get checked in rooms</h2>
+                <a class="btn btn-sm btn-secondary" asp-controller="room_info" asp-action="GetRoomByStatus" target="pop-up" onclick="window.open('','pop-up','height=600,width=600,resizable=no')">Search for room by room number</a>
+            </div>
         </div>
     </div>
 </div>
