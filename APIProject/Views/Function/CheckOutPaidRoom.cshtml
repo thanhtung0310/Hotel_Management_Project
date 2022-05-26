@@ -1,0 +1,117 @@
+﻿@using Entity
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Check out Paid room";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model room_check_out
+
+<h1>Check out Results <a asp-action="CheckOut" class="btn btn-sm btn-primary">Back</a></h1>
+<h3>@ViewBag.StatusCode</h3>
+<h3 style="color:red;">@ViewBag.Message</h3>
+
+@if (@ViewBag.StatusCode == "Success" && Model != null)
+{
+    <h3>You have checked out room successfully! </h3>
+    <h5>
+        Customer ID:    @Model.customer_id
+    </h5>
+    <h5>
+        @{
+            string room_number = "";
+            if (Model.room_id == 1)
+                room_number = "Room 101";
+            else if (Model.room_id == 2)
+                room_number = "Room 102";
+            else if (Model.room_id == 3)
+                room_number = "Room 103";
+            else if (Model.room_id == 4)
+                room_number = "Room 104";
+            else if (Model.room_id == 5)
+                room_number = "Room 105";
+            else if (Model.room_id == 6)
+                room_number = "Room 106";
+            else if (Model.room_id == 7)
+                room_number = "Room 201";
+            else if (Model.room_id == 8)
+                room_number = "Room 202";
+            else if (Model.room_id == 9)
+                room_number = "Room 203";
+            else if (Model.room_id == 10)
+                room_number = "Room 204";
+            else if (Model.room_id == 11)
+                room_number = "Room 205";
+            else if (Model.room_id == 12)
+                room_number = "Room 206";
+            else if (Model.room_id == 13)
+                room_number = "Room 301";
+            else if (Model.room_id == 14)
+                room_number = "Room 302";
+            else if (Model.room_id == 15)
+                room_number = "Room 303";
+            else if (Model.room_id == 16)
+                room_number = "Room 304";
+            else if (Model.room_id == 17)
+                room_number = "Room 305";
+            else if (Model.room_id == 18)
+                room_number = "Room 306";
+        }
+        Room number:     @room_number
+    </h5>
+    <h5>
+        @{
+            string room_type_name = "";
+            if (Model.room_type_id == 1)
+                room_type_name = "King Room";
+            else if (Model.room_type_id == 2)
+                room_type_name = "Queen Room";
+            else if (Model.room_type_id == 3)
+                room_type_name = "4-people Family Room";
+            else if (Model.room_type_id == 4)
+                room_type_name = "3-people Family Room";
+            else if (Model.room_type_id == 5)
+                room_type_name = "Single Room";
+            else if (Model.room_type_id == 6)
+                room_type_name = "Couple Room";
+            else if (Model.room_type_id == 7)
+                room_type_name = "4-Bunk Room";
+        }
+        Room type:     @room_type_name
+    </h5>
+    <h5>
+        Check-in date:    @Model.check_in_date
+    </h5>
+    <h5>
+        Check-out date:    @Model.check_out_date
+    </h5>
+    <h5>
+        @{
+            string payment_type_name = "";
+            if (Model.payment_type_id == 1)
+                payment_type_name = "Cash";
+            else if (Model.payment_type_id == 2)
+                payment_type_name = "Credit card";
+            else if (Model.payment_type_id == 3)
+                payment_type_name = "Debit card";
+
+        }
+        Payment type:     @payment_type_name
+    </h5>
+    <h5>
+        Payment amount:    @Model.payment_amount
+    </h5>
+    <h5>
+        Payment date:    @Model.payment_date
+    </h5>
+
+    <a asp-action="CheckOut" class="btn btn-sm btn-primary">Return to Check out Page</a>
+}
+
+<style>
+    h5 {
+        color: orangered;
+        font-weight: bold;
+    }
+</style>

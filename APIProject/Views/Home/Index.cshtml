@@ -1,0 +1,15 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <h5>This is the Hotel management project of <a href="https://portfolio0fthanhtung.w3spaces.com/" target="_blank" rel="noopener noreferrer">Phan Thanh Tung</a> for VMO final assessment</h5>
+    @if (ViewBag.SessionRole == null || ViewBag.SessionRole == "Guest")
+    {
+        <h3>Please <a asp-action="Login" style="color: lightgray;">log in</a> to use the project!</h3>
+    }
+</div>

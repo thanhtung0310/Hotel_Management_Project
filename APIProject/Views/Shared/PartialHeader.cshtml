@@ -1,0 +1,263 @@
+﻿<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <div class="container">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/img/logo.png" /></a>            
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <div class="navbar-nav flex-grow-1" style="justify-content:space-between; ">
+                    <div class="nav-left" style="justify-content: left; display: flex; margin-left: 20px;">
+                        <div class="nav-item" style="width: 80px;" >
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
+                        </div>
+                        @if (ViewBag.SessionRole != null)
+                        {
+                                <div class="dropdown nav-item">
+                                    <button class="dropbtn nav-link text-dark">
+                                        <div class="flex-display">
+                                            Admin Forms  
+                                            <i class="fas fa-caret-down nav-icon"></i>
+                                        </div>
+                                    </button>
+                                    @if (ViewBag.SessionRole == "Manager")
+                                    {
+                                        <div class="dropdown-content">
+                                            <div class="smaller-dropdown">
+                                                <a asp-controller="Account" asp-action="Index">Accounts</a>
+                                                <a asp-controller="Customer" asp-action="Index">Customers</a>
+                                                <a asp-controller="Employee" asp-action="Index">Employees</a>
+                                                <a asp-controller="Payment" asp-action="Index">Payments</a>
+                                                <a asp-controller="PaymentType" asp-action="Index">Payment types</a>
+                                                <a asp-controller="Reception" asp-action="Index">Reception</a>
+                                                <a asp-controller="Reservation" asp-action="Index">Reservation</a>
+                                                <a asp-controller="Role" asp-action="Index">Roles</a>
+                                                <a asp-controller="Room" asp-action="Index">Rooms</a>
+                                                <a asp-controller="RoomStatus" asp-action="Index">Room status</a>
+                                                <a asp-controller="RoomType" asp-action="Index">Room types</a>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+
+                            <div class="dropdown nav-item">
+                                <button class="dropbtn nav-link text-dark">
+                                    <div class="flex-display">
+                                        Staff Forms  
+                                        <i class="fas fa-caret-down nav-icon"></i>
+                                    </div>
+                                </button>
+
+                                <div class="smaller-dropdown">
+                                    <div class="dropdown-content">
+                                        <a asp-controller="cus_info" asp-action="Index">
+                                            <div class="flex-display">
+                                                Customer's information
+                                                <i class="fas fa-caret-right nav-icon"></i>
+                                            </div>
+                                        </a>
+                                        <div class="smaller-dropdown-content">
+                                            <a asp-controller="cus_info" asp-action="AddCustomer">Add new customer</a>
+                                            <a asp-controller="cus_info" asp-action="GetCustomerByID">Customer's information by customer ID</a>
+                                            <a asp-controller="cus_info" asp-action="GetCustomerByName">Customer's information by name</a>
+                                            <a asp-controller="cus_info" asp-action="GetCustomerByNum">Customer's information by contact number</a>
+                                            <a asp-controller="cus_info" asp-action="GetBookedCustomer">Booked customer's information</a>
+                                            <a asp-controller="cus_info" asp-action="GetBookedCustomerByNum">Booked customer's information by contact number</a>
+                                            <a asp-controller="cus_info" asp-action="GetCheckedinCustomer">Checked-in customer's information</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="dropdown-content">
+                                        <a asp-controller="emp_info" asp-action="Index">
+                                            <div class="flex-display">
+                                                Employee's information  
+                                                <i class="fas fa-caret-right nav-icon"></i>
+                                            </div>
+                                        </a>
+                                        <div class="smaller-dropdown-content">
+                                            <a asp-controller="emp_info" asp-action="AddEmployee">Add new employee</a>
+                                            <a asp-controller="emp_info" asp-action="GetEmployeeByID">Employee's information by employee ID</a>
+                                            <a asp-controller="emp_info" asp-action="GetEmployeeByName">Employee's information by name</a>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="dropdown-content">
+                                        <a asp-controller="room_info" asp-action="Index">
+                                            <div class="flex-display">
+                                                Rooms' information  
+                                                <i class="fas fa-caret-right nav-icon"></i>
+                                            </div>
+                                        </a>
+                                        <div class="smaller-dropdown-content">
+                                            <a asp-controller="room_info" asp-action="GetBookedRoom">Booked room's information</a>
+                                            <a asp-controller="room_info" asp-action="GetRoomByNum">Room's information by room number</a>
+                                            <a asp-controller="room_info" asp-action="GetRoomByStatus">Rooms' information by room Status</a>
+                                            <a asp-controller="room_info" asp-action="GetRoomByTypeID">Rooms' information by room type</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="dropdown-content">
+                                        <a asp-controller="statistic" asp-action="Index">
+                                            <div class="flex-display">
+                                                Statistics  
+                                                <i class="fas fa-caret-right nav-icon"></i>
+                                            </div>
+                                        </a>
+                                        <div class="smaller-dropdown-content">
+                                            <a asp-controller="statistic" asp-action="GetCustomerTraffic">Customer's information and times using hotel</a>
+                                            <a asp-controller="statistic" asp-action="GetTotalCountType">Number of rooms by type</a>
+                                            <a asp-controller="statistic" asp-action="GetMostPopularRoomType">Most popular room type</a>
+                                            <a asp-controller="statistic" asp-action="GetOrderNumBetweenDates">Number of orders between dates</a>
+                                            <a asp-controller="statistic" asp-action="GetOrderNumInMonth">Number of orders in a month</a>
+                                            <a asp-controller="statistic" asp-action="GetOrderNumInYear">Number of orders in a year</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="dropdown nav-item">
+                                <button class="dropbtn nav-link text-dark">
+                                    <div class="flex-display">
+                                        Main Functions  
+                                        <i class="fas fa-caret-down nav-icon"></i>
+                                    </div>
+                                </button>
+                                <div class="dropdown-content">
+                                    <div class="smaller-dropdown">
+                                        <a asp-controller="Function" asp-action="BookRoom">Book room</a>
+                                        <a asp-controller="Function" asp-action="CheckIn">Check in Room</a>
+                                        <a asp-controller="Function" asp-action="CheckOut">Check out Room</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="dropdown nav-item">
+                                <button class="dropbtn nav-link text-dark">
+                                    <div class="flex-display">
+                                        Converter  
+                                        <i class="fas fa-caret-down nav-icon"></i>
+                                    </div>
+                                </button>
+                                <div class="dropdown-content">
+                                    <div class="smaller-dropdown">
+                                        <a asp-controller="Function" asp-action="ConvertVacantRoom">Convert all checked-out rooms</a>
+                                        <a asp-controller="Function" asp-action="ConvertSingleVacantRoom">Convert one checked-out room</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="nav-right" style="justify-content:right; display: flex;">
+                    @if (ViewBag.SessionRole == null || ViewBag.SessionRole == "Guest")
+                    {
+                        <div class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Login">Login</a>
+                        </div>
+                        <div class="nav-item" style="width: 250px;">
+                            <div class="nav-link text-dark">
+                                <div class="flex-display">
+                                    Hello Guest
+                                    <i class="fa-solid fa-hand-wave"></i>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else 
+                    {
+                        <div class="dropdown nav-item" style="width: 250px;">
+                            <button class="dropbtn nav-link text-dark">
+                                <div class="flex-display">
+                                    Hello @ViewBag.SessionRole @ViewBag.SessionName
+                                    <i class="fas fa-caret-down nav-icon"></i>
+                                </div>
+                            </button>
+                            <div class="dropdown-content">
+                                <div class="smaller-dropdown" style="width: 250px;">
+                                    <a asp-controller="Home" asp-action="ChangeInformation">Change information</a>
+                                    <a asp-controller="Home" asp-action="ChangePassword">Change password</a>
+                                    <a asp-controller="Home" asp-action="Logout">Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                    } 
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<style>
+
+/* navigation bar */
+.dropbtn {
+    border: none;
+    background-color: white;
+}
+
+/* dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    /*width: 140px;*/
+}
+
+/* dropdown-content */
+.dropdown-content {
+    display: none;
+    min-width: inherit;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    position: relative;
+}
+
+    .dropdown-content a {
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        background-color: white;
+        color: grey;
+    }
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+/* smaller-dropdown */
+.smaller-dropdown {
+    position: absolute;
+    width: 140px;
+}
+
+/* smaller-dropdown-content */
+.smaller-dropdown-content {
+    display: none;
+}
+
+    .smaller-dropdown-content a {
+        display: block;
+    }
+
+.dropdown-content:hover .smaller-dropdown-content {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 140px;
+    min-width: 160px;
+}
+
+.flex-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-icon {
+    padding-left: 6px;
+}
+</style>

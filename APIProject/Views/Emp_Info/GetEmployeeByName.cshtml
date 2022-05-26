@@ -1,0 +1,50 @@
+﻿@using DatabaseProvider
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Get employee Information by Name";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<employee>
+
+<h1>Get employee's information by Name <a asp-action="Index" class="btn btn-sm btn-primary">Back</a></h1>
+<h3>@ViewBag.StatusCode</h3>
+<h3 style="color:red;">@ViewBag.Message</h3>
+<form method="post">
+    <div class="form-group">
+        <label for="search_string">Name:</label>
+        <input class="form-control" name="search_string" placeholder="Please enter name" />
+    </div>
+    <div class="text-center panel-body">
+        <button type="submit" class="btn btn-sm btn-primary">Get Employee</button>
+    </div>
+</form>
+
+@if (Model != null)
+{
+    <h2>Employee's information</h2>
+    <table class="table table-sm table-striped table-bordered m-2">
+        <thead>
+            <tr>
+                <th>Employee's ID</th>
+                <th>Employee's name</th>
+                <th>Employee's working floor</th>
+                <th>Employee's date of birth</th>
+                <th>Employee's contact number</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.emp_id</td>
+                    <td>@item.emp_name</td>
+                    <td>@item.emp_position</td>
+                    <td>@item.emp_dob</td>
+                    <td>@item.emp_contact_number</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

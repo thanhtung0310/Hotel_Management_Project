@@ -1,0 +1,62 @@
+﻿@using Entity
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Customer's information";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<cus_info>
+
+<h1>Customer's information</h1>
+<a asp-action="AddCustomer" class="btn btn-sm btn-primary">Add new customer</a>
+<br />
+<h4>Search for customer information</h4>
+<div class="search">
+    <a asp-action="GetCustomerByID" class="btn btn-sm btn-secondary">Get customer by customer ID</a>
+    <a asp-action="GetCustomerByName" class="btn btn-sm btn-secondary">Get customer by name</a>
+    <a asp-action="GetCustomerByNum" class="btn btn-sm btn-secondary">Get customer by number</a>
+    <a asp-action="GetBookedCustomer" class="btn btn-sm btn-secondary">Get customer who has booked in advance</a>
+    <a asp-action="GetBookedCustomerByNum" class="btn btn-sm btn-secondary">Get customer who has booked in advance by number</a>
+    <a asp-action="GetCheckedinCustomer" class="btn btn-sm btn-secondary">Get customer who has checked-in</a>
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Customer's ID</th>
+            <th>Customer's first name</th>
+            <th>Customer's last name</th>
+            <th>Customer's home address</th>
+            <th>Customer's contact number</th>
+            <th>Details</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.customer_id</td>
+                <td>@item.customer_first_name</td>
+                <td>@item.customer_last_name</td>
+                <td>@item.customer_address</td>
+                <td>@item.customer_contact_number</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.customer_id">
+                        <img src="~/img/icon/details-icon.jpg" style="width:30px;" />
+                    </a>
+                </td>
+                <td>
+                    <form asp-action="DeleteCustomer" method="post">
+                        <input type="hidden" value="@item.customer_id" name="id" />
+                        <input type="image" src="~/img/icon/delete-icon.jpg" style="width:40px;" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

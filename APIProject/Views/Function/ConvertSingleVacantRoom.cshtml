@@ -1,0 +1,66 @@
+﻿@using Entity
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model room_info
+
+@{
+    ViewData["Title"] = "Converter Checked-out to Vacant room";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Vacant room converter</h1>
+<h3>@ViewBag.StatusCode</h3>
+<h4 style="color:red;">@ViewBag.Message</h4>
+<form method="post">
+    <div class="form-group">
+        <label for="id">Room number:</label>
+        <select name="id" id="id" class="form-control">
+            <option value="">Select Room number</option>
+            <option value="1">Room 101</option>
+            <option value="2">Room 102</option>
+            <option value="3">Room 103</option>
+            <option value="4">Room 104</option>
+            <option value="5">Room 105</option>
+            <option value="6">Room 106</option>
+            <option value="7">Room 201</option>
+            <option value="8">Room 202</option>
+            <option value="9">Room 203</option>
+            <option value="10">Room 204</option>
+            <option value="11">Room 205</option>
+            <option value="12">Room 206</option>
+            <option value="13">Room 301</option>
+            <option value="14">Room 302</option>
+            <option value="15">Room 303</option>
+            <option value="16">Room 304</option>
+            <option value="17">Room 305</option>
+            <option value="18">Room 306</option>
+        </select>
+    </div>
+    <div class="text-center panel-body">
+        <button type="submit" class="btn btn-sm btn-primary">Convert room</button>
+    </div>
+</form>
+
+@if (Model != null)
+{
+    <h3>@ViewBag.StatusCode</h3>
+    <h2>Room's information</h2>
+    <table class="table table-sm table-striped table-bordered m-2">
+        <thead>
+            <tr>
+                <th>Room number</th>
+                <th>Room type</th>
+                <th>Room status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.room_number</td>
+                <td>@Model.room_type_name</td>
+                <td>@Model.room_status_name</td>
+            </tr>
+        </tbody>
+    </table>
+}
+
+<a asp-controller="Home" asp-action="Index" class="btn btn-sm btn-primary">Return back to Home page</a>

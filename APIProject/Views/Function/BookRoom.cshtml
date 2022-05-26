@@ -1,0 +1,210 @@
+﻿@using Entity
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Book a Room";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<room_type_count_statistic>
+
+<div class="container" style="margin-top:50px;">
+    <div class="row probootstrap-gutter40">
+        <div class="col-md-6">
+            <h2 class="mt0">Reservation Form</h2>
+            <div class="form-group">
+                <label for="booking_type">Booking type:</label>
+                <button class="btn btn-sm btn-primary" name="booking_type" id="booking_type" onclick="changeDisplay('pay-later','pay-now'), scrollToAnchor('pay-now')">Book room and Pay now</button>
+                <button class="btn btn-sm btn-primary" name="booking_type" id="booking_type" onclick="changeDisplay('pay-now','pay-later'), scrollToAnchor('pay-later')">Book room and Pay later</button>
+            </div>
+
+            <form asp-action="BookUnpaidRoom" method="post" class="probootstrap-form">
+                <div class="col-md-12" id="pay-later">
+                    <h4 class="mt-2">Book room and Pay later</h4>
+                    <div class="form-group">
+                        <label for="customer_id">Customer ID:</label>
+                        <input type="text" class="form-control" id="customer_id" name="customer_id" placeholder="Please enter customer ID" />
+                    </div>
+                    <div class="form-group">
+                        <label for="expected_check_in_date">Check in date: </label>
+                        <input type="date" class="form-control" id="expected_check_in_date" name="expected_check_in_date">
+                    </div>
+                    <div class="form-group">
+                        <label for="day_stay_number">Number of staying days: </label>
+                        <input type="text" class="form-control" id="day_stay_number" name="day_stay_number" placeholder="Please enter the number of staying dates" />
+                    </div>
+                    <div class="form-group">
+                        <label for="room_type_id">Room type: </label>
+                        <div class="form-field">
+                            <select name="room_type_id" id="room_type_id" class="form-control">
+                                <option value="">Select Room type</option>
+                                <option value="1">King Room</option>
+                                <option value="2">Queen Room</option>
+                                <option value="3">4-people Family Room</option>
+                                <option value="4">3-people Family Room</option>
+                                <option value="5">Single Room</option>
+                                <option value="6">Couple Room</option>
+                                <option value="7">4-Bunk Room</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary btn-lg" id="submit" name="submit" value="Book Now">
+                    </div>
+                </div>
+            </form>
+
+
+            <form asp-action="BookPaidRoom" method="post" class="probootstrap-form">
+                <div class="col-md-12" id="pay-now" style="display:none;">
+                    <h4 class="mt-2">Book room and Pay now</h4>
+                    <div class="form-group">
+                        <label for="customer_id">Customer ID:</label>
+                        <input type="text" class="form-control" id="customer_id" name="customer_id" placeholder="Please enter customer ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="expected_check_in_date">Check in date: </label>
+                        <input type="date" class="form-control" id="expected_check_in_date" name="expected_check_in_date">
+                    </div>
+                    <div class="form-group">
+                        <label for="day_stay_number">Number of staying days: </label>
+                        <input type="text" class="form-control" id="day_stay_number" name="day_stay_number" placeholder="Please enter the number of staying dates">
+                    </div>
+                    <div class="form-group">
+                        <label for="room_type_id">Room type: </label>
+                        <div class="form-field">
+                            <select name="room_type_id" id="room_type_id" class="form-control">
+                                <option value="">Select Room type</option>
+                                <option value="1">King Room</option>
+                                <option value="2">Queen Room</option>
+                                <option value="3">4-people Family Room</option>
+                                <option value="4">3-people Family Room</option>
+                                <option value="5">Single Room</option>
+                                <option value="6">Couple Room</option>
+                                <option value="7">4-Bunk Room</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="payment_type_id">Payment type: </label>
+                        <div class="form-field">
+                            <select name="payment_type_id" id="payment_type_id" class="form-control">
+                                <option value="">Select payment type</option>
+                                <option value="1">By Cash</option>
+                                <option value="2">By Credit card</option>
+                                <option value="3">By Debit card</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="payment_amount">Payment amount: </label>
+                            <input type="text" class="form-control" id="payment_amount" name="payment_amount" placeholder="Please enter the amount of payment">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="payment_date">Payment date</label>
+                            <input type="date" class="form-control" id="payment_date" name="payment_date">
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary btn-lg" id="submit" name="submit" value="Book Now">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-6">
+            <h2 class="mt0">Get Customer's Information</h2>
+            <a class="btn btn-sm btn-secondary" asp-controller="cus_info" asp-action="GetCustomerByNum" target="pop-up" onclick="window.open('','pop-up','height=600,width=600,resizable=no')">Search for customer by contact number</a> <br /> <br />
+            <a class="btn btn-sm btn-primary" asp-controller="cus_info" asp-action="AddCustomer" target="pop-up" onclick="window.open('','pop-up','height=1000,width=600,resizable=no')">Add new customer</a>
+            <br /> <br />
+            <h2 class="mt0">Total number of available rooms</h2>
+            @if (Model != null)
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Room type</th>
+                            <th>Total number of available rooms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @{
+                                        string room_type_name = "";
+                                        if (item.room_type_id == 1)
+                                            room_type_name = "King Room";
+                                        else if (item.room_type_id == 2)
+                                            room_type_name = "Queen Room";
+                                        else if (item.room_type_id == 3)
+                                            room_type_name = "4-people Family Room";
+                                        else if (item.room_type_id == 4)
+                                            room_type_name = "3-people Family Room";
+                                        else if (item.room_type_id == 5)
+                                            room_type_name = "Single Room";
+                                        else if (item.room_type_id == 6)
+                                            room_type_name = "Couple Room";
+                                        else if (item.room_type_id == 7)
+                                            room_type_name = "4-Bunk Room";
+                                    }
+                                    @room_type_name
+                                </td>
+                                <td>@item.count</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    function openContent(evt, pageName) {
+        // khai bao bien
+        var i, maincontent, tablinks;
+
+        // lay tat thuoc tinh thuoc class="maincontent" va hide
+        maincontent = document.getElementsByClassName("maincontent");
+        for (i = 0; i < maincontent.length; i++) {
+            maincontent[i].style.display = "none";
+        }
+
+        //
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        //
+        document.getElementById(pageName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+
+    function changeDisplay(pageName, pageName2) {
+        //
+        var x = document.getElementById(pageName);
+        var y = document.getElementById(pageName2);
+
+        x.style.display = "block";
+
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            y.style.display = "none";
+        }
+        else {
+            x.style.display = "none";
+            y.style.display = "block";
+        }
+    }
+
+    function scrollToAnchor(element) {
+        location.hash = "#" + element;
+    }
+
+    var check_in_date = Date.parse($('#check_in_date').val());
+</script>

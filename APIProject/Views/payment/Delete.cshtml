@@ -1,0 +1,47 @@
+﻿@model DatabaseProvider.payment
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>payment</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.payment_type_id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.payment_type_id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.reception_id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.reception_id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.payment_amount)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.payment_amount)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.payment_date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.payment_date)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="payment_id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

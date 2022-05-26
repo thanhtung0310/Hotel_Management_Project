@@ -1,0 +1,78 @@
+﻿@using Entity
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Check In Room";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<booked_cus_info>
+
+<div class="container">
+    <div class="row probootstrap-gutter40">
+        <div class="col-md-4">
+            <h2 class="mt0">Check In Form</h2>            
+            <form asp-action="CheckInResult" method="post" class="probootstrap-form">
+                <div class="form-group">
+                    <label for="customer_id">Customer ID:</label>
+                    <input type="text" class="form-control" id="customer_id" name="customer_id" placeholder="Please enter customer ID" />
+                </div>
+                <div class="form-group">
+                    <label for="room_type_id">Room type: </label>
+                    <div class="form-field">
+                        <select name="room_type_id" id="room_type_id" class="form-control">
+                            <option value="">Select Room type</option>
+                            <option value="1">King Room</option>
+                            <option value="2">Queen Room</option>
+                            <option value="3">4-people Family Room</option>
+                            <option value="4">3-people Family Room</option>
+                            <option value="5">Single Room</option>
+                            <option value="6">Couple Room</option>
+                            <option value="7">4-Bunk Room</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary btn-lg" id="submit" name="submit" value="Check in room">
+                </div>
+            </form>
+        </div>
+        <div class="col-md-8">
+            <div>
+                <h2 class="mt0">Booking information list</h2>
+                @if (Model != null)
+                {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Customer's ID</th>
+                                <th>Customer's first name</th>
+                                <th>Customer's last name</th>
+                                <th>Customer's address</th>
+                                <th>Customer's contact number</th>
+                                <th>Room type</th>
+                                <th>Customer's expected check-in date</th>
+                                <th>Customer's expected check-out date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.customer_id</td>
+                                    <td>@item.customer_first_name</td>
+                                    <td>@item.customer_last_name</td>
+                                    <td>@item.customer_address</td>
+                                    <td>@item.customer_contact_number</td>
+                                    <td>@item.room_type_name</td>
+                                    <td>@item.expected_check_in_date</td>
+                                    <td>@item.expected_check_out_date</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            </div>
+        </div>
+    </div>
+</div>

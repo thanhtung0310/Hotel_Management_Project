@@ -1,0 +1,29 @@
+﻿@using Entity
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Least popular room type";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model IEnumerable<room_popular_statistic>
+
+<h1>Least popular room type <a asp-action="Index" class="btn btn-sm btn-primary">Back</a></h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Room type's name</th>
+            <th>Number of customers had used the room type</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.room_type_name</td>
+                <td>@item.count</td>
+            </tr>
+        }
+    </tbody>
+</table>

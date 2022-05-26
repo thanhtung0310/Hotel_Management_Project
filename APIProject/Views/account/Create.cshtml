@@ -1,0 +1,58 @@
+﻿@model DatabaseProvider.account
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Account control panel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="emp_id" class="control-label"></label>
+                <input asp-for="emp_id" class="form-control" />
+                <span asp-validation-for="emp_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="acc_username" class="control-label"></label>
+                <input asp-for="acc_username" class="form-control" />
+                <span asp-validation-for="acc_username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="acc_password" class="control-label"></label>
+                <input asp-for="acc_password" class="form-control" />
+                <span asp-validation-for="acc_password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="role_id" class="control-label"></label>
+                <select asp-for="role_id" class="form-control">
+                    <option value="">Select role</option>
+                    <option value="1">Manager</option>
+                    <option value="2">Security</option>
+                    <option value="3">Cleaner</option>
+                    <option value="4">Chief</option>
+                    <option value="5">Intern</option>
+                    <option value="6">Accountant</option>
+                </select>
+                <span asp-validation-for="role_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to account list</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
