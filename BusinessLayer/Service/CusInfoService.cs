@@ -42,6 +42,27 @@ namespace BusinessLayer.Service
       return response;
     }
 
+    public async Task<Response<List<checked_cus_info>>> GetCheckedinCusList()
+    {
+      var response = new Response<List<checked_cus_info>>();
+      try
+      {
+        _provider.Open();
+        var cusInfo = await _provider.QueryAsync<checked_cus_info>("customer_check_in_room_list", commandType: CommandType.StoredProcedure);
+        response.Data = cusInfo.AsList();
+        response.successResp();
+      }
+      catch
+      {
+        response.errorResp();
+      }
+      finally
+      {
+        _provider.Close();
+      }
+      return response;
+    }
+
     public async Task<Response<cus_info>> GetCustomerByID(int id)
     {
       var response = new Response<cus_info>();

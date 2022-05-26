@@ -28,5 +28,8 @@ namespace Entity
     [Required]
     [DataType(DataType.PhoneNumber)]
     public string emp_contact_number { get; set; }
+    [Required]
+    public int emp_identity_number { get; set; }
+
   }
 }

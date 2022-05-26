@@ -51,6 +51,7 @@ D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\BusinessLayer\obj\Debug\net
 D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\BusinessLayer\obj\Debug\net5.0\refint\BusinessLayer.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\bin\Debug\net5.0\BusinessLayer.deps.json
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\bin\Debug\net5.0\BusinessLayer.dll
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\bin\Debug\net5.0\ref\BusinessLayer.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\bin\Debug\net5.0\BusinessLayer.pdb
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\bin\Debug\net5.0\DatabaseProvider.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\bin\Debug\net5.0\DataLayer.dll
@@ -69,4 +70,3 @@ D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\obj\Debug\net
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\obj\Debug\net5.0\BusinessLayer.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\obj\Debug\net5.0\ref\BusinessLayer.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\obj\Debug\net5.0\BusinessLayer.pdb
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\bin\Debug\net5.0\ref\BusinessLayer.dll

@@ -20,15 +20,16 @@ namespace BusinessLayer.Service
       _provider = provider;
     }
 
-    public async Task<Response<room_info>> CheckInRoom(int room_type_id)
+    public async Task<Response<room_check_in>> CheckInRoom(input_check_data input)
     {
-      var response = new Response<room_info>();
+      var response = new Response<room_check_in>();
       try
       {
         _provider.Open();
         DynamicParameters param = new DynamicParameters()
-            .AddParam("@type", room_type_id);
-        var roomCheckedIn = await _provider.QueryFirstOrDefaultAsync<room_info>("room_checking_in", param, commandType: CommandType.StoredProcedure);
+          .AddParam("@cus_id", input.customer_id)
+          .AddParam("@type", input.room_type_id);
+        var roomCheckedIn = await _provider.QueryFirstOrDefaultAsync<room_check_in>("room_checking_in", param, commandType: CommandType.StoredProcedure);
         response.Data = roomCheckedIn;
         response.successResp();
       }

@@ -50,7 +50,7 @@ namespace BusinessLayer.Service
         _provider.Open();
         DynamicParameters param = new DynamicParameters()
             .AddParam("@type", id);
-        var roomInfo = await _provider.QueryAsync<room_info>("available_room_info_by_type_get", param, commandType: CommandType.StoredProcedure);
+        var roomInfo = await _provider.QueryAsync<room_info>("room_info_by_type_get", param, commandType: CommandType.StoredProcedure);
         response.Data = roomInfo.AsList();
         response.successResp();
       }

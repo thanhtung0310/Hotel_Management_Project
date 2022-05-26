@@ -32,9 +32,50 @@ namespace BusinessLayer.Service
           response.Data = cusList.AsList();
           response.successResp();
       }
-      catch (Exception ex)
+      catch
       {
-        throw ex;
+        response.errorResp();
+      }
+      finally
+      {
+        _provider.Close();
+      }
+      return response;
+    }
+
+    public async Task<Response<List<room_type_count_statistic>>> GetTotalCountType()
+    {
+      var response = new Response<List<room_type_count_statistic>>();
+      try
+      {
+        _provider.Open();
+        var cusList = await _provider.QueryAsync<room_type_count_statistic>("total_num_room_type_list_get", null, commandType: CommandType.StoredProcedure);
+        response.Data = cusList.AsList();
+        response.successResp();
+      }
+      catch
+      {
+        response.errorResp();
+      }
+      finally
+      {
+        _provider.Close();
+      }
+      return response;
+    }
+
+    public async Task<Response<List<room_type_count_statistic>>> GetAvailCountType()
+    {
+      var response = new Response<List<room_type_count_statistic>>();
+      try
+      {
+        _provider.Open();
+        var cusList = await _provider.QueryAsync<room_type_count_statistic>("avail_num_room_type_list_get", null, commandType: CommandType.StoredProcedure);
+        response.Data = cusList.AsList();
+        response.successResp();
+      }
+      catch
+      {
         response.errorResp();
       }
       finally
@@ -57,10 +98,9 @@ namespace BusinessLayer.Service
         response.Data = orderNum;
         response.successResp();
       }
-      catch (Exception ex)
+      catch
       {
         response.errorResp();
-        throw ex;
       }
       finally
       {
@@ -81,10 +121,9 @@ namespace BusinessLayer.Service
         response.Data = orderNum;
         response.successResp();
       }
-      catch (Exception ex)
+      catch
       {
         response.errorResp();
-        throw ex;
       }
       finally
       {
@@ -105,10 +144,9 @@ namespace BusinessLayer.Service
         response.Data = orderNum;
         response.successResp();
       }
-      catch (Exception ex)
+      catch
       {
         response.errorResp();
-        throw ex;
       }
       finally
       {

@@ -1,4 +1,5 @@
-﻿using BusinessLayer.IService;
+﻿using BusinessLayer.Extentions;
+using BusinessLayer.IService;
 using Dapper;
 using DataLayer;
 using Entity;
@@ -24,13 +25,16 @@ namespace BusinessLayer.Service
       var response = new Response<room_info>();
       try
       {
-        var roomInfo = await _provider.QueryFirstOrDefaultAsync<room_info>("single_room_vacant_convert", id, commandType: CommandType.StoredProcedure);
+        DynamicParameters param = new DynamicParameters()
+            .AddParam("@room_id", id);
+        var roomInfo = await _provider.QueryFirstOrDefaultAsync<room_info>("single_room_vacant_convert", param, commandType: CommandType.StoredProcedure);
         response.Data = roomInfo;
         response.successResp();
       }
-      catch
+      catch (Exception ex)
       {
         response.errorResp();
+        throw ex;
       }
       finally
       {

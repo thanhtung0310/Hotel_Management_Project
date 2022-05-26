@@ -12,6 +12,8 @@ namespace BusinessLayer.IService
     Task<Response<List<UserSession>>> GetUserSessions();
     Task<Response<UserSession>> GetUserSession(string acc_username);
     Task<Response<UserSession>> Login(UserSession user);
-    Task<Response<UserSession>> UpdateUser(string acc_username, UserSession newData);
+    Task<Response<UserSession>> UpdateUser(UserSession newData);
+    Task<Response<UserSession>> UpdatePassword(UserSession newData);
+    Task<Response<UserSession>> StartSession(UserSession newData);
   }
 }

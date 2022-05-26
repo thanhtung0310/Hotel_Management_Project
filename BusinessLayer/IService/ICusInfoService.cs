@@ -10,6 +10,7 @@ namespace BusinessLayer.IService
   public interface ICusInfoService
   {
     Task<Response<List<cus_info>>> GetCustomerList();
+    Task<Response<List<checked_cus_info>>> GetCheckedinCusList();
     Task<Response<cus_info>> GetCustomerByID(int id);
     Task<Response<cus_info>> GetID();
     Task<Response<cus_info>> CreateCustomer(cus_info cus);

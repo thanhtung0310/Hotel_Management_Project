@@ -16,6 +16,5 @@ namespace Entity
     public decimal? payment_amount { get; set; }
     public DateTime? payment_date { get; set; }
     public DateTime? expected_check_out_date { get; set; }
-    public DateTime? check_out_date { get; set; }
   }
 }

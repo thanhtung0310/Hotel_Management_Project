@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,20 +11,27 @@ namespace Entity
 {
   public class UserSession
   {
+    // to passing data between views/controllers
+
     [Required]
     public string acc_username { get; set; }
     
     [NotMapped]
     [DataType(DataType.Password)]
     public string acc_password { get; set; }
-    
+
     //[NotMapped] // Does not effect the database
     //[Compare("acc_password")]
-    //[Required]
     //[DataType(DataType.Password)]
-    //public string confirm_password { get; set; }
-    
+    //public string acc_new_password { get; set; }
+
+    //[NotMapped] // Does not effect the database
+    //[Compare("acc_new_password")]
+    //[DataType(DataType.Password)]
+    //public string acc_new_password2 { get; set; }
+
     public string acc_name { get; set; }
+    public int acc_identity_code { get; set; }
 
     [NotMapped]
     public string acc_role { get; set; }

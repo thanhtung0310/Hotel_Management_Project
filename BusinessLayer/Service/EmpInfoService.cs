@@ -100,7 +100,8 @@ namespace BusinessLayer.Service
             .AddParam("@pos", emp.emp_position)
             .AddParam("@dob", emp.emp_dob)
             .AddParam("@num", emp.emp_contact_number)
-            .AddParam("@role_id", emp.role_id);
+            .AddParam("@role_id", emp.role_id)
+            .AddParam("@identity_num", emp.emp_identity_number);
         DynamicParameters param1 = new DynamicParameters()
             .AddParam("@id", emp.emp_id);
         var check = _provider.ExecuteReader("cus_id_get", param1, commandType: CommandType.StoredProcedure);
@@ -115,10 +116,9 @@ namespace BusinessLayer.Service
           response.errorResp();
         }
       }
-      catch (Exception ex)
+      catch
       {
         response.errorResp();
-        throw ex;
       }
       finally
       {
