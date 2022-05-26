@@ -8,7 +8,7 @@
 
 <h1>Edit</h1>
 
-<h4>account</h4>
+<h4>Account control panel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -32,7 +32,15 @@
             </div>
             <div class="form-group">
                 <label asp-for="role_id" class="control-label"></label>
-                <input asp-for="role_id" class="form-control" />
+                <select asp-for="role_id" class="form-control">
+                    <option value="">Select role</option>
+                    <option value="1">Manager</option>
+                    <option value="2">Security</option>
+                    <option value="3">Cleaner</option>
+                    <option value="4">Chief</option>
+                    <option value="5">Intern</option>
+                    <option value="6">Accountant</option>
+                </select>
                 <span asp-validation-for="role_id" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -43,7 +51,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Back to account list</a>
 </div>
 
 @section Scripts {

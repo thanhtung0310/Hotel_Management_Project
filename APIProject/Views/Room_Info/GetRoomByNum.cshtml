@@ -13,7 +13,29 @@
 <form method="post">
     <div class="form-group">
         <label for="num">Room number:</label>
-        <input class="form-control" name="num" value="@Model.room_number" />
+        <div class="form-field">
+            <select name="num" id="num" class="form-control">
+                <option value="">Select Room number</option>
+                <option value="101">Room 101</option>
+                <option value="102">Room 102</option>
+                <option value="103">Room 103</option>
+                <option value="104">Room 104</option>
+                <option value="105">Room 105</option>
+                <option value="106">Room 106</option>
+                <option value="201">Room 201</option>
+                <option value="202">Room 202</option>
+                <option value="203">Room 203</option>
+                <option value="204">Room 204</option>
+                <option value="205">Room 205</option>
+                <option value="206">Room 206</option>
+                <option value="301">Room 301</option>
+                <option value="302">Room 302</option>
+                <option value="303">Room 303</option>
+                <option value="304">Room 304</option>
+                <option value="305">Room 305</option>
+                <option value="306">Room 306</option>
+            </select>
+        </div>
     </div>
     <div class="text-center panel-body">
         <button type="submit" class="btn btn-sm btn-primary">Get Room</button>

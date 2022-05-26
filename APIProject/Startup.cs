@@ -9,9 +9,11 @@ using APIProject.Data;
 using System.Data;
 using Microsoft.Data.SqlClient;
 using BusinessLayer;
-using Microsoft.AspNetCore.Routing.Constraints;
 using System;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Microsoft.AspNetCore.Identity;
 
 namespace APIProject
 {
@@ -31,36 +33,54 @@ namespace APIProject
 
       //services.AddDistributedMemoryCache(); // use memory cache
 
-      services.AddDistributedSqlServerCache((option) =>
+      services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+        .AddJwtBearer((options) =>
+        {
+          options.TokenValidationParameters = new TokenValidationParameters
+          {
+            ValidateIssuer = true, //validate server -> generate token
+            ValidateAudience = true, //validate recipient -> token is authorized
+            ValidateLifetime = true, //check if token is not expired
+            ValidateIssuerSigningKey = true, //check if signing key of the issuer is valid
+
+            // storing values in appsettings.json
+            ValidIssuer = Configuration["Jwt:Issuer"],
+            ValidAudience = Configuration["Jwt:Issuer"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+          };
+        });
+
+      //services.AddIdentity<UserSession, IdentityRole>().AddEntityFrameworkStores<APIProjectContext>().AddDefaultTokenProviders();
+
+      services.AddDistributedSqlServerCache((options) =>
       {
-        option.ConnectionString = "data source=localhost;initial catalog=VMO_HotelManagement;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework";
-        option.SchemaName = "dbo";
-        option.TableName = "userSessions";
+        options.ConnectionString = "data source=localhost;initial catalog=VMO_HotelManagement;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework";
+        options.SchemaName = "dbo";
+        options.TableName = "userSessions";
       });
 
-      services.AddSession((option) =>
+      services.AddSession((options) =>
       {
-        option.Cookie.Name = "Session_h1kj2h3kj1h23kj";
-        option.IdleTimeout = new TimeSpan(12, 0, 0);
-        option.Cookie.IsEssential = true; 
-        option.Cookie.HttpOnly = true;
+        //option.Cookie.Name = "Session_h1kj2h3kj1h23kj";
+        options.IdleTimeout = new TimeSpan(24, 0, 0);
+        options.Cookie.IsEssential = true;
+        options.Cookie.HttpOnly = true;
       });
 
-      //services.AddSession((option) =>
-      //{
-      //option.Cookie.Name = "StaffSession_f7as2f1f1l12jkl";
-      //option.IdleTimeout = new TimeSpan(0, 0, 3);
-      //});
-
-      services.AddMvc(options => options.EnableEndpointRouting = false);
-      
-      services.AddSwaggerGen(c =>
+      services.AddMvc((options) =>
       {
-        c.SwaggerDoc("v1", new OpenApiInfo { Title = "APIProject", Version = "v1" });
+        options.EnableEndpointRouting = false;
       });
 
-      services.AddDbContext<APIProjectContext>(options =>
-              options.UseSqlServer(Configuration.GetConnectionString("APIProjectContext")));
+      services.AddSwaggerGen((options) =>
+      {
+        options.SwaggerDoc("v1", new OpenApiInfo { Title = "APIProject", Version = "v1" });
+      });
+
+      services.AddDbContext<APIProjectContext>((options) =>
+      {
+        options.UseSqlServer(Configuration.GetConnectionString("APIProjectContext"));
+      });
 
       services.AddSingleton<IDbConnection>(db => new SqlConnection(
               Configuration.GetConnectionString("APIProjectContext")));
@@ -96,30 +116,13 @@ namespace APIProject
 
       app.UseAuthorization();
 
+      app.UseAuthentication();
+
       app.UseEndpoints(endpoints =>
       {
         endpoints.MapControllerRoute(
           name: "default",
           pattern: "{controller=Home}/{action=Index}/{id?}");
-
-        //endpoints.MapGet("/readwritesession", async (context) =>
-        //{
-        //  int? count; // key = count
-        //  count = context.Session.GetInt32("count"); // read session
-
-        //  if (count == null)
-        //  {
-        //    count = 0;
-        //  }
-
-        //  count += 1;
-
-        //  context.Session.SetInt32("count", count.Value); // write session
-        //  //context.Session.SetString() = json { }
-
-        //  await context.Response.WriteAsync($"So lan truy cap /readwritesession la: {count}");
-
-        //});
       });
     }
   }

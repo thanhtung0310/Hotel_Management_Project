@@ -22,27 +22,25 @@ namespace APIProject.Controllers.CustomControllers
     /// <summary>
     /// Check out room by update data in DB
     /// </summary>
-    /// <param name="room_id"></param>
     /// <param name="room"></param>
     /// <returns></returns>
     // POST api/<room_check_in>/1
-    [HttpPost("1/{room_id}")]
-    public async Task<Response<room_booking>> CheckOutUnpaidRoom(int room_id, [FromBody] room_booking room)
+    [HttpPost("1")]
+    public async Task<Response<room_check_out>> CheckOutUnpaidRoom([FromBody] room_check_out room)
     {
-      return await _roomCheckOutService.CheckOutUnpaidRoom(room_id, room);
+      return await _roomCheckOutService.CheckOutUnpaidRoom(room);
     }
 
     /// <summary>
     /// Check out room by update data in DB
     /// </summary>
-    /// <param name="room_id"></param>
     /// <param name="room"></param>
     /// <returns></returns>
     // POST api/<room_check_in>/1
-    [HttpPost("2/{room_id}")]
-    public async Task<Response<room_booking>> CheckOutPaidRoom(int room_id, [FromBody] room_booking room)
+    [HttpPost("2")]
+    public async Task<Response<room_check_out>> CheckOutPaidRoom([FromBody] room_check_out room)
     {
-      return await _roomCheckOutService.CheckOutPaidRoom(room_id, room);
+      return await _roomCheckOutService.CheckOutPaidRoom(room);
     }
   }
 }

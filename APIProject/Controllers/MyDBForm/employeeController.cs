@@ -8,9 +8,12 @@ using Microsoft.EntityFrameworkCore;
 using APIProject.Data;
 using DatabaseProvider;
 using CommonData = APIProject.Data.CommonConstants;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace APIProject.Controllers.MyDBForm
 {
+  [Authorize(Roles = "Admin")]
   public class EmployeeController : Controller
   {
     private readonly APIProjectContext _context;
@@ -20,11 +23,17 @@ namespace APIProject.Controllers.MyDBForm
       _context = context;
     }
 
+    const string SessionUsername = "_username";
+    const string SessionRole = "Guest";
+    const string SessionName = "_name";
+    const string SessionToken = "_token";
+
     public void GetSessionInfo()
     {
-      ViewBag.SessionUsername = CommonData.USER_USERNAME;
-      ViewBag.SessionRole = CommonData.USER_ROLE;
-      ViewBag.SessionName = CommonData.USER_NAME;
+      ViewBag.SessionUsername = HttpContext.Session.GetString(SessionUsername);
+      ViewBag.SessionRole = HttpContext.Session.GetString(SessionRole);
+      ViewBag.SessionName = HttpContext.Session.GetString(SessionName);
+      ViewBag.Session = HttpContext.Session.GetString(SessionToken);
     }
 
     // GET: employee

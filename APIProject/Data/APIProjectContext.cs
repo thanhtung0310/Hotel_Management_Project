@@ -15,6 +15,7 @@ namespace APIProject.Data
     {
     }
 
+    // admin model
     public DbSet<employee> employee { get; set; }
 
     public DbSet<account> account { get; set; }
@@ -37,7 +38,7 @@ namespace APIProject.Data
 
     public DbSet<roomType> roomType { get; set; }
 
-    // customer model
+    // staff model
     public DbSet<cus_info> cus_info { get; set; }
 
     public DbSet<booked_cus_info> booked_cus_info { get; set; }

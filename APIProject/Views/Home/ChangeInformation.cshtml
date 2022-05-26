@@ -15,31 +15,19 @@
 <form asp-action="ChangeInformation" method="post">
     <div class="form-group">
         <label for="acc_username">Username: </label>
-        <input class="form-control" name="acc_username" value="acc_username" readonly />
-    </div>
-    <div class="form-group">
-        <label for="acc_password">Old password: </label>
-        <input type="password" class="form-control" name="acc_password" value="acc_password" readonly />
-    </div>
-    <div class="form-group">
-        <label for="acc_password">New password: </label>
-        <input type="password" class="form-control" name="acc_password" required />
-    </div>
-    <div class="form-group">
-        <label for="acc_password">Confirm new password: </label>
-        <input type="password" class="form-control" name="acc_password" required />
+        <input class="form-control" name="acc_username" value="@Model.acc_username" readonly />
     </div>
     <div class="form-group">
         <label for="acc_name">Full name: </label>
-        <input class="form-control" name="acc_name" value="acc_name" required />
+        <input class="form-control" name="acc_name" value="@Model.acc_name" required />
     </div>
     <div class="form-group">
         <label for="acc_dob">Date of birth: </label>
-        <input class="form-control" name="acc_dob" value="acc_dob" readonly />
+        <input class="form-control" name="acc_dob" value="@Model.acc_dob" readonly />
     </div>
     <div class="form-group">
-        <label for="acc_contact_number">Username: </label>
-        <input class="form-control" name="acc_contact_number" value="acc_contact_number" required />
+        <label for="acc_contact_number">Contact number: </label>
+        <input class="form-control" name="acc_contact_number" value="@Model.acc_contact_number" required />
     </div>
     <div class="text-center panel-body">
         <button type="submit" class="btn btn-sm btn-primary">Change information</button>

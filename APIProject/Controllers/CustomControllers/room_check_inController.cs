@@ -22,13 +22,12 @@ namespace APIProject.Controllers.CustomControllers
         /// <summary>
         /// Check in Room by update data in DB
         /// </summary>
-        /// <param name="room_type_id"></param>
         /// <returns></returns>
         // POST api/<room_check_in>
-        [HttpPost("{room_type_id}")]
-        public async Task<Response<room_info>> CheckInRoom(int room_type_id)
+        [HttpPost]
+        public async Task<Response<room_check_in>> CheckInRoom([FromBody] input_check_data input)
         {
-            return await _roomCheckInService.CheckInRoom(room_type_id);
+            return await _roomCheckInService.CheckInRoom(input);
         }
     }
 }

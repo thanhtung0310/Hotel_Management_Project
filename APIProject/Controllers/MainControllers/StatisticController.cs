@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text;
 using CommonData = APIProject.Data.CommonConstants;
+using APIProject.Data;
 
 namespace APIProject.Controllers.MainControllers
 {
@@ -17,16 +18,23 @@ namespace APIProject.Controllers.MainControllers
     public string baseUrl = "https://localhost:44304/api"; //IIS
     //public string baseAddress = "https://localhost:5001/api"; //Kestrel
 
+    const string SessionUsername = "_username";
+    const string SessionRole = "Guest";
+    const string SessionName = "_name";
+    const string SessionToken = "_token";
+
     public void GetSessionInfo()
     {
-      ViewBag.SessionUsername = CommonData.USER_USERNAME;
-      ViewBag.SessionRole = CommonData.USER_ROLE;
-      ViewBag.SessionName = CommonData.USER_NAME;
+      ViewBag.SessionUsername = HttpContext.Session.GetString(SessionUsername);
+      ViewBag.SessionRole = HttpContext.Session.GetString(SessionRole);
+      ViewBag.SessionName = HttpContext.Session.GetString(SessionName);
+      ViewBag.Session = HttpContext.Session.GetString(SessionToken);
     }
 
     public IActionResult Index()
     {
       GetSessionInfo();
+
       return View();
     }
 
@@ -50,6 +58,50 @@ namespace APIProject.Controllers.MainControllers
         }
       }
       return View(cusList);
+    }
+
+    // GET: StatisticController/GetTotalCountType
+    public async Task<IActionResult> GetTotalCountType()
+    {
+      GetSessionInfo();
+
+      List<room_type_count_statistic> totalList = new List<room_type_count_statistic>();
+      using (var httpClient = new HttpClient())
+      {
+        using (var response = await httpClient.GetAsync(baseUrl + "/statistics/total_room_type"))
+        {
+          var apiResponse = await response.Content.ReadAsStringAsync();
+
+          JObject jsonArray = JObject.Parse(apiResponse);
+
+          var dataField = jsonArray["data"];
+
+          totalList = JsonConvert.DeserializeObject<List<room_type_count_statistic>>(dataField.ToString());
+        }
+      }
+      return View(totalList);
+    }
+
+    // GET: StatisticController/GetAvailCountType
+    public async Task<IActionResult> GetAvailCountType()
+    {
+      GetSessionInfo();
+
+      List<room_type_count_statistic> totalList = new List<room_type_count_statistic>();
+      using (var httpClient = new HttpClient())
+      {
+        using (var response = await httpClient.GetAsync(baseUrl + "/statistics/avail_room_type"))
+        {
+          var apiResponse = await response.Content.ReadAsStringAsync();
+
+          JObject jsonArray = JObject.Parse(apiResponse);
+
+          var dataField = jsonArray["data"];
+
+          totalList = JsonConvert.DeserializeObject<List<room_type_count_statistic>>(dataField.ToString());
+        }
+      }
+      return View(totalList);
     }
 
     // GET: StatisticController/GetMostPopularRoomType
@@ -124,7 +176,14 @@ namespace APIProject.Controllers.MainControllers
 
             orderNum = JsonConvert.DeserializeObject<order_number_statistic>(dataField.ToString());
 
-            ViewBag.StatusCode = "Success";
+            if (orderNum == null)
+            {
+              ViewBag.Message = "There are no data between such dates!";
+            }
+            else
+            {
+              ViewBag.StatusCode = "Success";
+            }
           }
           else
             ViewBag.StatusCode = response.StatusCode;
@@ -161,7 +220,14 @@ namespace APIProject.Controllers.MainControllers
 
             orderNum = JsonConvert.DeserializeObject<order_number_statistic>(dataField.ToString());
 
-            ViewBag.StatusCode = "Success";
+            if (orderNum == null)
+            {
+              ViewBag.Message = "There are no data in that month of year!";
+            }
+            else
+            {
+              ViewBag.StatusCode = "Success";
+            }
           }
           else
             ViewBag.StatusCode = response.StatusCode;
@@ -198,7 +264,14 @@ namespace APIProject.Controllers.MainControllers
 
             orderNum = JsonConvert.DeserializeObject<single_order_number_statistic>(dataField.ToString());
 
-            ViewBag.StatusCode = "Success";
+            if (orderNum == null)
+            {
+              ViewBag.Message = "There are no data in that year!";
+            }
+            else
+            {
+              ViewBag.StatusCode = "Success";
+            }
           }
           else
             ViewBag.StatusCode = response.StatusCode;

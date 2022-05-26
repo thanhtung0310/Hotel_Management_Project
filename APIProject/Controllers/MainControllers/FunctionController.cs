@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text;
 using CommonData = APIProject.Data.CommonConstants;
+using APIProject.Data;
 
 namespace APIProject.Controllers.MainControllers
 {
@@ -17,18 +18,38 @@ namespace APIProject.Controllers.MainControllers
     public string baseUrl = "https://localhost:44304/api"; //IIS
     //public string baseAddress = "https://localhost:5001/api"; //Kestrel
     
+    const string SessionUsername = "_username";
+    const string SessionRole = "Guest";
+    const string SessionName = "_name";
+    const string SessionToken = "_token";
+
     public void GetSessionInfo()
     {
-      ViewBag.SessionUsername = CommonData.USER_USERNAME;
-      ViewBag.SessionRole = CommonData.USER_ROLE;
-      ViewBag.SessionName = CommonData.USER_NAME;
+      ViewBag.SessionUsername = HttpContext.Session.GetString(SessionUsername);
+      ViewBag.SessionRole = HttpContext.Session.GetString(SessionRole);
+      ViewBag.SessionName = HttpContext.Session.GetString(SessionName);
+      ViewBag.Session = HttpContext.Session.GetString(SessionToken);
     }
 
-    public ViewResult BookRoom()
+    public async Task<IActionResult> BookRoom()
     {
       GetSessionInfo();
 
-      return View();
+      List<room_type_count_statistic> totalList = new List<room_type_count_statistic>();
+      using (var httpClient = new HttpClient())
+      {
+        using (var response = await httpClient.GetAsync(baseUrl + "/statistics/avail_room_type"))
+        {
+          var apiResponse = await response.Content.ReadAsStringAsync();
+
+          JObject jsonArray = JObject.Parse(apiResponse);
+
+          var dataField = jsonArray["data"];
+
+          totalList = JsonConvert.DeserializeObject<List<room_type_count_statistic>>(dataField.ToString());
+        }
+      }
+      return View(totalList);
     }
 
     [HttpPost]
@@ -36,7 +57,7 @@ namespace APIProject.Controllers.MainControllers
     {
       GetSessionInfo();
 
-      room_booking receivedroom = new room_booking();
+      room_booking receivedRoom = new room_booking();
       using (var httpClient = new HttpClient())
       {
         StringContent content = new StringContent(JsonConvert.SerializeObject(room_Booking), Encoding.UTF8, "application/json");
@@ -51,15 +72,22 @@ namespace APIProject.Controllers.MainControllers
 
             var dataField = jsonArray["data"];
 
-            receivedroom = JsonConvert.DeserializeObject<room_booking>(dataField.ToString());
+            receivedRoom = JsonConvert.DeserializeObject<room_booking>(dataField.ToString());
 
-            ViewBag.StatusCode = "Success";
+            if (receivedRoom == null)
+            {
+              ViewBag.Message = "Booking process failed! Please try again!";
+            }
+            else
+            {
+              ViewBag.StatusCode = "Success";
+            }
           }
           else
             ViewBag.StatusCode = response.StatusCode;
         }
       }
-      return View(receivedroom);
+      return View(receivedRoom);
     }
 
     [HttpPost]
@@ -84,7 +112,14 @@ namespace APIProject.Controllers.MainControllers
 
             receivedRoom = JsonConvert.DeserializeObject<room_booking>(dataField.ToString());
 
-            ViewBag.StatusCode = "Success";
+            if (receivedRoom == null)
+            {
+              ViewBag.Message = "Booking process failed! Please try again!";
+            }
+            else
+            {
+              ViewBag.StatusCode = "Success";
+            }
           }
           else
             ViewBag.StatusCode = response.StatusCode;
@@ -93,21 +128,38 @@ namespace APIProject.Controllers.MainControllers
       return View(receivedRoom);
     }
 
-    public ViewResult CheckIn()
+    public async Task<IActionResult> CheckIn()
     {
       GetSessionInfo();
 
-      return View();
-    }
-    [HttpPost]
-    public async Task<IActionResult> CheckInResult(int room_type_id)
-    {
-      GetSessionInfo();
-
-      room_info room = new room_info();
+      List<booked_cus_info> cusList = new List<booked_cus_info>();
       using (var httpClient = new HttpClient())
       {
-        using (var response = await httpClient.PostAsync(baseUrl + "/room_check_in/" + room_type_id, null))
+        using (var response = await httpClient.GetAsync(baseUrl + "/booked_cus_infos"))
+        {
+          var apiResponse = await response.Content.ReadAsStringAsync();
+
+          JObject jsonArray = JObject.Parse(apiResponse);
+
+          var dataField = jsonArray["data"];
+
+          cusList = JsonConvert.DeserializeObject<List<booked_cus_info>>(dataField.ToString());
+        }
+      }
+      return View(cusList);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> CheckInResult(input_check_data input)
+    {
+      GetSessionInfo();
+
+      room_check_in room = new room_check_in();
+      using (var httpClient = new HttpClient())
+      {
+        StringContent content = new StringContent(JsonConvert.SerializeObject(input), Encoding.UTF8, "application/json");
+
+        using (var response = await httpClient.PostAsync(baseUrl + "/room_check_in", content))
         {
           if (response.StatusCode == System.Net.HttpStatusCode.OK)
           {
@@ -117,9 +169,16 @@ namespace APIProject.Controllers.MainControllers
 
             var dataField = jsonArray["data"];
 
-            room = JsonConvert.DeserializeObject<room_info>(dataField.ToString());
+            room = JsonConvert.DeserializeObject<room_check_in>(dataField.ToString());
 
-            ViewBag.StatusCode = "Success";
+            if (room == null)
+            {
+              ViewBag.Message = "Check-in process failed! Please try again!";
+            }
+            else
+            {
+              ViewBag.StatusCode = "Success";
+            }
           }
           else
             ViewBag.StatusCode = response.StatusCode;
@@ -128,23 +187,37 @@ namespace APIProject.Controllers.MainControllers
       return View(room);
     }
 
-    public ViewResult CheckOut()
+    public async Task<IActionResult> CheckOut()
     {
       GetSessionInfo();
 
-      return View();
-    }
-    [HttpPost]
-    public async Task<IActionResult> CheckOutUnpaidRoom(int room_id, room_booking room_Booking)
-    {
-      GetSessionInfo();
-
-      room_booking receivedroom = new room_booking();
+      List<checked_cus_info> cusList = new List<checked_cus_info>();
       using (var httpClient = new HttpClient())
       {
-        StringContent content = new StringContent(JsonConvert.SerializeObject(room_Booking), Encoding.UTF8, "application/json");
+        using (var response = await httpClient.GetAsync(baseUrl + "/cus_infos/checked_in"))
+        {
+          var apiResponse = await response.Content.ReadAsStringAsync();
 
-        using (var response = await httpClient.PostAsync(baseUrl + "/room_check_out/1/" + room_id, content))
+          JObject jsonArray = JObject.Parse(apiResponse);
+
+          var dataField = jsonArray["data"];
+
+          cusList = JsonConvert.DeserializeObject<List<checked_cus_info>>(dataField.ToString());
+        }
+      }
+      return View(cusList);
+    }
+    [HttpPost]
+    public async Task<IActionResult> CheckOutUnpaidRoom(room_check_out room)
+    {
+      GetSessionInfo();
+
+      room_check_out receivedRoom = new room_check_out();
+      using (var httpClient = new HttpClient())
+      {
+        StringContent content = new StringContent(JsonConvert.SerializeObject(room), Encoding.UTF8, "application/json");
+
+        using (var response = await httpClient.PostAsync(baseUrl + "/room_check_out/1", content))
         {
           if (response.StatusCode == System.Net.HttpStatusCode.OK)
           {
@@ -154,28 +227,35 @@ namespace APIProject.Controllers.MainControllers
 
             var dataField = jsonArray["data"];
 
-            receivedroom = JsonConvert.DeserializeObject<room_booking>(dataField.ToString());
+            receivedRoom = JsonConvert.DeserializeObject<room_check_out>(dataField.ToString());
 
-            ViewBag.StatusCode = "Success";
+            if (receivedRoom == null)
+            {
+              ViewBag.Message = "Check-out process failed! Please try again!";
+            }
+            else
+            {
+              ViewBag.StatusCode = "Success";
+            }
           }
           else
             ViewBag.StatusCode = response.StatusCode;
         }
       }
-      return View(receivedroom);
+      return View(receivedRoom);
     }
 
     [HttpPost]
-    public async Task<IActionResult> CheckOutPaidRoom(int room_id, room_booking room_Booking)
+    public async Task<IActionResult> CheckOutPaidRoom(room_check_out room)
     {
       GetSessionInfo();
 
-      room_booking receivedRoom = new room_booking();
+      room_check_out receivedRoom = new room_check_out();
       using (var httpClient = new HttpClient())
       {
-        StringContent content = new StringContent(JsonConvert.SerializeObject(room_Booking), Encoding.UTF8, "application/json");
+        StringContent content = new StringContent(JsonConvert.SerializeObject(room), Encoding.UTF8, "application/json");
 
-        using (var response = await httpClient.PostAsync(baseUrl + "/room_check_out/2/" + room_id, content))
+        using (var response = await httpClient.PostAsync(baseUrl + "/room_check_out/2", content))
         {
           if (response.StatusCode == System.Net.HttpStatusCode.OK)
           {
@@ -185,9 +265,16 @@ namespace APIProject.Controllers.MainControllers
 
             var dataField = jsonArray["data"];
 
-            receivedRoom = JsonConvert.DeserializeObject<room_booking>(dataField.ToString());
+            receivedRoom = JsonConvert.DeserializeObject<room_check_out>(dataField.ToString());
 
-            ViewBag.StatusCode = "Success";
+            if (receivedRoom == null)
+            {
+              ViewBag.Message = "Check-out process failed! Please try again!";
+            }
+            else
+            {
+              ViewBag.StatusCode = "Success";
+            }
           }
           else
             ViewBag.StatusCode = response.StatusCode;
@@ -211,7 +298,7 @@ namespace APIProject.Controllers.MainControllers
           }
           else
           {
-            ViewBag.Message = "You have failed. Please try again!";
+            ViewBag.Message = "Convert to vacant room process failed! Please try again!";
             ViewBag.StatusCode = response.StatusCode;
           }
         }
@@ -245,14 +332,22 @@ namespace APIProject.Controllers.MainControllers
             var dataField = jsonArray["data"];
 
             room = JsonConvert.DeserializeObject<room_info>(dataField.ToString());
-
-            ViewBag.StatusCode = "Success";
+            
+            if (room == null)
+            {
+              ViewBag.Message = "Convert to vacant room process failed! Please try again!";
+              return View();
+            }
+            else
+            {
+              ViewBag.StatusCode = "Success";
+            }
           }
           else
             ViewBag.StatusCode = response.StatusCode;
         }
       }
-      return View(id);
+      return View(room);
     }
 
   }

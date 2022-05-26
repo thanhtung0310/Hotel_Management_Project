@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@model IEnumerable<room_status_info>
+@model IEnumerable<booked_room_info>
 
 <h1>Booked room's information <a asp-action="Index" class="btn btn-sm btn-primary">Back</a></h1> 
 <h3>@ViewBag.StatusCode</h3> <br />
@@ -16,19 +16,23 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Room number</th>
-                <th>Room type name</th>
-                <th>Room status name</th>
+                <th>Room type</th>
+                <th>Expected check in date</th>
+                <th>Expected check out date</th>
+                <th>Customer full name</th>
+                <th>Customer contact number</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>@item.room_number</td>
-                    <td>@item.room_type_name</td>
-                    <td>@item.room_status_name</td>
-                </tr>
+            <tr>
+                <td>@item.room_type_name</td>
+                <td>@item.expected_check_in_date</td>
+                <td>@item.expected_check_out_date</td>
+                <td>@item.customer_full_name</td>
+                <td>@item.customer_contact_number</td>
+            </tr>
             }
         </tbody>
     </table>

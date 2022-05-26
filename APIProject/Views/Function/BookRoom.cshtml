@@ -1,13 +1,16 @@
-﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@using Entity
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
     ViewData["Title"] = "Book a Room";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@model IEnumerable<room_type_count_statistic>
+
 <div class="container" style="margin-top:50px;">
     <div class="row probootstrap-gutter40">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <h2 class="mt0">Reservation Form</h2>
             <div class="form-group">
                 <label for="booking_type">Booking type:</label>
@@ -20,19 +23,15 @@
                     <h4 class="mt-2">Book room and Pay later</h4>
                     <div class="form-group">
                         <label for="customer_id">Customer ID:</label>
-                        <input type="text" class="form-control" id="customer_id" name="customer_id">
+                        <input type="text" class="form-control" id="customer_id" name="customer_id" placeholder="Please enter customer ID" />
                     </div>
                     <div class="form-group">
                         <label for="expected_check_in_date">Check in date: </label>
                         <input type="date" class="form-control" id="expected_check_in_date" name="expected_check_in_date">
-                        @*<script>
-                            var check_in_date = document.getElementById("check_in_date").value;
-                            check_in_date = check_in_date.toString();
-                        </script>*@
                     </div>
                     <div class="form-group">
                         <label for="day_stay_number">Number of staying days: </label>
-                        <input type="text" class="form-control" id="day_stay_number" name="day_stay_number">
+                        <input type="text" class="form-control" id="day_stay_number" name="day_stay_number" placeholder="Please enter the number of staying dates" />
                     </div>
                     <div class="form-group">
                         <label for="room_type_id">Room type: </label>
@@ -61,7 +60,7 @@
                     <h4 class="mt-2">Book room and Pay now</h4>
                     <div class="form-group">
                         <label for="customer_id">Customer ID:</label>
-                        <input type="text" class="form-control" id="customer_id" name="customer_id">
+                        <input type="text" class="form-control" id="customer_id" name="customer_id" placeholder="Please enter customer ID">
                     </div>
                     <div class="form-group">
                         <label for="expected_check_in_date">Check in date: </label>
@@ -69,7 +68,7 @@
                     </div>
                     <div class="form-group">
                         <label for="day_stay_number">Number of staying days: </label>
-                        <input type="text" class="form-control" id="day_stay_number" name="day_stay_number">
+                        <input type="text" class="form-control" id="day_stay_number" name="day_stay_number" placeholder="Please enter the number of staying dates">
                     </div>
                     <div class="form-group">
                         <label for="room_type_id">Room type: </label>
@@ -100,7 +99,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label for="payment_amount">Payment amount: </label>
-                            <input type="text" class="form-control" id="payment_amount" name="payment_amount">
+                            <input type="text" class="form-control" id="payment_amount" name="payment_amount" placeholder="Please enter the amount of payment">
                         </div>
                         <div class="col-md-6">
                             <label for="payment_date">Payment date</label>
@@ -115,10 +114,51 @@
             </form>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-6">
             <h2 class="mt0">Get Customer's Information</h2>
             <a class="btn btn-sm btn-secondary" asp-controller="cus_info" asp-action="GetCustomerByNum" target="pop-up" onclick="window.open('','pop-up','height=600,width=600,resizable=no')">Search for customer by contact number</a> <br /> <br />
             <a class="btn btn-sm btn-primary" asp-controller="cus_info" asp-action="AddCustomer" target="pop-up" onclick="window.open('','pop-up','height=1000,width=600,resizable=no')">Add new customer</a>
+            <br /> <br />
+            <h2 class="mt0">Total number of available rooms</h2>
+            @if (Model != null)
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Room type</th>
+                            <th>Total number of available rooms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @{
+                                        string room_type_name = "";
+                                        if (item.room_type_id == 1)
+                                            room_type_name = "King Room";
+                                        else if (item.room_type_id == 2)
+                                            room_type_name = "Queen Room";
+                                        else if (item.room_type_id == 3)
+                                            room_type_name = "4-people Family Room";
+                                        else if (item.room_type_id == 4)
+                                            room_type_name = "3-people Family Room";
+                                        else if (item.room_type_id == 5)
+                                            room_type_name = "Single Room";
+                                        else if (item.room_type_id == 6)
+                                            room_type_name = "Couple Room";
+                                        else if (item.room_type_id == 7)
+                                            room_type_name = "4-Bunk Room";
+                                    }
+                                    @room_type_name
+                                </td>
+                                <td>@item.count</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
         </div>
     </div>
 </div>

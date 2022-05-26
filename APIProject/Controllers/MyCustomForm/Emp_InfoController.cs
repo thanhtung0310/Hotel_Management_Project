@@ -19,11 +19,17 @@ namespace APIProject.Controllers.MyCustomForm
     public string baseUrl = "https://localhost:44304/api"; //IIS
     //public string baseAddress = "https://localhost:5001/api"; //Kestrel
 
+    const string SessionUsername = "_username";
+    const string SessionRole = "Guest";
+    const string SessionName = "_name";
+    const string SessionToken = "_token";
+
     public void GetSessionInfo()
     {
-      ViewBag.SessionUsername = CommonData.USER_USERNAME;
-      ViewBag.SessionRole = CommonData.USER_ROLE;
-      ViewBag.SessionName = CommonData.USER_NAME;
+      ViewBag.SessionUsername = HttpContext.Session.GetString(SessionUsername);
+      ViewBag.SessionRole = HttpContext.Session.GetString(SessionRole);
+      ViewBag.SessionName = HttpContext.Session.GetString(SessionName);
+      ViewBag.Session = HttpContext.Session.GetString(SessionToken);
     }
 
     // GET: Emp_InfoController
@@ -74,6 +80,10 @@ namespace APIProject.Controllers.MyCustomForm
             var dataField = jsonArray["data"];
 
             emp = JsonConvert.DeserializeObject<emp_info>(dataField.ToString());
+            if (emp == null)
+            {
+              ViewBag.Message = "There are no employees with that ID!";
+            }
           }
           else
             ViewBag.StatusCode = response.StatusCode;
@@ -108,6 +118,11 @@ namespace APIProject.Controllers.MyCustomForm
             var dataField = jsonArray["data"];
 
             empList = JsonConvert.DeserializeObject<List<employee>>(dataField.ToString());
+
+            if (empList == null)
+            {
+              ViewBag.Message = "There are no employees with that name!";
+            }
           }
           else
             ViewBag.StatusCode = response.StatusCode;
@@ -134,6 +149,15 @@ namespace APIProject.Controllers.MyCustomForm
             var dataField = jsonArray["data"];
 
             emp = JsonConvert.DeserializeObject<emp_info>(dataField.ToString());
+
+            if (emp == null)
+            {
+              return View();
+            }
+            else
+            {
+              ViewBag.Message = "Please continue with your work!";
+            }
           }
           else
             ViewBag.StatusCode = response.StatusCode;
@@ -142,14 +166,20 @@ namespace APIProject.Controllers.MyCustomForm
       return View(emp);
     }
 
+    public string HashedPassword(string pwd)
+    {
+      int costParam = 13;
+      return BCryptNet.HashPassword(pwd, costParam);
+    }
+
     [HttpPost]
     public async Task<IActionResult> AddEmployee(emp_info emp)
     {
       GetSessionInfo();
 
       // hash input password
-      int costParam = 13;
-      emp.acc_password = BCryptNet.HashPassword(emp.acc_password, costParam);
+      string raw_password = emp.acc_password;
+      emp.acc_password = HashedPassword(emp.acc_password);
 
       emp_info receivedEmp = new emp_info();
       using (var httpClient = new HttpClient())
@@ -167,6 +197,28 @@ namespace APIProject.Controllers.MyCustomForm
             var dataField = jsonArray["data"];
 
             receivedEmp = JsonConvert.DeserializeObject<emp_info>(dataField.ToString());
+
+            if (receivedEmp == null)
+            {
+              return View();
+            }
+            else
+            {
+              //// create role in identity
+              //string role_name = "";
+              //if (receivedEmp.role_id == 1)
+              //  role_name = "Admin";
+              //else if (receivedEmp.role_id == 2)
+              //  role_name = "";
+
+              //UserSession user = new UserSession
+              //{
+              //  acc_username = receivedEmp.acc_username,
+              //  acc_name = receivedEmp.emp_name,
+              //  acc_contact_number = receivedEmp.emp_contact_number,
+              //  acc_role = receivedEmp.role_name,
+              //}
+            }
           }
           else
             ViewBag.StatusCode = response.StatusCode;

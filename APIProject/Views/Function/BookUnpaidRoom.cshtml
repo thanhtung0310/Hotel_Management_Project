@@ -9,6 +9,7 @@
 @model room_booking
 <h1>Booking Results <a asp-action="BookRoom" class="btn btn-sm btn-primary">Back</a></h1>
 <h3>@ViewBag.StatusCode</h3>
+<h3 style="color:red;">@ViewBag.Message</h3>
 
 @if (@ViewBag.StatusCode == "Success" && Model != null)
 {
@@ -20,7 +21,7 @@
         Expected check in date:     @Model.expected_check_in_date
     </h5>
     <h5>
-        Number of staying dates:     @Model.day_stay_number
+        Number of staying dates:     @Model.day_stay_number days
     </h5>
     <h5>
         @{
@@ -45,3 +46,10 @@
 
     <a asp-action="BookRoom" class="btn btn-sm btn-primary">Return to Booking Page</a>
 }
+
+<style>
+    h5 {
+        color: orangered;
+        font-weight: bold;
+    }
+</style>

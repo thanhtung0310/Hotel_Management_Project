@@ -8,9 +8,13 @@ using Microsoft.EntityFrameworkCore;
 using APIProject.Data;
 using DatabaseProvider;
 using CommonData = APIProject.Data.CommonConstants;
+using Microsoft.AspNetCore.Http;
+using BCryptNet = BCrypt.Net.BCrypt;
+using Microsoft.AspNetCore.Authorization;
 
 namespace APIProject.Controllers.MyDBForm
 {
+  [Authorize(Roles = "Admin")]
   public class AccountController : Controller
   {
     private readonly APIProjectContext _context;
@@ -20,11 +24,17 @@ namespace APIProject.Controllers.MyDBForm
       _context = context;
     }
 
+    const string SessionUsername = "_username";
+    const string SessionRole = "Guest";
+    const string SessionName = "_name";
+    const string SessionToken = "_token";
+
     public void GetSessionInfo()
     {
-      ViewBag.SessionUsername = CommonData.USER_USERNAME;
-      ViewBag.SessionRole = CommonData.USER_ROLE;
-      ViewBag.SessionName = CommonData.USER_NAME;
+      ViewBag.SessionUsername = HttpContext.Session.GetString(SessionUsername);
+      ViewBag.SessionRole = HttpContext.Session.GetString(SessionRole);
+      ViewBag.SessionName = HttpContext.Session.GetString(SessionName);
+      ViewBag.Session = HttpContext.Session.GetString(SessionToken);
     }
 
     // GET: account
@@ -63,6 +73,12 @@ namespace APIProject.Controllers.MyDBForm
       return View();
     }
 
+    public string HashedPassword(string pwd)
+    {
+      int costParam = 13;
+      return BCryptNet.HashPassword(pwd, costParam);
+    }
+
     // POST: account/Create
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -71,6 +87,8 @@ namespace APIProject.Controllers.MyDBForm
     public async Task<IActionResult> Create([Bind("acc_id,emp_id,customer_id,acc_username,acc_password,role_id")] account account)
     {
       GetSessionInfo();
+
+      account.acc_password = HashedPassword(account.acc_password);
 
       if (ModelState.IsValid)
       {
@@ -117,6 +135,8 @@ namespace APIProject.Controllers.MyDBForm
       {
         try
         {
+          account.acc_password = HashedPassword(account.acc_password);
+
           _context.Update(account);
           await _context.SaveChangesAsync();
         }

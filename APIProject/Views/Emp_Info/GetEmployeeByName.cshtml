@@ -10,10 +10,11 @@
 
 <h1>Get employee's information by Name <a asp-action="Index" class="btn btn-sm btn-primary">Back</a></h1>
 <h3>@ViewBag.StatusCode</h3>
+<h3 style="color:red;">@ViewBag.Message</h3>
 <form method="post">
     <div class="form-group">
         <label for="search_string">Name:</label>
-        <input class="form-control" name="search_string" />
+        <input class="form-control" name="search_string" placeholder="Please enter name" />
     </div>
     <div class="text-center panel-body">
         <button type="submit" class="btn btn-sm btn-primary">Get Employee</button>

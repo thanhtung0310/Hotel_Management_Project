@@ -18,11 +18,17 @@ namespace APIProject.Controllers.MyCustomForm
     public string baseUrl = "https://localhost:44304/api"; //IIS
     //public string baseAddress = "https://localhost:5001/api"; //Kestrel
 
+    const string SessionUsername = "_username";
+    const string SessionRole = "Guest";
+    const string SessionName = "_name";
+    const string SessionToken = "_token";
+
     public void GetSessionInfo()
     {
-      ViewBag.SessionUsername = CommonData.USER_USERNAME;
-      ViewBag.SessionRole = CommonData.USER_ROLE;
-      ViewBag.SessionName = CommonData.USER_NAME;
+      ViewBag.SessionUsername = HttpContext.Session.GetString(SessionUsername);
+      ViewBag.SessionRole = HttpContext.Session.GetString(SessionRole);
+      ViewBag.SessionName = HttpContext.Session.GetString(SessionName);
+      ViewBag.Session = HttpContext.Session.GetString(SessionToken);
     }
 
     // GET: Room_InfoController
@@ -52,10 +58,10 @@ namespace APIProject.Controllers.MyCustomForm
     {
       GetSessionInfo();
 
-      List<room_status_info> roomList = new List<room_status_info>();
+      List<booked_room_info> roomList = new List<booked_room_info>();
       using (var httpClient = new HttpClient())
       {
-        using (var response = await httpClient.GetAsync(baseUrl + "/room_status_infos/0"))
+        using (var response = await httpClient.GetAsync(baseUrl + "/booked_room_infos"))
         {
           if (response.StatusCode == System.Net.HttpStatusCode.OK)
           {
@@ -65,7 +71,7 @@ namespace APIProject.Controllers.MyCustomForm
 
             var dataField = jsonArray["data"];
 
-            roomList = JsonConvert.DeserializeObject<List<room_status_info>>(dataField.ToString());
+            roomList = JsonConvert.DeserializeObject<List<booked_room_info>>(dataField.ToString());
           }
           else
             ViewBag.StatusCode = response.StatusCode;
@@ -80,6 +86,7 @@ namespace APIProject.Controllers.MyCustomForm
 
       return View();
     }
+
     // Post: Room_InfoController/Details/5
     [HttpPost]
     public async Task<IActionResult> GetBookedRoomByTypeID(int id)
@@ -100,6 +107,11 @@ namespace APIProject.Controllers.MyCustomForm
             var dataField = jsonArray["data"];
 
             roomList = JsonConvert.DeserializeObject<List<booked_room_info>>(dataField.ToString());
+            
+            if (roomList == null)
+            {
+              ViewBag.Message = "There are no rooms available of that type!";
+            }
           }
           else
             ViewBag.StatusCode = response.StatusCode;

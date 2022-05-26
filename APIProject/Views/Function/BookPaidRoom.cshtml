@@ -9,6 +9,7 @@
 @model room_booking
 <h1>Booking Results <a asp-action="BookRoom" class="btn btn-sm btn-primary">Back</a></h1>
 <h3>@ViewBag.StatusCode</h3>
+<h3 style="color:red;">@ViewBag.Message</h3>
 
 @if (@ViewBag.StatusCode == "Success" && Model != null)
 {
@@ -20,7 +21,7 @@
         Expected check in date:     @Model.expected_check_in_date
     </h5>
     <h5>
-        Number of staying dates:     @Model.day_stay_number
+        Number of staying dates:     @Model.day_stay_number days
     </h5>
     <h5>
         @{
@@ -43,14 +44,14 @@
         Room type:     @room_type_name
     </h5>
     <h5>
-        @{ 
+        @{
             string payment_type_name = "";
             if (Model.payment_type_id == 1)
-                payment_type_name = "Cash";
+                payment_type_name = "By Cash";
             else if (Model.payment_type_id == 2)
-                payment_type_name = "Credit card";
+                payment_type_name = "By Credit card";
             else if (Model.payment_type_id == 3)
-                payment_type_name = "Debit card";
+                payment_type_name = "By Debit card";
 
         }
         Payment type:     @payment_type_name
@@ -62,5 +63,12 @@
         Payment date:     @Model.payment_date
     </h5>
 
-    <a asp-action ="BookRoom" class="btn btn-sm btn-primary">Return to Booking Page</a>
+    <a asp-action="BookRoom" class="btn btn-sm btn-primary">Return to Booking Page</a>
 }
+
+<style>
+    h5 {
+        color: orangered;
+        font-weight: bold;
+    }
+</style>

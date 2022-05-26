@@ -56,18 +56,40 @@ namespace APIProject.Controllers.CustomControllers
     }
 
     /// <summary>
-    /// Update user
+    /// Update user's information
     /// </summary>
-    /// <param name="acc_username"></param>
     /// <param name="newData"></param>
     /// <returns></returns>
     // PUT api/<user_sessionsController>
-    [HttpPut("{acc_username}")]
-    public async Task<Response<UserSession>> UpdateCustomer(string acc_username, [FromBody] UserSession newData)
+    [HttpPut("info")]
+    public async Task<Response<UserSession>> UpdateUser([FromBody] UserSession newData)
     {
-      return await _userSessionService.UpdateUser(acc_username, newData);
+      return await _userSessionService.UpdateUser(newData);
     }
 
+    /// <summary>
+    /// Update user
+    /// </summary>
+    /// <param name="newData"></param>
+    /// <returns></returns>
+    // PUT api/<user_sessionsController>
+    [HttpPut("pwd")]
+    public async Task<Response<UserSession>> UpdatePassword([FromBody] UserSession newData)
+    {
+      return await _userSessionService.UpdatePassword(newData);
+    }
+
+    /// <summary>
+    /// Update user
+    /// </summary>
+    /// <param name="newData"></param>
+    /// <returns></returns>
+    // PUT api/<user_sessionsController>
+    [HttpPut("start")]
+    public async Task<Response<UserSession>> StartSession([FromBody] UserSession newData)
+    {
+      return await _userSessionService.StartSession(newData);
+    }
 
   }
 }

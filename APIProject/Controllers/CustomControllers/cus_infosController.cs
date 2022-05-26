@@ -31,6 +31,19 @@ namespace APIProject.Controllers.CustomControllers
       return await _cusInfoService.GetCustomerList();
     }
 
+    // <summary>
+    /// Get a list of all checked-in customers
+    /// </summary>
+    /// <returns></returns>
+    // GET: api/<cus_infosController>/checked_in
+    [HttpGet("checked_in")]
+    public async Task<Response<List<checked_cus_info>>> GetCheckedinCusList()
+    {
+      return await _cusInfoService.GetCheckedinCusList();
+    }
+
+    //cus_infos/booked
+
     /// <summary>
     /// Get customer's information by customer ID
     /// </summary>

@@ -12,7 +12,7 @@
                         <div class="nav-item" style="width: 80px;" >
                             <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
                         </div>
-                        @if (ViewBag.SessionRole != "Guest")  
+                        @if (ViewBag.SessionRole != null)
                         {
                                 <div class="dropdown nav-item">
                                     <button class="dropbtn nav-link text-dark">
@@ -22,7 +22,7 @@
                                         </div>
                                     </button>
                                     @if (ViewBag.SessionRole == "Manager")
-                                    { 
+                                    {
                                         <div class="dropdown-content">
                                             <div class="smaller-dropdown">
                                                 <a asp-controller="Account" asp-action="Index">Accounts</a>
@@ -53,15 +53,18 @@
                                     <div class="dropdown-content">
                                         <a asp-controller="cus_info" asp-action="Index">
                                             <div class="flex-display">
-                                                Customer's information  
+                                                Customer's information
                                                 <i class="fas fa-caret-right nav-icon"></i>
                                             </div>
                                         </a>
                                         <div class="smaller-dropdown-content">
                                             <a asp-controller="cus_info" asp-action="AddCustomer">Add new customer</a>
-                                            <a asp-controller="cus_info" asp-action="GetCustomerByID">Customer's information by Customer ID</a>
-                                            <a asp-controller="cus_info" asp-action="GetCustomerByName">Customer's information by Customer name</a>
-                                            <a asp-controller="cus_info" asp-action="GetCustomerByNum">Customer's information by Customer contact number</a>
+                                            <a asp-controller="cus_info" asp-action="GetCustomerByID">Customer's information by customer ID</a>
+                                            <a asp-controller="cus_info" asp-action="GetCustomerByName">Customer's information by name</a>
+                                            <a asp-controller="cus_info" asp-action="GetCustomerByNum">Customer's information by contact number</a>
+                                            <a asp-controller="cus_info" asp-action="GetBookedCustomer">Booked customer's information</a>
+                                            <a asp-controller="cus_info" asp-action="GetBookedCustomerByNum">Booked customer's information by contact number</a>
+                                            <a asp-controller="cus_info" asp-action="GetCheckedinCustomer">Checked-in customer's information</a>
                                         </div>
                                     </div>
 
@@ -74,8 +77,8 @@
                                         </a>
                                         <div class="smaller-dropdown-content">
                                             <a asp-controller="emp_info" asp-action="AddEmployee">Add new employee</a>
-                                            <a asp-controller="emp_info" asp-action="GetEmployeeByID">Employee's information by Employee ID</a>
-                                            <a asp-controller="emp_info" asp-action="GetEmployeeByName">Employee's information by Employee name</a>
+                                            <a asp-controller="emp_info" asp-action="GetEmployeeByID">Employee's information by employee ID</a>
+                                            <a asp-controller="emp_info" asp-action="GetEmployeeByName">Employee's information by name</a>
                                         </div>
                                     </div>
                                 
@@ -88,9 +91,9 @@
                                         </a>
                                         <div class="smaller-dropdown-content">
                                             <a asp-controller="room_info" asp-action="GetBookedRoom">Booked room's information</a>
-                                            <a asp-controller="room_info" asp-action="GetRoomByNum">Room's information by Room number</a>
-                                            <a asp-controller="room_info" asp-action="GetRoomByStatus">Rooms' information by Room Status</a>
-                                            <a asp-controller="room_info" asp-action="GetRoomByTypeID">Rooms' information by Room type</a>
+                                            <a asp-controller="room_info" asp-action="GetRoomByNum">Room's information by room number</a>
+                                            <a asp-controller="room_info" asp-action="GetRoomByStatus">Rooms' information by room Status</a>
+                                            <a asp-controller="room_info" asp-action="GetRoomByTypeID">Rooms' information by room type</a>
                                         </div>
                                     </div>
 
@@ -103,8 +106,8 @@
                                         </a>
                                         <div class="smaller-dropdown-content">
                                             <a asp-controller="statistic" asp-action="GetCustomerTraffic">Customer's information and times using hotel</a>
+                                            <a asp-controller="statistic" asp-action="GetTotalCountType">Number of rooms by type</a>
                                             <a asp-controller="statistic" asp-action="GetMostPopularRoomType">Most popular room type</a>
-                                            <a asp-controller="statistic" asp-action="GetLeastPopularRoomType">Least popular room type</a>
                                             <a asp-controller="statistic" asp-action="GetOrderNumBetweenDates">Number of orders between dates</a>
                                             <a asp-controller="statistic" asp-action="GetOrderNumInMonth">Number of orders in a month</a>
                                             <a asp-controller="statistic" asp-action="GetOrderNumInYear">Number of orders in a year</a>
@@ -147,7 +150,7 @@
                     </div>
                 </div>
                 <div class="nav-right" style="justify-content:right; display: flex;">
-                    @if (ViewBag.SessionRole == "Guest")
+                    @if (ViewBag.SessionRole == null || ViewBag.SessionRole == "Guest")
                     {
                         <div class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Home" asp-action="Login">Login</a>
@@ -172,7 +175,8 @@
                             </button>
                             <div class="dropdown-content">
                                 <div class="smaller-dropdown" style="width: 250px;">
-                                    <a asp-controller="Home" asp-action="ChangeInformation">Change user's information</a>
+                                    <a asp-controller="Home" asp-action="ChangeInformation">Change information</a>
+                                    <a asp-controller="Home" asp-action="ChangePassword">Change password</a>
                                     <a asp-controller="Home" asp-action="Logout">Logout</a>
                                 </div>
                             </div>

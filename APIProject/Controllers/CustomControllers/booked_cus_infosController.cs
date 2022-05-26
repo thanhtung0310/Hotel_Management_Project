@@ -9,26 +9,37 @@ using System.Threading.Tasks;
 
 namespace APIProject.Controllers.CustomControllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class booked_cus_infosController : ControllerBase
+  [Route("api/[controller]")]
+  [ApiController]
+  public class booked_cus_infosController : ControllerBase
+  {
+    private readonly IBookedCusInfoService _cusInfoService;
+    public booked_cus_infosController(IBookedCusInfoService cusInfoService)
     {
-        private readonly IBookedCusInfoService _cusInfoService;
-        public booked_cus_infosController(IBookedCusInfoService cusInfoService)
-        {
-            _cusInfoService = cusInfoService;
-        }
-
-        /// <summary>
-        /// Get customer who has booked room by their contact number
-        /// </summary>
-        /// <param name="num"></param>
-        /// <returns></returns>
-        // GET api/<booked_cus_infosController>/0123456786
-        [HttpGet("{num}")]
-        public async Task<Response<booked_cus_info>> GetBookedCustomerByNum(string num)
-        {
-            return await _cusInfoService.GetBookedCustomerByNum(num);
-        }
+      _cusInfoService = cusInfoService;
     }
+
+    /// <summary>
+    /// Get customer who has booked room by their contact number
+    /// </summary>
+    /// <returns></returns>
+    // GET api/<booked_cus_infosController>
+    [HttpGet]
+    public async Task<Response<List<booked_cus_info>>> GetBookedCustomerList()
+    {
+      return await _cusInfoService.GetBookedCustomerList();
+    }
+
+    /// <summary>
+    /// Get customer who has booked room by their contact number
+    /// </summary>
+    /// <param name="num"></param>
+    /// <returns></returns>
+    // GET api/<booked_cus_infosController>/0123456786
+    [HttpGet("{num}")]
+    public async Task<Response<List<booked_cus_info>>> GetBookedCustomerByNum(string num)
+    {
+      return await _cusInfoService.GetBookedCustomerByNum(num);
+    }
+  }
 }

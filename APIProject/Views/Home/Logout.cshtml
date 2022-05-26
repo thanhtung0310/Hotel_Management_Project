@@ -2,8 +2,16 @@
 
 @{
     ViewData["Title"] = "Log out Page";
-    Layout = "null";
+    Layout = null;
 }
 
-<h1>@ViewBag.Message</h1>
-<a asp-controller="Home" asp-action="Login" class="btn btn-sm btn-primary">Return back to Login page</a>
+
+@if (ViewBag.PwdChangeSuccessMessage != null)
+{
+    <h1>@ViewBag.PwdChangeSuccessMessage</h1>
+}
+else
+{
+    <h1>@ViewBag.Message</h1>
+}
+<a asp-action="Login" class="btn btn-sm btn-primary">Return back to Login page</a>

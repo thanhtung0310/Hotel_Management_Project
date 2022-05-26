@@ -10,6 +10,7 @@
 
 <h1>Booked room's information by Room type ID <a asp-action="Index" class="btn btn-sm btn-primary">Back</a></h1>
 <h3>@ViewBag.StatusCode</h3>
+<h3 style="color:red;">@ViewBag.Message</h3>
 <form method="post">
     <div class="form-field">
         <label for="id">Room type ID:</label>
@@ -33,23 +34,25 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Reservation ID</th>
-                <th>Customer ID</th>
                 <th>Room ID</th>
+                <th>Room type</th>
                 <th>Expected check in date</th>
                 <th>Expected check out date</th>
+                <th>Customer full name</th>
+                <th>Customer contact number</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-            <tr>
-                <td>@item.reservation_id</td>
-                <td>@item.customer_id</td>
-                <td>@item.room_id</td>
-                <td>@item.expected_check_in_date</td>
-                <td>@item.expected_check_out_date</td>
-            </tr>
+                <tr>
+                    <td>@item.room_id</td>
+                    <td>@item.room_type_name</td>
+                    <td>@item.expected_check_in_date</td>
+                    <td>@item.expected_check_out_date</td>
+                    <td>@item.customer_full_name</td>
+                    <td>@item.customer_contact_number</td>
+                </tr>
             }
         </tbody>
     </table>

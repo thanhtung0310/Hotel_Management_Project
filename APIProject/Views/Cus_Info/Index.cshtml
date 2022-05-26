@@ -9,13 +9,16 @@
 @model IEnumerable<cus_info>
 
 <h1>Customer's information</h1>
-<a asp-action="AddCustomer" class="btn btn-sm btn-primary">Add new Customer</a>
+<a asp-action="AddCustomer" class="btn btn-sm btn-primary">Add new customer</a>
 <br />
-<h4>Search for Customer Information</h4>
+<h4>Search for customer information</h4>
 <div class="search">
-    <a asp-action="GetCustomerByID" class="btn btn-sm btn-secondary">Get Customer by ID</a>
-    <a asp-action="GetCustomerByName" class="btn btn-sm btn-secondary">Get Customer by Name</a>
-    <a asp-action="GetCustomerByNum" class="btn btn-sm btn-secondary">Get Customer by Number</a>
+    <a asp-action="GetCustomerByID" class="btn btn-sm btn-secondary">Get customer by customer ID</a>
+    <a asp-action="GetCustomerByName" class="btn btn-sm btn-secondary">Get customer by name</a>
+    <a asp-action="GetCustomerByNum" class="btn btn-sm btn-secondary">Get customer by number</a>
+    <a asp-action="GetBookedCustomer" class="btn btn-sm btn-secondary">Get customer who has booked in advance</a>
+    <a asp-action="GetBookedCustomerByNum" class="btn btn-sm btn-secondary">Get customer who has booked in advance by number</a>
+    <a asp-action="GetCheckedinCustomer" class="btn btn-sm btn-secondary">Get customer who has checked-in</a>
 </div>
 
 

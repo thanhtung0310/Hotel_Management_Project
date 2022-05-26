@@ -67,6 +67,28 @@ namespace APIProject.Controllers.CustomControllers
     }
 
     /// <summary>
+    /// Get total number by room type
+    /// </summary>
+    /// <returns></returns>
+    // GET api/<statisticsController>/customer_traffic
+    [HttpGet("total_room_type")]
+    public async Task<Response<List<room_type_count_statistic>>> GetTotalCountType()
+    {
+      return await _statisticService.GetTotalCountType();
+    }
+
+    /// <summary>
+    /// Get total number of available room by room type
+    /// </summary>
+    /// <returns></returns>
+    // GET api/<statisticsController>/customer_traffic
+    [HttpGet("avail_room_type")]
+    public async Task<Response<List<room_type_count_statistic>>> GetAvailCountType()
+    {
+      return await _statisticService.GetAvailCountType();
+    }
+
+    /// <summary>
     /// Get most popular room type
     /// </summary>
     /// <returns></returns>
