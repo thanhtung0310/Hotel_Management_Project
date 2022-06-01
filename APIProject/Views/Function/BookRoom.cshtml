@@ -18,7 +18,7 @@
                 <button class="btn btn-sm btn-primary" name="booking_type" id="booking_type" onclick="changeDisplay('pay-now','pay-later'), scrollToAnchor('pay-later')">Book room and Pay later</button>
             </div>
 
-            <form asp-action="BookUnpaidRoom" method="post" class="probootstrap-form">
+            <form asp-action="BookUnpaidRoomResult" method="post" class="probootstrap-form">
                 <div class="col-md-12" id="pay-later">
                     <h4 class="mt-2">Book room and Pay later</h4>
                     <div class="form-group">
@@ -55,7 +55,7 @@
             </form>
 
 
-            <form asp-action="BookPaidRoom" method="post" class="probootstrap-form">
+            <form asp-action="BookPaidRoomResult" method="post" class="probootstrap-form">
                 <div class="col-md-12" id="pay-now" style="display:none;">
                     <h4 class="mt-2">Book room and Pay now</h4>
                     <div class="form-group">

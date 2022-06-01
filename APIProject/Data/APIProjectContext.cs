@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using DatabaseProvider;
 using Entity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace APIProject.Data
 {
-  public class APIProjectContext : DbContext
+  public class APIProjectContext : IdentityDbContext<IdentityUser>
   {
     public APIProjectContext(DbContextOptions<APIProjectContext> options)
         : base(options)
@@ -68,6 +70,8 @@ namespace APIProject.Data
         .HasNoKey();
       builder.Entity<room_status_info>()
         .HasNoKey();
+
+      base.OnModelCreating(builder);
     }
   }
 }

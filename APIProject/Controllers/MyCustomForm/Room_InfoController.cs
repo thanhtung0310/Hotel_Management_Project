@@ -8,30 +8,29 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text;
-using DatabaseProvider;
-using CommonData = APIProject.Data.CommonConstants;
+using APIProject.Data;
 
 namespace APIProject.Controllers.MyCustomForm
 {
   public class Room_InfoController : Controller
   {
-    public string baseUrl = "https://localhost:44304/api"; //IIS
-    //public string baseAddress = "https://localhost:5001/api"; //Kestrel
-
     const string SessionUsername = "_username";
     const string SessionRole = "Guest";
     const string SessionName = "_name";
     const string SessionToken = "_token";
 
-    public void GetSessionInfo()
+    string baseUrl = StaticVar.baseUrl;
+
+    private void GetSessionInfo()
     {
+      // passing user data
       ViewBag.SessionUsername = HttpContext.Session.GetString(SessionUsername);
       ViewBag.SessionRole = HttpContext.Session.GetString(SessionRole);
       ViewBag.SessionName = HttpContext.Session.GetString(SessionName);
       ViewBag.Session = HttpContext.Session.GetString(SessionToken);
     }
 
-    // GET: Room_InfoController
+    // GET: Room_InfoController/Index
     public async Task<IActionResult> Index()
     {
       GetSessionInfo();
@@ -41,37 +40,11 @@ namespace APIProject.Controllers.MyCustomForm
       {
         using (var response = await httpClient.GetAsync(baseUrl + "/room_infos"))
         {
-          var apiResponse = await response.Content.ReadAsStringAsync();
-
-          JObject jsonArray = JObject.Parse(apiResponse);
-
-          var dataField = jsonArray["data"];
-
-          roomList = JsonConvert.DeserializeObject<List<room_info>>(dataField.ToString());
-        }
-      }
-      return View(roomList);
-    }
-
-    // GET: Room_InfoController
-    public async Task<IActionResult> GetBookedRoom()
-    {
-      GetSessionInfo();
-
-      List<booked_room_info> roomList = new List<booked_room_info>();
-      using (var httpClient = new HttpClient())
-      {
-        using (var response = await httpClient.GetAsync(baseUrl + "/booked_room_infos"))
-        {
           if (response.StatusCode == System.Net.HttpStatusCode.OK)
           {
             var apiResponse = await response.Content.ReadAsStringAsync();
 
-            JObject jsonArray = JObject.Parse(apiResponse);
-
-            var dataField = jsonArray["data"];
-
-            roomList = JsonConvert.DeserializeObject<List<booked_room_info>>(dataField.ToString());
+            roomList = StaticVar.GetData<List<room_info>>(apiResponse);
           }
           else
             ViewBag.StatusCode = response.StatusCode;
@@ -80,37 +53,25 @@ namespace APIProject.Controllers.MyCustomForm
       return View(roomList);
     }
 
-    public ViewResult GetBookedRoomByTypeID()
-    {
-      GetSessionInfo();
-
-      return View();
-    }
-
-    // Post: Room_InfoController/Details/5
-    [HttpPost]
-    public async Task<IActionResult> GetBookedRoomByTypeID(int id)
+    // GET: Room_InfoController/GetBookedRoom
+    public async Task<IActionResult> GetBookedRoom()
     {
       GetSessionInfo();
 
       List<booked_room_info> roomList = new List<booked_room_info>();
       using (var httpClient = new HttpClient())
       {
-        using (var response = await httpClient.GetAsync(baseUrl + "/booked_room_infos/" + id))
+        using (var response = await httpClient.GetAsync(baseUrl + "/room_infos/booked"))
         {
           if (response.StatusCode == System.Net.HttpStatusCode.OK)
           {
             var apiResponse = await response.Content.ReadAsStringAsync();
 
-            JObject jsonArray = JObject.Parse(apiResponse);
+            roomList = StaticVar.GetData<List<booked_room_info>>(apiResponse);
 
-            var dataField = jsonArray["data"];
-
-            roomList = JsonConvert.DeserializeObject<List<booked_room_info>>(dataField.ToString());
-            
             if (roomList == null)
             {
-              ViewBag.Message = "There are no rooms available of that type!";
+              ViewBag.Message = "There are no booked rooms!";
             }
           }
           else
@@ -120,13 +81,52 @@ namespace APIProject.Controllers.MyCustomForm
       return View(roomList);
     }
 
+    // GET: Room_InfoController/GetBookedRoomByTypeID
+    public ViewResult GetBookedRoomByTypeID()
+    {
+      GetSessionInfo();
+
+      return View();
+    }
+
+    // POST: Room_InfoController/GetBookedRoomByTypeID
+    [HttpPost]
+    public async Task<IActionResult> GetBookedRoomByTypeID(int id)
+    {
+      GetSessionInfo();
+
+      List<booked_room_info> roomList = new List<booked_room_info>();
+      using (var httpClient = new HttpClient())
+      {
+        using (var response = await httpClient.GetAsync(baseUrl + "/room_infos/booked/type/" + id))
+        {
+          if (response.StatusCode == System.Net.HttpStatusCode.OK)
+          {
+            var apiResponse = await response.Content.ReadAsStringAsync();
+
+            roomList = StaticVar.GetData<List<booked_room_info>>(apiResponse);
+            
+            if (roomList == null)
+            {
+              ViewBag.Message = "There are no rooms available of that type! Please try again!";
+            }
+          }
+          else
+            ViewBag.StatusCode = response.StatusCode;
+        }
+      }
+      return View(roomList);
+    }
+
+    // GET: Room_InfoController/GetRoomByTypeID
     public ViewResult GetRoomByTypeID()
     {
       GetSessionInfo();
 
       return View();
     }
-    // Post: Room_InfoController/Details/5
+
+    // POST: Room_InfoController/GetRoomByTypeID
     [HttpPost]
     public async Task<IActionResult> GetRoomByTypeID(int id)
     {
@@ -141,11 +141,7 @@ namespace APIProject.Controllers.MyCustomForm
           {
             var apiResponse = await response.Content.ReadAsStringAsync();
 
-            JObject jsonArray = JObject.Parse(apiResponse);
-
-            var dataField = jsonArray["data"];
-
-            room = JsonConvert.DeserializeObject<List<room_info>>(dataField.ToString());
+            room = StaticVar.GetData<List<room_info>>(apiResponse);
           }
           else
             ViewBag.StatusCode = response.StatusCode;
@@ -154,13 +150,15 @@ namespace APIProject.Controllers.MyCustomForm
       return View(room);
     }
 
+    // GET: Room_InfoController/GetRoomByNum
     public ViewResult GetRoomByNum()
     {
       GetSessionInfo();
 
       return View();
     }
-    // Post: Room_InfoController/Details/5
+
+    // POST: Room_InfoController/GetRoomByNum
     [HttpPost]
     public async Task<IActionResult> GetRoomByNum(string num)
     {
@@ -169,17 +167,13 @@ namespace APIProject.Controllers.MyCustomForm
       room_info room = new room_info();
       using (var httpClient = new HttpClient())
       {
-        using (var response = await httpClient.GetAsync(baseUrl + "/room_by_num_infos/" + num))
+        using (var response = await httpClient.GetAsync(baseUrl + "/room_infos/num/" + num))
         {
           if (response.StatusCode == System.Net.HttpStatusCode.OK)
           {
             var apiResponse = await response.Content.ReadAsStringAsync();
 
-            JObject jsonArray = JObject.Parse(apiResponse);
-
-            var dataField = jsonArray["data"];
-
-            room = JsonConvert.DeserializeObject<room_info>(dataField.ToString());
+            room = StaticVar.GetData<room_info>(apiResponse);
           }
           else
             ViewBag.StatusCode = response.StatusCode;
@@ -187,14 +181,16 @@ namespace APIProject.Controllers.MyCustomForm
       }
       return View(room);
     }
-    
+
+    // GET: Room_InfoController/GetRoomByStatus
     public ViewResult GetRoomByStatus()
     {
       GetSessionInfo();
 
       return View();
     }
-    // Post: Room_InfoController/Details/5
+
+    // POST: Room_InfoController/GetRoomByStatus
     [HttpPost]
     public async Task<IActionResult> GetRoomByStatus(int id)
     {
@@ -203,57 +199,24 @@ namespace APIProject.Controllers.MyCustomForm
       List<room_status_info> roomList = new List<room_status_info>();
       using (var httpClient = new HttpClient())
       {
-        using (var response = await httpClient.GetAsync(baseUrl + "/room_status_infos/" + id))
+        using (var response = await httpClient.GetAsync(baseUrl + "/room_infos/status/" + id))
         {
           if (response.StatusCode == System.Net.HttpStatusCode.OK)
           {
             var apiResponse = await response.Content.ReadAsStringAsync();
 
-            JObject jsonArray = JObject.Parse(apiResponse);
+            roomList = StaticVar.GetData<List<room_status_info>>(apiResponse);
 
-            var dataField = jsonArray["data"];
-
-            roomList = JsonConvert.DeserializeObject<List<room_status_info>>(dataField.ToString());
+            if (roomList == null)
+            {
+              ViewBag.Message = "There are no rooms available with that status! Please try again!";
+            }
           }
           else
             ViewBag.StatusCode = response.StatusCode;
         }
       }
       return View(roomList);
-    }
-
-    // GET: Cus_InfoController/Delete/5
-    [HttpPost]
-    public async Task<IActionResult> ConvertVacantRoom()
-    {
-      GetSessionInfo();
-
-      using (var httpClient = new HttpClient())
-      {
-        using (var response = await httpClient.DeleteAsync(baseUrl + "/vacant/"))
-        {
-          string apiResponse = await response.Content.ReadAsStringAsync();
-        }
-      }
-
-      return RedirectToAction("Index");
-    }
-
-    // GET: Cus_InfoController/Delete/5
-    [HttpPost]
-    public async Task<IActionResult> DeleteRoom(int num)
-    {
-      GetSessionInfo();
-
-      using (var httpClient = new HttpClient())
-      {
-        using (var response = await httpClient.DeleteAsync(baseUrl + "/room_infos/" + num))
-        {
-          string apiResponse = await response.Content.ReadAsStringAsync();
-        }
-      }
-
-      return RedirectToAction("Index");
     }
   }
 }

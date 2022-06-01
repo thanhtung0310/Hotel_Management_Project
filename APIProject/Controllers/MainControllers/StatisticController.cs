@@ -8,29 +8,29 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text;
-using CommonData = APIProject.Data.CommonConstants;
 using APIProject.Data;
 
 namespace APIProject.Controllers.MainControllers
 {
   public class StatisticController : Controller
   {
-    public string baseUrl = "https://localhost:44304/api"; //IIS
-    //public string baseAddress = "https://localhost:5001/api"; //Kestrel
-
     const string SessionUsername = "_username";
     const string SessionRole = "Guest";
     const string SessionName = "_name";
     const string SessionToken = "_token";
 
-    public void GetSessionInfo()
+    string baseUrl = StaticVar.baseUrl;
+
+    private void GetSessionInfo()
     {
+      // passing user data
       ViewBag.SessionUsername = HttpContext.Session.GetString(SessionUsername);
       ViewBag.SessionRole = HttpContext.Session.GetString(SessionRole);
       ViewBag.SessionName = HttpContext.Session.GetString(SessionName);
       ViewBag.Session = HttpContext.Session.GetString(SessionToken);
     }
 
+    // GET: StatisticController
     public IActionResult Index()
     {
       GetSessionInfo();
@@ -48,13 +48,14 @@ namespace APIProject.Controllers.MainControllers
       {
         using (var response = await httpClient.GetAsync(baseUrl + "/statistics/customer_traffic"))
         {
-          var apiResponse = await response.Content.ReadAsStringAsync();
+          if (response.StatusCode == System.Net.HttpStatusCode.OK)
+          {
+            var apiResponse = await response.Content.ReadAsStringAsync();
 
-          JObject jsonArray = JObject.Parse(apiResponse);
-
-          var dataField = jsonArray["data"];
-
-          cusList = JsonConvert.DeserializeObject<List<cus_traffic_statistic>>(dataField.ToString());
+            cusList = StaticVar.GetData<List<cus_traffic_statistic>>(apiResponse);
+          }
+          else
+            ViewBag.StatusCode = response.StatusCode;
         }
       }
       return View(cusList);
@@ -70,13 +71,14 @@ namespace APIProject.Controllers.MainControllers
       {
         using (var response = await httpClient.GetAsync(baseUrl + "/statistics/total_room_type"))
         {
-          var apiResponse = await response.Content.ReadAsStringAsync();
+          if (response.StatusCode == System.Net.HttpStatusCode.OK)
+          {
+            var apiResponse = await response.Content.ReadAsStringAsync();
 
-          JObject jsonArray = JObject.Parse(apiResponse);
-
-          var dataField = jsonArray["data"];
-
-          totalList = JsonConvert.DeserializeObject<List<room_type_count_statistic>>(dataField.ToString());
+            totalList = StaticVar.GetData<List<room_type_count_statistic>>(apiResponse);
+          }
+          else
+            ViewBag.StatusCode = response.StatusCode;
         }
       }
       return View(totalList);
@@ -92,15 +94,16 @@ namespace APIProject.Controllers.MainControllers
       {
         using (var response = await httpClient.GetAsync(baseUrl + "/statistics/avail_room_type"))
         {
-          var apiResponse = await response.Content.ReadAsStringAsync();
+          if (response.StatusCode == System.Net.HttpStatusCode.OK)
+          {
+            var apiResponse = await response.Content.ReadAsStringAsync();
 
-          JObject jsonArray = JObject.Parse(apiResponse);
-
-          var dataField = jsonArray["data"];
-
-          totalList = JsonConvert.DeserializeObject<List<room_type_count_statistic>>(dataField.ToString());
-        }
+            totalList = StaticVar.GetData<List<room_type_count_statistic>>(apiResponse);
+          }
+          else
+            ViewBag.StatusCode = response.StatusCode;
       }
+    }
       return View(totalList);
     }
 
@@ -114,13 +117,14 @@ namespace APIProject.Controllers.MainControllers
       {
         using (var response = await httpClient.GetAsync(baseUrl + "/statistics/most_popular_room_type"))
         {
-          var apiResponse = await response.Content.ReadAsStringAsync();
+          if (response.StatusCode == System.Net.HttpStatusCode.OK)
+          {
+            var apiResponse = await response.Content.ReadAsStringAsync();
 
-          JObject jsonArray = JObject.Parse(apiResponse);
-
-          var dataField = jsonArray["data"];
-
-          roomList = JsonConvert.DeserializeObject<List<room_popular_statistic>>(dataField.ToString());
+            roomList = StaticVar.GetData<List<room_popular_statistic>>(apiResponse);
+          }
+          else
+            ViewBag.StatusCode = response.StatusCode;
         }
       }
       return View(roomList);
@@ -136,18 +140,20 @@ namespace APIProject.Controllers.MainControllers
       {
         using (var response = await httpClient.GetAsync(baseUrl + "/statistics/least_popular_room_type"))
         {
-          var apiResponse = await response.Content.ReadAsStringAsync();
+          if (response.StatusCode == System.Net.HttpStatusCode.OK)
+          {
+            var apiResponse = await response.Content.ReadAsStringAsync();
 
-          JObject jsonArray = JObject.Parse(apiResponse);
-
-          var dataField = jsonArray["data"];
-
-          roomList = JsonConvert.DeserializeObject<List<room_popular_statistic>>(dataField.ToString());
+            roomList = StaticVar.GetData<List<room_popular_statistic>>(apiResponse);
+          }
+          else
+            ViewBag.StatusCode = response.StatusCode;
         }
       }
       return View(roomList);
     }
 
+    // GET: StatisticController/GetOrderNumBetweenDates
     public ViewResult GetOrderNumBetweenDates()
     {
       GetSessionInfo();
@@ -155,6 +161,7 @@ namespace APIProject.Controllers.MainControllers
       return View();
     }
 
+    // GET: StatisticController/GetOrderNumBetweenDates
     [HttpPost]
     public async Task<IActionResult> GetOrderNumBetweenDates(order_number_statistic inputNum)
     {
@@ -170,15 +177,11 @@ namespace APIProject.Controllers.MainControllers
           {
             var apiResponse = await response.Content.ReadAsStringAsync();
 
-            JObject jsonArray = JObject.Parse(apiResponse);
-
-            var dataField = jsonArray["data"];
-
-            orderNum = JsonConvert.DeserializeObject<order_number_statistic>(dataField.ToString());
+            orderNum = StaticVar.GetData<order_number_statistic>(apiResponse);
 
             if (orderNum == null)
             {
-              ViewBag.Message = "There are no data between such dates!";
+              ViewBag.Message = "There are no data between such dates! Please try again!";
             }
             else
             {
@@ -192,6 +195,7 @@ namespace APIProject.Controllers.MainControllers
       return View(orderNum);
     }
 
+    // GET: StatisticController/GetOrderNumInMonth
     public ViewResult GetOrderNumInMonth()
     {
       GetSessionInfo();
@@ -199,6 +203,7 @@ namespace APIProject.Controllers.MainControllers
       return View();
     }
 
+    // POST: StatisticController/GetOrderNumInMonth
     [HttpPost]
     public async Task<IActionResult> GetOrderNumInMonth(single_order_number_statistic inputNum)
     {
@@ -214,15 +219,11 @@ namespace APIProject.Controllers.MainControllers
           {
             var apiResponse = await response.Content.ReadAsStringAsync();
 
-            JObject jsonArray = JObject.Parse(apiResponse);
-
-            var dataField = jsonArray["data"];
-
-            orderNum = JsonConvert.DeserializeObject<order_number_statistic>(dataField.ToString());
+            orderNum = StaticVar.GetData<order_number_statistic>(apiResponse);
 
             if (orderNum == null)
             {
-              ViewBag.Message = "There are no data in that month of year!";
+              ViewBag.Message = "There are no data in that month of year! Please try again!";
             }
             else
             {
@@ -236,6 +237,7 @@ namespace APIProject.Controllers.MainControllers
       return View(orderNum);
     }
 
+    // GET: StatisticController/GetOrderNumInYear
     public ViewResult GetOrderNumInYear()
     {
       GetSessionInfo();
@@ -243,6 +245,7 @@ namespace APIProject.Controllers.MainControllers
       return View();
     }
 
+    // POST: StatisticController/GetOrderNumInYear
     [HttpPost]
     public async Task<IActionResult> GetOrderNumInYear(single_order_number_statistic inputNum)
     {
@@ -258,15 +261,11 @@ namespace APIProject.Controllers.MainControllers
           {
             var apiResponse = await response.Content.ReadAsStringAsync();
 
-            JObject jsonArray = JObject.Parse(apiResponse);
-
-            var dataField = jsonArray["data"];
-
-            orderNum = JsonConvert.DeserializeObject<single_order_number_statistic>(dataField.ToString());
+            orderNum = StaticVar.GetData<single_order_number_statistic>(apiResponse);
 
             if (orderNum == null)
             {
-              ViewBag.Message = "There are no data in that year!";
+              ViewBag.Message = "There are no data in that year! Please try again!";
             }
             else
             {
@@ -280,5 +279,4 @@ namespace APIProject.Controllers.MainControllers
       return View(orderNum);
     }
   }
-
 }

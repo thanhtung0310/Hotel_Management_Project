@@ -18,7 +18,7 @@
                 <button class="btn btn-sm btn-primary" name="checkout_type" id="checkout_type" onclick="changeDisplay('paid-room','un-paid-room')">Check out Unpaid room</button>
             </div>
 
-            <form asp-action="CheckOutUnpaidRoom" method="post" class="probootstrap-form">
+            <form asp-action="CheckOutUnpaidRoomResult" method="post" class="probootstrap-form">
                 <div class="col-md-12" id="un-paid-room">
                     <h4 class="mt-2">Check out Unpaid room</h4>
                     <div class="form-group">
@@ -80,7 +80,7 @@
                 </div>
             </form>
 
-            <form asp-action="CheckOutPaidRoom" method="post" class="probootstrap-form">
+            <form asp-action="CheckOutPaidRoomResult" method="post" class="probootstrap-form">
                 <div class="col-md-12" id="paid-room" style="display:none;">
                     <h4 class="mt-2">Check out Paid room</h4>
                     <div class="form-group">

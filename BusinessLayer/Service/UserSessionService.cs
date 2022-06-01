@@ -113,8 +113,8 @@ namespace BusinessLayer.Service
         var check = _provider.ExecuteReader("single_user_session_info_get", param1, commandType: CommandType.StoredProcedure);
         if (((DbDataReader)check).HasRows == true)
         {
-          await _provider.QueryFirstOrDefaultAsync<UserSession>("single_user_session_info_update", param, commandType: CommandType.StoredProcedure);
-          response.Data = newData;
+          var newUser = await _provider.QueryFirstOrDefaultAsync<UserSession>("single_user_session_info_update", param, commandType: CommandType.StoredProcedure);
+          response.Data = newUser;
           response.successResp();
         }
         else
@@ -149,7 +149,6 @@ namespace BusinessLayer.Service
         if (((DbDataReader)check).HasRows == true)
         {
           await _provider.QueryFirstOrDefaultAsync<UserSession>("single_user_password_update", param, commandType: CommandType.StoredProcedure);
-
           response.Data = newData;
           response.successResp();
         }

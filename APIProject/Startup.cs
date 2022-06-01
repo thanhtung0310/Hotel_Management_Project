@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace APIProject
 {
@@ -33,24 +34,34 @@ namespace APIProject
 
       //services.AddDistributedMemoryCache(); // use memory cache
 
-      services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-        .AddJwtBearer((options) =>
+      services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+        .AddCookie((options) =>
         {
-          options.TokenValidationParameters = new TokenValidationParameters
-          {
-            ValidateIssuer = true, //validate server -> generate token
-            ValidateAudience = true, //validate recipient -> token is authorized
-            ValidateLifetime = true, //check if token is not expired
-            ValidateIssuerSigningKey = true, //check if signing key of the issuer is valid
-
-            // storing values in appsettings.json
-            ValidIssuer = Configuration["Jwt:Issuer"],
-            ValidAudience = Configuration["Jwt:Issuer"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
-          };
+          options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+          options.SlidingExpiration = true;
+          options.AccessDeniedPath = "/Forbidden/";
         });
 
-      //services.AddIdentity<UserSession, IdentityRole>().AddEntityFrameworkStores<APIProjectContext>().AddDefaultTokenProviders();
+      //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+      //  .AddJwtBearer((options) =>
+      //  {
+      //    options.TokenValidationParameters = new TokenValidationParameters
+      //    {
+      //      ValidateIssuer = true, //validate server -> generate token
+      //      ValidateAudience = true, //validate recipient -> token is authorized
+      //      ValidateLifetime = true, //check if token is not expired
+      //      ValidateIssuerSigningKey = true, //check if signing key of the issuer is valid
+
+      //      // storing values in appsettings.json
+      //      ValidIssuer = Configuration["Jwt:Issuer"],
+      //      ValidAudience = Configuration["Jwt:Issuer"],
+      //      IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+      //    };
+      //  });
+
+      services.AddDefaultIdentity<IdentityUser>()
+             .AddRoles<IdentityRole>()
+             .AddEntityFrameworkStores<APIProjectContext>();
 
       services.AddDistributedSqlServerCache((options) =>
       {
@@ -62,7 +73,7 @@ namespace APIProject
       services.AddSession((options) =>
       {
         //option.Cookie.Name = "Session_h1kj2h3kj1h23kj";
-        options.IdleTimeout = new TimeSpan(24, 0, 0);
+        options.IdleTimeout = new TimeSpan(6, 0, 0);
         options.Cookie.IsEssential = true;
         options.Cookie.HttpOnly = true;
       });
@@ -104,6 +115,8 @@ namespace APIProject
         app.UseHsts();
       }
 
+      app.UseCookiePolicy();
+
       app.UseSession(); //SessionMiddleware - cookie
 
       app.UseMvcWithDefaultRoute(); //MVC
@@ -120,6 +133,10 @@ namespace APIProject
 
       app.UseEndpoints(endpoints =>
       {
+        //endpoints.MapControllerRoute(
+        //  name: "MyArea",
+        //  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
         endpoints.MapControllerRoute(
           name: "default",
           pattern: "{controller=Home}/{action=Index}/{id?}");

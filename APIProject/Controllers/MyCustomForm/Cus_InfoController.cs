@@ -8,23 +8,23 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text;
-using CommonData = APIProject.Data.CommonConstants;
 using DatabaseProvider;
+using APIProject.Data;
 
 namespace APIProject.Controllers.MyCustomForm
 {
   public class Cus_InfoController : Controller
   {
-    public string baseUrl = "https://localhost:44304/api"; //IIS
-    //public string baseAddress = "https://localhost:5001/api"; //Kestrel
-
     const string SessionUsername = "_username";
     const string SessionRole = "Guest";
     const string SessionName = "_name";
     const string SessionToken = "_token";
 
-    public void GetSessionInfo()
+    string baseUrl = StaticVar.baseUrl;
+
+    private void GetSessionInfo()
     {
+      // passing user data
       ViewBag.SessionUsername = HttpContext.Session.GetString(SessionUsername);
       ViewBag.SessionRole = HttpContext.Session.GetString(SessionRole);
       ViewBag.SessionName = HttpContext.Session.GetString(SessionName);
@@ -41,18 +41,20 @@ namespace APIProject.Controllers.MyCustomForm
       {
         using (var response = await httpClient.GetAsync(baseUrl + "/cus_infos"))
         {
-          var apiResponse = await response.Content.ReadAsStringAsync();
+          if (response.StatusCode == System.Net.HttpStatusCode.OK)
+          {
+            var apiResponse = await response.Content.ReadAsStringAsync();
 
-          JObject jsonArray = JObject.Parse(apiResponse);
-
-          var dataField = jsonArray["data"];
-
-          cusList = JsonConvert.DeserializeObject<List<cus_info>>(dataField.ToString());
+            cusList = StaticVar.GetData<List<cus_info>>(apiResponse);
+          }
+          else
+            ViewBag.StatusCode = response.StatusCode;
         }
       }
       return View(cusList);
     }
 
+    // GET: Cus_InfoController/GetBookedCustomer
     public async Task<IActionResult> GetBookedCustomer()
     {
       GetSessionInfo();
@@ -60,20 +62,27 @@ namespace APIProject.Controllers.MyCustomForm
       List<booked_cus_info> cusList = new List<booked_cus_info>();
       using (var httpClient = new HttpClient())
       {
-        using (var response = await httpClient.GetAsync(baseUrl + "/booked_cus_infos"))
+        using (var response = await httpClient.GetAsync(baseUrl + "/cus_infos/booked"))
         {
-          var apiResponse = await response.Content.ReadAsStringAsync();
+          if (response.StatusCode == System.Net.HttpStatusCode.OK)
+          {
+            var apiResponse = await response.Content.ReadAsStringAsync();
 
-          JObject jsonArray = JObject.Parse(apiResponse);
+            cusList = StaticVar.GetData<List<booked_cus_info>>(apiResponse);
 
-          var dataField = jsonArray["data"];
-
-          cusList = JsonConvert.DeserializeObject<List<booked_cus_info>>(dataField.ToString());
+            if (cusList == null)
+            {
+              ViewBag.Message = "There are no customers that had booked rooms!";
+            }
+          }
+          else
+            ViewBag.StatusCode = response.StatusCode;
         }
       }
       return View(cusList);
     }
 
+    // GET: Cus_InfoController/GetCheckedinCustomer
     public async Task<IActionResult> GetCheckedinCustomer()
     {
       GetSessionInfo();
@@ -83,25 +92,33 @@ namespace APIProject.Controllers.MyCustomForm
       {
         using (var response = await httpClient.GetAsync(baseUrl + "/cus_infos/checked_in"))
         {
-          var apiResponse = await response.Content.ReadAsStringAsync();
+          if (response.StatusCode == System.Net.HttpStatusCode.OK)
+          {
+            var apiResponse = await response.Content.ReadAsStringAsync();
 
-          JObject jsonArray = JObject.Parse(apiResponse);
+            cusList = StaticVar.GetData<List<checked_cus_info>>(apiResponse);
 
-          var dataField = jsonArray["data"];
-
-          cusList = JsonConvert.DeserializeObject<List<checked_cus_info>>(dataField.ToString());
+            if (cusList == null)
+            {
+              ViewBag.Message = "There are no customers that had checked-in rooms!";
+            }
+          }
+          else
+            ViewBag.StatusCode = response.StatusCode;
         }
       }
       return View(cusList);
     }
 
+    // GET: Cus_InfoController/GetCustomerByID
     public ViewResult GetCustomerByID()
     {
       GetSessionInfo();
 
       return View();
     }
-    // Post: Cus_InfoController/Details/5
+
+    // POST: Cus_InfoController/GetCustomerByID
     [HttpPost]
     public async Task<IActionResult> GetCustomerByID(int id)
     {
@@ -116,15 +133,11 @@ namespace APIProject.Controllers.MyCustomForm
           {
             var apiResponse = await response.Content.ReadAsStringAsync();
 
-            JObject jsonArray = JObject.Parse(apiResponse);
-
-            var dataField = jsonArray["data"];
-
-            cus = JsonConvert.DeserializeObject<cus_info>(dataField.ToString());
+            cus = StaticVar.GetData<cus_info>(apiResponse);
 
             if (cus == null)
             {
-              ViewBag.Message = "There are no customers with that ID!";
+              ViewBag.Message = "There are no customers with that ID! Please try again!";
             }
           }
           else
@@ -134,13 +147,15 @@ namespace APIProject.Controllers.MyCustomForm
       return View(cus);
     }
 
+    // GET: Cus_InfoController/GetCustomerByName
     public ViewResult GetCustomerByName()
     {
       GetSessionInfo();
 
       return View();
     }
-    // Post: Cus_InfoController/Details/5
+
+    // POST: Cus_InfoController/GetCustomerByName
     [HttpPost]
     public async Task<IActionResult> GetCustomerByName(string search_string)
     {
@@ -155,15 +170,11 @@ namespace APIProject.Controllers.MyCustomForm
           {
             var apiResponse = await response.Content.ReadAsStringAsync();
 
-            JObject jsonArray = JObject.Parse(apiResponse);
-
-            var dataField = jsonArray["data"];
-
-            cusList = JsonConvert.DeserializeObject<List<customer>>(dataField.ToString());
+            cusList = StaticVar.GetData<List<customer>>(apiResponse);
 
             if (cusList == null)
             {
-              ViewBag.Message = "There are no customers with that name!";
+              ViewBag.Message = "There are no customers with that name! Please try again!";
             }
           }
           else
@@ -173,13 +184,15 @@ namespace APIProject.Controllers.MyCustomForm
       return View(cusList);
     }
 
+    // GET: Cus_InfoController/GetCustomerByNum
     public ViewResult GetCustomerByNum()
     {
       GetSessionInfo();
 
       return View();
     }
-    // Post: Cus_InfoController/Details/5
+
+    // POST: Cus_InfoController/GetCustomerByNum
     [HttpPost]
     public async Task<IActionResult> GetCustomerByNum(string search_string)
     {
@@ -188,21 +201,17 @@ namespace APIProject.Controllers.MyCustomForm
       cus_info cus = new cus_info();
       using (var httpClient = new HttpClient())
       {
-        using (var response = await httpClient.GetAsync(baseUrl + "/cus_by_num_infos/" + search_string))
+        using (var response = await httpClient.GetAsync(baseUrl + "/cus_infos/num/" + search_string))
         {
           if (response.StatusCode == System.Net.HttpStatusCode.OK)
           {
             var apiResponse = await response.Content.ReadAsStringAsync();
 
-            JObject jsonArray = JObject.Parse(apiResponse);
-
-            var dataField = jsonArray["data"];
-
-            cus = JsonConvert.DeserializeObject<cus_info>(dataField.ToString());
+            cus = StaticVar.GetData<cus_info>(apiResponse);
 
             if (cus == null)
             {
-              ViewBag.Message = "There are no customers with that number";
+              ViewBag.Message = "There are no customers with that number! Please try again!";
             }
           }
           else
@@ -212,36 +221,34 @@ namespace APIProject.Controllers.MyCustomForm
       return View(cus);
     }
 
+    // GET: Cus_InfoController/GetBookedCustomerByNum
     public ViewResult GetBookedCustomerByNum()
     {
       GetSessionInfo();
 
       return View();
     }
-    // Post: Cus_InfoController/Details/5
+
+    // POST: Cus_InfoController/GetBookedCustomerByNum
     [HttpPost]
     public async Task<IActionResult> GetBookedCustomerByNum(string num)
     {
       GetSessionInfo();
 
-      List<booked_cus_info> cus = new List<booked_cus_info>();
+      booked_cus_info cus = new booked_cus_info();
       using (var httpClient = new HttpClient())
       {
-        using (var response = await httpClient.GetAsync(baseUrl + "/booked_cus_infos/" + num))
+        using (var response = await httpClient.GetAsync(baseUrl + "/cus_infos/booked/num/" + num))
         {
           if (response.StatusCode == System.Net.HttpStatusCode.OK)
           {
             var apiResponse = await response.Content.ReadAsStringAsync();
 
-            JObject jsonArray = JObject.Parse(apiResponse);
-
-            var dataField = jsonArray["data"];
-
-            cus = JsonConvert.DeserializeObject<List<booked_cus_info>>(dataField.ToString());
+            cus = StaticVar.GetData<booked_cus_info>(apiResponse);
 
             if (cus == null)
             {
-              ViewBag.Message = "There are no booked customers with that number!";
+              ViewBag.Message = "There are no booked customers with that number! Please try again!";
             }
           }
           else
@@ -251,6 +258,7 @@ namespace APIProject.Controllers.MyCustomForm
       return View(cus);
     }
 
+    // GET: Cus_InfoController/AddCustomer
     public async Task<IActionResult> AddCustomer()
     {
       GetSessionInfo();
@@ -264,11 +272,16 @@ namespace APIProject.Controllers.MyCustomForm
           {
             var apiResponse = await response.Content.ReadAsStringAsync();
 
-            JObject jsonArray = JObject.Parse(apiResponse);
+            cus = StaticVar.GetData<cus_info>(apiResponse);
 
-            var dataField = jsonArray["data"];
-
-            cus = JsonConvert.DeserializeObject<cus_info>(dataField.ToString());
+            if (cus == null)
+            {
+              return View();
+            }
+            else
+            {
+              ViewBag.Message = "Please continue with your work!";
+            }
           }
           else
             ViewBag.StatusCode = response.StatusCode;
@@ -277,6 +290,7 @@ namespace APIProject.Controllers.MyCustomForm
       return View(cus);
     }
 
+    // POST: Cus_InfoController/AddCustomer
     [HttpPost]
     public async Task<IActionResult> AddCustomer(cus_info cus)
     {
@@ -293,11 +307,7 @@ namespace APIProject.Controllers.MyCustomForm
           {
             var apiResponse = await response.Content.ReadAsStringAsync();
 
-            JObject jsonArray = JObject.Parse(apiResponse);
-
-            var dataField = jsonArray["data"];
-
-            receivedCus = JsonConvert.DeserializeObject<cus_info>(dataField.ToString());
+            receivedCus = StaticVar.GetData<cus_info>(apiResponse);
           }
           else
             ViewBag.StatusCode = response.StatusCode;
@@ -306,6 +316,7 @@ namespace APIProject.Controllers.MyCustomForm
       return View(receivedCus);
     }
 
+    // GET: Cus_InfoController/Details
     public async Task<IActionResult> Details(int id)
     {
       GetSessionInfo();
@@ -319,11 +330,7 @@ namespace APIProject.Controllers.MyCustomForm
           {
             var apiResponse = await response.Content.ReadAsStringAsync();
 
-            JObject jsonArray = JObject.Parse(apiResponse);
-
-            var dataField = jsonArray["data"];
-
-            cus = JsonConvert.DeserializeObject<cus_info>(dataField.ToString());
+            cus = StaticVar.GetData<cus_info>(apiResponse);
           }
           else
             ViewBag.StatusCode = response.StatusCode;
@@ -332,6 +339,7 @@ namespace APIProject.Controllers.MyCustomForm
       return View(cus);
     }
 
+    // POST: Cus_InfoController/Details
     [HttpPost]
     public async Task<IActionResult> Details(cus_info cus)
     {
@@ -348,11 +356,7 @@ namespace APIProject.Controllers.MyCustomForm
           {
             var apiResponse = await response.Content.ReadAsStringAsync();
 
-            JObject jsonArray = JObject.Parse(apiResponse);
-
-            var dataField = jsonArray["data"];
-
-            receivedCus = JsonConvert.DeserializeObject<cus_info>(dataField.ToString());
+            receivedCus = StaticVar.GetData<cus_info>(apiResponse);
 
             ViewBag.Result = "Success";
           }
@@ -363,7 +367,7 @@ namespace APIProject.Controllers.MyCustomForm
       return View(receivedCus);
     }
 
-    // GET: Cus_InfoController/Delete/5
+    // GET: Cus_InfoController/DeleteCustomer
     [HttpPost]
     public async Task<IActionResult> DeleteCustomer(int id)
     {
@@ -376,7 +380,6 @@ namespace APIProject.Controllers.MyCustomForm
           string apiResponse = await response.Content.ReadAsStringAsync();
         }
       }
-
       return RedirectToAction("Index");
     }
   }

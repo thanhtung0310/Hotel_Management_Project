@@ -16,5 +16,8 @@ namespace BusinessLayer.IService
     Task<Response<cus_info>> CreateCustomer(cus_info cus);
     Task<Response<cus_info>> UpdateCustomer(cus_info cus);
     Task<Response<cus_info>> DeleteCustomerByID(int id);
+    Task<Response<List<booked_cus_info>>> GetBookedCustomerList();
+    Task<Response<booked_cus_info>> GetBookedCustomerByNum(string num);
+    Task<Response<cus_info>> GetCustomerByNum(string num);
   }
 }

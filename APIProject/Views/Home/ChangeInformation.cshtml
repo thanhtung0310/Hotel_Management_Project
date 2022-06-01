@@ -30,7 +30,14 @@
         <input class="form-control" name="acc_contact_number" value="@Model.acc_contact_number" required />
     </div>
     <div class="text-center panel-body">
-        <button type="submit" class="btn btn-sm btn-primary">Change information</button>
+        <button type="submit" onclick="RefreshPage()" class="btn btn-sm btn-primary">Change information</button>
     </div>
 </form>
 }
+
+<script>
+function RefreshPage()
+{
+    window.location.reload()
+}
+</script>

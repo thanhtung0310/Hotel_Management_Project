@@ -10,26 +10,34 @@ using System.Threading.Tasks;
 using System.Text;
 using DatabaseProvider;
 using BCryptNet = BCrypt.Net.BCrypt;
-using CommonData = APIProject.Data.CommonConstants;
+using APIProject.Data;
 
 namespace APIProject.Controllers.MyCustomForm
 {
   public class Emp_InfoController : Controller
   {
-    public string baseUrl = "https://localhost:44304/api"; //IIS
-    //public string baseAddress = "https://localhost:5001/api"; //Kestrel
-
     const string SessionUsername = "_username";
     const string SessionRole = "Guest";
     const string SessionName = "_name";
     const string SessionToken = "_token";
 
-    public void GetSessionInfo()
+    string baseUrl = StaticVar.baseUrl;
+
+    private void GetSessionInfo()
     {
+      // passing user data
       ViewBag.SessionUsername = HttpContext.Session.GetString(SessionUsername);
       ViewBag.SessionRole = HttpContext.Session.GetString(SessionRole);
       ViewBag.SessionName = HttpContext.Session.GetString(SessionName);
       ViewBag.Session = HttpContext.Session.GetString(SessionToken);
+    }
+
+    private bool isManager()
+    {
+      if (ViewBag.SessionRole == "Manager")
+        return true;
+      else
+        return false;
     }
 
     // GET: Emp_InfoController
@@ -42,25 +50,28 @@ namespace APIProject.Controllers.MyCustomForm
       {
         using (var response = await httpClient.GetAsync(baseUrl + "/emp_infos"))
         {
-          var apiResponse = await response.Content.ReadAsStringAsync();
+          if (response.StatusCode == System.Net.HttpStatusCode.OK)
+          {
+            var apiResponse = await response.Content.ReadAsStringAsync();
 
-          JObject jsonArray = JObject.Parse(apiResponse);
-
-          var dataField = jsonArray["data"];
-
-          empList = JsonConvert.DeserializeObject<List<emp_info>>(dataField.ToString());
+            empList = StaticVar.GetData<List<emp_info>>(apiResponse);
+          }
+          else
+            ViewBag.StatusCode = response.StatusCode;
         }
       }
       return View(empList);
     }
 
+    // GET: Emp_InfoController/GetEmployeeByID
     public ViewResult GetEmployeeByID()
     {
       GetSessionInfo();
 
       return View();
     }
-    // Post: Emp_InfoController/Details/5
+
+    // POST: Emp_InfoController/GetEmployeeByID
     [HttpPost]
     public async Task<IActionResult> GetEmployeeByID(int id)
     {
@@ -75,14 +86,11 @@ namespace APIProject.Controllers.MyCustomForm
           {
             var apiResponse = await response.Content.ReadAsStringAsync();
 
-            JObject jsonArray = JObject.Parse(apiResponse);
+            emp = StaticVar.GetData<emp_info>(apiResponse);
 
-            var dataField = jsonArray["data"];
-
-            emp = JsonConvert.DeserializeObject<emp_info>(dataField.ToString());
             if (emp == null)
             {
-              ViewBag.Message = "There are no employees with that ID!";
+              ViewBag.Message = "There are no employees with that ID! Please try again!";
             }
           }
           else
@@ -92,13 +100,15 @@ namespace APIProject.Controllers.MyCustomForm
       return View(emp);
     }
 
+    // GET: Emp_InfoController/GetEmployeeByName
     public ViewResult GetEmployeeByName()
     {
       GetSessionInfo();
 
       return View();
     }
-    // Post: Emp_InfoController/Details/5
+
+    // GET: Emp_InfoController/GetemployeeByName
     [HttpPost]
     public async Task<IActionResult> GetEmployeeByName(string search_string)
     {
@@ -113,15 +123,11 @@ namespace APIProject.Controllers.MyCustomForm
           {
             var apiResponse = await response.Content.ReadAsStringAsync();
 
-            JObject jsonArray = JObject.Parse(apiResponse);
-
-            var dataField = jsonArray["data"];
-
-            empList = JsonConvert.DeserializeObject<List<employee>>(dataField.ToString());
+            empList = StaticVar.GetData<List<employee>>(apiResponse);
 
             if (empList == null)
             {
-              ViewBag.Message = "There are no employees with that name!";
+              ViewBag.Message = "There are no employees with that name! Please try again!";
             }
           }
           else
@@ -131,6 +137,7 @@ namespace APIProject.Controllers.MyCustomForm
       return View(empList);
     }
 
+    // GET: Emp_InfoController/AddEmployee
     public async Task<IActionResult> AddEmployee()
     {
       GetSessionInfo();
@@ -144,11 +151,7 @@ namespace APIProject.Controllers.MyCustomForm
           {
             var apiResponse = await response.Content.ReadAsStringAsync();
 
-            JObject jsonArray = JObject.Parse(apiResponse);
-
-            var dataField = jsonArray["data"];
-
-            emp = JsonConvert.DeserializeObject<emp_info>(dataField.ToString());
+            emp = StaticVar.GetData<emp_info>(apiResponse);
 
             if (emp == null)
             {
@@ -163,15 +166,14 @@ namespace APIProject.Controllers.MyCustomForm
             ViewBag.StatusCode = response.StatusCode;
         }
       }
-      return View(emp);
+
+      if (!isManager())
+        return RedirectToAction("Restrict", "Home");
+      else
+        return View(emp);
     }
 
-    public string HashedPassword(string pwd)
-    {
-      int costParam = 13;
-      return BCryptNet.HashPassword(pwd, costParam);
-    }
-
+    // POST: Emp_InfoController/AddEmployee
     [HttpPost]
     public async Task<IActionResult> AddEmployee(emp_info emp)
     {
@@ -179,7 +181,7 @@ namespace APIProject.Controllers.MyCustomForm
 
       // hash input password
       string raw_password = emp.acc_password;
-      emp.acc_password = HashedPassword(emp.acc_password);
+      emp.acc_password = StaticVar.HashedPassword(emp.acc_password);
 
       emp_info receivedEmp = new emp_info();
       using (var httpClient = new HttpClient())
@@ -192,33 +194,7 @@ namespace APIProject.Controllers.MyCustomForm
           {
             var apiResponse = await response.Content.ReadAsStringAsync();
 
-            JObject jsonArray = JObject.Parse(apiResponse);
-
-            var dataField = jsonArray["data"];
-
-            receivedEmp = JsonConvert.DeserializeObject<emp_info>(dataField.ToString());
-
-            if (receivedEmp == null)
-            {
-              return View();
-            }
-            else
-            {
-              //// create role in identity
-              //string role_name = "";
-              //if (receivedEmp.role_id == 1)
-              //  role_name = "Admin";
-              //else if (receivedEmp.role_id == 2)
-              //  role_name = "";
-
-              //UserSession user = new UserSession
-              //{
-              //  acc_username = receivedEmp.acc_username,
-              //  acc_name = receivedEmp.emp_name,
-              //  acc_contact_number = receivedEmp.emp_contact_number,
-              //  acc_role = receivedEmp.role_name,
-              //}
-            }
+            receivedEmp = StaticVar.GetData<emp_info>(apiResponse);
           }
           else
             ViewBag.StatusCode = response.StatusCode;
@@ -227,6 +203,7 @@ namespace APIProject.Controllers.MyCustomForm
       return View(receivedEmp);
     }
 
+    // GET: Emp_InfoController/Details
     public async Task<IActionResult> Details(int id)
     {
       GetSessionInfo();
@@ -240,11 +217,7 @@ namespace APIProject.Controllers.MyCustomForm
           {
             var apiResponse = await response.Content.ReadAsStringAsync();
 
-            JObject jsonArray = JObject.Parse(apiResponse);
-
-            var dataField = jsonArray["data"];
-
-            emp = JsonConvert.DeserializeObject<emp_info>(dataField.ToString());
+            emp = StaticVar.GetData<emp_info>(apiResponse);
           }
           else
             ViewBag.StatusCode = response.StatusCode;
@@ -253,6 +226,7 @@ namespace APIProject.Controllers.MyCustomForm
       return View(emp);
     }
 
+    // POST: Emp_InfoController/Details
     [HttpPost]
     public async Task<IActionResult> Details(emp_info emp)
     {
@@ -269,11 +243,7 @@ namespace APIProject.Controllers.MyCustomForm
           {
             var apiResponse = await response.Content.ReadAsStringAsync();
 
-            JObject jsonArray = JObject.Parse(apiResponse);
-
-            var dataField = jsonArray["data"];
-
-            receivedEmp = JsonConvert.DeserializeObject<emp_info>(dataField.ToString());
+            receivedEmp = StaticVar.GetData<emp_info>(apiResponse);
 
             ViewBag.Result = "Success";
           }
@@ -284,7 +254,7 @@ namespace APIProject.Controllers.MyCustomForm
       return View(receivedEmp);
     }
 
-    // GET: Emp_InfoController/Delete/5
+    // GET: Emp_InfoController/DeleteEmployee
     [HttpPost]
     public async Task<IActionResult> DeleteEmployee(int id)
     {

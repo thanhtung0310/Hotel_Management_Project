@@ -3,17 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using APIProject.Data;
 using DatabaseProvider;
-using CommonData = APIProject.Data.CommonConstants;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Authorization;
 
 namespace APIProject.Controllers.MyDBForm
 {
-  [Authorize(Roles = "Admin")]
   public class RoomTypeController : Controller
   {
     private readonly APIProjectContext _context;
@@ -28,7 +24,7 @@ namespace APIProject.Controllers.MyDBForm
     const string SessionName = "_name";
     const string SessionToken = "_token";
 
-    public void GetSessionInfo()
+    private void GetSessionInfo()
     {
       ViewBag.SessionUsername = HttpContext.Session.GetString(SessionUsername);
       ViewBag.SessionRole = HttpContext.Session.GetString(SessionRole);
@@ -36,12 +32,23 @@ namespace APIProject.Controllers.MyDBForm
       ViewBag.Session = HttpContext.Session.GetString(SessionToken);
     }
 
+    private bool isManager()
+    {
+      if (ViewBag.SessionRole == "Manager")
+        return true;
+      else
+        return false;
+    }
+
     // GET: RoomType
     public async Task<IActionResult> Index()
     {
       GetSessionInfo();
 
-      return View(await _context.roomType.ToListAsync());
+      if (!isManager())
+        return RedirectToAction("Restrict", "Home");
+      else
+        return View(await _context.roomType.ToListAsync());
     }
 
     // GET: RoomType/Details/5
@@ -61,7 +68,10 @@ namespace APIProject.Controllers.MyDBForm
         return NotFound();
       }
 
-      return View(roomType);
+      if (!isManager())
+        return RedirectToAction("Restrict", "Home");
+      else
+        return View(roomType);
     }
 
     // GET: RoomType/Create
@@ -69,7 +79,10 @@ namespace APIProject.Controllers.MyDBForm
     {
       GetSessionInfo();
 
-      return View();
+      if (!isManager())
+        return RedirectToAction("Restrict", "Home");
+      else
+        return View();
     }
 
     // POST: RoomType/Create
@@ -105,7 +118,11 @@ namespace APIProject.Controllers.MyDBForm
       {
         return NotFound();
       }
-      return View(roomType);
+
+      if (!isManager())
+        return RedirectToAction("Restrict", "Home");
+      else
+        return View(roomType);
     }
 
     // POST: RoomType/Edit/5
@@ -162,7 +179,10 @@ namespace APIProject.Controllers.MyDBForm
         return NotFound();
       }
 
-      return View(roomType);
+      if (!isManager())
+        return RedirectToAction("Restrict", "Home");
+      else
+        return View(roomType);
     }
 
     // POST: RoomType/Delete/5
