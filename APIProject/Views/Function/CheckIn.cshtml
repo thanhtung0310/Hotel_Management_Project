@@ -45,6 +45,7 @@
                     <table class="table">
                         <thead>
                             <tr>
+                                <th>Reservation ID</th>
                                 <th>Customer's ID</th>
                                 <th>Customer's first name</th>
                                 <th>Customer's last name</th>
@@ -53,12 +54,14 @@
                                 <th>Room type</th>
                                 <th>Customer's expected check-in date</th>
                                 <th>Customer's expected check-out date</th>
+                                <th>Cancel</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach (var item in Model)
                             {
                                 <tr>
+                                    <td>@item.reservation_id</td>
                                     <td>@item.customer_id</td>
                                     <td>@item.customer_first_name</td>
                                     <td>@item.customer_last_name</td>
@@ -67,6 +70,12 @@
                                     <td>@item.room_type_name</td>
                                     <td>@item.expected_check_in_date</td>
                                     <td>@item.expected_check_out_date</td>
+                                    <td>
+                                        <form asp-action="CancelBooking" method="post">
+                                            <input type="hidden" value="@item.reservation_id" name="id" />
+                                            <input type="image" src="~/img/icon/delete-icon.jpg" style="width:40px;" />
+                                        </form>
+                                    </td>
                                 </tr>
                             }
                         </tbody>

@@ -291,8 +291,6 @@ D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\EntityFramework.SqlServer.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\Microsoft.AspNet.Identity.Core.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\Microsoft.AspNet.Identity.EntityFramework.dll
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0\Razor\Views\Admin\Create.cshtml.g.cs
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0\Razor\Views\Admin\Index.cshtml.g.cs
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.UI.Views.V4.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\Microsoft.AspNetCore.Identity.UI.dll
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\Microsoft.Extensions.FileProviders.Embedded.dll
@@ -302,3 +300,4 @@ D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0\Razor\Views\Function\BookUnpaidRoomResult.cshtml.g.cs
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0\Razor\Views\Function\CheckOutPaidRoomResult.cshtml.g.cs
 D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\obj\Debug\net5.0\Razor\Views\Function\CheckOutUnpaidRoomResult.cshtml.g.cs
+D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\APIProject\bin\Debug\net5.0\LazZiya.TagHelpers.dll

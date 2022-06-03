@@ -24,7 +24,10 @@
                 @Html.DisplayNameFor(model => model.acc_password)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.role_id)
+                @Html.DisplayNameFor(model => model.acc_session)
+            </th>
+            <th>
+                role_name
             </th>
             <th></th>
         </tr>
@@ -43,7 +46,26 @@
                     @Html.DisplayFor(modelItem => item.acc_password)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.role_id)
+                    @Html.DisplayFor(modelItem => item.acc_session)
+                </td>
+                <td>
+                    @{
+                        string role_name = "";
+                        if (item.role_id == 1)
+                            role_name = "Manager";
+                        else if (item.role_id == 2)
+                            role_name = "Security";
+                        else if (item.role_id == 3)
+                            role_name = "Cleaner";
+                        else if (item.role_id == 4)
+                            role_name = "Chief";
+                        else if (item.role_id == 5)
+                            role_name = "Intern";
+                        else if (item.role_id == 6)
+                            role_name = "Accountant";
+
+                    }
+                    @role_name
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.acc_id">Edit</a> |

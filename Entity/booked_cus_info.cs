@@ -8,6 +8,7 @@ namespace Entity
 {
   public class booked_cus_info
   {
+    public int reservation_id { get; set; }
     public int customer_id { get; set; }
     public string customer_first_name { get; set; }
     public string customer_last_name { get; set; }

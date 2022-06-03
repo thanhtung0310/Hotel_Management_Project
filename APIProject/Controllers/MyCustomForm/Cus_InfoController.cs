@@ -367,7 +367,7 @@ namespace APIProject.Controllers.MyCustomForm
       return View(receivedCus);
     }
 
-    // GET: Cus_InfoController/DeleteCustomer
+    // POST: Cus_InfoController/DeleteCustomer
     [HttpPost]
     public async Task<IActionResult> DeleteCustomer(int id)
     {

@@ -19,16 +19,48 @@
             @Html.DisplayFor(model => model.room_number)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.room_type_id)
+            room_type_name
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.room_type_id)
+            @{
+                string room_type_name = "";
+                if (Model.room_type_id == 1)
+                    room_type_name = "King Room";
+                else if (Model.room_type_id == 2)
+                    room_type_name = "Queen Room";
+                else if (Model.room_type_id == 3)
+                    room_type_name = "4-people Family Room";
+                else if (Model.room_type_id == 4)
+                    room_type_name = "3-people Family Room";
+                else if (Model.room_type_id == 5)
+                    room_type_name = "Single Room";
+                else if (Model.room_type_id == 6)
+                    room_type_name = "Couple Room";
+                else if (Model.room_type_id == 7)
+                    room_type_name = "4-Bunk Room";
+            }
+            @room_type_name
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.room_status_id)
+            room_status_name
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.room_status_id)
+            @{
+                string room_status_name = "";
+                if (Model.room_status_id == 1)
+                    room_status_name = "Vacant";
+                else if (Model.room_status_id == 2)
+                    room_status_name = "Booked and UnPaid";
+                else if (Model.room_status_id == 3)
+                    room_status_name = "Booked and Paid";
+                else if (Model.room_status_id == 4)
+                    room_status_name = "Checked In and UnPaid";
+                else if (Model.room_status_id == 5)
+                    room_status_name = "Checked In and Paid";
+                else if (Model.room_status_id == 6)
+                    room_status_name = "Checked Out";
+            }
+            @room_status_name
         </dd>
     </dl>
 </div>

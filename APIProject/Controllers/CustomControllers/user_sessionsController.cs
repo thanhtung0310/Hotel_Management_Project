@@ -44,7 +44,7 @@ namespace APIProject.Controllers.CustomControllers
     }
 
     /// <summary>
-    /// Get a list of all users
+    /// Get user
     /// </summary>
     /// <param name="user"></param>
     /// <returns></returns>
@@ -53,6 +53,18 @@ namespace APIProject.Controllers.CustomControllers
     public async Task<Response<UserSession>> Login([FromBody] UserSession user)
     {
       return await _userSessionService.Login(user);
+    }
+
+    /// <summary>
+    /// clear user session
+    /// </summary>
+    /// <param name="acc_username"></param>
+    /// <returns></returns>
+    // GET: api/<user_sessionsController>/logout/thanhtung
+    [HttpGet("logout/{acc_username}")]
+    public async Task<Response<UserSession>> Logout(string acc_username)
+    {
+      return await _userSessionService.Logout(acc_username);
     }
 
     /// <summary>

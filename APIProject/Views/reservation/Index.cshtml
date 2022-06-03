@@ -24,7 +24,10 @@
                 @Html.DisplayNameFor(model => model.day_stay_number)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.expected_room_type_id)
+                room_type_name
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.reservation_status)
             </th>
             <th></th>
         </tr>
@@ -43,7 +46,27 @@
                     @Html.DisplayFor(modelItem => item.day_stay_number)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.expected_room_type_id)
+                    @{
+                        string room_type_name = "";
+                        if (item.expected_room_type_id == 1)
+                            room_type_name = "King Room";
+                        else if (item.expected_room_type_id == 2)
+                            room_type_name = "Queen Room";
+                        else if (item.expected_room_type_id == 3)
+                            room_type_name = "4-people Family Room";
+                        else if (item.expected_room_type_id == 4)
+                            room_type_name = "3-people Family Room";
+                        else if (item.expected_room_type_id == 5)
+                            room_type_name = "Single Room";
+                        else if (item.expected_room_type_id == 6)
+                            room_type_name = "Couple Room";
+                        else if (item.expected_room_type_id == 7)
+                            room_type_name = "4-Bunk Room";
+                    }
+                    @room_type_name
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.reservation_status)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.reservation_id">Edit</a> |

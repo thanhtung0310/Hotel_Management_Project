@@ -11,6 +11,7 @@ namespace BusinessLayer.IService
   {
     Task<Response<room_booking>> BookUnpaid(room_booking room);
     Task<Response<room_booking>> BookPaid(room_booking room);
+    Task<Response<room_booking>> CancelBooking(int reservation_id);
     Task<Response<room_check_in>> CheckInRoom(input_check_data input);
     Task<Response<room_check_out>> CheckOutUnpaidRoom(room_check_out room);
     Task<Response<room_check_out>> CheckOutPaidRoom(room_check_out room);

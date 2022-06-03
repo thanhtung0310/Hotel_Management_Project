@@ -44,6 +44,18 @@ namespace APIProject.Controllers.CustomControllers
     }
 
     /// <summary>
+    /// Cancel reservation
+    /// </summary>
+    /// <param name="reservation_id"></param>
+    /// <returns></returns>
+    // DELETE api/<function>/cancel/39
+    [HttpDelete("cancel/{reservation_id}")]
+    public async Task<Response<room_booking>> CancelBooking(int reservation_id)
+    {
+      return await _functionService.CancelBooking(reservation_id);
+    }
+
+    /// <summary>
     /// Check in Room by update data in DB
     /// </summary>
     /// <returns></returns>

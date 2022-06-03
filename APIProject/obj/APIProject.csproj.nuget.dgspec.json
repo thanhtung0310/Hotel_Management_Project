@@ -31,8 +31,14 @@
               "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\BusinessLayer\\BusinessLayer.csproj": {
                 "projectPath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\BusinessLayer\\BusinessLayer.csproj"
               },
+              "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\DatabaseProvider\\DatabaseProvider.csproj": {
+                "projectPath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\DatabaseProvider\\DatabaseProvider.csproj"
+              },
               "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\DataLayer\\DataLayer.csproj": {
                 "projectPath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\DataLayer\\DataLayer.csproj"
+              },
+              "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\Entity\\Entity.csproj": {
+                "projectPath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\Entity\\Entity.csproj"
               }
             }
           }
@@ -51,9 +57,13 @@
               "target": "Package",
               "version": "[4.0.3, )"
             },
+            "LazZiya.TagHelpers": {
+              "target": "Package",
+              "version": "[6.0.2, )"
+            },
             "Microsoft.AspNet.Mvc": {
               "target": "Package",
-              "version": "[5.2.8, )"
+              "version": "[5.2.9, )"
             },
             "Microsoft.AspNetCore.Authentication": {
               "target": "Package",

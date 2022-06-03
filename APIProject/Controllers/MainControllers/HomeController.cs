@@ -261,13 +261,31 @@ namespace APIProject.Controllers
     }
 
     // GET: HomeController/Logout
-    public IActionResult Logout()
+    public async Task<IActionResult> Logout(string acc_username)
     {
       GetSessionInfo();
 
-      ClearSessionInfo();
+      acc_username = HttpContext.Session.GetString(SessionUsername);
 
-      ViewBag.Message = "You have signed out successfully! You will be redirected to Login page.";
+      UserSession user = new UserSession();
+      using (var httpClient = new HttpClient())
+      {
+        using (var response = await httpClient.GetAsync(baseUrl + "/user_sessions/logout/" + acc_username))
+        {
+          if (response.StatusCode == System.Net.HttpStatusCode.OK)
+          {
+            var apiResponse = await response.Content.ReadAsStringAsync();
+
+            user = StaticVar.GetData<UserSession>(apiResponse);
+
+            ViewBag.StatusCode = "Success";
+            ViewBag.Message = "You have signed out successfully! You will be redirected to Login page.";
+            ClearSessionInfo();
+          }
+          else
+            ViewBag.StatusCode = response.StatusCode;
+        }
+      }
       return View();
     }
 

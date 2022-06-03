@@ -123,6 +123,22 @@ namespace APIProject.Controllers.MainControllers
       return View(receivedRoom);
     }
 
+    // POST: FunctionController/CancelBooking
+    [HttpPost]
+    public async Task<IActionResult> CancelBooking(int reservation_id)
+    {
+      GetSessionInfo();
+
+      using (var httpClient = new HttpClient())
+      {
+        using (var response = await httpClient.DeleteAsync(baseUrl + "/function/cancel/" + reservation_id))
+        {
+          string apiResponse = await response.Content.ReadAsStringAsync();
+        }
+      }
+      return RedirectToAction("CheckIn");
+    }
+
     // GET: FunctionController/CheckIn
     public async Task<IActionResult> CheckIn()
     {

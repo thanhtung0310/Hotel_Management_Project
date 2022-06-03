@@ -42,8 +42,6 @@ namespace APIProject.Controllers.CustomControllers
       return await _cusInfoService.GetCheckedinCusList();
     }
 
-    //cus_infos/booked
-
     /// <summary>
     /// Get customer's information by customer ID
     /// </summary>
@@ -108,7 +106,7 @@ namespace APIProject.Controllers.CustomControllers
     /// Get customer who has booked room by their contact number
     /// </summary>
     /// <returns></returns>
-    // GET api/<booked_cus_infosController>
+    // GET api/<cus_infosController>/booked
     [HttpGet("booked")]
     public async Task<Response<List<booked_cus_info>>> GetBookedCustomerList()
     {
@@ -120,7 +118,7 @@ namespace APIProject.Controllers.CustomControllers
     /// </summary>
     /// <param name="num"></param>
     /// <returns></returns>
-    // GET api/<booked_cus_infosController>/0123456786
+    // GET api/<cus_infosController>/booked/num/0123456786
     [HttpGet("booked/num/{num}")]
     public async Task<Response<booked_cus_info>> GetBookedCustomerByNum(string num)
     {

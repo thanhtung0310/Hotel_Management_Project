@@ -26,23 +26,52 @@
             </div>
             <div class="form-group">
                 <label asp-for="room_id" class="control-label"></label>
-                <input asp-for="room_id" class="form-control" />
+                <select asp-for="room_id" class="form-control">
+                    <option value="">Select Room number</option>
+                    <option value="1">Room 101</option>
+                    <option value="2">Room 102</option>
+                    <option value="3">Room 103</option>
+                    <option value="4">Room 104</option>
+                    <option value="5">Room 105</option>
+                    <option value="6">Room 106</option>
+                    <option value="7">Room 201</option>
+                    <option value="8">Room 202</option>
+                    <option value="9">Room 203</option>
+                    <option value="10">Room 204</option>
+                    <option value="11">Room 205</option>
+                    <option value="12">Room 206</option>
+                    <option value="13">Room 301</option>
+                    <option value="14">Room 302</option>
+                    <option value="15">Room 303</option>
+                    <option value="16">Room 304</option>
+                    <option value="17">Room 305</option>
+                    <option value="18">Room 306</option>
+                </select>
                 <span asp-validation-for="room_id" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="check_in_date" class="control-label"></label>
-                <input asp-for="check_in_date" class="form-control" />
+                <input type="date" asp-for="check_in_date" class="form-control" />
                 <span asp-validation-for="check_in_date" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="expected_check_out_date" class="control-label"></label>
-                <input asp-for="expected_check_out_date" class="form-control" />
+                <input type="date" asp-for="expected_check_out_date" class="form-control" />
                 <span asp-validation-for="expected_check_out_date" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="check_out_date" class="control-label"></label>
-                <input asp-for="check_out_date" class="form-control" />
+                <input type="date" asp-for="check_out_date" class="form-control" />
                 <span asp-validation-for="check_out_date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="reception_status" class="control-label"></label>
+                <select asp-for="reception_status" class="form-control">
+                    <option value="">Select reception status</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Done">Done</option>
+                </select>
+                <span asp-validation-for="reception_status" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

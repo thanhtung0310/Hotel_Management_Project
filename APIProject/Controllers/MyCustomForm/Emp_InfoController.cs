@@ -9,7 +9,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text;
 using DatabaseProvider;
-using BCryptNet = BCrypt.Net.BCrypt;
 using APIProject.Data;
 
 namespace APIProject.Controllers.MyCustomForm

@@ -16,7 +16,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="emp_id" class="control-label"></label>
-                <input asp-for="emp_id" class="form-control" />
+                <input asp-for="emp_id" class="form-control" readonly />
                 <span asp-validation-for="emp_id" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -26,18 +26,29 @@
             </div>
             <div class="form-group">
                 <label asp-for="emp_position" class="control-label"></label>
-                <input asp-for="emp_position" class="form-control" />
+                <select asp-for="emp_position" class="form-control">
+                    <option value="">Select working floor</option>
+                    <option value="Ground Floor">Ground Floor</option>
+                    <option value="Second Floor">Second Floor</option>
+                    <option value="Third Floor">Third Floor</option>
+                    <option value="Fourth Floor">Fourth Floor</option>
+                </select>
                 <span asp-validation-for="emp_position" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="emp_dob" class="control-label"></label>
-                <input asp-for="emp_dob" class="form-control" />
+                <input type="date" asp-for="emp_dob" class="form-control" />
                 <span asp-validation-for="emp_dob" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="emp_contact_number" class="control-label"></label>
                 <input asp-for="emp_contact_number" class="form-control" />
                 <span asp-validation-for="emp_contact_number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="emp_identity_number" class="control-label"></label>
+                <input asp-for="emp_identity_number" class="form-control" />
+                <span asp-validation-for="emp_identity_number" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

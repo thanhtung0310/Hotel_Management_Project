@@ -76,8 +76,39 @@ namespace BusinessLayer.Service
         var check = _provider.ExecuteReader("single_user_session_info_get", param, commandType: CommandType.StoredProcedure);
         if (((DbDataReader)check).HasRows == true)
         {
-          var userSessions = await _provider.QueryFirstOrDefaultAsync<UserSession>("user_password_session_get", param, commandType: CommandType.StoredProcedure);
-          response.Data = userSessions;
+          var userSession = await _provider.QueryFirstOrDefaultAsync<UserSession>("user_password_session_get", param, commandType: CommandType.StoredProcedure);
+          response.Data = userSession;
+          response.successResp();
+        }
+        else
+        {
+          response.errorResp();
+        }
+      }
+      catch
+      {
+        response.errorResp();
+      }
+      finally
+      {
+        _provider.Close();
+      }
+      return response;
+    }
+
+    public async Task<Response<UserSession>> Logout(string acc_username)
+    {
+      var response = new Response<UserSession>();
+      try
+      {
+        _provider.Open();
+        DynamicParameters param = new DynamicParameters()
+          .AddParam("@acc_username", acc_username);
+        var check = _provider.ExecuteReader("single_user_session_info_get", param, commandType: CommandType.StoredProcedure);
+        if (((DbDataReader)check).HasRows == true)
+        {
+          var userSession = await _provider.QueryFirstOrDefaultAsync<UserSession>("user_session_clear", param, commandType: CommandType.StoredProcedure);
+          response.Data = userSession;
           response.successResp();
         }
         else

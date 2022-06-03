@@ -75,6 +75,29 @@ namespace BusinessLayer.Service
       return response;
     }
 
+    public async Task<Response<room_booking>> CancelBooking(int reservation_id)
+    {
+      var response = new Response<room_booking>();
+      try
+      {
+        _provider.Open();
+        DynamicParameters param = new DynamicParameters()
+            .AddParam("@reservation_id", reservation_id);
+        var book = await _provider.QueryFirstOrDefaultAsync<room_booking>("cancel_booking", param, commandType: CommandType.StoredProcedure);
+        response.Data = book;
+        response.successResp();
+      }
+      catch
+      {
+        response.errorResp();
+      }
+      finally
+      {
+        _provider.Close();
+      }
+      return response;
+    }
+
     public async Task<Response<room_check_in>> CheckInRoom(input_check_data input)
     {
       var response = new Response<room_check_in>();
