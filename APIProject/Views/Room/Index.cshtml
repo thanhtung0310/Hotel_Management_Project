@@ -15,6 +15,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.room_id)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.room_number)
             </th>
             <th>
@@ -31,7 +34,10 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.room_number)
+                    @Html.DisplayFor(modelItem => item.room_id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.room_id)
                 </td>
                 <td>
                     @{

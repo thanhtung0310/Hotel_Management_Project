@@ -34,34 +34,13 @@ namespace APIProject
 
       //services.AddDistributedMemoryCache(); // use memory cache
 
-      services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-        .AddCookie((options) =>
-        {
-          options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
-          options.SlidingExpiration = true;
-          options.AccessDeniedPath = "/Forbidden/";
-        });
-
-      //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-      //  .AddJwtBearer((options) =>
+      //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+      //  .AddCookie((options) =>
       //  {
-      //    options.TokenValidationParameters = new TokenValidationParameters
-      //    {
-      //      ValidateIssuer = true, //validate server -> generate token
-      //      ValidateAudience = true, //validate recipient -> token is authorized
-      //      ValidateLifetime = true, //check if token is not expired
-      //      ValidateIssuerSigningKey = true, //check if signing key of the issuer is valid
-
-      //      // storing values in appsettings.json
-      //      ValidIssuer = Configuration["Jwt:Issuer"],
-      //      ValidAudience = Configuration["Jwt:Issuer"],
-      //      IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
-      //    };
+      //    options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
+      //    options.SlidingExpiration = true;
+      //    options.AccessDeniedPath = "/Forbidden/";
       //  });
-
-      services.AddDefaultIdentity<IdentityUser>()
-             .AddRoles<IdentityRole>()
-             .AddEntityFrameworkStores<APIProjectContext>();
 
       services.AddDistributedSqlServerCache((options) =>
       {
@@ -72,8 +51,7 @@ namespace APIProject
 
       services.AddSession((options) =>
       {
-        //option.Cookie.Name = "Session_h1kj2h3kj1h23kj";
-        options.IdleTimeout = new TimeSpan(6, 0, 0);
+        options.IdleTimeout = new TimeSpan(12, 0, 0);
         options.Cookie.IsEssential = true;
         options.Cookie.HttpOnly = true;
       });

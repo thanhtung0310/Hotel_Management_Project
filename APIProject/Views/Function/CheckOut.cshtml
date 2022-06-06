@@ -14,16 +14,17 @@
             <h2 class="mt0">Check Out Form</h2>
             <div class="form-group">
                 <label for="checkout_type">Check out type:</label> <br />
-                <button class="btn btn-sm btn-primary" name="checkout_type" id="checkout_type" onclick="changeDisplay('un-paid-room','paid-room')">Check out Paid room</button>
-                <button class="btn btn-sm btn-primary" name="checkout_type" id="checkout_type" onclick="changeDisplay('paid-room','un-paid-room')">Check out Unpaid room</button>
+                <button class="btn btn-sm btn-primary" name="checkout_type" id="checkout_type" onclick="changeDisplay('un-paid-room','paid-room'), scrollToAnchor('paid-room')">Check out Paid room</button>
+                <button class="btn btn-sm btn-primary" name="checkout_type" id="checkout_type" onclick="changeDisplay('paid-room','un-paid-room'), scrollToAnchor('un-paid-room')">Check out Unpaid room</button>
             </div>
 
-            <form asp-action="CheckOutUnpaidRoomResult" method="post" class="probootstrap-form">
+            <form asp-action="CheckOutUnpaidRoomResult" method="post" class="probootstrap-form" id="mainForm">
                 <div class="col-md-12" id="un-paid-room">
                     <h4 class="mt-2">Check out Unpaid room</h4>
                     <div class="form-group">
                         <label for="customer_id">Customer ID: </label>
                         <input class="form-control" id="customer_id" name="customer_id" placeholder="Please enter customer ID" />
+                        <span class="form-message"></span>
                     </div>
                     <div class="form-group">
                         <label for="room_id">Room number: </label>
@@ -50,42 +51,44 @@
                                 <option value="18">Room 306</option>
                             </select>
                         </div>
+                        <span class="form-message"></span>
                     </div>
                     <div class="form-group">
                         <label for="check_out_date">Check out date: </label>
                         <input type="datetime-local" class="form-control" id="check_out_date" name="check_out_date">
+                        <span class="form-message"></span>
                     </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="payment_type_id">Payment type: </label>
-                            <div class="form-field">
-                                <select name="payment_type_id" id="payment_type_id" class="form-control">
-                                    <option value="">Select payment type</option>
-                                    <option value="1">By Cash</option>
-                                    <option value="2">By Credit card</option>
-                                    <option value="3">By Debit card</option>
-                                </select>
-                            </div>
+                    <div class="form-group">
+                        <label for="payment_type_id">Payment type: </label>
+                        <div class="form-field">
+                            <select name="payment_type_id" id="payment_type_id" class="form-control">
+                                <option value="">Select payment type</option>
+                                <option value="1">By Cash</option>
+                                <option value="2">By Credit card</option>
+                                <option value="3">By Debit card</option>
+                            </select>
                         </div>
-                        <div class="col-md-6">
-                            <label for="payment_amount">Payment amount: </label>
-                            <input type="text" class="form-control" id="payment_amount" name="payment_amount" placeholder="Please enter the amount of payment">
-                        </div>
+                        <span class="form-message"></span>
                     </div>
-                    <br />
+                    <div class="form-group">
+                        <label for="payment_amount">Payment amount: (VND)</label>
+                        <input type="text" class="form-control" id="payment_amount" name="payment_amount" placeholder="Please enter the amount of payment">
+                        <span class="form-message"></span>    
+                    </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary btn-lg" id="submit" name="submit" value="Check out Room">
                     </div>
+                    <br />
                 </div>
             </form>
 
-            <form asp-action="CheckOutPaidRoomResult" method="post" class="probootstrap-form">
+            <form asp-action="CheckOutPaidRoomResult" method="post" class="probootstrap-form" id="mainForm">
                 <div class="col-md-12" id="paid-room" style="display:none;">
                     <h4 class="mt-2">Check out Paid room</h4>
                     <div class="form-group">
                         <label for="customer_id">Customer ID: </label>
                         <input class="form-control" id="customer_id" name="customer_id" placeholder="Please enter customer ID" />
+                        <span class="form-message"></span>
                     </div>
                     <div class="form-group">
                         <label for="room_id">Room number: </label>
@@ -112,14 +115,17 @@
                                 <option value="18">Room 306</option>
                             </select>
                         </div>
+                        <span class="form-message"></span>
                     </div>
                     <div class="form-group">
                         <label for="check_out_date">Check out date: </label>
                         <input type="datetime-local" class="form-control" id="check_out_date" name="check_out_date">
+                        <span class="form-message"></span>
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary btn-lg" id="submit" name="submit" value="Check out Room">
                     </div>
+                    <br />
                 </div>
             </form>
         </div>
@@ -166,28 +172,9 @@
     </div>
 </div>
 
+<script src="~/js/validator.js"></script>
+
 <script>
-    function openContent(evt, pageName) {
-        // khai bao bien
-        var i, maincontent, tablinks;
-
-        // lay tat thuoc tinh thuoc class="maincontent" va hide
-        maincontent = document.getElementsByClassName("maincontent");
-        for (i = 0; i < maincontent.length; i++) {
-            maincontent[i].style.display = "none";
-        }
-
-        //
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-
-        //
-        document.getElementById(pageName).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
-
     function changeDisplay(pageName, pageName2) {
         //
         var x = document.getElementById(pageName);
@@ -204,4 +191,57 @@
             y.style.display = "block";
         }
     }
+
+    function scrollToAnchor(element) {
+        location.hash = "#" + element;
+    }
+
+    Validator({
+        form: '#mainForm',
+        formGroupSelector: '.form-group',
+        errorSelector: '.form-message',
+        rules: [
+            //customer_id (int)
+            Validator.isRequired('#customer_id', 'Please enter correct customer ID!'),
+            //room_id -> room_number (int)
+            Validator.isRequired('#room_id', 'Please choose correct room number!'),
+            //check_out_date (datetime)
+            Validator.isRequired('#check_out_date', 'Please choose correct check out date!'),
+            //payment_type_id -> payment_type_name (string)
+            Validator.isRequired('#payment_type_id', 'Please choose correct payment type!'),
+            //payment_ammount (decimal)
+            Validator.isRequired('#payment_amount', 'Please enter correct payment amount!'),
+            //Validator.isRequired('#email', 'Please enter email in correct format!'),
+            //Validator.isEmail('#email'),
+            //Validator.isRequired('#password', 'Please enter password!'),
+            //Validator.isRequired('#province', 'Please enter province!'),
+            //Validator.isRequired('input[name="gender"]'),
+            //Validator.minLength('#password', 6),
+            //Validator.isRequired('#password_confirmation'),
+            //Validator.isConfirmed('#password_confirmation', function () {
+            //    return document.querySelector('#mainForm #password').value;
+            //}, 'The second new password is not correct!'),
+        ]
+    })
 </script>
+
+<style>
+    .form-group {
+        margin-bottom: 0rem;
+    }
+
+        .form-group.invalid .form-control {
+            border-color: #f33a58;
+        }
+
+        .form-group.invalid .form-message {
+            color: #f33a58;
+        }
+
+    .form-message {
+        font-size: 1rem;
+        line-height: 1.6rem;
+        padding: 4px 0 0;
+        margin-left: 10px;
+    }
+</style>

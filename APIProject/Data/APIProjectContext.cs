@@ -5,12 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using DatabaseProvider;
 using Entity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
 
 namespace APIProject.Data
 {
-  public class APIProjectContext : IdentityDbContext<IdentityUser>
+  public class APIProjectContext : DbContext
   {
     public APIProjectContext(DbContextOptions<APIProjectContext> options)
         : base(options)
@@ -54,6 +52,7 @@ namespace APIProject.Data
     public DbSet<room_info> room_info { get; set; }
     
     public DbSet<room_status_info> room_status_info { get; set; }
+
     protected override void OnModelCreating (ModelBuilder builder)
     {
       builder.Entity<booked_cus_info>()

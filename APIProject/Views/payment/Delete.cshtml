@@ -14,10 +14,26 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.payment_type_id)
+            @Html.DisplayNameFor(model => model.payment_id)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.payment_type_id)
+            @Html.DisplayFor(model => model.payment_id)
+        </dd>
+        <dt class="col-sm-2">
+            payment_type_name
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                string payment_type_name = "";
+                if (Model.payment_type_id == 1)
+                    payment_type_name = "By Cash";
+                else if (Model.payment_type_id == 2)
+                    payment_type_name = "By Credit card";
+                else if (Model.payment_type_id == 3)
+                    payment_type_name = "By Debit card";
+
+            }
+            @payment_type_name
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.reservation_id)

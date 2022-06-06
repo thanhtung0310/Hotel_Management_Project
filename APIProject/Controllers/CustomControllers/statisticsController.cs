@@ -32,6 +32,18 @@ namespace APIProject.Controllers.CustomControllers
     }
 
     /// <summary>
+    /// Get total amount of payment between dates
+    /// </summary>
+    /// <param name="inputNum"></param>
+    /// <returns></returns>
+    // POST api/<statisticsController>/total_payment_dates
+    [HttpPost("total_payment_dates")]
+    public async Task<Response<order_number_statistic>> GetTotalPaymentBetweenDates(order_number_statistic inputNum)
+    {
+      return await _statisticService.GetTotalPaymentBetweenDates(inputNum);
+    }
+
+    /// <summary>
     /// Get number of orders in month/year
     /// </summary>
     /// <param name="inputNum"></param>

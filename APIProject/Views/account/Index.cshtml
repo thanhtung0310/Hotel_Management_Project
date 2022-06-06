@@ -15,16 +15,16 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.acc_id)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.emp_id)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.acc_username)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.acc_password)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.acc_session)
+                acc_session_state
             </th>
             <th>
                 role_name
@@ -37,16 +37,27 @@
         {
             <tr>
                 <td>
+                    @Html.DisplayFor(modelItem => item.acc_id)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.emp_id)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.acc_username)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.acc_password)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.acc_session)
+                    @{
+                        string sessionCheck = "NULL";
+                        if (item.acc_session != null)
+                        {
+                            sessionCheck = "Session created!";
+                        }
+                        else
+                        {
+                            sessionCheck = "NULL";
+                        }
+                    }
+                    @sessionCheck
                 </td>
                 <td>
                     @{

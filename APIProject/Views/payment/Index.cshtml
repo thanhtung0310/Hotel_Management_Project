@@ -15,6 +15,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.payment_id)
+            </th>
+            <th>
                 payment_type_name
             </th>
             <th>
@@ -33,6 +36,9 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.payment_id)
+                </td>
                 <td>
                     @{
                         string payment_type_name = "";

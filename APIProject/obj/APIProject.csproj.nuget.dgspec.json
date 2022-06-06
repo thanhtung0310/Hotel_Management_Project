@@ -57,10 +57,6 @@
               "target": "Package",
               "version": "[4.0.3, )"
             },
-            "LazZiya.TagHelpers": {
-              "target": "Package",
-              "version": "[6.0.2, )"
-            },
             "Microsoft.AspNet.Mvc": {
               "target": "Package",
               "version": "[5.2.9, )"
@@ -76,18 +72,6 @@
             "Microsoft.AspNetCore.CookiePolicy": {
               "target": "Package",
               "version": "[2.2.8, )"
-            },
-            "Microsoft.AspNetCore.Identity": {
-              "target": "Package",
-              "version": "[2.2.0, )"
-            },
-            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[5.0.17, )"
-            },
-            "Microsoft.AspNetCore.Identity.UI": {
-              "target": "Package",
-              "version": "[5.0.17, )"
             },
             "Microsoft.AspNetCore.Mvc": {
               "target": "Package",
@@ -362,12 +346,6 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "dependencies": {
-            "Microsoft.AspNet.Identity.EntityFramework": {
-              "target": "Package",
-              "version": "[2.2.3, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",

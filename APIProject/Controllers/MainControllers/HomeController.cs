@@ -150,43 +150,17 @@ namespace APIProject.Controllers
               {
                 ClearSessionInfo();
 
-                if (loggedInUser.acc_session == null)
+                //generate token for first time log in
+                loggedInUser.acc_session = GenerateJSONWebToken(loggedInUser);
+
+                StringContent content2 = new StringContent(JsonConvert.SerializeObject(loggedInUser), Encoding.UTF8, "application/json");
+
+                // pass data into acc_session (db) to create acc_session
+                using (var response2 = await httpClient.PutAsync(baseUrl + "/user_sessions/start", content2))
                 {
-                  //generate token for first time log in
-                  loggedInUser.acc_session = GenerateJSONWebToken(loggedInUser);
+                  var apiResponse2 = await response2.Content.ReadAsStringAsync();
 
-                  StringContent content2 = new StringContent(JsonConvert.SerializeObject(loggedInUser), Encoding.UTF8, "application/json");
-
-                  // pass data into acc_session (db) to create acc_session
-                  using (var response2 = await httpClient.PutAsync(baseUrl + "/user_sessions/start", content2))
-                  {
-                    var apiResponse2 = await response2.Content.ReadAsStringAsync();
-
-                    loggedInUser = StaticVar.GetData<UserSession>(apiResponse2);
-                  }
-                }
-                else
-                {
-                  //// check if token is valid -> if not = block
-                  bool tokenValidated = ValidateJwtToken(loggedInUser.acc_session);
-                  if (tokenValidated)
-                  {
-                    StringContent content2 = new StringContent(JsonConvert.SerializeObject(loggedInUser), Encoding.UTF8, "application/json");
-
-                    // pass data into acc_session (db) to create acc_session
-                    using (var response2 = await httpClient.PutAsync(baseUrl + "/user_sessions/start", content2))
-                    {
-                      var apiResponse2 = await response2.Content.ReadAsStringAsync();
-
-                      loggedInUser = StaticVar.GetData<UserSession>(apiResponse2);
-                    }
-                  }
-                  else
-                  {
-                    ViewBag.StatusCode = response.StatusCode;
-                    ViewBag.Message = "Log in process failed! Please try again!";
-                    return View();
-                  }
+                  loggedInUser = StaticVar.GetData<UserSession>(apiResponse2);
                 }
                 SetSessionInfo(loggedInUser);
                 ViewBag.StatusCode = "Success";

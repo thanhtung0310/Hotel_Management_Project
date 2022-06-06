@@ -161,7 +161,7 @@ namespace APIProject.Controllers.MainControllers
       return View();
     }
 
-    // GET: StatisticController/GetOrderNumBetweenDates
+    // POST: StatisticController/GetOrderNumBetweenDates
     [HttpPost]
     public async Task<IActionResult> GetOrderNumBetweenDates(order_number_statistic inputNum)
     {
@@ -172,6 +172,48 @@ namespace APIProject.Controllers.MainControllers
       {
         StringContent content = new StringContent(JsonConvert.SerializeObject(inputNum), Encoding.UTF8, "application/json");
         using (var response = await httpClient.PostAsync(baseUrl + "/statistics/order_dates", content))
+        {
+          if (response.StatusCode == System.Net.HttpStatusCode.OK)
+          {
+            var apiResponse = await response.Content.ReadAsStringAsync();
+
+            orderNum = StaticVar.GetData<order_number_statistic>(apiResponse);
+
+            if (orderNum == null)
+            {
+              ViewBag.Message = "There are no data between such dates! Please try again!";
+            }
+            else
+            {
+              ViewBag.StatusCode = "Success";
+            }
+          }
+          else
+            ViewBag.StatusCode = response.StatusCode;
+        }
+      }
+      return View(orderNum);
+    }
+
+    // GET: StatisticController/GetTotalPaymentBetweenDates
+    public ViewResult GetTotalPaymentBetweenDates()
+    {
+      GetSessionInfo();
+
+      return View();
+    }
+
+    // POST: StatisticController/GetTotalPaymentBetweenDates
+    [HttpPost]
+    public async Task<IActionResult> GetTotalPaymentBetweenDates(order_number_statistic inputNum)
+    {
+      GetSessionInfo();
+
+      order_number_statistic orderNum = new order_number_statistic();
+      using (var httpClient = new HttpClient())
+      {
+        StringContent content = new StringContent(JsonConvert.SerializeObject(inputNum), Encoding.UTF8, "application/json");
+        using (var response = await httpClient.PostAsync(baseUrl + "/statistics/total_payment_dates", content))
         {
           if (response.StatusCode == System.Net.HttpStatusCode.OK)
           {

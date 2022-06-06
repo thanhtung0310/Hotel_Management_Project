@@ -48,7 +48,7 @@ namespace APIProject.Controllers.MyDBForm
       if (!isManager())
         return RedirectToAction("Restrict", "Home");
       else
-        return View(await _context.room.ToListAsync());
+        return View(await _context.room.OrderByDescending(x => x.room_status_id).ToListAsync());
     }
 
     // GET: Room/Details/5

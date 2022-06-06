@@ -49,7 +49,7 @@ namespace APIProject.Controllers.MyDBForm
       if (!isManager())
         return RedirectToAction("Restrict", "Home");
       else
-        return View(await _context.account.ToListAsync());
+        return View(await _context.account.OrderByDescending(x => x.acc_session).ToListAsync());
     }
 
     // GET: account/Details/5
@@ -86,22 +86,16 @@ namespace APIProject.Controllers.MyDBForm
         return View();
     }
 
-    public string HashedPassword(string pwd)
-    {
-      int costParam = 13;
-      return BCryptNet.HashPassword(pwd, costParam);
-    }
-
     // POST: account/Create
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("acc_id,emp_id,customer_id,acc_username,acc_password,role_id")] account account)
+    public async Task<IActionResult> Create([Bind("acc_id,emp_id,role_id,acc_username,acc_password,acc_session")] account account)
     {
       GetSessionInfo();
 
-      account.acc_password = HashedPassword(account.acc_password);
+      account.acc_password = StaticVar.HashedPassword(account.acc_password);
 
       if (ModelState.IsValid)
       {
@@ -139,7 +133,7 @@ namespace APIProject.Controllers.MyDBForm
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("acc_id,emp_id,customer_id,acc_username,acc_password,role_id")] account account)
+    public async Task<IActionResult> Edit(int id, [Bind("acc_id,emp_id,role_id,acc_username,acc_password,acc_session")] account account)
     {
       GetSessionInfo();
 
@@ -152,7 +146,7 @@ namespace APIProject.Controllers.MyDBForm
       {
         try
         {
-          account.acc_password = HashedPassword(account.acc_password);
+          account.acc_password = StaticVar.HashedPassword(account.acc_password);
 
           _context.Update(account);
           await _context.SaveChangesAsync();

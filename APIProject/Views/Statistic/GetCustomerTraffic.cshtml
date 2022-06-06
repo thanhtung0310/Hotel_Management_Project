@@ -8,26 +8,54 @@
 
 @model IEnumerable<cus_traffic_statistic>
 
-<h1>Customers and their times of using Hotel services <a asp-action="Index" class="btn btn-sm btn-primary">Back</a></h1>
+<h1><a id="printedHeader">Customers and their times of using Hotel services</a><a asp-action="Index" class="btn btn-sm btn-primary">Back</a></h1>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Customer's full name</th>
-            <th>Customer's contact number</th>
-            <th>Customer's address</th>
-            <th>Number of times using hotel services</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.customer_full_name</td>
-                <td>@item.customer_contact_number</td>
-                <td>@item.customer_address</td>
-                <td>@item.count</td>
-            </tr>
-        }
-    </tbody>
-</table>
+<input class="btn btn-sm btn-secondary" type="button" value="Print report" onclick="printDiv()" />
+<br /> 
+<br />
+
+@if (Model != null)
+{ 
+    <div id="printedDiv">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Customer's full name</th>
+                    <th>Customer's contact number</th>
+                    <th>Customer's address</th>
+                    <th>Number of times using hotel services</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.customer_full_name</td>
+                        <td>@item.customer_contact_number</td>
+                        <td>@item.customer_address</td>
+                        <td>@item.count</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<script>
+    function printDiv() {
+        var divContents = document.getElementById("printedDiv").innerHTML;
+        var headerContents = document.getElementById("printedHeader").innerHTML;
+
+        var a = window.open('', '', 'height=1000, width=500');
+
+        a.document.write('<html>');
+        a.document.write('<body> ');
+        a.document.write('<h1> ');
+        a.document.write(headerContents);
+        a.document.write('</h1> ');
+        a.document.write(divContents);
+        a.document.write('</body></html>');
+        a.document.close();
+        a.print();
+    }
+</script>

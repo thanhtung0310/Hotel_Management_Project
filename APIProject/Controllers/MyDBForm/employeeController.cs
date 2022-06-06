@@ -90,7 +90,7 @@ namespace APIProject.Controllers.MyDBForm
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("emp_id,emp_name,emp_position,emp_dob,emp_contact_number")] employee employee)
+    public async Task<IActionResult> Create([Bind("emp_id,emp_name,emp_position,emp_dob,emp_contact_number,emp_identity_number")] employee employee)
     {
       GetSessionInfo();
 
@@ -130,7 +130,7 @@ namespace APIProject.Controllers.MyDBForm
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("emp_id,emp_name,emp_position,emp_dob,emp_contact_number")] employee employee)
+    public async Task<IActionResult> Edit(int id, [Bind("emp_id,emp_name,emp_position,emp_dob,emp_contact_number,emp_identity_number")] employee employee)
     {
       GetSessionInfo();
 

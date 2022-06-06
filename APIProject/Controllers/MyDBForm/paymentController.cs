@@ -48,7 +48,7 @@ namespace APIProject.Controllers.MyDBForm
       if (!isManager())
         return RedirectToAction("Restrict", "Home");
       else
-        return View(await _context.payment.ToListAsync());
+        return View(await _context.payment.OrderByDescending(x => x.payment_id).ToListAsync());
     }
 
     // GET: payment/Details/5
@@ -90,7 +90,7 @@ namespace APIProject.Controllers.MyDBForm
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("payment_id,payment_type_id,reception_id,payment_amount,payment_date")] payment payment)
+    public async Task<IActionResult> Create([Bind("payment_id,payment_type_id,reservation_id,payment_amount,payment_date")] payment payment)
     {
       GetSessionInfo();
 
@@ -130,7 +130,7 @@ namespace APIProject.Controllers.MyDBForm
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("payment_id,payment_type_id,reception_id,payment_amount,payment_date")] payment payment)
+    public async Task<IActionResult> Edit(int id, [Bind("payment_id,payment_type_id,reservation_id,payment_amount,payment_date")] payment payment)
     {
       GetSessionInfo();
 

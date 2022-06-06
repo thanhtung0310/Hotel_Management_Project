@@ -18,20 +18,23 @@
                 <button class="btn btn-sm btn-primary" name="booking_type" id="booking_type" onclick="changeDisplay('pay-now','pay-later'), scrollToAnchor('pay-later')">Book room and Pay later</button>
             </div>
 
-            <form asp-action="BookUnpaidRoomResult" method="post" class="probootstrap-form">
+            <form asp-action="BookUnpaidRoomResult" method="post" class="probootstrap-form" id="mainForm">
                 <div class="col-md-12" id="pay-later">
                     <h4 class="mt-2">Book room and Pay later</h4>
                     <div class="form-group">
                         <label for="customer_id">Customer ID:</label>
                         <input type="text" class="form-control" id="customer_id" name="customer_id" placeholder="Please enter customer ID" />
+                        <span class="form-message"></span>
                     </div>
                     <div class="form-group">
                         <label for="expected_check_in_date">Check in date: </label>
                         <input type="datetime-local" class="form-control" id="expected_check_in_date" name="expected_check_in_date">
+                        <span class="form-message"></span>
                     </div>
                     <div class="form-group">
                         <label for="day_stay_number">Number of staying days: </label>
                         <input type="text" class="form-control" id="day_stay_number" name="day_stay_number" placeholder="Please enter the number of staying dates" />
+                        <span class="form-message"></span>
                     </div>
                     <div class="form-group">
                         <label for="room_type_id">Room type: </label>
@@ -47,28 +50,33 @@
                                 <option value="7">4-Bunk Room</option>
                             </select>
                         </div>
+                        <span class="form-message"></span>
                     </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary btn-lg" id="submit" name="submit" value="Book Now">
                     </div>
+                    <br />
                 </div>
             </form>
 
 
-            <form asp-action="BookPaidRoomResult" method="post" class="probootstrap-form">
+            <form asp-action="BookPaidRoomResult" method="post" class="probootstrap-form" id="mainForm">
                 <div class="col-md-12" id="pay-now" style="display:none;">
                     <h4 class="mt-2">Book room and Pay now</h4>
                     <div class="form-group">
                         <label for="customer_id">Customer ID:</label>
                         <input type="text" class="form-control" id="customer_id" name="customer_id" placeholder="Please enter customer ID">
+                        <span class="form-message"></span>
                     </div>
                     <div class="form-group">
                         <label for="expected_check_in_date">Check in date: </label>
                         <input type="datetime-local" class="form-control" id="expected_check_in_date" name="expected_check_in_date">
+                        <span class="form-message"></span>
                     </div>
                     <div class="form-group">
                         <label for="day_stay_number">Number of staying days: </label>
                         <input type="text" class="form-control" id="day_stay_number" name="day_stay_number" placeholder="Please enter the number of staying dates">
+                        <span class="form-message"></span>
                     </div>
                     <div class="form-group">
                         <label for="room_type_id">Room type: </label>
@@ -84,6 +92,7 @@
                                 <option value="7">4-Bunk Room</option>
                             </select>
                         </div>
+                        <span class="form-message"></span>
                     </div>
                     <div class="form-group">
                         <label for="payment_type_id">Payment type: </label>
@@ -95,21 +104,22 @@
                                 <option value="3">By Debit card</option>
                             </select>
                         </div>
+                        <span class="form-message"></span>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="payment_amount">Payment amount: </label>
-                            <input type="text" class="form-control" id="payment_amount" name="payment_amount" placeholder="Please enter the amount of payment">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="payment_date">Payment date</label>
-                            <input type="datetime-local" class="form-control" id="payment_date" name="payment_date">
-                        </div>
+                    <div class="form-group">
+                        <label for="payment_amount">Payment amount: (VND)</label>
+                        <input type="text" class="form-control" id="payment_amount" name="payment_amount" placeholder="Please enter the amount of payment">
+                        <span class="form-message"></span>
                     </div>
-                    <br />
+                    <div class="form-group">
+                        <label for="payment_date">Payment date</label>
+                        <input type="datetime-local" class="form-control" id="payment_date" name="payment_date">
+                        <span class="form-message"></span>
+                    </div>
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary btn-lg" id="submit" name="submit" value="Book Now">
                     </div>
+                    <br />
                 </div>
             </form>
         </div>
@@ -163,28 +173,9 @@
     </div>
 </div>
 
+<script src="~/js/validator.js"></script>
+
 <script>
-    function openContent(evt, pageName) {
-        // khai bao bien
-        var i, maincontent, tablinks;
-
-        // lay tat thuoc tinh thuoc class="maincontent" va hide
-        maincontent = document.getElementsByClassName("maincontent");
-        for (i = 0; i < maincontent.length; i++) {
-            maincontent[i].style.display = "none";
-        }
-
-        //
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-
-        //
-        document.getElementById(pageName).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
-
     function changeDisplay(pageName, pageName2) {
         //
         var x = document.getElementById(pageName);
@@ -206,5 +197,46 @@
         location.hash = "#" + element;
     }
 
-    var check_in_date = Date.parse($('#check_in_date').val());
+    Validator({
+        form: '#mainForm',
+        formGroupSelector: '.form-group, .row',
+        errorSelector: '.form-message',
+        rules: [
+            //customer_id (int)
+            Validator.isRequired('#customer_id', 'Please enter correct customer ID!'),
+            //room_type_id -> room_type_name (int)
+            Validator.isRequired('#room_type_id', 'Please choose correct room type!'),
+            //expected_check_in_date (datetime)
+            Validator.isRequired('#expected_check_in_date', 'Please choose correct expected check in date!'),
+            //day_stay_number (int)
+            Validator.isRequired('#day_stay_number', 'Please enter the correct number of customer staying days!'),
+            //payment_date (datetime)
+            Validator.isRequired('#payment_date', 'Please choose correct payment date!'),
+            //payment_type_id -> payment_type_name (string)
+            Validator.isRequired('#payment_type_id', 'Please choose correct payment type!'),
+            //payment_ammount (decimal)
+            Validator.isRequired('#payment_amount', 'Please enter correct payment amount!'),
+        ]
+    })
 </script>
+
+<style>
+    .form-group {
+        margin-bottom: 0rem;
+    }
+
+        .form-group.invalid .form-control {
+            border-color: #f33a58;
+        }
+
+        .form-group.invalid .form-message {
+            color: #f33a58;
+        }
+
+    .form-message {
+        font-size: 1rem;
+        line-height: 1.6rem;
+        padding: 4px 0 0;
+        margin-left: 10px;
+    }
+</style>

@@ -48,7 +48,7 @@ namespace APIProject.Controllers.MyDBForm
       if (!isManager())
         return RedirectToAction("Restrict", "Home");
       else
-        return View(await _context.reservation.ToListAsync());
+        return View(await _context.reservation.OrderByDescending(x => x.reservation_id).ToListAsync());
     }
 
     // GET: reservation/Details/5
@@ -90,7 +90,7 @@ namespace APIProject.Controllers.MyDBForm
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("reservation_id,customer_id,expected_check_in_date,day_stay_number,expected_room_type_id")] reservation reservation)
+    public async Task<IActionResult> Create([Bind("reservation_id,customer_id,expected_check_in_date,day_stay_number,expected_room_type_id,reservation_status")] reservation reservation)
     {
       GetSessionInfo();
 
@@ -130,7 +130,7 @@ namespace APIProject.Controllers.MyDBForm
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("reservation_id,customer_id,expected_check_in_date,day_stay_number,expected_room_type_id")] reservation reservation)
+    public async Task<IActionResult> Edit(int id, [Bind("reservation_id,customer_id,expected_check_in_date,day_stay_number,expected_room_type_id,reservation_status")] reservation reservation)
     {
       GetSessionInfo();
 
