@@ -13,29 +13,13 @@ using APIProject.Data;
 
 namespace APIProject.Controllers.MyCustomForm
 {
-  public class Cus_InfoController : Controller
+  public class Cus_InfoController : BaseController
   {
-    const string SessionUsername = "_username";
-    const string SessionRole = "Guest";
-    const string SessionName = "_name";
-    const string SessionToken = "_token";
-
     string baseUrl = StaticVar.baseUrl;
-
-    private void GetSessionInfo()
-    {
-      // passing user data
-      ViewBag.SessionUsername = HttpContext.Session.GetString(SessionUsername);
-      ViewBag.SessionRole = HttpContext.Session.GetString(SessionRole);
-      ViewBag.SessionName = HttpContext.Session.GetString(SessionName);
-      ViewBag.Session = HttpContext.Session.GetString(SessionToken);
-    }
 
     // GET: Cus_InfoController
     public async Task<IActionResult> Index()
     {
-      GetSessionInfo();
-
       List<cus_info> cusList = new List<cus_info>();
       using (var httpClient = new HttpClient())
       {
@@ -57,8 +41,6 @@ namespace APIProject.Controllers.MyCustomForm
     // GET: Cus_InfoController/GetBookedCustomer
     public async Task<IActionResult> GetBookedCustomer()
     {
-      GetSessionInfo();
-
       List<booked_cus_info> cusList = new List<booked_cus_info>();
       using (var httpClient = new HttpClient())
       {
@@ -85,8 +67,6 @@ namespace APIProject.Controllers.MyCustomForm
     // GET: Cus_InfoController/GetCheckedinCustomer
     public async Task<IActionResult> GetCheckedinCustomer()
     {
-      GetSessionInfo();
-
       List<checked_cus_info> cusList = new List<checked_cus_info>();
       using (var httpClient = new HttpClient())
       {
@@ -113,8 +93,6 @@ namespace APIProject.Controllers.MyCustomForm
     // GET: Cus_InfoController/GetCustomerByID
     public ViewResult GetCustomerByID()
     {
-      GetSessionInfo();
-
       return View();
     }
 
@@ -122,8 +100,6 @@ namespace APIProject.Controllers.MyCustomForm
     [HttpPost]
     public async Task<IActionResult> GetCustomerByID(int id)
     {
-      GetSessionInfo();
-
       cus_info cus = new cus_info();
       using (var httpClient = new HttpClient())
       {
@@ -150,8 +126,6 @@ namespace APIProject.Controllers.MyCustomForm
     // GET: Cus_InfoController/GetCustomerByName
     public ViewResult GetCustomerByName()
     {
-      GetSessionInfo();
-
       return View();
     }
 
@@ -159,8 +133,6 @@ namespace APIProject.Controllers.MyCustomForm
     [HttpPost]
     public async Task<IActionResult> GetCustomerByName(string search_string)
     {
-      GetSessionInfo();
-
       List<customer> cusList = new List<customer>();
       using (var httpClient = new HttpClient())
       {
@@ -187,8 +159,6 @@ namespace APIProject.Controllers.MyCustomForm
     // GET: Cus_InfoController/GetCustomerByNum
     public ViewResult GetCustomerByNum()
     {
-      GetSessionInfo();
-
       return View();
     }
 
@@ -196,8 +166,6 @@ namespace APIProject.Controllers.MyCustomForm
     [HttpPost]
     public async Task<IActionResult> GetCustomerByNum(string search_string)
     {
-      GetSessionInfo();
-
       cus_info cus = new cus_info();
       using (var httpClient = new HttpClient())
       {
@@ -224,8 +192,6 @@ namespace APIProject.Controllers.MyCustomForm
     // GET: Cus_InfoController/GetBookedCustomerByNum
     public ViewResult GetBookedCustomerByNum()
     {
-      GetSessionInfo();
-
       return View();
     }
 
@@ -233,8 +199,6 @@ namespace APIProject.Controllers.MyCustomForm
     [HttpPost]
     public async Task<IActionResult> GetBookedCustomerByNum(string num)
     {
-      GetSessionInfo();
-
       booked_cus_info cus = new booked_cus_info();
       using (var httpClient = new HttpClient())
       {
@@ -261,8 +225,6 @@ namespace APIProject.Controllers.MyCustomForm
     // GET: Cus_InfoController/AddCustomer
     public async Task<IActionResult> AddCustomer()
     {
-      GetSessionInfo();
-
       cus_info cus = new cus_info();
       using (var httpClient = new HttpClient())
       {
@@ -294,8 +256,6 @@ namespace APIProject.Controllers.MyCustomForm
     [HttpPost]
     public async Task<IActionResult> AddCustomer(cus_info cus)
     {
-      GetSessionInfo();
-
       cus_info receivedCus = new cus_info();
       using (var httpClient = new HttpClient())
       {        
@@ -319,8 +279,6 @@ namespace APIProject.Controllers.MyCustomForm
     // GET: Cus_InfoController/Details
     public async Task<IActionResult> Details(int id)
     {
-      GetSessionInfo();
-
       cus_info cus = new cus_info();
       using (var httpClient = new HttpClient())
       {
@@ -343,8 +301,6 @@ namespace APIProject.Controllers.MyCustomForm
     [HttpPost]
     public async Task<IActionResult> Details(cus_info cus)
     {
-      GetSessionInfo();
-
       cus_info receivedCus = new cus_info();
       using (var httpClient = new HttpClient())
       {
@@ -371,8 +327,6 @@ namespace APIProject.Controllers.MyCustomForm
     [HttpPost]
     public async Task<IActionResult> DeleteCustomer(int id)
     {
-      GetSessionInfo();
-
       using (var httpClient = new HttpClient())
       {
         using (var response = await httpClient.DeleteAsync(baseUrl + "/cus_infos/" + id))

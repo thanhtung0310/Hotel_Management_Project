@@ -1,8 +1,6 @@
 
 // Đối tượng 'Validator'
-function Validator(options) {
-    
-    
+function Validator(options) {    
     function getParent(element, selector) {
         while(element.parentElement) {
             if(element.parentElement.matches(selector)) {
@@ -53,92 +51,92 @@ function Validator(options) {
 
     // lấy element của form cần validate
     var formElement = document.querySelector(options.form)
-    if(formElement) {
-        // Khi submit form
-        formElement.onsubmit = function(e) {
-            e.preventDefault();
+    //if(formElement) {
+    //    // Khi submit form
+    //    formElement.onsubmit = function(e) {
+    //        e.preventDefault();
 
-            var isFormValid = true;
-            // Thực hiện lặp qua từng rule và validate luôn.
-             options.rules.forEach(function(rule) {
-                var inputElement = formElement.querySelector(rule.selector)
-                var isValid = validate(inputElement, rule) 
-                if(!isValid) {
-                    isFormValid = false;
-                }
-             });
+    //        var isFormValid = true;
+    //        // Thực hiện lặp qua từng rule và validate luôn.
+    //         options.rules.forEach(function(rule) {
+    //            var inputElement = formElement.querySelector(rule.selector)
+    //            var isValid = validate(inputElement, rule) 
+    //            if(!isValid) {
+    //                isFormValid = false;
+    //            }
+    //         });
                
-             if(isFormValid) { // true
-                 //Trường hợp submit với js
-                 if(typeof options.onSubmit === 'function') {
-                    var enableInputs = formElement.querySelectorAll('[name]:not([disabled])')
-                    var formValues = Array.from(enableInputs).reduce(function(values, input){
+    //         if(isFormValid) { // true
+    //             //Trường hợp submit với js
+    //             if(typeof options.onSubmit === 'function') {
+    //                var enableInputs = formElement.querySelectorAll('[name]:not([disabled])')
+    //                var formValues = Array.from(enableInputs).reduce(function(values, input){
 
-                            switch(input.type){
-                                    case 'radio':
-                                        values[input.name] = formElement.querySelector('input[name="' + input.name + '"]:checked').value;
-                                    case 'checkbox':
-                                        if(!input.matches(':checked')) {
-                                            if(typeof input === ''){
-                                                values[input.name] = '';
-                                            }
-                                            return values;
-                                        }
+    //                        switch(input.type){
+    //                                case 'radio':
+    //                                    values[input.name] = formElement.querySelector('input[name="' + input.name + '"]:checked').value;
+    //                                case 'checkbox':
+    //                                    if(!input.matches(':checked')) {
+    //                                        if(typeof input === ''){
+    //                                            values[input.name] = '';
+    //                                        }
+    //                                        return values;
+    //                                    }
 
-                                        if(!Array.isArray(values[input.name])) {
-                                            values[input.name] = [];
-                                        }
+    //                                    if(!Array.isArray(values[input.name])) {
+    //                                        values[input.name] = [];
+    //                                    }
 
-                                        values[input.name].push(input.value);
+    //                                    values[input.name].push(input.value);
 
-                                        break;
-                                    default:
-                                    values[input.name] = input.value;
+    //                                    break;
+    //                                default:
+    //                                values[input.name] = input.value;
                                     
-                            }
+    //                        }
 
-                            return values;  
-                    }, {}); //gán cho initialvalue 1 object
+    //                        return values;  
+    //                }, {}); //gán cho initialvalue 1 object
 
-                     options.onSubmit(formValues)
-                 } 
-                 // Trường hợp submit với hàh vi mặc định
-                 else {
-                     formElement.submit();
-                 }
+    //                 //options.onSubmit(formValues)
+    //             } 
+    //             // Trường hợp submit với hành vi mặc định
+    //             else {
+    //                 formElement.submit();
+    //             }
                  
-             } 
-        }
+    //         } 
+    //    }
 
 
-        // Xử lý lặp qua mỗi rule và xử lý ( lắng nghe sự kiện blur, input, ...)
-        options.rules.forEach(function(rule) {
+    //    // Xử lý lặp qua mỗi rule và xử lý ( lắng nghe sự kiện blur, input, ...)
+    //    options.rules.forEach(function(rule) {
 
-            // Lưu lại các rules cho mỗi input, sử dụng dấu ngoặc vuông làm key của object.
-            if(Array.isArray(selectorRules[rule.selector])) {
-                selectorRules[rule.selector].push(rule.test);
-                // nếu nó là cái mảng push cho nó cái rule tiếp theo.
-            } else {
-                selectorRules[rule.selector] = [rule.test];
-                 // nếu nó không phải là array th gán cho nó 1 array là rule đầu tiên
-            }
+    //        // Lưu lại các rules cho mỗi input, sử dụng dấu ngoặc vuông làm key của object.
+    //        if(Array.isArray(selectorRules[rule.selector])) {
+    //            selectorRules[rule.selector].push(rule.test);
+    //            // nếu nó là cái mảng push cho nó cái rule tiếp theo.
+    //        } else {
+    //            selectorRules[rule.selector] = [rule.test];
+    //             // nếu nó không phải là array th gán cho nó 1 array là rule đầu tiên
+    //        }
  
-            var inputElements = formElement.querySelectorAll(rule.selector) // s
-            Array.from(inputElements).forEach(function(inputElement) {
-                 // Xử lý trường hợp blur ra ngoài
-                inputElement.onblur = function() {
-                    validate(inputElement, rule) // truyền lại đối số
-                }
+    //        var inputElements = formElement.querySelectorAll(rule.selector) // s
+    //        Array.from(inputElements).forEach(function(inputElement) {
+    //             // Xử lý trường hợp blur ra ngoài
+    //            inputElement.onblur = function() {
+    //                validate(inputElement, rule) // truyền lại đối số
+    //            }
 
-                // Xử lý mỗi khi người dùng nhập vào input
-                inputElement.oninput = function () {
-                    var errorElement = getParent(inputElement, options.formGroupSelector).querySelector(options.errorSelector) 
-                    errorElement.innerHTML = ''
-                    getParent(inputElement, options.formGroupSelector).classList.remove('invalid')
-                }
-            })
-        });
-    }
+    //            // Xử lý mỗi khi người dùng nhập vào input
+    //            inputElement.oninput = function () {
+    //                var errorElement = getParent(inputElement, options.formGroupSelector).querySelector(options.errorSelector) 
+    //                errorElement.innerHTML = ''
+    //                getParent(inputElement, options.formGroupSelector).classList.remove('invalid')
+    //            }
+    //        })
+    //    });
+    //}
 }
 
 // Định nghĩa các rules:

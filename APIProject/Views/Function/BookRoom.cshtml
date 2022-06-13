@@ -197,27 +197,30 @@
         location.hash = "#" + element;
     }
 
-    Validator({
-        form: '#mainForm',
-        formGroupSelector: '.form-group, .row',
-        errorSelector: '.form-message',
-        rules: [
-            //customer_id (int)
-            Validator.isRequired('#customer_id', 'Please enter correct customer ID!'),
-            //room_type_id -> room_type_name (int)
-            Validator.isRequired('#room_type_id', 'Please choose correct room type!'),
-            //expected_check_in_date (datetime)
-            Validator.isRequired('#expected_check_in_date', 'Please choose correct expected check in date!'),
-            //day_stay_number (int)
-            Validator.isRequired('#day_stay_number', 'Please enter the correct number of customer staying days!'),
-            //payment_date (datetime)
-            Validator.isRequired('#payment_date', 'Please choose correct payment date!'),
-            //payment_type_id -> payment_type_name (string)
-            Validator.isRequired('#payment_type_id', 'Please choose correct payment type!'),
-            //payment_ammount (decimal)
-            Validator.isRequired('#payment_amount', 'Please enter correct payment amount!'),
-        ]
-    })
+    //Validator({
+    //    form: '#mainForm',
+    //    formGroupSelector: '.form-group, .row',
+    //    errorSelector: '.form-message',
+    //    rules: [
+    //        //customer_id (int)
+    //        Validator.isRequired('#customer_id', 'Please enter correct customer ID!'),
+    //        //room_type_id -> room_type_name (int)
+    //        Validator.isRequired('#room_type_id', 'Please choose correct room type!'),
+    //        //expected_check_in_date (datetime)
+    //        Validator.isRequired('#expected_check_in_date', 'Please choose correct expected check in date!'),
+    //        //day_stay_number (int)
+    //        Validator.isRequired('#day_stay_number', 'Please enter the correct number of customer staying days!'),
+    //        //payment_date (datetime)
+    //        Validator.isRequired('#payment_date', 'Please choose correct payment date!'),
+    //        //payment_type_id -> payment_type_name (string)
+    //        Validator.isRequired('#payment_type_id', 'Please choose correct payment type!'),
+    //        //payment_ammount (decimal)
+    //        Validator.isRequired('#payment_amount', 'Please enter correct payment amount!'),
+    //    ],
+    //    onSubmit: function (data) {
+    //        console.log(data);
+    //    }
+    //})
 </script>
 
 <style>

@@ -15,6 +15,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 
 namespace APIProject
 {
@@ -34,14 +35,7 @@ namespace APIProject
 
       //services.AddDistributedMemoryCache(); // use memory cache
 
-      //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-      //  .AddCookie((options) =>
-      //  {
-      //    options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
-      //    options.SlidingExpiration = true;
-      //    options.AccessDeniedPath = "/Forbidden/";
-      //  });
-
+      // use sql server to save session info
       services.AddDistributedSqlServerCache((options) =>
       {
         options.ConnectionString = "data source=localhost;initial catalog=VMO_HotelManagement;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework";
@@ -49,6 +43,7 @@ namespace APIProject
         options.TableName = "userSessions";
       });
 
+      // session settings
       services.AddSession((options) =>
       {
         options.IdleTimeout = new TimeSpan(12, 0, 0);
@@ -56,23 +51,36 @@ namespace APIProject
         options.Cookie.HttpOnly = true;
       });
 
+      // add model-view-controller model
       services.AddMvc((options) =>
       {
         options.EnableEndpointRouting = false;
       });
 
+      // add swagger ui to show api lists
       services.AddSwaggerGen((options) =>
       {
         options.SwaggerDoc("v1", new OpenApiInfo { Title = "APIProject", Version = "v1" });
       });
 
+      // add database context
       services.AddDbContext<APIProjectContext>((options) =>
       {
         options.UseSqlServer(Configuration.GetConnectionString("APIProjectContext"));
       });
 
+      // use sql connection string in singleton
       services.AddSingleton<IDbConnection>(db => new SqlConnection(
               Configuration.GetConnectionString("APIProjectContext")));
+
+      services.Configure<CookiePolicyOptions>(options =>
+      {
+        // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+        //options.CheckConsentNeeded = context => true;
+        options.CheckConsentNeeded = context => false;
+        options.MinimumSameSitePolicy = SameSiteMode.None;
+      });
+
       DependencyInjection.InjectService(services);
 
     }
@@ -111,10 +119,6 @@ namespace APIProject
 
       app.UseEndpoints(endpoints =>
       {
-        //endpoints.MapControllerRoute(
-        //  name: "MyArea",
-        //  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-
         endpoints.MapControllerRoute(
           name: "default",
           pattern: "{controller=Home}/{action=Index}/{id?}");

@@ -10,7 +10,8 @@ using Microsoft.AspNetCore.Http;
 
 namespace APIProject.Controllers.MyDBForm
 {
-  public class RoleController : Controller
+  [Admin]
+  public class RoleController : BaseController
   {
     private readonly APIProjectContext _context;
 
@@ -19,43 +20,15 @@ namespace APIProject.Controllers.MyDBForm
       _context = context;
     }
 
-    const string SessionUsername = "_username";
-    const string SessionRole = "Guest";
-    const string SessionName = "_name";
-    const string SessionToken = "_token";
-
-    private void GetSessionInfo()
-    {
-      ViewBag.SessionUsername = HttpContext.Session.GetString(SessionUsername);
-      ViewBag.SessionRole = HttpContext.Session.GetString(SessionRole);
-      ViewBag.SessionName = HttpContext.Session.GetString(SessionName);
-      ViewBag.Session = HttpContext.Session.GetString(SessionToken);
-    }
-
-    private bool isManager()
-    {
-      if (ViewBag.SessionRole == "Manager")
-        return true;
-      else
-        return false;
-    }
-
     // GET: Role
     public async Task<IActionResult> Index()
     {
-      GetSessionInfo();
-
-      if (!isManager())
-        return RedirectToAction("Restrict", "Home");
-      else
-        return View(await _context.role.ToListAsync());
+      return View(await _context.role.ToListAsync());
     }
 
     // GET: Role/Details/5
     public async Task<IActionResult> Details(int? id)
     {
-      GetSessionInfo();
-
       if (id == null)
       {
         return NotFound();
@@ -68,21 +41,13 @@ namespace APIProject.Controllers.MyDBForm
         return NotFound();
       }
 
-      if (!isManager())
-        return RedirectToAction("Restrict", "Home");
-      else
-        return View(role);
+      return View(role);
     }
 
     // GET: Role/Create
     public IActionResult Create()
     {
-      GetSessionInfo();
-
-      if (!isManager())
-        return RedirectToAction("Restrict", "Home");
-      else
-        return View();
+      return View();
     }
 
     // POST: Role/Create
@@ -92,8 +57,6 @@ namespace APIProject.Controllers.MyDBForm
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create([Bind("role_id,role_name")] role role)
     {
-      GetSessionInfo();
-
       if (ModelState.IsValid)
       {
         _context.Add(role);
@@ -106,8 +69,6 @@ namespace APIProject.Controllers.MyDBForm
     // GET: Role/Edit/5
     public async Task<IActionResult> Edit(int? id)
     {
-      GetSessionInfo();
-
       if (id == null)
       {
         return NotFound();
@@ -118,11 +79,8 @@ namespace APIProject.Controllers.MyDBForm
       {
         return NotFound();
       }
-
-      if (!isManager())
-        return RedirectToAction("Restrict", "Home");
-      else
-        return View(role);
+      
+      return View(role);
     }
 
     // POST: Role/Edit/5
@@ -132,8 +90,6 @@ namespace APIProject.Controllers.MyDBForm
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int id, [Bind("role_id,role_name")] role role)
     {
-      GetSessionInfo();
-
       if (id != role.role_id)
       {
         return NotFound();
@@ -165,8 +121,6 @@ namespace APIProject.Controllers.MyDBForm
     // GET: Role/Delete/5
     public async Task<IActionResult> Delete(int? id)
     {
-      GetSessionInfo();
-
       if (id == null)
       {
         return NotFound();
@@ -179,10 +133,7 @@ namespace APIProject.Controllers.MyDBForm
         return NotFound();
       }
 
-      if (!isManager())
-        return RedirectToAction("Restrict", "Home");
-      else
-        return View(role);
+      return View(role);
     }
 
     // POST: Role/Delete/5
@@ -190,8 +141,6 @@ namespace APIProject.Controllers.MyDBForm
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
-      GetSessionInfo();
-
       var role = await _context.role.FindAsync(id);
       _context.role.Remove(role);
       await _context.SaveChangesAsync();

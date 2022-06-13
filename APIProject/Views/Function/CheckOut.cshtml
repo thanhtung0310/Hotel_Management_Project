@@ -196,33 +196,33 @@
         location.hash = "#" + element;
     }
 
-    Validator({
-        form: '#mainForm',
-        formGroupSelector: '.form-group',
-        errorSelector: '.form-message',
-        rules: [
-            //customer_id (int)
-            Validator.isRequired('#customer_id', 'Please enter correct customer ID!'),
-            //room_id -> room_number (int)
-            Validator.isRequired('#room_id', 'Please choose correct room number!'),
-            //check_out_date (datetime)
-            Validator.isRequired('#check_out_date', 'Please choose correct check out date!'),
-            //payment_type_id -> payment_type_name (string)
-            Validator.isRequired('#payment_type_id', 'Please choose correct payment type!'),
-            //payment_ammount (decimal)
-            Validator.isRequired('#payment_amount', 'Please enter correct payment amount!'),
-            //Validator.isRequired('#email', 'Please enter email in correct format!'),
-            //Validator.isEmail('#email'),
-            //Validator.isRequired('#password', 'Please enter password!'),
-            //Validator.isRequired('#province', 'Please enter province!'),
-            //Validator.isRequired('input[name="gender"]'),
-            //Validator.minLength('#password', 6),
-            //Validator.isRequired('#password_confirmation'),
-            //Validator.isConfirmed('#password_confirmation', function () {
-            //    return document.querySelector('#mainForm #password').value;
-            //}, 'The second new password is not correct!'),
-        ]
-    })
+    //Validator({
+    //    form: '#mainForm',
+    //    formGroupSelector: '.form-group',
+    //    errorSelector: '.form-message',
+    //    rules: [
+    //        //customer_id (int)
+    //        Validator.isRequired('#customer_id', 'Please enter correct customer ID!'),
+    //        //room_id -> room_number (int)
+    //        Validator.isRequired('#room_id', 'Please choose correct room number!'),
+    //        //check_out_date (datetime)
+    //        Validator.isRequired('#check_out_date', 'Please choose correct check out date!'),
+    //        //payment_type_id -> payment_type_name (string)
+    //        Validator.isRequired('#payment_type_id', 'Please choose correct payment type!'),
+    //        //payment_ammount (decimal)
+    //        Validator.isRequired('#payment_amount', 'Please enter correct payment amount!'),
+    //        //Validator.isRequired('#email', 'Please enter email in correct format!'),
+    //        //Validator.isEmail('#email'),
+    //        //Validator.isRequired('#password', 'Please enter password!'),
+    //        //Validator.isRequired('#province', 'Please enter province!'),
+    //        //Validator.isRequired('input[name="gender"]'),
+    //        //Validator.minLength('#password', 6),
+    //        //Validator.isRequired('#password_confirmation'),
+    //        //Validator.isConfirmed('#password_confirmation', function () {
+    //        //    return document.querySelector('#mainForm #password').value;
+    //        //}, 'The second new password is not correct!'),
+    //    ]
+    //})
 </script>
 
 <style>

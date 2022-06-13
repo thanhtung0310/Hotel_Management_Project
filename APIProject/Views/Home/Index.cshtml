@@ -1,4 +1,5 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Http
 
 @{
     ViewData["Title"] = "Home Page";
@@ -11,7 +12,11 @@
         <p>
             This is the Hotel management project of <a href="https://portfolio0fthanhtung.w3spaces.com/" target="_blank" rel="noopener noreferrer">Phan Thanh Tung</a> for VMO final assessment
         </p>
-        @if (ViewBag.SessionRole == null || ViewBag.SessionRole == "Guest")
+        @{
+            var SessionRole = Context.Session.GetString("SessionRole");
+            var SessionName = Context.Session.GetString("SessionName");
+        }
+        @if (SessionRole == null || SessionRole == "Guest")
         {
             <h4>Please <a asp-action="Login" style="color: lightgray;">log in</a> to use the project!</h4>
         }

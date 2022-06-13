@@ -10,7 +10,8 @@ using Microsoft.AspNetCore.Http;
 
 namespace APIProject.Controllers.MyDBForm
 {
-  public class PaymentTypeController : Controller
+  [Admin]
+  public class PaymentTypeController : BaseController
   {
     private readonly APIProjectContext _context;
 
@@ -19,43 +20,15 @@ namespace APIProject.Controllers.MyDBForm
       _context = context;
     }
 
-    const string SessionUsername = "_username";
-    const string SessionRole = "Guest";
-    const string SessionName = "_name";
-    const string SessionToken = "_token";
-
-    private void GetSessionInfo()
-    {
-      ViewBag.SessionUsername = HttpContext.Session.GetString(SessionUsername);
-      ViewBag.SessionRole = HttpContext.Session.GetString(SessionRole);
-      ViewBag.SessionName = HttpContext.Session.GetString(SessionName);
-      ViewBag.Session = HttpContext.Session.GetString(SessionToken);
-    }
-
-    private bool isManager()
-    {
-      if (ViewBag.SessionRole == "Manager")
-        return true;
-      else
-        return false;
-    }
-
     // GET: paymentType
     public async Task<IActionResult> Index()
     {
-      GetSessionInfo();
-
-      if (!isManager())
-        return RedirectToAction("Restrict", "Home");
-      else
-        return View(await _context.paymentType.ToListAsync());
+      return View(await _context.paymentType.ToListAsync());
     }
 
     // GET: paymentType/Details/5
     public async Task<IActionResult> Details(int? id)
     {
-      GetSessionInfo();
-
       if (id == null)
       {
         return NotFound();
@@ -68,21 +41,13 @@ namespace APIProject.Controllers.MyDBForm
         return NotFound();
       }
 
-      if (!isManager())
-        return RedirectToAction("Restrict", "Home");
-      else
-        return View(paymentType);
+      return View(paymentType);
     }
 
     // GET: paymentType/Create
     public IActionResult Create()
     {
-      GetSessionInfo();
-
-      if (!isManager())
-        return RedirectToAction("Restrict", "Home");
-      else
-        return View();
+      return View();
     }
 
     // POST: paymentType/Create
@@ -92,8 +57,6 @@ namespace APIProject.Controllers.MyDBForm
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create([Bind("payment_type_id,payment_type_name")] paymentType paymentType)
     {
-      GetSessionInfo();
-
       if (ModelState.IsValid)
       {
         _context.Add(paymentType);
@@ -106,8 +69,6 @@ namespace APIProject.Controllers.MyDBForm
     // GET: paymentType/Edit/5
     public async Task<IActionResult> Edit(int? id)
     {
-      GetSessionInfo();
-
       if (id == null)
       {
         return NotFound();
@@ -119,10 +80,7 @@ namespace APIProject.Controllers.MyDBForm
         return NotFound();
       }
 
-      if (!isManager())
-        return RedirectToAction("Restrict", "Home");
-      else
-        return View(paymentType);
+      return View(paymentType);
     }
 
     // POST: paymentType/Edit/5
@@ -132,8 +90,6 @@ namespace APIProject.Controllers.MyDBForm
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int id, [Bind("payment_type_id,payment_type_name")] paymentType paymentType)
     {
-      GetSessionInfo();
-
       if (id != paymentType.payment_type_id)
       {
         return NotFound();
@@ -165,8 +121,6 @@ namespace APIProject.Controllers.MyDBForm
     // GET: paymentType/Delete/5
     public async Task<IActionResult> Delete(int? id)
     {
-      GetSessionInfo();
-
       if (id == null)
       {
         return NotFound();
@@ -179,10 +133,7 @@ namespace APIProject.Controllers.MyDBForm
         return NotFound();
       }
 
-      if (!isManager())
-        return RedirectToAction("Restrict", "Home");
-      else
-        return View(paymentType);
+      return View(paymentType);
     }
 
     // POST: paymentType/Delete/5
@@ -190,8 +141,6 @@ namespace APIProject.Controllers.MyDBForm
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
-      GetSessionInfo();
-
       var paymentType = await _context.paymentType.FindAsync(id);
       _context.paymentType.Remove(paymentType);
       await _context.SaveChangesAsync();

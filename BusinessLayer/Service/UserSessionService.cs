@@ -21,6 +21,7 @@ namespace BusinessLayer.Service
       _provider = provider;
     }
 
+    // get a list of users information
     public async Task<Response<List<UserSession>>> GetUserSessions()
     {
       var response = new Response<List<UserSession>>();
@@ -42,6 +43,7 @@ namespace BusinessLayer.Service
       return response;
     }
 
+    // get user information by acc_username
     public async Task<Response<UserSession>> GetUserSession(string acc_username)
     {
       var response = new Response<UserSession>();
@@ -65,6 +67,7 @@ namespace BusinessLayer.Service
       return response;
     }
 
+    // get and check password before login
     public async Task<Response<UserSession>> Login(UserSession user)
     {
       var response = new Response<UserSession>();
@@ -96,6 +99,7 @@ namespace BusinessLayer.Service
       return response;
     }
 
+    // clear session when log out
     public async Task<Response<UserSession>> Logout(string acc_username)
     {
       var response = new Response<UserSession>();
@@ -127,6 +131,7 @@ namespace BusinessLayer.Service
       return response;
     }
 
+    // update user information
     public async Task<Response<UserSession>> UpdateUser(UserSession newData)
     {
       var response = new Response<UserSession>();
@@ -164,6 +169,7 @@ namespace BusinessLayer.Service
       return response;
     }
 
+    // update user password (hashed)
     public async Task<Response<UserSession>> UpdatePassword(UserSession newData)
     {
       var response = new Response<UserSession>();
@@ -199,6 +205,7 @@ namespace BusinessLayer.Service
       return response;
     }
 
+    // create user session and saved in database
     public async Task<Response<UserSession>> StartSession(UserSession newData)
     {
       var response = new Response<UserSession>();

@@ -10,7 +10,8 @@ using Microsoft.AspNetCore.Http;
 
 namespace APIProject.Controllers.MyDBForm
 {
-  public class ReceptionController : Controller
+  [Admin]
+  public class ReceptionController : BaseController
   {
     private readonly APIProjectContext _context;
 
@@ -19,43 +20,15 @@ namespace APIProject.Controllers.MyDBForm
       _context = context;
     }
 
-    const string SessionUsername = "_username";
-    const string SessionRole = "Guest";
-    const string SessionName = "_name";
-    const string SessionToken = "_token";
-
-    private void GetSessionInfo()
-    {
-      ViewBag.SessionUsername = HttpContext.Session.GetString(SessionUsername);
-      ViewBag.SessionRole = HttpContext.Session.GetString(SessionRole);
-      ViewBag.SessionName = HttpContext.Session.GetString(SessionName);
-      ViewBag.Session = HttpContext.Session.GetString(SessionToken);
-    }
-
-    private bool isManager()
-    {
-      if (ViewBag.SessionRole == "Manager")
-        return true;
-      else
-        return false;
-    }
-
     // GET: reception
     public async Task<IActionResult> Index()
     {
-      GetSessionInfo();
-
-      if (!isManager())
-        return RedirectToAction("Restrict", "Home");
-      else
-        return View(await _context.reception.OrderByDescending(x => x.reception_id).ToListAsync());
+      return View(await _context.reception.OrderByDescending(x => x.reception_id).ToListAsync());
     }
 
     // GET: reception/Details/5
     public async Task<IActionResult> Details(int? id)
     {
-      GetSessionInfo();
-
       if (id == null)
       {
         return NotFound();
@@ -68,21 +41,13 @@ namespace APIProject.Controllers.MyDBForm
         return NotFound();
       }
 
-      if (!isManager())
-        return RedirectToAction("Restrict", "Home");
-      else
-        return View(reception);
+      return View(reception);
     }
 
     // GET: reception/Create
     public IActionResult Create()
     {
-      GetSessionInfo();
-
-      if (!isManager())
-        return RedirectToAction("Restrict", "Home");
-      else
-        return View();
+      return View();
     }
 
     // POST: reception/Create
@@ -92,8 +57,6 @@ namespace APIProject.Controllers.MyDBForm
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create([Bind("reception_id,customer_id,reservation_id,room_id,check_in_date,expected_check_out_date,check_out_date,reception_status")] reception reception)
     {
-      GetSessionInfo();
-
       if (ModelState.IsValid)
       {
         _context.Add(reception);
@@ -106,8 +69,6 @@ namespace APIProject.Controllers.MyDBForm
     // GET: reception/Edit/5
     public async Task<IActionResult> Edit(int? id)
     {
-      GetSessionInfo();
-
       if (id == null)
       {
         return NotFound();
@@ -119,10 +80,7 @@ namespace APIProject.Controllers.MyDBForm
         return NotFound();
       }
 
-      if (!isManager())
-        return RedirectToAction("Restrict", "Home");
-      else
-        return View(reception);
+      return View(reception);
     }
 
     // POST: reception/Edit/5
@@ -132,8 +90,6 @@ namespace APIProject.Controllers.MyDBForm
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int id, [Bind("reception_id,customer_id,reservation_id,room_id,check_in_date,expected_check_out_date,check_out_date,reception_status")] reception reception)
     {
-      GetSessionInfo();
-
       if (id != reception.reception_id)
       {
         return NotFound();
@@ -165,8 +121,6 @@ namespace APIProject.Controllers.MyDBForm
     // GET: reception/Delete/5
     public async Task<IActionResult> Delete(int? id)
     {
-      GetSessionInfo();
-
       if (id == null)
       {
         return NotFound();
@@ -179,10 +133,7 @@ namespace APIProject.Controllers.MyDBForm
         return NotFound();
       }
 
-      if (!isManager())
-        return RedirectToAction("Restrict", "Home");
-      else
-        return View(reception);
+      return View(reception);
     }
 
     // POST: reception/Delete/5
@@ -190,8 +141,6 @@ namespace APIProject.Controllers.MyDBForm
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
-      GetSessionInfo();
-
       var reception = await _context.reception.FindAsync(id);
       _context.reception.Remove(reception);
       await _context.SaveChangesAsync();

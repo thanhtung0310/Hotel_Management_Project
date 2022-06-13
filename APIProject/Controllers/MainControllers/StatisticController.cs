@@ -12,37 +12,19 @@ using APIProject.Data;
 
 namespace APIProject.Controllers.MainControllers
 {
-  public class StatisticController : Controller
+  public class StatisticController : BaseController
   {
-    const string SessionUsername = "_username";
-    const string SessionRole = "Guest";
-    const string SessionName = "_name";
-    const string SessionToken = "_token";
-
     string baseUrl = StaticVar.baseUrl;
-
-    private void GetSessionInfo()
-    {
-      // passing user data
-      ViewBag.SessionUsername = HttpContext.Session.GetString(SessionUsername);
-      ViewBag.SessionRole = HttpContext.Session.GetString(SessionRole);
-      ViewBag.SessionName = HttpContext.Session.GetString(SessionName);
-      ViewBag.Session = HttpContext.Session.GetString(SessionToken);
-    }
 
     // GET: StatisticController
     public IActionResult Index()
     {
-      GetSessionInfo();
-
       return View();
     }
 
     // GET: StatisticController/GetCustomerTraffic
     public async Task<IActionResult> GetCustomerTraffic()
     {
-      GetSessionInfo();
-
       List<cus_traffic_statistic> cusList = new List<cus_traffic_statistic>();
       using (var httpClient = new HttpClient())
       {
@@ -64,8 +46,6 @@ namespace APIProject.Controllers.MainControllers
     // GET: StatisticController/GetTotalCountType
     public async Task<IActionResult> GetTotalCountType()
     {
-      GetSessionInfo();
-
       List<room_type_count_statistic> totalList = new List<room_type_count_statistic>();
       using (var httpClient = new HttpClient())
       {
@@ -87,8 +67,6 @@ namespace APIProject.Controllers.MainControllers
     // GET: StatisticController/GetAvailCountType
     public async Task<IActionResult> GetAvailCountType()
     {
-      GetSessionInfo();
-
       List<room_type_count_statistic> totalList = new List<room_type_count_statistic>();
       using (var httpClient = new HttpClient())
       {
@@ -110,8 +88,6 @@ namespace APIProject.Controllers.MainControllers
     // GET: StatisticController/GetMostPopularRoomType
     public async Task<IActionResult> GetMostPopularRoomType()
     {
-      GetSessionInfo();
-
       List<room_popular_statistic> roomList = new List<room_popular_statistic>();
       using (var httpClient = new HttpClient())
       {
@@ -133,8 +109,6 @@ namespace APIProject.Controllers.MainControllers
     // GET: StatisticController/GetLeastPopularRoomType
     public async Task<IActionResult> GetLeastPopularRoomType()
     {
-      GetSessionInfo();
-
       List<room_popular_statistic> roomList = new List<room_popular_statistic>();
       using (var httpClient = new HttpClient())
       {
@@ -156,8 +130,6 @@ namespace APIProject.Controllers.MainControllers
     // GET: StatisticController/GetOrderNumBetweenDates
     public ViewResult GetOrderNumBetweenDates()
     {
-      GetSessionInfo();
-
       return View();
     }
 
@@ -165,8 +137,6 @@ namespace APIProject.Controllers.MainControllers
     [HttpPost]
     public async Task<IActionResult> GetOrderNumBetweenDates(order_number_statistic inputNum)
     {
-      GetSessionInfo();
-
       order_number_statistic orderNum = new order_number_statistic();
       using (var httpClient = new HttpClient())
       {
@@ -198,8 +168,6 @@ namespace APIProject.Controllers.MainControllers
     // GET: StatisticController/GetTotalPaymentBetweenDates
     public ViewResult GetTotalPaymentBetweenDates()
     {
-      GetSessionInfo();
-
       return View();
     }
 
@@ -207,8 +175,6 @@ namespace APIProject.Controllers.MainControllers
     [HttpPost]
     public async Task<IActionResult> GetTotalPaymentBetweenDates(order_number_statistic inputNum)
     {
-      GetSessionInfo();
-
       order_number_statistic orderNum = new order_number_statistic();
       using (var httpClient = new HttpClient())
       {
@@ -240,8 +206,6 @@ namespace APIProject.Controllers.MainControllers
     // GET: StatisticController/GetOrderNumInMonth
     public ViewResult GetOrderNumInMonth()
     {
-      GetSessionInfo();
-
       return View();
     }
 
@@ -249,8 +213,6 @@ namespace APIProject.Controllers.MainControllers
     [HttpPost]
     public async Task<IActionResult> GetOrderNumInMonth(single_order_number_statistic inputNum)
     {
-      GetSessionInfo();
-
       order_number_statistic orderNum = new order_number_statistic();
       using (var httpClient = new HttpClient())
       {
@@ -282,8 +244,6 @@ namespace APIProject.Controllers.MainControllers
     // GET: StatisticController/GetOrderNumInYear
     public ViewResult GetOrderNumInYear()
     {
-      GetSessionInfo();
-
       return View();
     }
 
@@ -291,8 +251,6 @@ namespace APIProject.Controllers.MainControllers
     [HttpPost]
     public async Task<IActionResult> GetOrderNumInYear(single_order_number_statistic inputNum)
     {
-      GetSessionInfo();
-
       single_order_number_statistic orderNum = new single_order_number_statistic();
       using (var httpClient = new HttpClient())
       {

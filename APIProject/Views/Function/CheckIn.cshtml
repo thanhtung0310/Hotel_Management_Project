@@ -90,17 +90,20 @@
 <script src="~/js/validator.js"></script>
 
 <script>
-    Validator({
-        form: '#mainForm',
-        formGroupSelector: '.form-group',
-        errorSelector: '.form-message',
-        rules: [
-            //customer_id (int)
-            Validator.isRequired('#customer_id', 'Please enter correct customer ID!'),
-            //room_type_id -> room_type_name (int)
-            Validator.isRequired('#room_type_id', 'Please choose correct room type!'),
-        ]
-    })
+    //Validator({
+    //    form: '#mainForm',
+    //    formGroupSelector: '.form-group',
+    //    errorSelector: '.form-message',
+    //    rules: [
+    //        //customer_id (int)
+    //        Validator.isRequired('#customer_id', 'Please enter correct customer ID!'),
+    //        //room_type_id -> room_type_name (int)
+    //        Validator.isRequired('#room_type_id', 'Please choose correct room type!'),
+    //    ],
+    //    onSubmit: function (data) {
+    //        console.log(data);
+    //    }
+    //})
 </script>
 
 <style>
