@@ -15,13 +15,16 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.reception_id)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.customer_id)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.reservation_id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.room_id)
+                room_number
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.check_in_date)
@@ -32,6 +35,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.check_out_date)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.reception_status)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -40,13 +46,56 @@
         {
             <tr>
                 <td>
+                    @Html.DisplayFor(modelItem => item.reception_id)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.customer_id)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.reservation_id)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.room_id)
+                    @{
+                        string room_number = "";
+                        if (item.room_id == 1)
+                            room_number = "Room 101";
+                        else if (item.room_id == 2)
+                            room_number = "Room 102";
+                        else if (item.room_id == 3)
+                            room_number = "Room 103";
+                        else if (item.room_id == 4)
+                            room_number = "Room 104";
+                        else if (item.room_id == 5)
+                            room_number = "Room 105";
+                        else if (item.room_id == 6)
+                            room_number = "Room 106";
+                        else if (item.room_id == 7)
+                            room_number = "Room 201";
+                        else if (item.room_id == 8)
+                            room_number = "Room 202";
+                        else if (item.room_id == 9)
+                            room_number = "Room 203";
+                        else if (item.room_id == 10)
+                            room_number = "Room 204";
+                        else if (item.room_id == 11)
+                            room_number = "Room 205";
+                        else if (item.room_id == 12)
+                            room_number = "Room 206";
+                        else if (item.room_id == 13)
+                            room_number = "Room 301";
+                        else if (item.room_id == 14)
+                            room_number = "Room 302";
+                        else if (item.room_id == 15)
+                            room_number = "Room 303";
+                        else if (item.room_id == 16)
+                            room_number = "Room 304";
+                        else if (item.room_id == 17)
+                            room_number = "Room 305";
+                        else if (item.room_id == 18)
+                            room_number = "Room 306";
+
+                    }
+                    @room_number
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.check_in_date)
@@ -56,6 +105,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.check_out_date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.reception_status)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.reception_id">Edit</a> |

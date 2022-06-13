@@ -15,6 +15,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.room_status_id)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.room_status_name)
             </th>
             <th></th>
@@ -24,6 +27,9 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.room_status_id)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.room_status_name)
                 </td>

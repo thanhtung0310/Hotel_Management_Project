@@ -109,6 +109,30 @@ namespace BusinessLayer.Service
       return response;
     }
 
+    public async Task<Response<order_number_statistic>> GetTotalPaymentBetweenDates(order_number_statistic inputNum)
+    {
+      var response = new Response<order_number_statistic>();
+      try
+      {
+        _provider.Open();
+        DynamicParameters param = new DynamicParameters()
+            .AddParam("@date1", inputNum.date1)
+            .AddParam("@date2", inputNum.date2);
+        var orderNum = await _provider.QueryFirstOrDefaultAsync<order_number_statistic>("payment_between_dates_get", param, commandType: CommandType.StoredProcedure);
+        response.Data = orderNum;
+        response.successResp();
+      }
+      catch
+      {
+        response.errorResp();
+      }
+      finally
+      {
+        _provider.Close();
+      }
+      return response;
+    }
+
     public async Task<Response<order_number_statistic>> GetOrderNumInMonth(single_order_number_statistic inputNum)
     {
       var response = new Response<order_number_statistic>();

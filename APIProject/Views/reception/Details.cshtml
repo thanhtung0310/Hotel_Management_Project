@@ -13,6 +13,12 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.reception_id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.reception_id)
+        </dd>
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.customer_id)
         </dt>
         <dd class="col-sm-10">
@@ -25,10 +31,50 @@
             @Html.DisplayFor(model => model.reservation_id)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.room_id)
+            room_number
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.room_id)
+            @{
+                string room_number = "";
+                if (Model.room_id == 1)
+                    room_number = "Room 101";
+                else if (Model.room_id == 2)
+                    room_number = "Room 102";
+                else if (Model.room_id == 3)
+                    room_number = "Room 103";
+                else if (Model.room_id == 4)
+                    room_number = "Room 104";
+                else if (Model.room_id == 5)
+                    room_number = "Room 105";
+                else if (Model.room_id == 6)
+                    room_number = "Room 106";
+                else if (Model.room_id == 7)
+                    room_number = "Room 201";
+                else if (Model.room_id == 8)
+                    room_number = "Room 202";
+                else if (Model.room_id == 9)
+                    room_number = "Room 203";
+                else if (Model.room_id == 10)
+                    room_number = "Room 204";
+                else if (Model.room_id == 11)
+                    room_number = "Room 205";
+                else if (Model.room_id == 12)
+                    room_number = "Room 206";
+                else if (Model.room_id == 13)
+                    room_number = "Room 301";
+                else if (Model.room_id == 14)
+                    room_number = "Room 302";
+                else if (Model.room_id == 15)
+                    room_number = "Room 303";
+                else if (Model.room_id == 16)
+                    room_number = "Room 304";
+                else if (Model.room_id == 17)
+                    room_number = "Room 305";
+                else if (Model.room_id == 18)
+                    room_number = "Room 306";
+
+            }
+            @room_number
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.check_in_date)
@@ -47,6 +93,12 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.check_out_date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.reception_status)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.reception_status)
         </dd>
     </dl>
 </div>

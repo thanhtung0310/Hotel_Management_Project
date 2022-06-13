@@ -21,8 +21,8 @@ namespace DataLayer
                 JObject converted = JsonConvert.DeserializeObject<JObject>(data.ToString());
                 if (converted != null)
                 {
-                    Dictionary<string, string> keyValueMap = new Dictionary<string, string>();
-                    DynamicParameters param = new DynamicParameters();
+                    Dictionary<string, string> keyValueMap = new();
+                    DynamicParameters param = new();
                     foreach (KeyValuePair<string, JToken> keyValuePair in converted)
                     {
                         if (keyValuePair.Key != "id")
@@ -47,8 +47,8 @@ namespace DataLayer
                 JObject converted = JsonConvert.DeserializeObject<JObject>(data.ToString());
                 if (converted != null)
                 {
-                    Dictionary<string, string> keyValueMap = new Dictionary<string, string>();
-                    DynamicParameters param = new DynamicParameters();
+                    Dictionary<string, string> keyValueMap = new();
+                    DynamicParameters param = new();
                     foreach (KeyValuePair<string, JToken> keyValuePair in converted)
                     {
                         param.Add($"@{keyValuePair.Key}", keyValuePair.Value);

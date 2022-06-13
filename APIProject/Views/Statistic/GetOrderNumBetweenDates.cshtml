@@ -8,7 +8,7 @@
 
 @model order_number_statistic
 
-<h1>The number of orders between dates <a asp-action="Index" class="btn btn-sm btn-primary">Back</a></h1>
+<h1><a id="printedHeader">The number of orders between dates</a><a asp-action="Index" class="btn btn-sm btn-primary">Back</a></h1>
 <h3>@ViewBag.StatusCode</h3>
 <h3 style="color:red;">@ViewBag.Message</h3>
 <form method="post">
@@ -25,22 +25,47 @@
     </div>
 </form>
 
+<input class="btn btn-sm btn-secondary" type="button" value="Print report" onclick="printDiv()" />
+<br />
+<br />
+
 @if (Model != null)
 {
-    <table class="table table-sm table-striped table-bordered m-2">
-        <thead>
-            <tr>
-                <th>From</th>
-                <th>To</th>
-                <th>Number of Orders</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>@Model.date1</td>
-                <td>@Model.date2</td>
-                <td>@Model.count</td>
-            </tr>
-        </tbody>
-    </table>
+    <div id="printedDiv">
+        <table class="table table-sm table-striped table-bordered m-2">
+            <thead>
+                <tr>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Number of Orders</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@Model.date1</td>
+                    <td>@Model.date2</td>
+                    <td>@Model.count</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 }
+
+<script>
+    function printDiv() {
+        var divContents = document.getElementById("printedDiv").innerHTML;
+        var headerContents = document.getElementById("printedHeader").innerHTML;
+
+        var a = window.open('', '', 'height=1000, width=500');
+
+        a.document.write('<html>');
+        a.document.write('<body> ');
+        a.document.write('<h1> ');
+        a.document.write(headerContents);
+        a.document.write('</h1> ');
+        a.document.write(divContents);
+        a.document.write('</body></html>');
+        a.document.close();
+        a.print();
+    }
+</script>

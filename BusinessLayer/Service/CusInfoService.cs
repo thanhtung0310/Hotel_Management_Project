@@ -210,5 +210,73 @@ namespace BusinessLayer.Service
       }
       return response;
     }
+
+    public async Task<Response<List<booked_cus_info>>> GetBookedCustomerList()
+    {
+      var response = new Response<List<booked_cus_info>>();
+      try
+      {
+        _provider.Open();
+        var cusInfo = await _provider.QueryAsync<booked_cus_info>("customer_reserv_room_list", null, commandType: CommandType.StoredProcedure);
+        response.Data = cusInfo.AsList();
+        response.successResp();
+      }
+      catch
+      {
+        response.errorResp();
+      }
+      finally
+      {
+        _provider.Close();
+      }
+      return response;
+    }
+
+    public async Task<Response<booked_cus_info>> GetBookedCustomerByNum(string num)
+    {
+      var response = new Response<booked_cus_info>();
+      try
+      {
+        _provider.Open();
+        DynamicParameters param = new DynamicParameters()
+            .AddParam("@num", num);
+        var cusInfo = await _provider.QueryFirstOrDefaultAsync<booked_cus_info>("customer_reserv_room_by_contact_number", param, commandType: CommandType.StoredProcedure);
+        response.Data = cusInfo;
+        response.successResp();
+      }
+      catch
+      {
+        response.errorResp();
+      }
+      finally
+      {
+        _provider.Close();
+      }
+      return response;
+    }
+
+    public async Task<Response<cus_info>> GetCustomerByNum(string num)
+    {
+      var response = new Response<cus_info>();
+      try
+      {
+        _provider.Open();
+        DynamicParameters param = new DynamicParameters()
+            .AddParam("@num", num);
+        var cusInfo = await _provider.QueryAsync<cus_info>("customer_info_number_get", param, commandType: CommandType.StoredProcedure);
+
+        response.Data = cusInfo.FirstOrDefault();
+        response.successResp();
+      }
+      catch
+      {
+        response.errorResp();
+      }
+      finally
+      {
+        _provider.Close();
+      }
+      return response;
+    }
   }
 }

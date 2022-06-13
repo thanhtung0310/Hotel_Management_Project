@@ -59,11 +59,11 @@ namespace DatabaseProvider
                 .IsUnicode(false);
 
             modelBuilder.Entity<reception>()
-                .Property(e => e.customer_id)
+                .Property(e => e.reception_status)
                 .IsUnicode(false);
 
             modelBuilder.Entity<reservation>()
-                .Property(e => e.expected_room_type_id)
+                .Property(e => e.reservation_status)
                 .IsUnicode(false);
 
             modelBuilder.Entity<role>()

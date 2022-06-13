@@ -1,4 +1,6 @@
-﻿<header>
+﻿@using Microsoft.AspNetCore.Http
+ 
+<header>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
         <div class="container">
             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/img/logo.png" /></a>            
@@ -12,7 +14,11 @@
                         <div class="nav-item" style="width: 80px;" >
                             <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
                         </div>
-                        @if (ViewBag.SessionRole != null)
+                        @{ 
+                            var SessionRole = Context.Session.GetString("SessionRole");
+                            var SessionName = Context.Session.GetString("SessionName");
+                        }
+                        @if (SessionRole != null)
                         {
                                 <div class="dropdown nav-item">
                                     <button class="dropbtn nav-link text-dark">
@@ -21,7 +27,7 @@
                                             <i class="fas fa-caret-down nav-icon"></i>
                                         </div>
                                     </button>
-                                    @if (ViewBag.SessionRole == "Manager")
+                                    @if (SessionRole == "Manager")
                                     {
                                         <div class="dropdown-content">
                                             <div class="smaller-dropdown">
@@ -109,8 +115,7 @@
                                             <a asp-controller="statistic" asp-action="GetTotalCountType">Number of rooms by type</a>
                                             <a asp-controller="statistic" asp-action="GetMostPopularRoomType">Most popular room type</a>
                                             <a asp-controller="statistic" asp-action="GetOrderNumBetweenDates">Number of orders between dates</a>
-                                            <a asp-controller="statistic" asp-action="GetOrderNumInMonth">Number of orders in a month</a>
-                                            <a asp-controller="statistic" asp-action="GetOrderNumInYear">Number of orders in a year</a>
+                                            <a asp-controller="statistic" asp-action="GetTotalPaymentBetweenDates">Total payment between dates</a>
                                         </div>
                                     </div>
                                 </div>
@@ -150,7 +155,7 @@
                     </div>
                 </div>
                 <div class="nav-right" style="justify-content:right; display: flex;">
-                    @if (ViewBag.SessionRole == null || ViewBag.SessionRole == "Guest")
+                    @if (SessionRole == null)
                     {
                         <div class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Home" asp-action="Login">Login</a>
@@ -158,7 +163,7 @@
                         <div class="nav-item" style="width: 250px;">
                             <div class="nav-link text-dark">
                                 <div class="flex-display">
-                                    Hello Guest
+                                    Hello Guest,
                                     <i class="fa-solid fa-hand-wave"></i>
                                 </div>
                             </div>
@@ -169,15 +174,15 @@
                         <div class="dropdown nav-item" style="width: 250px;">
                             <button class="dropbtn nav-link text-dark">
                                 <div class="flex-display">
-                                    Hello @ViewBag.SessionRole @ViewBag.SessionName
+                                    Hello @SessionRole @SessionName,
                                     <i class="fas fa-caret-down nav-icon"></i>
                                 </div>
                             </button>
                             <div class="dropdown-content">
                                 <div class="smaller-dropdown" style="width: 250px;">
-                                    <a asp-controller="Home" asp-action="ChangeInformation">Change information</a>
-                                    <a asp-controller="Home" asp-action="ChangePassword">Change password</a>
-                                    <a asp-controller="Home" asp-action="Logout">Logout</a>
+                                    <a asp-controller="Function" asp-action="ChangeInformation">Change information</a>
+                                    <a asp-controller="Function" asp-action="ChangePassword">Change password</a>
+                                    <a asp-controller="Function" asp-action="Logout">Logout</a>
                                 </div>
                             </div>
                         </div>

@@ -52,6 +52,7 @@ namespace APIProject.Data
     public DbSet<room_info> room_info { get; set; }
     
     public DbSet<room_status_info> room_status_info { get; set; }
+
     protected override void OnModelCreating (ModelBuilder builder)
     {
       builder.Entity<booked_cus_info>()
@@ -68,6 +69,8 @@ namespace APIProject.Data
         .HasNoKey();
       builder.Entity<room_status_info>()
         .HasNoKey();
+
+      base.OnModelCreating(builder);
     }
   }
 }

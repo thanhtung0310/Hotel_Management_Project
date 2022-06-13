@@ -13,6 +13,7 @@ namespace BusinessLayer.IService
     Task<Response<List<room_type_count_statistic>>> GetTotalCountType();
     Task<Response<List<room_type_count_statistic>>> GetAvailCountType();
     Task<Response<order_number_statistic>> GetOrderNumBetweenDates(order_number_statistic inputNum);
+    Task<Response<order_number_statistic>> GetTotalPaymentBetweenDates(order_number_statistic inputNum);
     Task<Response<order_number_statistic>> GetOrderNumInMonth(single_order_number_statistic inputNum);
     Task<Response<single_order_number_statistic>> GetOrderNumInYear(single_order_number_statistic inputNum);
     Task<Response<List<room_popular_statistic>>> GetMostPopularRoomType();

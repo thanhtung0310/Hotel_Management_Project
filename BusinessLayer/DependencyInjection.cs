@@ -25,7 +25,7 @@ namespace BusinessLayer
 
       // similar but using Scrutor to inject
       services.Scan(scan => scan
-          .FromAssemblyOf<IBookedCusInfoService>()
+          .FromAssemblyOf<ICusInfoService>()
           .AddClasses(classes => classes.InNamespaces("BusinessLayer"))
           .AsImplementedInterfaces()
           .WithScopedLifetime());

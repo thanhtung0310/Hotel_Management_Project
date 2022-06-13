@@ -21,7 +21,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="expected_check_in_date" class="control-label"></label>
-                <input asp-for="expected_check_in_date" class="form-control" />
+                <input type="datetime-local" asp-for="expected_check_in_date" class="form-control" />
                 <span asp-validation-for="expected_check_in_date" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -31,8 +31,26 @@
             </div>
             <div class="form-group">
                 <label asp-for="expected_room_type_id" class="control-label"></label>
-                <input asp-for="expected_room_type_id" class="form-control" />
+                <select asp-for="expected_room_type_id" class="form-control">
+                    <option value="">Select Room type</option>
+                    <option value="1">King Room</option>
+                    <option value="2">Queen Room</option>
+                    <option value="3">4-people Family Room</option>
+                    <option value="4">3-people Family Room</option>
+                    <option value="5">Single Room</option>
+                    <option value="6">Couple Room</option>
+                    <option value="7">4-Bunk Room</option>
+                </select>
                 <span asp-validation-for="expected_room_type_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="reservation_status" class="control-label"></label>
+                <select asp-for="reservation_status" class="form-control">
+                    <option value="">Select reception status</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Done">Done</option>
+                </select>
+                <span asp-validation-for="reservation_status" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

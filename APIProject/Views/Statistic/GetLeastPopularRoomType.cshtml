@@ -8,22 +8,51 @@
 
 @model IEnumerable<room_popular_statistic>
 
-<h1>Least popular room type <a asp-action="Index" class="btn btn-sm btn-primary">Back</a></h1>
+<h1><a id="printedHeader">Least popular room type</a><a asp-action="Index" class="btn btn-sm btn-primary">Back</a></h1>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>Room type's name</th>
-            <th>Number of customers had used the room type</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.room_type_name</td>
-                <td>@item.count</td>
-            </tr>
-        }
-    </tbody>
-</table>
+<input class="btn btn-sm btn-secondary" type="button" value="Print report" onclick="printDiv()" />
+<br />
+<br />
+
+@if (Model != null)
+{
+    <div id="printedDiv">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Room type's name</th>
+                    <th>Number of customers had used the room type</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.room_type_name</td>
+                        <td>@item.count</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+
+<script>
+    function printDiv() {
+        var divContents = document.getElementById("printedDiv").innerHTML;
+        var headerContents = document.getElementById("printedHeader").innerHTML;
+
+        var a = window.open('', '', 'height=1000, width=500');
+
+        a.document.write('<html>');
+        a.document.write('<body> ');
+        a.document.write('<h1> ');
+        a.document.write(headerContents);
+        a.document.write('</h1> ');
+        a.document.write(divContents);
+        a.document.write('</body></html>');
+        a.document.close();
+        a.print();
+    }
+</script>

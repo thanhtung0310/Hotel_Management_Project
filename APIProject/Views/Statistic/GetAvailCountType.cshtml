@@ -8,44 +8,70 @@
 
 @model IEnumerable<room_type_count_statistic>
 
-<h1>Total number of available rooms by room type <a asp-action="Index" class="btn btn-sm btn-primary">Back</a></h1>
+<h1><a id="printedHeader">Total number of available rooms by room type</a> <a asp-action="Index" class="btn btn-sm btn-primary">Back</a></h1>
+
+<input class="btn btn-sm btn-secondary" type="button" value="Print report" onclick="printDiv()" />
+<br /> 
+<br />
 
 @if (Model != null)
-{ 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Room type</th>
-                <th>Total number of available rooms</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+{
+    <div id="printedDiv">
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>
-                        @{
-                            string room_type_name = "";
-                            if (item.room_type_id == 1)
-                                room_type_name = "King Room";
-                            else if (item.room_type_id == 2)
-                                room_type_name = "Queen Room";
-                            else if (item.room_type_id == 3)
-                                room_type_name = "4-people Family Room";
-                            else if (item.room_type_id == 4)
-                                room_type_name = "3-people Family Room";
-                            else if (item.room_type_id == 5)
-                                room_type_name = "Single Room";
-                            else if (item.room_type_id == 6)
-                                room_type_name = "Couple Room";
-                            else if (item.room_type_id == 7)
-                                room_type_name = "4-Bunk Room";
-                        }
-                        @room_type_name
-                    </td>
-                    <td>@item.count</td>
+                    <th>Room type</th>
+                    <th>Total number of available rooms</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @{
+                                string room_type_name = "";
+                                if (item.room_type_id == 1)
+                                    room_type_name = "King Room";
+                                else if (item.room_type_id == 2)
+                                    room_type_name = "Queen Room";
+                                else if (item.room_type_id == 3)
+                                    room_type_name = "4-people Family Room";
+                                else if (item.room_type_id == 4)
+                                    room_type_name = "3-people Family Room";
+                                else if (item.room_type_id == 5)
+                                    room_type_name = "Single Room";
+                                else if (item.room_type_id == 6)
+                                    room_type_name = "Couple Room";
+                                else if (item.room_type_id == 7)
+                                    room_type_name = "4-Bunk Room";
+                            }
+                            @room_type_name
+                        </td>
+                        <td>@item.count</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 }
+
+<script>
+    function printDiv() {
+        var divContents = document.getElementById("printedDiv").innerHTML;
+        var headerContents = document.getElementById("printedHeader").innerHTML;
+
+        var a = window.open('', '', 'height=1000, width=500');
+
+        a.document.write('<html>');
+        a.document.write('<body> ');
+        a.document.write('<h1> ');
+        a.document.write(headerContents);
+        a.document.write('</h1> ');
+        a.document.write(divContents);
+        a.document.write('</body></html>');
+        a.document.close();
+        a.print();
+    }
+</script>
+

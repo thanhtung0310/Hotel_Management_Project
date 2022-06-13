@@ -42,8 +42,6 @@ namespace APIProject.Controllers.CustomControllers
       return await _cusInfoService.GetCheckedinCusList();
     }
 
-    //cus_infos/booked
-
     /// <summary>
     /// Get customer's information by customer ID
     /// </summary>
@@ -105,15 +103,38 @@ namespace APIProject.Controllers.CustomControllers
     }
 
     /// <summary>
-    /// Security Method
+    /// Get customer who has booked room by their contact number
     /// </summary>
     /// <returns></returns>
-    //bool Authenticate()
-    //{
-    //  var allowedKeys = new[] { "Secret@123", "Secret#12", "SecretABC" };
-    //  StringValues key = Request.Headers["Key"];
-    //  int count = (from t in allowedKeys where t == key select t).Count();
-    //  return count == 0 ? false : true;
-    //}
+    // GET api/<cus_infosController>/booked
+    [HttpGet("booked")]
+    public async Task<Response<List<booked_cus_info>>> GetBookedCustomerList()
+    {
+      return await _cusInfoService.GetBookedCustomerList();
+    }
+
+    /// <summary>
+    /// Get customer who has booked room by their contact number
+    /// </summary>
+    /// <param name="num"></param>
+    /// <returns></returns>
+    // GET api/<cus_infosController>/booked/num/0123456786
+    [HttpGet("booked/num/{num}")]
+    public async Task<Response<booked_cus_info>> GetBookedCustomerByNum(string num)
+    {
+      return await _cusInfoService.GetBookedCustomerByNum(num);
+    }
+
+    /// <summary>
+    /// Get customer's information by their contact number
+    /// </summary>
+    /// <param name="num"></param>
+    /// <returns></returns>
+    // GET api/<cus_by_num_infosController>/num/0123456789
+    [HttpGet("num/{num}")]
+    public async Task<Response<cus_info>> GetCustomerByNum(string num)
+    {
+      return await _cusInfoService.GetCustomerByNum(num);
+    }
   }
 }

@@ -3,18 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using APIProject.Data;
 using DatabaseProvider;
-using CommonData = APIProject.Data.CommonConstants;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Authorization;
 
 namespace APIProject.Controllers.MyDBForm
 {
-  [Authorize(Roles = "Admin")]
-  public class RoomTypeController : Controller
+  [Admin]
+  public class RoomTypeController : BaseController
   {
     private readonly APIProjectContext _context;
 
@@ -23,32 +20,15 @@ namespace APIProject.Controllers.MyDBForm
       _context = context;
     }
 
-    const string SessionUsername = "_username";
-    const string SessionRole = "Guest";
-    const string SessionName = "_name";
-    const string SessionToken = "_token";
-
-    public void GetSessionInfo()
-    {
-      ViewBag.SessionUsername = HttpContext.Session.GetString(SessionUsername);
-      ViewBag.SessionRole = HttpContext.Session.GetString(SessionRole);
-      ViewBag.SessionName = HttpContext.Session.GetString(SessionName);
-      ViewBag.Session = HttpContext.Session.GetString(SessionToken);
-    }
-
     // GET: RoomType
     public async Task<IActionResult> Index()
     {
-      GetSessionInfo();
-
       return View(await _context.roomType.ToListAsync());
     }
 
     // GET: RoomType/Details/5
     public async Task<IActionResult> Details(int? id)
     {
-      GetSessionInfo();
-
       if (id == null)
       {
         return NotFound();
@@ -67,8 +47,6 @@ namespace APIProject.Controllers.MyDBForm
     // GET: RoomType/Create
     public IActionResult Create()
     {
-      GetSessionInfo();
-
       return View();
     }
 
@@ -79,8 +57,6 @@ namespace APIProject.Controllers.MyDBForm
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create([Bind("room_type_id,room_type_name")] roomType roomType)
     {
-      GetSessionInfo();
-
       if (ModelState.IsValid)
       {
         _context.Add(roomType);
@@ -93,8 +69,6 @@ namespace APIProject.Controllers.MyDBForm
     // GET: RoomType/Edit/5
     public async Task<IActionResult> Edit(int? id)
     {
-      GetSessionInfo();
-
       if (id == null)
       {
         return NotFound();
@@ -105,6 +79,7 @@ namespace APIProject.Controllers.MyDBForm
       {
         return NotFound();
       }
+      
       return View(roomType);
     }
 
@@ -115,8 +90,6 @@ namespace APIProject.Controllers.MyDBForm
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int id, [Bind("room_type_id,room_type_name")] roomType roomType)
     {
-      GetSessionInfo();
-
       if (id != roomType.room_type_id)
       {
         return NotFound();
@@ -148,8 +121,6 @@ namespace APIProject.Controllers.MyDBForm
     // GET: RoomType/Delete/5
     public async Task<IActionResult> Delete(int? id)
     {
-      GetSessionInfo();
-
       if (id == null)
       {
         return NotFound();
@@ -161,7 +132,7 @@ namespace APIProject.Controllers.MyDBForm
       {
         return NotFound();
       }
-
+      
       return View(roomType);
     }
 
@@ -170,8 +141,6 @@ namespace APIProject.Controllers.MyDBForm
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
-      GetSessionInfo();
-
       var roomType = await _context.roomType.FindAsync(id);
       _context.roomType.Remove(roomType);
       await _context.SaveChangesAsync();

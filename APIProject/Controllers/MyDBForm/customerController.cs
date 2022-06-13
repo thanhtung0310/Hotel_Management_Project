@@ -3,18 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using APIProject.Data;
 using DatabaseProvider;
-using CommonData = APIProject.Data.CommonConstants;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Authorization;
 
 namespace APIProject.Controllers.MyDBForm
 {
-  [Authorize(Roles = "Admin")]
-  public class CustomerController : Controller
+  [Admin]
+  public class CustomerController : BaseController
   {
     private readonly APIProjectContext _context;
 
@@ -23,32 +20,15 @@ namespace APIProject.Controllers.MyDBForm
       _context = context;
     }
 
-    const string SessionUsername = "_username";
-    const string SessionRole = "Guest";
-    const string SessionName = "_name";
-    const string SessionToken = "_token";
-
-    public void GetSessionInfo()
-    {
-      ViewBag.SessionUsername = HttpContext.Session.GetString(SessionUsername);
-      ViewBag.SessionRole = HttpContext.Session.GetString(SessionRole);
-      ViewBag.SessionName = HttpContext.Session.GetString(SessionName);
-      ViewBag.Session = HttpContext.Session.GetString(SessionToken);
-    }
-
     // GET: customer
     public async Task<IActionResult> Index()
     {
-      GetSessionInfo();
-
       return View(await _context.customer.ToListAsync());
     }
 
     // GET: customer/Details/5
     public async Task<IActionResult> Details(int? id)
     {
-      GetSessionInfo();
-
       if (id == null)
       {
         return NotFound();
@@ -67,8 +47,6 @@ namespace APIProject.Controllers.MyDBForm
     // GET: customer/Create
     public IActionResult Create()
     {
-      GetSessionInfo();
-
       return View();
     }
 
@@ -79,8 +57,6 @@ namespace APIProject.Controllers.MyDBForm
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create([Bind("customer_id,customer_first_name,customer_last_name,customer_address,customer_contact_number")] customer customer)
     {
-      GetSessionInfo();
-
       if (ModelState.IsValid)
       {
         _context.Add(customer);
@@ -93,8 +69,6 @@ namespace APIProject.Controllers.MyDBForm
     // GET: customer/Edit/5
     public async Task<IActionResult> Edit(int? id)
     {
-      GetSessionInfo();
-
       if (id == null)
       {
         return NotFound();
@@ -105,7 +79,8 @@ namespace APIProject.Controllers.MyDBForm
       {
         return NotFound();
       }
-      return View(customer);
+
+        return View(customer);
     }
 
     // POST: customer/Edit/5
@@ -115,8 +90,6 @@ namespace APIProject.Controllers.MyDBForm
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(int id, [Bind("customer_id,customer_first_name,customer_last_name,customer_address,customer_contact_number")] customer customer)
     {
-      GetSessionInfo();
-
       if (id != customer.customer_id)
       {
         return NotFound();
@@ -148,8 +121,6 @@ namespace APIProject.Controllers.MyDBForm
     // GET: customer/Delete/5
     public async Task<IActionResult> Delete(int? id)
     {
-      GetSessionInfo();
-
       if (id == null)
       {
         return NotFound();
@@ -170,8 +141,6 @@ namespace APIProject.Controllers.MyDBForm
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
-      GetSessionInfo();
-
       var customer = await _context.customer.FindAsync(id);
       _context.customer.Remove(customer);
       await _context.SaveChangesAsync();

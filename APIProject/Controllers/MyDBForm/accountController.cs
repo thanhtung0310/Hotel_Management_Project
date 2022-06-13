@@ -3,19 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using APIProject.Data;
 using DatabaseProvider;
-using CommonData = APIProject.Data.CommonConstants;
 using Microsoft.AspNetCore.Http;
 using BCryptNet = BCrypt.Net.BCrypt;
-using Microsoft.AspNetCore.Authorization;
 
 namespace APIProject.Controllers.MyDBForm
-{
-  [Authorize(Roles = "Admin")]
-  public class AccountController : Controller
+{  
+  [Admin]
+  public class AccountController : BaseController
   {
     private readonly APIProjectContext _context;
 
@@ -24,32 +21,15 @@ namespace APIProject.Controllers.MyDBForm
       _context = context;
     }
 
-    const string SessionUsername = "_username";
-    const string SessionRole = "Guest";
-    const string SessionName = "_name";
-    const string SessionToken = "_token";
-
-    public void GetSessionInfo()
-    {
-      ViewBag.SessionUsername = HttpContext.Session.GetString(SessionUsername);
-      ViewBag.SessionRole = HttpContext.Session.GetString(SessionRole);
-      ViewBag.SessionName = HttpContext.Session.GetString(SessionName);
-      ViewBag.Session = HttpContext.Session.GetString(SessionToken);
-    }
-
     // GET: account
     public async Task<IActionResult> Index()
     {
-      GetSessionInfo();
-
-      return View(await _context.account.ToListAsync());
+      return View(await _context.account.OrderByDescending(x => x.acc_session).ToListAsync());
     }
 
     // GET: account/Details/5
     public async Task<IActionResult> Details(int? id)
     {
-      GetSessionInfo();
-
       if (id == null)
       {
         return NotFound();
@@ -68,15 +48,7 @@ namespace APIProject.Controllers.MyDBForm
     // GET: account/Create
     public IActionResult Create()
     {
-      GetSessionInfo();
-
       return View();
-    }
-
-    public string HashedPassword(string pwd)
-    {
-      int costParam = 13;
-      return BCryptNet.HashPassword(pwd, costParam);
     }
 
     // POST: account/Create
@@ -84,11 +56,9 @@ namespace APIProject.Controllers.MyDBForm
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create([Bind("acc_id,emp_id,customer_id,acc_username,acc_password,role_id")] account account)
+    public async Task<IActionResult> Create([Bind("acc_id,emp_id,role_id,acc_username,acc_password,acc_session")] account account)
     {
-      GetSessionInfo();
-
-      account.acc_password = HashedPassword(account.acc_password);
+      account.acc_password = StaticVar.HashedPassword(account.acc_password);
 
       if (ModelState.IsValid)
       {
@@ -102,8 +72,6 @@ namespace APIProject.Controllers.MyDBForm
     // GET: account/Edit/5
     public async Task<IActionResult> Edit(int? id)
     {
-      GetSessionInfo();
-
       if (id == null)
       {
         return NotFound();
@@ -114,6 +82,7 @@ namespace APIProject.Controllers.MyDBForm
       {
         return NotFound();
       }
+
       return View(account);
     }
 
@@ -122,10 +91,8 @@ namespace APIProject.Controllers.MyDBForm
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind("acc_id,emp_id,customer_id,acc_username,acc_password,role_id")] account account)
+    public async Task<IActionResult> Edit(int id, [Bind("acc_id,emp_id,role_id,acc_username,acc_password,acc_session")] account account)
     {
-      GetSessionInfo();
-
       if (id != account.acc_id)
       {
         return NotFound();
@@ -135,7 +102,7 @@ namespace APIProject.Controllers.MyDBForm
       {
         try
         {
-          account.acc_password = HashedPassword(account.acc_password);
+          account.acc_password = StaticVar.HashedPassword(account.acc_password);
 
           _context.Update(account);
           await _context.SaveChangesAsync();
@@ -159,8 +126,6 @@ namespace APIProject.Controllers.MyDBForm
     // GET: account/Delete/5
     public async Task<IActionResult> Delete(int? id)
     {
-      GetSessionInfo();
-
       if (id == null)
       {
         return NotFound();
@@ -181,8 +146,6 @@ namespace APIProject.Controllers.MyDBForm
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DeleteConfirmed(int id)
     {
-      GetSessionInfo();
-
       var account = await _context.account.FindAsync(id);
       _context.account.Remove(account);
       await _context.SaveChangesAsync();

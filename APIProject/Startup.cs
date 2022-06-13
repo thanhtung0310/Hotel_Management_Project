@@ -14,6 +14,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 
 namespace APIProject
 {
@@ -33,25 +35,7 @@ namespace APIProject
 
       //services.AddDistributedMemoryCache(); // use memory cache
 
-      services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-        .AddJwtBearer((options) =>
-        {
-          options.TokenValidationParameters = new TokenValidationParameters
-          {
-            ValidateIssuer = true, //validate server -> generate token
-            ValidateAudience = true, //validate recipient -> token is authorized
-            ValidateLifetime = true, //check if token is not expired
-            ValidateIssuerSigningKey = true, //check if signing key of the issuer is valid
-
-            // storing values in appsettings.json
-            ValidIssuer = Configuration["Jwt:Issuer"],
-            ValidAudience = Configuration["Jwt:Issuer"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
-          };
-        });
-
-      //services.AddIdentity<UserSession, IdentityRole>().AddEntityFrameworkStores<APIProjectContext>().AddDefaultTokenProviders();
-
+      // use sql server to save session info
       services.AddDistributedSqlServerCache((options) =>
       {
         options.ConnectionString = "data source=localhost;initial catalog=VMO_HotelManagement;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework";
@@ -59,31 +43,44 @@ namespace APIProject
         options.TableName = "userSessions";
       });
 
+      // session settings
       services.AddSession((options) =>
       {
-        //option.Cookie.Name = "Session_h1kj2h3kj1h23kj";
-        options.IdleTimeout = new TimeSpan(24, 0, 0);
+        options.IdleTimeout = new TimeSpan(12, 0, 0);
         options.Cookie.IsEssential = true;
         options.Cookie.HttpOnly = true;
       });
 
+      // add model-view-controller model
       services.AddMvc((options) =>
       {
         options.EnableEndpointRouting = false;
       });
 
+      // add swagger ui to show api lists
       services.AddSwaggerGen((options) =>
       {
         options.SwaggerDoc("v1", new OpenApiInfo { Title = "APIProject", Version = "v1" });
       });
 
+      // add database context
       services.AddDbContext<APIProjectContext>((options) =>
       {
         options.UseSqlServer(Configuration.GetConnectionString("APIProjectContext"));
       });
 
+      // use sql connection string in singleton
       services.AddSingleton<IDbConnection>(db => new SqlConnection(
               Configuration.GetConnectionString("APIProjectContext")));
+
+      services.Configure<CookiePolicyOptions>(options =>
+      {
+        // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+        //options.CheckConsentNeeded = context => true;
+        options.CheckConsentNeeded = context => false;
+        options.MinimumSameSitePolicy = SameSiteMode.None;
+      });
+
       DependencyInjection.InjectService(services);
 
     }
@@ -103,6 +100,8 @@ namespace APIProject
         // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
         app.UseHsts();
       }
+
+      app.UseCookiePolicy();
 
       app.UseSession(); //SessionMiddleware - cookie
 

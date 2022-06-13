@@ -15,10 +15,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.payment_type_id)
+                @Html.DisplayNameFor(model => model.payment_id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.reception_id)
+                payment_type_name
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.reservation_id)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.payment_amount)
@@ -34,10 +37,23 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.payment_type_id)
+                    @Html.DisplayFor(modelItem => item.payment_id)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.reception_id)
+                    @{
+                        string payment_type_name = "";
+                        if (item.payment_type_id == 1)
+                            payment_type_name = "By Cash";
+                        else if (item.payment_type_id == 2)
+                            payment_type_name = "By Credit card";
+                        else if (item.payment_type_id == 3)
+                            payment_type_name = "By Debit card";
+
+                    }
+                    @payment_type_name
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.reservation_id)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.payment_amount)
