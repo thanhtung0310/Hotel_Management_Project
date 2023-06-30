@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <StartupObject>APIProject.Program</StartupObject>
     <UserSecretsId>d826b0a1-f29b-44c9-8396-b89a534d856b</UserSecretsId>
   </PropertyGroup>

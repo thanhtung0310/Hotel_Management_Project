@@ -1,0 +1,8 @@
+APIProject/obj/*
+APIProject/bin/*
+BusinessLayer/obj/*
+BusinessLayer/bin/*
+DataLayer/obj/*
+DataLayer/bin/*
+Entity/obj/*
+Entity/bin/*

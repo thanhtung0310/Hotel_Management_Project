@@ -1,72 +1,72 @@
-D:\dev\Hotel_API\BusinessLayer\bin\Debug\net5.0\BusinessLayer.deps.json
-D:\dev\Hotel_API\BusinessLayer\bin\Debug\net5.0\BusinessLayer.dll
-D:\dev\Hotel_API\BusinessLayer\bin\Debug\net5.0\ref\BusinessLayer.dll
-D:\dev\Hotel_API\BusinessLayer\bin\Debug\net5.0\BusinessLayer.pdb
-D:\dev\Hotel_API\BusinessLayer\bin\Debug\net5.0\Entity.dll
-D:\dev\Hotel_API\BusinessLayer\bin\Debug\net5.0\Entity.pdb
-D:\dev\Hotel_API\BusinessLayer\obj\Debug\net5.0\BusinessLayer.csproj.AssemblyReference.cache
-D:\dev\Hotel_API\BusinessLayer\obj\Debug\net5.0\BusinessLayer.GeneratedMSBuildEditorConfig.editorconfig
-D:\dev\Hotel_API\BusinessLayer\obj\Debug\net5.0\BusinessLayer.AssemblyInfoInputs.cache
-D:\dev\Hotel_API\BusinessLayer\obj\Debug\net5.0\BusinessLayer.AssemblyInfo.cs
-D:\dev\Hotel_API\BusinessLayer\obj\Debug\net5.0\BusinessLayer.csproj.CoreCompileInputs.cache
-D:\dev\Hotel_API\BusinessLayer\obj\Debug\net5.0\BusinessLayer.csproj.CopyComplete
-D:\dev\Hotel_API\BusinessLayer\obj\Debug\net5.0\BusinessLayer.dll
-D:\dev\Hotel_API\BusinessLayer\obj\Debug\net5.0\ref\BusinessLayer.dll
-D:\dev\Hotel_API\BusinessLayer\obj\Debug\net5.0\BusinessLayer.pdb
-D:\dev\Hotel_API\BusinessLayer\bin\Debug\net5.0\DataLayer.dll
-D:\dev\Hotel_API\BusinessLayer\bin\Debug\net5.0\DataLayer.pdb
-C:\Users\admin\Downloads\Hotel_API\Hotel_API\BusinessLayer\bin\Debug\net5.0\BusinessLayer.deps.json
-C:\Users\admin\Downloads\Hotel_API\Hotel_API\BusinessLayer\bin\Debug\net5.0\BusinessLayer.dll
-C:\Users\admin\Downloads\Hotel_API\Hotel_API\BusinessLayer\bin\Debug\net5.0\ref\BusinessLayer.dll
-C:\Users\admin\Downloads\Hotel_API\Hotel_API\BusinessLayer\bin\Debug\net5.0\BusinessLayer.pdb
-C:\Users\admin\Downloads\Hotel_API\Hotel_API\BusinessLayer\bin\Debug\net5.0\DataLayer.dll
-C:\Users\admin\Downloads\Hotel_API\Hotel_API\BusinessLayer\bin\Debug\net5.0\Entity.dll
-C:\Users\admin\Downloads\Hotel_API\Hotel_API\BusinessLayer\bin\Debug\net5.0\DataLayer.pdb
-C:\Users\admin\Downloads\Hotel_API\Hotel_API\BusinessLayer\bin\Debug\net5.0\Entity.pdb
-C:\Users\admin\Downloads\Hotel_API\Hotel_API\BusinessLayer\obj\Debug\net5.0\BusinessLayer.csproj.AssemblyReference.cache
-C:\Users\admin\Downloads\Hotel_API\Hotel_API\BusinessLayer\obj\Debug\net5.0\BusinessLayer.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\admin\Downloads\Hotel_API\Hotel_API\BusinessLayer\obj\Debug\net5.0\BusinessLayer.AssemblyInfoInputs.cache
-C:\Users\admin\Downloads\Hotel_API\Hotel_API\BusinessLayer\obj\Debug\net5.0\BusinessLayer.AssemblyInfo.cs
-C:\Users\admin\Downloads\Hotel_API\Hotel_API\BusinessLayer\obj\Debug\net5.0\BusinessLayer.csproj.CoreCompileInputs.cache
-C:\Users\admin\Downloads\Hotel_API\Hotel_API\BusinessLayer\obj\Debug\net5.0\BusinessLayer.csproj.CopyComplete
-C:\Users\admin\Downloads\Hotel_API\Hotel_API\BusinessLayer\obj\Debug\net5.0\BusinessLayer.dll
-C:\Users\admin\Downloads\Hotel_API\Hotel_API\BusinessLayer\obj\Debug\net5.0\ref\BusinessLayer.dll
-C:\Users\admin\Downloads\Hotel_API\Hotel_API\BusinessLayer\obj\Debug\net5.0\BusinessLayer.pdb
-D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\BusinessLayer\bin\Debug\net5.0\BusinessLayer.deps.json
-D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\BusinessLayer\bin\Debug\net5.0\BusinessLayer.dll
-D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\BusinessLayer\bin\Debug\net5.0\BusinessLayer.pdb
-D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\BusinessLayer\bin\Debug\net5.0\DataLayer.dll
-D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\BusinessLayer\bin\Debug\net5.0\Entity.dll
-D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\BusinessLayer\bin\Debug\net5.0\DataLayer.pdb
-D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\BusinessLayer\bin\Debug\net5.0\Entity.pdb
-D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\BusinessLayer\obj\Debug\net5.0\BusinessLayer.csproj.AssemblyReference.cache
-D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\BusinessLayer\obj\Debug\net5.0\BusinessLayer.GeneratedMSBuildEditorConfig.editorconfig
-D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\BusinessLayer\obj\Debug\net5.0\BusinessLayer.AssemblyInfoInputs.cache
-D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\BusinessLayer\obj\Debug\net5.0\BusinessLayer.AssemblyInfo.cs
-D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\BusinessLayer\obj\Debug\net5.0\BusinessLayer.csproj.CoreCompileInputs.cache
-D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\BusinessLayer\obj\Debug\net5.0\BusinessLayer.csproj.CopyComplete
-D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\BusinessLayer\obj\Debug\net5.0\BusinessLayer.dll
-D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\BusinessLayer\obj\Debug\net5.0\ref\BusinessLayer.dll
-D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\BusinessLayer\obj\Debug\net5.0\BusinessLayer.pdb
-D:\Tung\VMO\Tuan 3\Projects\Hotel_API_Dung\Hotel_API\BusinessLayer\obj\Debug\net5.0\refint\BusinessLayer.dll
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\bin\Debug\net5.0\BusinessLayer.deps.json
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\bin\Debug\net5.0\BusinessLayer.dll
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\bin\Debug\net5.0\ref\BusinessLayer.dll
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\bin\Debug\net5.0\BusinessLayer.pdb
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\bin\Debug\net5.0\DatabaseProvider.dll
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\bin\Debug\net5.0\DataLayer.dll
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\bin\Debug\net5.0\Entity.dll
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\bin\Debug\net5.0\EntityFramework.dll
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\bin\Debug\net5.0\DatabaseProvider.pdb
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\bin\Debug\net5.0\DatabaseProvider.dll.config
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\bin\Debug\net5.0\DataLayer.pdb
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\bin\Debug\net5.0\Entity.pdb
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\obj\Debug\net5.0\BusinessLayer.csproj.AssemblyReference.cache
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\obj\Debug\net5.0\BusinessLayer.GeneratedMSBuildEditorConfig.editorconfig
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\obj\Debug\net5.0\BusinessLayer.AssemblyInfoInputs.cache
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\obj\Debug\net5.0\BusinessLayer.AssemblyInfo.cs
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\obj\Debug\net5.0\BusinessLayer.csproj.CoreCompileInputs.cache
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\obj\Debug\net5.0\BusinessLayer.csproj.CopyComplete
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\obj\Debug\net5.0\BusinessLayer.dll
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\obj\Debug\net5.0\ref\BusinessLayer.dll
-D:\Tung\VMO\Tuan 3\Projects\Hotel_Management_Project\BusinessLayer\obj\Debug\net5.0\BusinessLayer.pdb
+D:/dev/Hotel_API/BusinessLayer/bin/Debug/net5.0/BusinessLayer.deps.json
+D:/dev/Hotel_API/BusinessLayer/bin/Debug/net5.0/BusinessLayer.dll
+D:/dev/Hotel_API/BusinessLayer/bin/Debug/net5.0/ref/BusinessLayer.dll
+D:/dev/Hotel_API/BusinessLayer/bin/Debug/net5.0/BusinessLayer.pdb
+D:/dev/Hotel_API/BusinessLayer/bin/Debug/net5.0/Entity.dll
+D:/dev/Hotel_API/BusinessLayer/bin/Debug/net5.0/Entity.pdb
+D:/dev/Hotel_API/BusinessLayer/obj/Debug/net5.0/BusinessLayer.csproj.AssemblyReference.cache
+D:/dev/Hotel_API/BusinessLayer/obj/Debug/net5.0/BusinessLayer.GeneratedMSBuildEditorConfig.editorconfig
+D:/dev/Hotel_API/BusinessLayer/obj/Debug/net5.0/BusinessLayer.AssemblyInfoInputs.cache
+D:/dev/Hotel_API/BusinessLayer/obj/Debug/net5.0/BusinessLayer.AssemblyInfo.cs
+D:/dev/Hotel_API/BusinessLayer/obj/Debug/net5.0/BusinessLayer.csproj.CoreCompileInputs.cache
+D:/dev/Hotel_API/BusinessLayer/obj/Debug/net5.0/BusinessLayer.csproj.CopyComplete
+D:/dev/Hotel_API/BusinessLayer/obj/Debug/net5.0/BusinessLayer.dll
+D:/dev/Hotel_API/BusinessLayer/obj/Debug/net5.0/ref/BusinessLayer.dll
+D:/dev/Hotel_API/BusinessLayer/obj/Debug/net5.0/BusinessLayer.pdb
+D:/dev/Hotel_API/BusinessLayer/bin/Debug/net5.0/DataLayer.dll
+D:/dev/Hotel_API/BusinessLayer/bin/Debug/net5.0/DataLayer.pdb
+C:/Users/admin/Downloads/Hotel_API/Hotel_API/BusinessLayer/bin/Debug/net5.0/BusinessLayer.deps.json
+C:/Users/admin/Downloads/Hotel_API/Hotel_API/BusinessLayer/bin/Debug/net5.0/BusinessLayer.dll
+C:/Users/admin/Downloads/Hotel_API/Hotel_API/BusinessLayer/bin/Debug/net5.0/ref/BusinessLayer.dll
+C:/Users/admin/Downloads/Hotel_API/Hotel_API/BusinessLayer/bin/Debug/net5.0/BusinessLayer.pdb
+C:/Users/admin/Downloads/Hotel_API/Hotel_API/BusinessLayer/bin/Debug/net5.0/DataLayer.dll
+C:/Users/admin/Downloads/Hotel_API/Hotel_API/BusinessLayer/bin/Debug/net5.0/Entity.dll
+C:/Users/admin/Downloads/Hotel_API/Hotel_API/BusinessLayer/bin/Debug/net5.0/DataLayer.pdb
+C:/Users/admin/Downloads/Hotel_API/Hotel_API/BusinessLayer/bin/Debug/net5.0/Entity.pdb
+C:/Users/admin/Downloads/Hotel_API/Hotel_API/BusinessLayer/obj/Debug/net5.0/BusinessLayer.csproj.AssemblyReference.cache
+C:/Users/admin/Downloads/Hotel_API/Hotel_API/BusinessLayer/obj/Debug/net5.0/BusinessLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/admin/Downloads/Hotel_API/Hotel_API/BusinessLayer/obj/Debug/net5.0/BusinessLayer.AssemblyInfoInputs.cache
+C:/Users/admin/Downloads/Hotel_API/Hotel_API/BusinessLayer/obj/Debug/net5.0/BusinessLayer.AssemblyInfo.cs
+C:/Users/admin/Downloads/Hotel_API/Hotel_API/BusinessLayer/obj/Debug/net5.0/BusinessLayer.csproj.CoreCompileInputs.cache
+C:/Users/admin/Downloads/Hotel_API/Hotel_API/BusinessLayer/obj/Debug/net5.0/BusinessLayer.csproj.CopyComplete
+C:/Users/admin/Downloads/Hotel_API/Hotel_API/BusinessLayer/obj/Debug/net5.0/BusinessLayer.dll
+C:/Users/admin/Downloads/Hotel_API/Hotel_API/BusinessLayer/obj/Debug/net5.0/ref/BusinessLayer.dll
+C:/Users/admin/Downloads/Hotel_API/Hotel_API/BusinessLayer/obj/Debug/net5.0/BusinessLayer.pdb
+D:/Tung/VMO/Tuan 3/Projects/Hotel_API_Dung/Hotel_API/BusinessLayer/bin/Debug/net5.0/BusinessLayer.deps.json
+D:/Tung/VMO/Tuan 3/Projects/Hotel_API_Dung/Hotel_API/BusinessLayer/bin/Debug/net5.0/BusinessLayer.dll
+D:/Tung/VMO/Tuan 3/Projects/Hotel_API_Dung/Hotel_API/BusinessLayer/bin/Debug/net5.0/BusinessLayer.pdb
+D:/Tung/VMO/Tuan 3/Projects/Hotel_API_Dung/Hotel_API/BusinessLayer/bin/Debug/net5.0/DataLayer.dll
+D:/Tung/VMO/Tuan 3/Projects/Hotel_API_Dung/Hotel_API/BusinessLayer/bin/Debug/net5.0/Entity.dll
+D:/Tung/VMO/Tuan 3/Projects/Hotel_API_Dung/Hotel_API/BusinessLayer/bin/Debug/net5.0/DataLayer.pdb
+D:/Tung/VMO/Tuan 3/Projects/Hotel_API_Dung/Hotel_API/BusinessLayer/bin/Debug/net5.0/Entity.pdb
+D:/Tung/VMO/Tuan 3/Projects/Hotel_API_Dung/Hotel_API/BusinessLayer/obj/Debug/net5.0/BusinessLayer.csproj.AssemblyReference.cache
+D:/Tung/VMO/Tuan 3/Projects/Hotel_API_Dung/Hotel_API/BusinessLayer/obj/Debug/net5.0/BusinessLayer.GeneratedMSBuildEditorConfig.editorconfig
+D:/Tung/VMO/Tuan 3/Projects/Hotel_API_Dung/Hotel_API/BusinessLayer/obj/Debug/net5.0/BusinessLayer.AssemblyInfoInputs.cache
+D:/Tung/VMO/Tuan 3/Projects/Hotel_API_Dung/Hotel_API/BusinessLayer/obj/Debug/net5.0/BusinessLayer.AssemblyInfo.cs
+D:/Tung/VMO/Tuan 3/Projects/Hotel_API_Dung/Hotel_API/BusinessLayer/obj/Debug/net5.0/BusinessLayer.csproj.CoreCompileInputs.cache
+D:/Tung/VMO/Tuan 3/Projects/Hotel_API_Dung/Hotel_API/BusinessLayer/obj/Debug/net5.0/BusinessLayer.csproj.CopyComplete
+D:/Tung/VMO/Tuan 3/Projects/Hotel_API_Dung/Hotel_API/BusinessLayer/obj/Debug/net5.0/BusinessLayer.dll
+D:/Tung/VMO/Tuan 3/Projects/Hotel_API_Dung/Hotel_API/BusinessLayer/obj/Debug/net5.0/ref/BusinessLayer.dll
+D:/Tung/VMO/Tuan 3/Projects/Hotel_API_Dung/Hotel_API/BusinessLayer/obj/Debug/net5.0/BusinessLayer.pdb
+D:/Tung/VMO/Tuan 3/Projects/Hotel_API_Dung/Hotel_API/BusinessLayer/obj/Debug/net5.0/refint/BusinessLayer.dll
+D:/Tung/VMO/Tuan 3/Projects/Hotel_Management_Project/BusinessLayer/bin/Debug/net5.0/BusinessLayer.deps.json
+D:/Tung/VMO/Tuan 3/Projects/Hotel_Management_Project/BusinessLayer/bin/Debug/net5.0/BusinessLayer.dll
+D:/Tung/VMO/Tuan 3/Projects/Hotel_Management_Project/BusinessLayer/bin/Debug/net5.0/ref/BusinessLayer.dll
+D:/Tung/VMO/Tuan 3/Projects/Hotel_Management_Project/BusinessLayer/bin/Debug/net5.0/BusinessLayer.pdb
+D:/Tung/VMO/Tuan 3/Projects/Hotel_Management_Project/BusinessLayer/bin/Debug/net5.0/DatabaseProvider.dll
+D:/Tung/VMO/Tuan 3/Projects/Hotel_Management_Project/BusinessLayer/bin/Debug/net5.0/DataLayer.dll
+D:/Tung/VMO/Tuan 3/Projects/Hotel_Management_Project/BusinessLayer/bin/Debug/net5.0/Entity.dll
+D:/Tung/VMO/Tuan 3/Projects/Hotel_Management_Project/BusinessLayer/bin/Debug/net5.0/EntityFramework.dll
+D:/Tung/VMO/Tuan 3/Projects/Hotel_Management_Project/BusinessLayer/bin/Debug/net5.0/DatabaseProvider.pdb
+D:/Tung/VMO/Tuan 3/Projects/Hotel_Management_Project/BusinessLayer/bin/Debug/net5.0/DatabaseProvider.dll.config
+D:/Tung/VMO/Tuan 3/Projects/Hotel_Management_Project/BusinessLayer/bin/Debug/net5.0/DataLayer.pdb
+D:/Tung/VMO/Tuan 3/Projects/Hotel_Management_Project/BusinessLayer/bin/Debug/net5.0/Entity.pdb
+D:/Tung/VMO/Tuan 3/Projects/Hotel_Management_Project/BusinessLayer/obj/Debug/net5.0/BusinessLayer.csproj.AssemblyReference.cache
+D:/Tung/VMO/Tuan 3/Projects/Hotel_Management_Project/BusinessLayer/obj/Debug/net5.0/BusinessLayer.GeneratedMSBuildEditorConfig.editorconfig
+D:/Tung/VMO/Tuan 3/Projects/Hotel_Management_Project/BusinessLayer/obj/Debug/net5.0/BusinessLayer.AssemblyInfoInputs.cache
+D:/Tung/VMO/Tuan 3/Projects/Hotel_Management_Project/BusinessLayer/obj/Debug/net5.0/BusinessLayer.AssemblyInfo.cs
+D:/Tung/VMO/Tuan 3/Projects/Hotel_Management_Project/BusinessLayer/obj/Debug/net5.0/BusinessLayer.csproj.CoreCompileInputs.cache
+D:/Tung/VMO/Tuan 3/Projects/Hotel_Management_Project/BusinessLayer/obj/Debug/net5.0/BusinessLayer.csproj.CopyComplete
+D:/Tung/VMO/Tuan 3/Projects/Hotel_Management_Project/BusinessLayer/obj/Debug/net5.0/BusinessLayer.dll
+D:/Tung/VMO/Tuan 3/Projects/Hotel_Management_Project/BusinessLayer/obj/Debug/net5.0/ref/BusinessLayer.dll
+D:/Tung/VMO/Tuan 3/Projects/Hotel_Management_Project/BusinessLayer/obj/Debug/net5.0/BusinessLayer.pdb

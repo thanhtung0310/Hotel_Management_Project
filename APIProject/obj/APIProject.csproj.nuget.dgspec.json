@@ -1,44 +1,44 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\APIProject.csproj": {}
+    "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/APIProject/APIProject.csproj": {}
   },
   "projects": {
-    "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\APIProject.csproj": {
+    "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/APIProject/APIProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\APIProject.csproj",
+        "projectUniqueName": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/APIProject/APIProject.csproj",
         "projectName": "APIProject",
-        "projectPath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\APIProject.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\APIProject\\obj\\",
+        "projectPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/APIProject/APIProject.csproj",
+        "packagesPath": "/Users/Chris/.nuget/packages/",
+        "outputPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/APIProject/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/Chris/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "/usr/local/share/dotnet/library-packs": {},
+          "/usr/local/share/dotnet/sdk/7.0.304/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "net7.0": {
+            "targetAlias": "net7.0",
             "projectReferences": {
-              "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\BusinessLayer\\BusinessLayer.csproj": {
-                "projectPath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\BusinessLayer\\BusinessLayer.csproj"
+              "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/BusinessLayer/BusinessLayer.csproj": {
+                "projectPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/BusinessLayer/BusinessLayer.csproj"
               },
-              "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\DatabaseProvider\\DatabaseProvider.csproj": {
-                "projectPath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\DatabaseProvider\\DatabaseProvider.csproj"
+              "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DatabaseProvider/DatabaseProvider.csproj": {
+                "projectPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DatabaseProvider/DatabaseProvider.csproj"
               },
-              "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\DataLayer\\DataLayer.csproj": {
-                "projectPath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\DataLayer\\DataLayer.csproj"
+              "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DataLayer/DataLayer.csproj": {
+                "projectPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DataLayer/DataLayer.csproj"
               },
-              "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\Entity\\Entity.csproj": {
-                "projectPath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\Entity\\Entity.csproj"
+              "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/Entity/Entity.csproj": {
+                "projectPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/Entity/Entity.csproj"
               }
             }
           }
@@ -50,8 +50,8 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net7.0": {
+          "targetAlias": "net7.0",
           "dependencies": {
             "BCrypt.Net-Next": {
               "target": "Package",
@@ -126,7 +126,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -138,42 +139,41 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.304/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\BusinessLayer\\BusinessLayer.csproj": {
+    "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/BusinessLayer/BusinessLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\BusinessLayer\\BusinessLayer.csproj",
+        "projectUniqueName": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/BusinessLayer/BusinessLayer.csproj",
         "projectName": "BusinessLayer",
-        "projectPath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\BusinessLayer\\BusinessLayer.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\BusinessLayer\\obj\\",
+        "projectPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/BusinessLayer/BusinessLayer.csproj",
+        "packagesPath": "/Users/Chris/.nuget/packages/",
+        "outputPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/BusinessLayer/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/Chris/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "/usr/local/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "net7.0": {
+            "targetAlias": "net7.0",
             "projectReferences": {
-              "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\DatabaseProvider\\DatabaseProvider.csproj": {
-                "projectPath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\DatabaseProvider\\DatabaseProvider.csproj"
+              "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DatabaseProvider/DatabaseProvider.csproj": {
+                "projectPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DatabaseProvider/DatabaseProvider.csproj"
               },
-              "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\DataLayer\\DataLayer.csproj": {
-                "projectPath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\DataLayer\\DataLayer.csproj"
+              "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DataLayer/DataLayer.csproj": {
+                "projectPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DataLayer/DataLayer.csproj"
               },
-              "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\Entity\\Entity.csproj": {
-                "projectPath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\Entity\\Entity.csproj"
+              "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/Entity/Entity.csproj": {
+                "projectPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/Entity/Entity.csproj"
               }
             }
           }
@@ -185,8 +185,8 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net7.0": {
+          "targetAlias": "net7.0",
           "dependencies": {
             "Dapper": {
               "target": "Package",
@@ -223,7 +223,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -232,48 +233,56 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.304/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\DatabaseProvider\\DatabaseProvider.csproj": {
+    "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DatabaseProvider/DatabaseProvider.csproj": {
       "restore": {
-        "projectUniqueName": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\DatabaseProvider\\DatabaseProvider.csproj",
+        "projectUniqueName": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DatabaseProvider/DatabaseProvider.csproj",
         "projectName": "DatabaseProvider",
-        "projectPath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\DatabaseProvider\\DatabaseProvider.csproj",
-        "frameworks": {
-          "net45": {
-            "projectReferences": {}
-          }
-        }
-      },
-      "frameworks": {
-        "net45": {}
-      }
-    },
-    "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\DataLayer\\DataLayer.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\DataLayer\\DataLayer.csproj",
-        "projectName": "DataLayer",
-        "projectPath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\DataLayer\\DataLayer.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\DataLayer\\obj\\",
-        "projectStyle": "PackageReference",
+        "projectPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DatabaseProvider/DatabaseProvider.csproj",
+        "packagesPath": "/Users/Chris/.nuget/packages/",
+        "projectStyle": "PackagesConfig",
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
-        ],
-        "originalTargetFrameworks": [
-          "net5.0"
+          "/Users/Chris/.nuget/NuGet/NuGet.Config"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "net48": {
+            "projectReferences": {}
+          }
+        },
+        "packagesConfigPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DatabaseProvider/packages.config"
+      },
+      "frameworks": {
+        "net48": {}
+      }
+    },
+    "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DataLayer/DataLayer.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DataLayer/DataLayer.csproj",
+        "projectName": "DataLayer",
+        "projectPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DataLayer/DataLayer.csproj",
+        "packagesPath": "/Users/Chris/.nuget/packages/",
+        "outputPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DataLayer/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/Chris/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
             "projectReferences": {}
           }
         },
@@ -284,8 +293,8 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net7.0": {
+          "targetAlias": "net7.0",
           "dependencies": {
             "Dapper": {
               "target": "Package",
@@ -302,7 +311,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -311,33 +321,32 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.304/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\Entity\\Entity.csproj": {
+    "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/Entity/Entity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\Entity\\Entity.csproj",
+        "projectUniqueName": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/Entity/Entity.csproj",
         "projectName": "Entity",
-        "projectPath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\Entity\\Entity.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "D:\\Tung\\VMO\\Tuan 3\\Projects\\Hotel_Management_Project\\Entity\\obj\\",
+        "projectPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/Entity/Entity.csproj",
+        "packagesPath": "/Users/Chris/.nuget/packages/",
+        "outputPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/Entity/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/Chris/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net5.0"
+          "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "/usr/local/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net5.0": {
-            "targetAlias": "net5.0",
+          "net7.0": {
+            "targetAlias": "net7.0",
             "projectReferences": {}
           }
         },
@@ -348,15 +357,16 @@
         }
       },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net7.0": {
+          "targetAlias": "net7.0",
           "imports": [
             "net461",
             "net462",
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -365,7 +375,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.304/RuntimeIdentifierGraph.json"
         }
       }
     }
