@@ -35,10 +35,12 @@ namespace APIProject
 
       //services.AddDistributedMemoryCache(); // use memory cache
 
+      string connectionString = Configuration.GetConnectionString("APIProjectContext");
+
       // use sql server to save session info
       services.AddDistributedSqlServerCache((options) =>
       {
-        options.ConnectionString = "data source=localhost;initial catalog=VMO_HotelManagement;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework";
+        options.ConnectionString = connectionString;
         options.SchemaName = "dbo";
         options.TableName = "userSessions";
       });
@@ -66,12 +68,11 @@ namespace APIProject
       // add database context
       services.AddDbContext<APIProjectContext>((options) =>
       {
-        options.UseSqlServer(Configuration.GetConnectionString("APIProjectContext"));
+        options.UseSqlServer(connectionString);
       });
 
       // use sql connection string in singleton
-      services.AddSingleton<IDbConnection>(db => new SqlConnection(
-              Configuration.GetConnectionString("APIProjectContext")));
+      services.AddSingleton<IDbConnection>(db => new SqlConnection(connectionString));
 
       services.Configure<CookiePolicyOptions>(options =>
       {
@@ -82,7 +83,6 @@ namespace APIProject
       });
 
       DependencyInjection.InjectService(services);
-
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

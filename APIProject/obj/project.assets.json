@@ -11563,43 +11563,50 @@
     ]
   },
   "packageFolders": {
-    "/Users/Chris/.nuget/packages/": {}
+    "C:\\Users\\Admin\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/APIProject/APIProject.csproj",
+      "projectUniqueName": "D:\\Personal\\repo\\Hotel_Management_Project\\APIProject\\APIProject.csproj",
       "projectName": "APIProject",
-      "projectPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/APIProject/APIProject.csproj",
-      "packagesPath": "/Users/Chris/.nuget/packages/",
-      "outputPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/APIProject/obj/",
+      "projectPath": "D:\\Personal\\repo\\Hotel_Management_Project\\APIProject\\APIProject.csproj",
+      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+      "outputPath": "D:\\Personal\\repo\\Hotel_Management_Project\\APIProject\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/Users/Chris/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "/usr/local/share/dotnet/library-packs": {},
-        "/usr/local/share/dotnet/sdk/7.0.304/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "C:\\Program Files\\dotnet\\sdk\\7.0.304\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/BusinessLayer/BusinessLayer.csproj": {
-              "projectPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/BusinessLayer/BusinessLayer.csproj"
+            "D:\\Personal\\repo\\Hotel_Management_Project\\BusinessLayer\\BusinessLayer.csproj": {
+              "projectPath": "D:\\Personal\\repo\\Hotel_Management_Project\\BusinessLayer\\BusinessLayer.csproj"
             },
-            "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DatabaseProvider/DatabaseProvider.csproj": {
-              "projectPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DatabaseProvider/DatabaseProvider.csproj"
+            "D:\\Personal\\repo\\Hotel_Management_Project\\DatabaseProvider\\DatabaseProvider.csproj": {
+              "projectPath": "D:\\Personal\\repo\\Hotel_Management_Project\\DatabaseProvider\\DatabaseProvider.csproj"
             },
-            "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DataLayer/DataLayer.csproj": {
-              "projectPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DataLayer/DataLayer.csproj"
+            "D:\\Personal\\repo\\Hotel_Management_Project\\DataLayer\\DataLayer.csproj": {
+              "projectPath": "D:\\Personal\\repo\\Hotel_Management_Project\\DataLayer\\DataLayer.csproj"
             },
-            "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/Entity/Entity.csproj": {
-              "projectPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/Entity/Entity.csproj"
+            "D:\\Personal\\repo\\Hotel_Management_Project\\Entity\\Entity.csproj": {
+              "projectPath": "D:\\Personal\\repo\\Hotel_Management_Project\\Entity\\Entity.csproj"
             }
           }
         }
@@ -11700,7 +11707,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.304/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
       }
     }
   },
