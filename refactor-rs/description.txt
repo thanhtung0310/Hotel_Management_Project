@@ -1,0 +1,79 @@
+# basic crud functions
+- create, check update, get by id, search for list, delete
+
+# admin_user (merge account with employee)
+1. crud (soft delete) + search (pagination + filter)
+
+# userSessions (created and modified by .net)
+1. should be merged with account tables to check valid sessions
+
+# role
+1. crud (soft delete) + search
+2. inherit parents' permission
+	- SuperAdmin
+	+ Manager
+	+ Technical Manager
+	- Admin
+	+ Accountant
+	+ Technical Assistant
+	- Staff
+	+ Security
+	+ Cleaner
+	+ Chief
+	+ Intern
+
+# customer
+1. crud + search (pagination)
+2. get list customer who has checked in (before check out)
+3. get list customer who has booked in advance (before check in)
+
+# room
+1. crud (soft delete) + search (pagination)
+2. check list room info - filter by room_type, booked_date, status (booked in advance + checked in, ...)
+
+# room_status (master_data)
+1. crud
+- vacant/available
+- in use (checked-in)
+- need clean (recently checked-out)
+- checked-in and unpaid (checked-in but not paid)
+- checked-in and paid (checked-in and paid)
+- booked and unpaid (not checked-in and not paid)
+- booked and paid (not checked-in but paid)
+
+# room_type (master_data)
+1. crud
+	- King Room
+	- Queen Room
+	- 4-people Family Room
+	- 3-people Family Room
+	- Single Room
+	- Couple Room
+	- 4-Bunk Room
+
+# payment (only by cash)
+1. crud + search (pagination + filter)
+2. need to implement if pay by card
+
+# reception (when customer go to hotel)
+1. crud + search (pagination)
+
+# reservation (when customer reserve in advance)
+1. crud + search (pagination)
+2. push notification if available room (reserve but not available room)
+
+# payment_type (master_data)
+1. crud
+	- Cash
+	- Credit Card
+	- Debit Card
+
+# payment_status (master_data)
+1. crud
+	- Paid
+	- Partial Paid
+	- Not Paid 
+
+# role-permission functions
+
+# erp to check working days
