@@ -1,46 +1,40 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Personal\\repo\\Hotel_Management_Project\\BusinessLayer\\BusinessLayer.csproj": {}
+    "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/BusinessLayer/BusinessLayer.csproj": {}
   },
   "projects": {
-    "D:\\Personal\\repo\\Hotel_Management_Project\\BusinessLayer\\BusinessLayer.csproj": {
+    "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/BusinessLayer/BusinessLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Personal\\repo\\Hotel_Management_Project\\BusinessLayer\\BusinessLayer.csproj",
+        "projectUniqueName": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/BusinessLayer/BusinessLayer.csproj",
         "projectName": "BusinessLayer",
-        "projectPath": "D:\\Personal\\repo\\Hotel_Management_Project\\BusinessLayer\\BusinessLayer.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\Personal\\repo\\Hotel_Management_Project\\BusinessLayer\\obj\\",
+        "projectPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/BusinessLayer/BusinessLayer.csproj",
+        "packagesPath": "/Users/Chris/.nuget/packages/",
+        "outputPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/BusinessLayer/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/Chris/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
+          "/usr/local/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "D:\\Personal\\repo\\Hotel_Management_Project\\DatabaseProvider\\DatabaseProvider.csproj": {
-                "projectPath": "D:\\Personal\\repo\\Hotel_Management_Project\\DatabaseProvider\\DatabaseProvider.csproj"
+              "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DatabaseProvider/DatabaseProvider.csproj": {
+                "projectPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DatabaseProvider/DatabaseProvider.csproj"
               },
-              "D:\\Personal\\repo\\Hotel_Management_Project\\DataLayer\\DataLayer.csproj": {
-                "projectPath": "D:\\Personal\\repo\\Hotel_Management_Project\\DataLayer\\DataLayer.csproj"
+              "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DataLayer/DataLayer.csproj": {
+                "projectPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DataLayer/DataLayer.csproj"
               },
-              "D:\\Personal\\repo\\Hotel_Management_Project\\Entity\\Entity.csproj": {
-                "projectPath": "D:\\Personal\\repo\\Hotel_Management_Project\\Entity\\Entity.csproj"
+              "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/Entity/Entity.csproj": {
+                "projectPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/Entity/Entity.csproj"
               }
             }
           }
@@ -100,48 +94,51 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.308/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Personal\\repo\\Hotel_Management_Project\\DatabaseProvider\\DatabaseProvider.csproj": {
+    "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DatabaseProvider/DatabaseProvider.csproj": {
       "restore": {
-        "projectUniqueName": "D:\\Personal\\repo\\Hotel_Management_Project\\DatabaseProvider\\DatabaseProvider.csproj",
+        "projectUniqueName": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DatabaseProvider/DatabaseProvider.csproj",
         "projectName": "DatabaseProvider",
-        "projectPath": "D:\\Personal\\repo\\Hotel_Management_Project\\DatabaseProvider\\DatabaseProvider.csproj",
+        "projectPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DatabaseProvider/DatabaseProvider.csproj",
+        "packagesPath": "/Users/Chris/.nuget/packages/",
+        "projectStyle": "PackagesConfig",
+        "configFilePaths": [
+          "/Users/Chris/.nuget/NuGet/NuGet.Config"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
         "frameworks": {
           "net48": {
             "projectReferences": {}
           }
-        }
+        },
+        "packagesConfigPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DatabaseProvider/packages.config"
       },
       "frameworks": {
         "net48": {}
       }
     },
-    "D:\\Personal\\repo\\Hotel_Management_Project\\DataLayer\\DataLayer.csproj": {
+    "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DataLayer/DataLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Personal\\repo\\Hotel_Management_Project\\DataLayer\\DataLayer.csproj",
+        "projectUniqueName": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DataLayer/DataLayer.csproj",
         "projectName": "DataLayer",
-        "projectPath": "D:\\Personal\\repo\\Hotel_Management_Project\\DataLayer\\DataLayer.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\Personal\\repo\\Hotel_Management_Project\\DataLayer\\obj\\",
+        "projectPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DataLayer/DataLayer.csproj",
+        "packagesPath": "/Users/Chris/.nuget/packages/",
+        "outputPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DataLayer/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/Chris/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
+          "/usr/local/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -185,33 +182,27 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.308/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Personal\\repo\\Hotel_Management_Project\\Entity\\Entity.csproj": {
+    "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/Entity/Entity.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Personal\\repo\\Hotel_Management_Project\\Entity\\Entity.csproj",
+        "projectUniqueName": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/Entity/Entity.csproj",
         "projectName": "Entity",
-        "projectPath": "D:\\Personal\\repo\\Hotel_Management_Project\\Entity\\Entity.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\Personal\\repo\\Hotel_Management_Project\\Entity\\obj\\",
+        "projectPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/Entity/Entity.csproj",
+        "packagesPath": "/Users/Chris/.nuget/packages/",
+        "outputPath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/Entity/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/Chris/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
+          "/usr/local/share/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -245,7 +236,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.308/RuntimeIdentifierGraph.json"
         }
       }
     }

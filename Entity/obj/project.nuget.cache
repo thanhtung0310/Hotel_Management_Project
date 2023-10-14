@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "V+mU4HLVzG+6Gu00tQ8d40xlaDu8Aa8RtgoFegaFGOM8DqL8DEDVpiU4z2OOnyZYsMPH4Q72Db9qcZIZU/AfRQ==",
+  "dgSpecHash": "GOpfYvRqF7w3Oe1Gs93KFyKZAnUNUPPzBk09urWvqLyziFxYgUTG9jqXbmf0uKMmA9VCzUObml/wx8RAlo/+NA==",
   "success": true,
-  "projectFilePath": "D:\\Personal\\repo\\Hotel_Management_Project\\Entity\\Entity.csproj",
+  "projectFilePath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/Entity/Entity.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "2HVAAQTItsMkDxHvVawp4TzsSOG9egK5sHuDcSnPpeN/w/5SkLUWxbu60hHV55xOH0bE+6X2k14GwB3jaBkC6Q==",
+  "dgSpecHash": "VGMsjmlDKcHf0k8T9MZr+f1iiTDByC9o2VjmyxyrPBlLU9erUb1HbN4YSO/8tO4xIRCPgLb0kB2QcFHulm1CGA==",
   "success": true,
-  "projectFilePath": "D:\\Personal\\repo\\Hotel_Management_Project\\DataLayer\\DataLayer.csproj",
+  "projectFilePath": "/Users/Chris/Documents/Personal/repo/Hotel_Management_Project/DataLayer/DataLayer.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Admin\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
-    "C:\\Users\\Admin\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+    "/Users/Chris/.nuget/packages/dapper/2.0.123/dapper.2.0.123.nupkg.sha512",
+    "/Users/Chris/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512"
   ],
   "logs": []
 }
